@@ -41,6 +41,7 @@ body {
 /* --- Header & Navigation Styles --- */
 #site-header {
     background-color: rgba(247, 247, 247, 1); /* Light Gray background for header */
+    display: none;
 }
 
 .navigation-menu {
