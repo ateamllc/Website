@@ -125,8 +125,13 @@ body {
    ========================== */
 
 
-#mission-statement {
-   background-color: #182741; 
+#mission-statement, #final-contact-block {
+   background-color: #182741;
+   color: #fff;
+}
+
+#legal-status, #detailed-service-list, #footer {
+    background-color: #efefef;
 }
 
 .content-section {
@@ -155,35 +160,33 @@ body {
 .service-spotlight {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
     justify-content: center;
 }
 
 .content-with-image {
     display: flex;
-    flex-wrap: wrap;
-    max-width: 1000px;
-    margin: 2rem auto;
     align-items: center;
-    gap: 2rem;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 1.5rem auto;
+    gap: 1.5rem;
 }
 
 .content-with-image img {
-    width: 100%;
-    max-width: 500px;
+    width: 35%;           /* smaller image for side-by-side */
+    max-height: 250px;    /* constrain height */
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .text-block {
     flex: 1;
-    min-width: 300px;
+    min-width: 60%;       /* text takes more space */
+    padding: 0 1rem;
 }
 
-/* Alternate image-text alignment */
-#service-spotlight-maintenance .content-with-image {
-    flex-direction: row-reverse;
-}
 
 /* ==========================
    SERVICE LIST
@@ -203,16 +206,16 @@ body {
 
 .service-area {
     margin-top: 1rem;
-    font-style: italic;
+
 }
 
 /* ==========================
    CONTACT BLOCK
    ========================== */
 #final-contact-block {
-    background-color: #f4f4f4;
     padding: 3rem 2rem;
     text-align: center;
+    color: #fff;
 }
 
 .email-button-container a {
@@ -235,14 +238,11 @@ body {
    FOOTER
    ========================== */
 footer {
-    background-color: #222;
-    color: #fff;
     padding: 2rem;
     text-align: center;
 }
 
 footer a {
-    color: #fff;
     text-decoration: underline;
 }
 
@@ -271,6 +271,21 @@ footer .copyright {
 
     #company-title {
         font-size: 2rem;
+    }
+
+    .service-spotlight {
+        flex-direction: column;
+    }
+
+    .content-with-image {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .content-with-image img,
+    .text-block {
+        width: 100%;
+        max-height: none;
     }
 }
 
