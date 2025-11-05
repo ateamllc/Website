@@ -123,6 +123,12 @@ body {
 /* ==========================
    CONTENT SECTIONS
    ========================== */
+
+
+#mission-statement {
+   background-color: #182741; 
+}
+
 .content-section {
     padding: 4rem 2rem;
 }
