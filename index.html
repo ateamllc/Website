@@ -1,151 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Home | A Team Handyman Services</title>
+  <meta name="description" content="A Team Handyman Services provides home remodeling, painting, and property maintenance in Utah County. Transparent, reliable, and fully licensed. Call (208) 505-4606!">
 
-  <title>A Team Handyman Services</title>
-  <link rel="icon" href="image/favicon.ico">
-
-  <!-- Fonts -->
+  <!-- Fonts & CSS -->
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,400i,700i&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Your extracted CSS -->
-  <link rel="stylesheet" href="/css/styles.css">
-
-  <!-- Your extracted JavaScript -->
+  <!-- JS loader -->
+  <script src="js/loader.js" defer></script>
   <script src="js/scripts.js" defer></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF8P30SBZG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VF8P30SBZG');
+  </script>
 </head>
 
+
+
 <body dir="ltr">
-    <div id="handyman-service-site">
-        <header id="site-header">
-            <nav id="top-navigation" class="navigation-menu">
-                <a href="home" class="logo-link">
-                    <img src="/image/logo.png" role="img" alt="A Team Handyman Services">
-                    <span class="company-name">A Team Handyman Services</span>
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="home">Home</a></li>
-                    <li class="nav-item"><a href="history">History</a></li>
-                    <li class="nav-item"><a href="team">Team</a></li>
-                    <li class="nav-item"><a href="faq">FAQ</a></li>
-                </ul>
-            </nav>
-        </header>
+    <!-- Load navigation -->
+    <header id="site-header">
+        <div data-include="partials/nav.html"></div>
+    </header>
 
-        <div id="main-content-wrapper" class="content-sections">
-            <section id="hero-banner" class="content-section">
-                <div class="background-image-container" style="background-image: url(/image/Carousel-dawn-garage.jpg);"></div>
-                <div class="content-overlay">
-                    <h2 id="company-title">A Team Handyman Services, LLC</h2>
-                    <div class="call-to-action-button">
-                        <a href="tel:+12085054606" target="_blank" aria-label="CALL NOW!">CALL NOW!</a>
-                    </div>
-                    <div class="tagline-container">
-                        <p>Helping you turn your house into your dream home!</p>
-                        <p>Proudly serving Utah County</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="mission-statement" class="content-section">
-                <div class="content-text-block">
-                    <h2>Transparent, Reliable Home Help</h2>
-                    <p class="descriptive-text">We'll help you bring your next home project to life! From start to finish, we aim to make your experience as stress-free as possible.</p>
-                    <p class="descriptive-text">Contact us for a free consultation today!</p>
-                </div>
-            </section>
-
-            <section id="legal-status" class="content-section">
-                <div class="content-text-block">
-                    <h3>Fully Licensed and Insured in the State of Utah</h3>
-                </div>
-            </section>
-
-            <section id="service-spotlight-remodels" class="content-section service-spotlight">
-                <div class="content-with-image">
-                    <img src="/image/dawn-side-garage.jpeg" role="img" alt="Home Remodeling">
-                    <div class="text-block">
-                        <h3>Home Remodels and Projects</h3>
-                        <p>Contact us for your next home project! We specialize in mid-sized home projects and remodels</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="service-spotlight-maintenance" class="content-section service-spotlight">
-                <div class="content-with-image">
-                    <img src="image/katie-fence-gate.jpeg" role="img" alt="Property Maintenance">
-                    <div class="text-block">
-                        <h3>Property Maintenance</h3>
-                        <p>Is your home or rental property in need of work? Let us take a look! We especially love working with older homes and those needing significant work. Give us a call to see if we're a good fit for your home or investment property!</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="service-spotlight-painting" class="content-section service-spotlight">
-                <div class="content-with-image">
-                    <img src="/image/leslie-painting.jpeg" role="img" alt="Painting Services">
-                    <div class="text-block">
-                        <h3>Painting</h3>
-                        <p>Does your bedroom, bathroom, kitchen, or the exterior of your house need a touch up?</p>
-                        <p>Call us for a painting quote!</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="service-spotlight-more" class="content-section service-spotlight">
-                <div class="content-with-image">
-                    <img src="image/katie-pergola.jpeg" role="img" alt="Various Services">
-                    <div class="text-block">
-                        <h3>So much more!</h3>
-                        <p>From framing, to fences, to drywall and painting, we offer a wide variety of services! Contact us to see if we're the right fit for you!</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="detailed-services-list" class="content-section">
-                <div class="content-text-block">
-                    <h3>Services:</h3>
-                    <ul class="service-list">
-                        <li>Finishing Basements, Small Home Additions and Remodels</li>
-                        <li>Decks, Fences, Sheds & Outdoor Projects</li>
-                        <li>Interior & Exterior Painting</li>
-                        <li>Kitchen & Bathroom Updates</li>
-                        <li>Framing, Siding, and Flooring</li>
-                        <li>Carpentry & Trim Work (baseboards, crown molding, doors)</li>
-                        <li>Drywall</li>
-                        <li>Window & Door Repairs or Replacement</li>
-                        <li>General Home Maintenance & Odd Jobs</li>
-                    </ul>
-                    <p class="service-area">Proudly serving Provo, Orem, Springville, Spanish Fork, and surrounding Utah County neighborhoods.</p>
-                </div>
-            </section>
-
-            <section id="final-contact-block" class="content-section">
-                <div class="content-text-block">
-                    <h2 id="questions-heading">Questions?</h2>
-                    <p>Send us an email at <a href="mailto:contact@a-team-handyman-services.com" target="_blank" class="email-link">contact@a-team-handyman-services.com</a> for help!</p>
-                    <div class="email-button-container">
-                        <a href="mailto:contact@a-team-handyman-services.com" target="_blank" aria-label="Email us!">
-                            <p>Email us!</p>
-                        </a>
-                    </div>
-                </div>
-            </section>
+    <div id="main-content-wrapper" class="content-sections">
+        <section id="hero-banner" class="content-section">
+        <div class="background-image-container" style="background-image: url('image/Carousel-dawn-garage.jpg');"></div>
+        <div class="content-overlay">
+            <h2 id="company-title">A Team Handyman Services, LLC</h2>
+            <div class="call-to-action-button">
+            <a href="tel:+12085054606" target="_blank" aria-label="CALL NOW!">CALL NOW!</a>
+            </div>
+            <div class="tagline-container">
+            <p>Helping you turn your house into your dream home!</p>
+            <p>Proudly serving Utah County</p>
+            </div>
         </div>
+        </section>
 
-        <footer>
-            <section id="site-footer-info">
-                <div class="contact-and-copyright">
-                    <p class="footer-contact">(208) 505 - 4606 | <a href="mailto:contact@a-team-handyman-services.com" target="_blank">contact@a-team-handyman-services.com</a> | Serving Utah County</p>
-                    <p class="copyright">© 2025 A Team Handyman Services LLC. All rights reserved.</p>
-                </div>
-            </section>
-        </footer>
+        <section id="mission-statement" class="content-section">
+        <div class="content-text-block">
+            <h2>Transparent, Reliable Home Help</h2>
+            <p class="descriptive-text">We'll help you bring your next home project to life! From start to finish, we aim to make your experience as stress-free as possible.</p>
+            <p class="descriptive-text">Contact us for a free consultation today!</p>
+        </div>
+        </section>
+
+        <section id="legal-status" class="content-section">
+        <div class="content-text-block">
+            <h3>Fully Licensed and Insured in the State of Utah</h3>
+        </div>
+        </section>
+
+        <section id="service-spotlight-remodels" class="content-section service-spotlight">
+        <div class="content-with-image">
+            <img src="image/dawn-side-garage.jpeg" role="img" alt="Home Remodeling">
+            <div class="text-block">
+            <h3>Home Remodels and Projects</h3>
+            <p>Contact us for your next home project! We specialize in mid-sized home projects and remodels</p>
+            </div>
+        </div>
+        </section>
+
+        <section id="service-spotlight-maintenance" class="content-section service-spotlight">
+        <div class="content-with-image">
+            <img src="image/katie-fence-gate.jpeg" role="img" alt="Property Maintenance">
+            <div class="text-block">
+            <h3>Property Maintenance</h3>
+            <p>Is your home or rental property in need of work? Let us take a look! We especially love working with older homes and those needing significant work. Give us a call to see if we're a good fit for your home or investment property!</p>
+            </div>
+        </div>
+        </section>
+
+        <section id="service-spotlight-painting" class="content-section service-spotlight">
+        <div class="content-with-image">
+            <img src="image/leslie-painting.jpeg" role="img" alt="Painting Services">
+            <div class="text-block">
+            <h3>Painting</h3>
+            <p>Does your bedroom, bathroom, kitchen, or the exterior of your house need a touch up?</p>
+            <p>Call us for a painting quote!</p>
+            </div>
+        </div>
+        </section>
+
+        <section id="service-spotlight-more" class="content-section service-spotlight">
+        <div class="content-with-image">
+            <img src="image/katie-pergola.jpeg" role="img" alt="Various Services">
+            <div class="text-block">
+            <h3>So much more!</h3>
+            <p>From framing, to fences, to drywall and painting, we offer a wide variety of services! Contact us to see if we're the right fit for you!</p>
+            </div>
+        </div>
+        </section>
+
+        <section id="detailed-services-list" class="content-section">
+        <div class="content-text-block">
+            <h3>Services:</h3>
+            <ul class="service-list">
+            <li>Finishing Basements, Small Home Additions and Remodels</li>
+            <li>Decks, Fences, Sheds & Outdoor Projects</li>
+            <li>Interior & Exterior Painting</li>
+            <li>Kitchen & Bathroom Updates</li>
+            <li>Framing, Siding, and Flooring</li>
+            <li>Carpentry & Trim Work (baseboards, crown molding, doors)</li>
+            <li>Drywall</li>
+            <li>Window & Door Repairs or Replacement</li>
+            <li>General Home Maintenance & Odd Jobs</li>
+            </ul>
+            <p class="service-area">Proudly serving Provo, Orem, Springville, Spanish Fork, and surrounding Utah County neighborhoods.</p>
+        </div>
+        </section>
+
+        <section id="final-contact-block" class="content-section">
+        <div class="content-text-block">
+            <h2 id="questions-heading">Questions?</h2>
+            <p>Send us an email at <a href="mailto:contact@a-team-handyman-services.com" target="_blank" class="email-link">contact@a-team-handyman-services.com</a> for help!</p>
+            <div class="email-button-container">
+            <a href="mailto:contact@a-team-handyman-services.com" target="_blank" aria-label="Email us!">
+                <p>Email us!</p>
+            </a>
+            </div>
+        </div>
+        </section>
     </div>
+
+    <!-- Load footer -->
+    <div data-include="partials/footer.html"></div>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Contact Us | A Team Handyman Services</title>
+  <meta name="description" content="Get in touch with A Team Handyman Services for home remodeling, painting, or maintenance services in Utah County. Call or email us today for a free consultation.">
+
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,400i,700i&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="js/loader.js" defer></script>
+  <script src="js/scripts.js" defer></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF8P30SBZG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VF8P30SBZG');
+  </script>
+</head>
+
+
+<body>
+  <header id="site-header">
+    <div data-include="partials/nav.html"></div>
+  </header>
+
+  <main class="content-sections">
+    <div data-include="/partials/hero.html"></div>
+
+    <section class="content-section">
+      <h2>Contact Us</h2>
+      <p><strong>Phone:</strong> <a href="tel:+12085054606">(208) 505 - 4606</a></p>
+      <p><strong>Email:</strong> <a href="mailto:contact@a-team-handyman-services.com">contact@a-team-handyman-services.com</a></p>
+      <p><strong>Service Area:</strong> Provo, Orem, Springville, Spanish Fork, and surrounding Utah County.</p>
+    </section>
+
+    <section class="content-section">
+      <h2>Request a free estimate</h2>
+      <form id="contact-form" action="/thank-you.html" method="post" class="contact-form">
+        <label for="name">Name</label>
+        <input id="name" name="name" required>
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" required>
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+    </section>
+
+    <section class="content-section">
+      <h3>Find us</h3>
+      <div class="map-embed">
+        <!-- Light embed: replace with your own Google Maps embed later -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width:100%;height:300px;border:0;"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="/partials/footer.html"></div>
+  <script src="/js/scripts.js" defer></script>
+</body>
+</html>
