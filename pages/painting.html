@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -32,25 +32,53 @@
   <header id="site-header">
       <div data-include="/pages/partials/nav.html"></div>
   </header>
-  <div data-include="/pages/partials/hero.html"></div>
 
   <main class="content-sections">
-    <section class="content-section">
-      <h1>Painting Services</h1>
-      <p>Professional interior and exterior painting. We handle prep work, minor repairs, priming and high-quality finishes to make your space look new again.</p>
+    <section class="hero-banner page-hero">
+      <div class="background-image-container" style="background-image: url('/image/leslie-painting.jpeg');"></div>
+      <div class="content-overlay">
+        <p class="hero-eyebrow">Painting</p>
+        <h1 class="hero-title">Interior and exterior painting done right</h1>
+        <p class="hero-sub">Professional prep, detail work, and finishes to make your space feel new again.</p>
+      </div>
     </section>
 
-    <section class="content-section">
-      <h3>Our painting process</h3>
-      <ol>
-        <li>Prep & protect</li>
-        <li>Minor repairs & priming</li>
-        <li>Professional paint application & cleanup</li>
-      </ol>
+    <section class="content-section content-with-image">
+      <div class="text-block text-left">
+        <img src="/image/leslie-painting.jpeg" class= "card-image" alt="Painter preparing a wall for finishing">
+        <p class="eyebrow">What we paint</p>
+        <h2>Interiors, exteriors, and accent work</h2>
+        <ul class="service-list">
+          <li>Whole-home interior repaints and refreshes</li>
+          <li>Cabinet, trim, and door refinishing</li>
+          <li>Exterior siding, soffit, and fascia touch-ups</li>
+          <li>Accent walls, nurseries, and feature ceilings</li>
+        </ul>
+        <p>We handle all prep work, minor repairs, priming, and high-quality finishes so you don't have to worry about drips or cleanup.</p>
+      </div>
+    </section>
+
+    <section class="content-section light-grey">
+      <div class="text-block">
+        <p class="eyebrow">Our process</p>
+        <h2>What to expect</h2>
+        <ol>
+          <li><strong>Prep & protect:</strong> Move furniture, cover floors, mask trim, and repair problem spots.</li>
+          <li><strong>Prime & paint:</strong> We use top-tier products matched to your surface and sheen preferences.</li>
+          <li><strong>Cleanup & walkthrough:</strong> We leave the space spotless and confirm you're happy before wrapping up.</li>
+        </ol>
+      </div>
     </section>
 
     <section class="content-section cta-section">
-      <a class="btn btn-primary" href="/pages/contact.html">Get a painting quote</a>
+      <div class="text-block">
+        <h2>Ready for a fresh coat?</h2>
+        <p>Tell us about your rooms, colors, and timeline—we'll schedule a walkthrough and provide a detailed quote.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-outline" href="tel:+12085054606">Talk with a painter</a>
+          <a class="btn btn-primary" href="/pages/contact.html">Get a painting quote</a>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -58,6 +86,5 @@
   <div data-include="/pages/partials/email-prompt.html"></div>
   <div data-include="/pages/partials/footer.html"></div>
   
-  <script src="/js/scripts.js" defer></script>
 </body>
 </html>

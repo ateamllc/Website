@@ -48,6 +48,22 @@ a {
     margin-bottom: 1rem;
 }
 
+.text-block p {
+    margin-bottom: 1rem;
+}
+
+.text-block.text-left {
+    text-align: left;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.85rem;
+    color: #0077cc;
+    margin-bottom: 0.5rem;
+}
+
 .dark-blue {
     background-color: #182741;
     color: #fff;
@@ -61,18 +77,190 @@ a {
     background-color: #efefef;
 }
 
+main.content-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.content-section .section-heading {
+    margin-bottom: 1.5rem;
+}
+
+.content-section ul,
+.content-section ol {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+}
+
+.content-section ul li,
+.content-section ol li {
+    margin-bottom: 0.5rem;
+}
+
+.content-with-image img {
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.info-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: left;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    text-align: left;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+.contact-details {
+    text-align: left;
+}
+
+.contact-details p {
+    margin-bottom: 0.75rem;
+}
+
+.contact-details a {
+    color: #0077cc;
+    font-weight: 600;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.contact-form label {
+    font-weight: 600;
+    text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid #d4d4d8;
+    border-radius: 6px;
+    font: inherit;
+    background-color: #fff;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.map-embed iframe {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    border: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.faq-list {
+    max-width: 800px;
+    text-align: left;
+    margin: 0 auto;
+}
+
+.faq-list dt {
+    font-weight: 700;
+    margin-top: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+}
+
+.faq-list dd {
+    margin-left: 0;
+    margin-top: 0.5rem;
+}
+
+.team-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.team-gallery img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.cta-section {
+    text-align: center;
+}
+
+.cta-section p {
+    margin-bottom: 1rem;
+}
+
+.content-wide {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.policy-section h2 {
+    margin-top: 2rem;
+}
+
+.thank-you {
+    text-align: center;
+}
+
+.thank-you .button {
+    margin-top: 1.5rem;
+}
+
+.card-image {
+    width: 20vw;
+}
+
 
 /* ==========================
    RESPONSIVE BREAKPOINTS
    ========================== */
 @media (max-width: 768px) {
-    .nav-list {
-        flex-direction: column;
-        width: 100%;
-        justify-content: center;
-        margin-top: 0.5rem;
-    }
-
     .service-spotlight {
         flex-direction: column;
     }

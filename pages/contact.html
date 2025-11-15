@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -34,35 +34,56 @@
   </header>
 
   <main class="content-sections">
-    <div data-include="/pages/partials/hero.html"></div>
-
-    <section class="content-section">
-      <h2>Contact Us</h2>
-      <p><strong>Phone:</strong> <a href="tel:+12085054606">(208) 505 - 4606</a></p>
-      <p><strong>Email:</strong> <a href="mailto:contact@a-team-handyman-services.com">contact@a-team-handyman-services.com</a></p>
-      <p><strong>Service Area:</strong> Provo, Orem, Springville, Spanish Fork, and surrounding Utah County.</p>
+    <section class="hero-banner page-hero">
+      <div class="background-image-container" style="background-image: url('/image/leslie-painting.jpeg');"></div>
+      <div class="content-overlay">
+        <p class="hero-eyebrow">Get in touch</p>
+        <h1 class="hero-title">Let's talk about your next project</h1>
+        <p class="hero-sub">Tell us about your ideas and we’ll follow up within one business day.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-outline" href="tel:+12085054606">Call (208) 505-4606</a>
+          <a class="btn btn-primary" href="#contact-form">Send a message</a>
+        </div>
+      </div>
     </section>
 
     <section class="content-section">
-      <h2>Request a free estimate</h2>
-      <form id="contact-form" action="/thank-you.html" method="post" class="contact-form">
-        <label for="name">Name</label>
-        <input id="name" name="name" required>
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" required>
-        <label for="phone">Phone</label>
-        <input id="phone" name="phone">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
-        <button type="submit" class="btn btn-primary">Send</button>
-      </form>
+      <div class="contact-layout">
+        <div class="contact-details">
+          <p class="eyebrow">Contact details</p>
+          <h2>We're local to Utah County</h2>
+          <p><strong>Phone:</strong> <a href="tel:+12085054606">(208) 505-4606</a></p>
+          <p><strong>Email:</strong> <a href="mailto:contact@a-team-handyman-services.com">contact@a-team-handyman-services.com</a></p>
+          <p><strong>Service Areas:</strong> Provo, Orem, Springville, Spanish Fork, Payson, and surrounding neighborhoods.</p>
+          <p>Share a few details about your vision and we'll put together a tailored plan and estimate.</p>
+        </div>
+
+        <form id="contact-form" action="/thank-you.html" method="post" class="contact-form">
+          <label for="name">Name</label>
+          <input id="name" name="name" required>
+
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required>
+
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone">
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Tell us about your project" required></textarea>
+
+          <button type="submit" class="btn btn-primary">Send request</button>
+        </form>
+      </div>
     </section>
 
     <section class="content-section">
-      <h3>Find us</h3>
+      <div class="text-block">
+        <p class="eyebrow">Visit</p>
+        <h2>Serving the Wasatch Front</h2>
+        <p>We meet homeowners on-site for most consultations. Here's where most of our projects happen:</p>
+      </div>
       <div class="map-embed">
-        <!-- Light embed: replace with your own Google Maps embed later -->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width:100%;height:300px;border:0;"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18" loading="lazy" referrerpolicy="no-referrer-when-downgrade" height="320"></iframe>
       </div>
     </section>
   </main>
@@ -71,7 +92,6 @@
   <div data-include="/pages/partials/email-prompt.html"></div>
   <div data-include="/pages/partials/footer.html"></div>
   
-  <script src="/js/scripts.js" defer></script>
 
 </body>
 </html>

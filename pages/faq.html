@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -40,19 +40,35 @@
   </header>
 
   <main class="content-sections">
-    <div data-include="/pages/partials/hero.html"></div>
+    <section class="hero-banner page-hero">
+      <div class="background-image-container" style="background-image: url('/image/dawn-side-garage.jpeg');"></div>
+      <div class="content-overlay">
+        <p class="hero-eyebrow">FAQ</p>
+        <h1 class="hero-title">Answers to the common questions</h1>
+        <p class="hero-sub">If you don't see what you're looking for, send us a note—we're happy to chat.</p>
+      </div>
+    </section>
 
     <section class="content-section">
-      <h2>Frequently Asked Questions</h2>
-      <dl>
+      <div class="text-block">
+        <p class="eyebrow">Helpful info</p>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <dl class="faq-list">
         <dt>Do you provide free estimates?</dt>
-        <dd>Yes — we offer free consultations and estimates for most projects.</dd>
+        <dd>Yes — we offer free consultations and estimates for most projects. We can usually provide a range remotely and follow up with an on-site visit.</dd>
 
         <dt>Are you licensed and insured?</dt>
-        <dd>Yes — fully licensed and insured in the State of Utah.</dd>
+        <dd>Absolutely. We are fully licensed and insured in the State of Utah and maintain coverage that protects both your property and our team.</dd>
 
         <dt>What areas do you serve?</dt>
-        <dd>Provo, Orem, Springville, Spanish Fork, and surrounding Utah County.</dd>
+        <dd>Provo, Orem, Springville, Spanish Fork, Mapleton, Payson, and surrounding Utah County neighborhoods.</dd>
+
+        <dt>What types of projects do you take on?</dt>
+        <dd>Small to mid-sized remodels, fences, decks, painting, drywall, finish work, and general handyman punch lists. If it's outside our wheelhouse, we'll let you know.</dd>
+
+        <dt>How soon can you start?</dt>
+        <dd>We keep a flexible schedule to prioritize urgent issues. Contact us with your target timeline and we'll let you know the soonest availability.</dd>
       </dl>
     </section>
   </main>
@@ -61,6 +77,5 @@
   <div data-include="/pages/partials/email-prompt.html"></div>
   <div data-include="/pages/partials/footer.html"></div>
   
-  <script src="/js/scripts.js" defer></script>
 </body>
 </html>

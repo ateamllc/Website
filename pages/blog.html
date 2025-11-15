@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -32,21 +32,51 @@
   <header id="site-header">
       <div data-include="/pages/partials/nav.html"></div>
   </header>
-  
-  <div data-include="/pages/partials/hero.html"></div>
 
   <main class="content-sections">
-    <section class="content-section">
-      <h2>Project Portfolio (sample)</h2>
-      <article class="post">
-        <h3>Basement Remodel — Provo</h3>
-        <p>Overview of project, challenges, and before/after photos (placeholder).</p>
-      </article>
+    <section class="hero-banner page-hero">
+      <div class="background-image-container" style="background-image: url('/image/katie-pergola.jpeg');"></div>
+      <div class="content-overlay">
+        <p class="hero-eyebrow">Project Journal</p>
+        <h1 class="hero-title">See what we've been working on</h1>
+        <p class="hero-sub">Updates, before and afters, and tips from the projects we complete across the valley.</p>
+      </div>
+    </section>
 
-      <article class="post">
-        <h3>Fence Replacement — Orem</h3>
-        <p>Details about materials and timeline.</p>
-      </article>
+    <section class="content-section">
+      <div class="text-block">
+        <p class="eyebrow">Recent highlights</p>
+        <h2>Featured projects</h2>
+        <p>We love showing the craftsmanship and planning that go into every remodel, fence, and punch-list visit. Browse a few recent jobs below—full write-ups are on the way.</p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <p class="eyebrow">Basement Remodel · Provo</p>
+          <h3>Multi-purpose family basement</h3>
+          <p>We framed new bedrooms, added a kitchenette, and installed durable LVP flooring so this growing family could spread out.</p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Fence Replacement · Orem</p>
+          <h3>Privacy + curb appeal</h3>
+          <p>Swapped out aging panels with a cedar and steel design that stands up to winter storms and HOAs alike.</p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">Exterior Refresh · Spanish Fork</p>
+          <h3>Paint + trim repair</h3>
+          <p>Full exterior paint, fascia repairs, and new lighting to give this 90s home a modern look.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section cta-section">
+      <div class="text-block">
+        <h2>Want your project featured next?</h2>
+        <p>Share your goals with us and we'll build a timeline, budget, and team to make it happen.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-outline" href="tel:+12085054606">Call the shop</a>
+          <a class="btn btn-primary" href="/pages/contact.html">Start a project</a>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -54,6 +84,5 @@
   <div data-include="/pages/partials/email-prompt.html"></div>
   <div data-include="/pages/partials/footer.html"></div>
   
-  <script src="/js/scripts.js" defer></script>
 </body>
 </html>

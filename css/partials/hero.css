@@ -1,7 +1,8 @@
 /* ==========================
    HERO SECTION
    ========================== */
-#hero-banner {
+#hero-banner,
+.hero-banner {
     position: relative;
     height: 80vh;
     display: flex;
@@ -11,9 +12,11 @@
     color: #fff;
 }
 
-.background-image-container {
+.hero-banner .background-image-container,
+#hero-banner .background-image-container {
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -22,12 +25,14 @@
     z-index: -1;
 }
 
-.content-overlay {
+.hero-banner .content-overlay,
+#hero-banner .content-overlay {
     max-width: 900px;
     padding: 1rem 2rem;
 }
 
-#company-title {
+#company-title,
+.hero-title {
     font-family: 'Oswald', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -38,9 +43,55 @@
     font-style: italic;
 }
 
-@media (max-width: 768px) {
+.page-hero {
+    height: 45vh;
+    min-height: 320px;
+}
 
-    #hero-banner {
+.page-hero .hero-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.page-hero .hero-title {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.hero-ctas {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hero-banner .btn-outline,
+#hero-banner .btn-outline {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-banner .btn-outline:hover,
+#hero-banner .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.hero-sub {
+    font-size: 1.1rem;
+    margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    #hero-banner,
+    .hero-banner {
         height: 60vh;
+    }
+
+    .page-hero {
+        height: auto;
+        padding: 4rem 0;
     }
 }
