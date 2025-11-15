@@ -5,7 +5,7 @@ Structure:
 - index.html (original homepage preserved)
 - about.html, contact.html, handyman.html, painting.html, fences.html, faq.html, privacy-policy.html, blog.html
 - /partials/nav.html, /partials/footer.html, /partials/hero.html
-- /css/styles.css
+- /css/main.css
 - /js/loader.js (client-side include loader)
 - /js/scripts.js
 - /image/ (place your real images here)
