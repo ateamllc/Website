@@ -11,10 +11,10 @@
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,400i,700i&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="/css/main.css">
 
-  <script src="js/loader.js" defer></script>
-  <script src="js/scripts.js" defer></script>
+  <script src="/js/loader.js" defer></script>
+  <script src="/js/scripts.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF8P30SBZG"></script>
@@ -30,7 +30,7 @@
 
 <body>
   <header id="site-header">
-    <div data-include="partials/nav.html"></div>
+      <div data-include="/partials/nav.html"></div>
   </header>
 
   <main class="content-sections">
@@ -67,7 +67,11 @@
     </section>
   </main>
 
-  <div data-include="partials/footer.html"></div>
-  <script src="js/scripts.js" defer></script>
+  <!-- Load footer sections -->
+  <div data-include="/partials/email-prompt.html"></div>
+  <div data-include="/partials/footer.html"></div>
+  
+  <script src="/js/scripts.js" defer></script>
+
 </body>
 </html>

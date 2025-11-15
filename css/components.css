@@ -1,0 +1,15 @@
+/* Button */
+.button a {
+    display: inline-block;
+    background-color: #0077cc;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button a:hover {
+    background-color: #005fa3;
+}
