@@ -1,0 +1,113 @@
+/* ==========================
+   CONTENT SECTIONS
+   ========================== */
+#mission-statement, #final-contact-block {
+    background-color: #182741;
+    color: #fff;
+}
+
+#legal-status, #detailed-services-list, footer {
+    background-color: #efefef;
+}
+
+.content-section {
+    padding: 4rem 2rem;
+}
+
+.content-text-block {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.content-text-block h2, .content-text-block h3 {
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.descriptive-text {
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* ==========================
+   SERVICE SPOTLIGHT
+   ========================== */
+.service-spotlight {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 1.5rem auto;
+    gap: 1.5rem;
+}
+
+.content-with-image img {
+    width: 35%;
+    max-height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.text-block {
+    flex: 1;
+    min-width: 60%;
+    padding: 0 1rem;
+}
+
+/* ==========================
+   SERVICE LIST
+   ========================== */
+.service-list {
+    list-style: disc inside;
+    margin-top: 1rem;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-list li {
+    margin-bottom: 0.5rem;
+}
+
+.service-area {
+    margin-top: 1rem;
+}
+
+/* ==========================
+   CONTACT BLOCK
+   ========================== */
+#final-contact-block {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: #fff;
+}
+
+#final-contact-block a{
+    color: #fff;
+}
+
+.email-button-container a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #0077cc;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.email-button-container a:hover {
+    background-color: #005fa3;
+}

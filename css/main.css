@@ -1,0 +1,70 @@
+@import url("nav.css");
+@import url("hero.css");
+@import url("footer.css");
+
+/* ==========================
+   GENERAL RESET AND BASE
+   ========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #fff;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: underline;
+    color: #333;
+}
+
+
+/* ==========================
+   RESPONSIVE BREAKPOINTS
+   ========================== */
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    .service-spotlight {
+        flex-direction: column;
+    }
+
+    #company-title {
+        font-size: 2rem;
+    }
+
+    .content-with-image {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .content-with-image img,
+    .text-block {
+        width: 100%;
+        max-height: none;
+    }
+}
+
+@media (max-width: 480px) {
+    #company-title {
+        font-size: 1.5rem;
+    }
+
+    .call-to-action-button a {
+        padding: 0.5rem 1rem;
+    }
+}

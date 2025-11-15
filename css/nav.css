@@ -1,0 +1,53 @@
+/* ==========================
+   HEADER & NAVIGATION
+   ========================== */
+#site-header {
+    background-color: #f8f8f8;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navigation-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.logo-link img {
+    height: 50px;
+    margin-right: 0.5rem;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-item a:hover {
+    color: #0077cc;
+}
