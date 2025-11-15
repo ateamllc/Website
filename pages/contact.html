@@ -30,11 +30,11 @@
 
 <body>
   <header id="site-header">
-      <div data-include="/partials/nav.html"></div>
+      <div data-include="/pages/partials/nav.html"></div>
   </header>
 
   <main class="content-sections">
-    <div data-include="partials/hero.html"></div>
+    <div data-include="/pages/partials/hero.html"></div>
 
     <section class="content-section">
       <h2>Contact Us</h2>
@@ -45,7 +45,7 @@
 
     <section class="content-section">
       <h2>Request a free estimate</h2>
-      <form id="contact-form" action="thank-you.html" method="post" class="contact-form">
+      <form id="contact-form" action="/thank-you.html" method="post" class="contact-form">
         <label for="name">Name</label>
         <input id="name" name="name" required>
         <label for="email">Email</label>
@@ -68,8 +68,8 @@
   </main>
 
   <!-- Load footer sections -->
-  <div data-include="/partials/email-prompt.html"></div>
-  <div data-include="/partials/footer.html"></div>
+  <div data-include="/pages/partials/email-prompt.html"></div>
+  <div data-include="/pages/partials/footer.html"></div>
   
   <script src="/js/scripts.js" defer></script>
 

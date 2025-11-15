@@ -1,8 +1,8 @@
 /* Import Partials files */
-@import url("/partials/nav.css");
-@import url("/partials/hero.css");
-@import url("/partials/email-prompt.css");
-@import url("/partials/footer.css");
+@import url("partials/nav.css");
+@import url("partials/hero.css");
+@import url("partials/email-prompt.css");
+@import url("partials/footer.css");
 
 /* Import Components files */
 @import url("components.css");
