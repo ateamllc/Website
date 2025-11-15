@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -32,31 +32,63 @@
   <header id="site-header">
       <div data-include="/pages/partials/nav.html"></div>
   </header>
-  
-  <div data-include="/pages/partials/hero.html"></div>
 
   <main class="content-sections">
-    <section class="content-section">
-      <h1>Handyman Services</h1>
-      <p>From odd jobs to full room repairs, our handyman team handles a wide variety of home maintenance tasks. We focus on quick response, fair pricing and quality workmanship.</p>
+    <section class="hero-banner page-hero">
+      <div class="background-image-container" style="background-image: url('/image/Carousel-dawn-garage.jpg');"></div>
+      <div class="content-overlay">
+        <p class="hero-eyebrow">Handyman services</p>
+        <h1 class="hero-title">Reliable help for the projects piling up</h1>
+        <p class="hero-sub">From odd jobs to full room repairs, our team handles a wide variety of home maintenance tasks.</p>
+      </div>
     </section>
 
     <section class="content-section content-with-image">
-      <img src="/image/katie-fence-gate.jpeg" alt="Handyman repairs in progress" role="img">
-      <div class="text-block">
-        <h3>Typical tasks we handle</h3>
-        <ul>
+      <div class="text-block text-left">
+        <img src="/image/katie-fence-gate.jpeg" class="card-image" alt="Handyman repairs in progress" role="img">
+        <p class="eyebrow">What we handle</p>
+        <h2>Let us tackle the list</h2>
+        <ul class="service-list">
           <li>Minor plumbing & fixture replacement</li>
-          <li>Drywall patching & repair</li>
-          <li>Trim, baseboards, door adjustments</li>
-          <li>Ceiling & lighting installs</li>
+          <li>Drywall patching, texture, and repainting</li>
+          <li>Trim, baseboard, and door adjustments</li>
+          <li>Ceiling fan and lighting installs</li>
+          <li>Caulking, weatherproofing, and seasonal prep</li>
         </ul>
+        <p>Need something else? If it’s not a fit we’ll point you to a trusted trade partner.</p>
+      </div>
+    </section>
+
+    <section class="content-section light-grey">
+      <div class="text-block">
+        <p class="eyebrow">How it works</p>
+        <h2>A simple, transparent process</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Share your list</h3>
+            <p>Send us notes and photos so we can understand the scope before we arrive.</p>
+          </div>
+          <div class="info-card">
+            <h3>On-site visit</h3>
+            <p>We review the space, confirm pricing, and schedule the work that same visit.</p>
+          </div>
+          <div class="info-card">
+            <h3>Quality check</h3>
+            <p>We walk the job with you before wrapping up to make sure everything is dialed in.</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="content-section cta-section">
-      <h3>Ready to get started?</h3>
-      <a class="btn btn-primary" href="/pages/contact.html">Request a free estimate</a>
+      <div class="text-block">
+        <h2>Ready to get started?</h2>
+        <p>Let us know what's on your list and we'll line up the right people for the job.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-outline" href="tel:+12085054606">Talk with us</a>
+          <a class="btn btn-primary" href="/pages/contact.html">Request a free estimate</a>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -64,6 +96,5 @@
   <div data-include="/pages/partials/email-prompt.html"></div>
   <div data-include="/pages/partials/footer.html"></div>
   
-  <script src="/js/scripts.js" defer></script>
 </body>
 </html>
