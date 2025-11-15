@@ -1,5 +1,5 @@
 // Simple client-side partial include loader.
-// Looks for elements with attribute data-include="/partials/xxx.html"
+// Looks for elements with attribute data-include="//partials/xxx.html"
 document.addEventListener("DOMContentLoaded", function() {
   const includes = document.querySelectorAll('[data-include]');
   includes.forEach(el => {

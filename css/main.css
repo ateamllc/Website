@@ -1,6 +1,12 @@
-@import url("nav.css");
-@import url("hero.css");
-@import url("footer.css");
+/* Import Partials files */
+@import url("/partials/nav.css");
+@import url("/partials/hero.css");
+@import url("/partials/email-prompt.css");
+@import url("/partials/footer.css");
+
+/* Import Components files */
+@import url("components.css");
+
 
 /* ==========================
    GENERAL RESET AND BASE
@@ -25,6 +31,34 @@ body {
 a {
     text-decoration: underline;
     color: #333;
+}
+
+.content-section {
+    padding: 4rem 2rem;
+}
+
+.text-block {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.text-block h2, .text-block h3 {
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.dark-blue {
+    background-color: #182741;
+    color: #fff;
+
+    a {
+        color: #fff;;
+    }
+}
+
+.light-grey {
+    background-color: #efefef;
 }
 
 
@@ -64,7 +98,7 @@ a {
         font-size: 1.5rem;
     }
 
-    .call-to-action-button a {
+    .button a {
         padding: 0.5rem 1rem;
     }
 }

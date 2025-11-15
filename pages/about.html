@@ -11,10 +11,10 @@
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,400i,700i&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="/css/main.css">
 
-  <script src="js/loader.js" defer></script>
-  <script src="js/scripts.js" defer></script>
+  <script src="/js/loader.js" defer></script>
+  <script src="/js/scripts.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF8P30SBZG"></script>
@@ -31,11 +31,11 @@
 <body>
   <!-- Load navigation -->
   <header id="site-header">
-      <div data-include="partials/nav.html"></div>
+    <div data-include="/partials/nav.html"></div>
   </header>
 
   <section id="hero-banner" class="content-section">
-    <div class="background-image-container" style="background-image: url(image/dawn-side-garage.jpeg);"></div>
+    <div class="background-image-container" style="background-image: url(/image/dawn-side-garage.jpeg);"></div>
       <div class="content-overlay">
         <h2 id="page-title">About A Team Handyman Services</h2>
         <p>Reliable, licensed home remodeling and maintenance in Utah County.</p>
@@ -44,7 +44,7 @@
 
     <!-- OUR STORY -->
     <section id="our-story" class="content-section">
-      <div class="content-text-block">
+      <div class="text-block">
         <h2>Our Story</h2>
         <p>A Team Handyman Services was founded to help homeowners and property investors turn their visions into reality. With years of experience in remodeling, maintenance, and painting, we bring transparency, reliability, and quality craftsmanship to every project.</p>
       </div>
@@ -52,7 +52,7 @@
 
     <!-- OUR VALUES -->
     <section id="our-values" class="content-section">
-      <div class="content-text-block">
+      <div class="text-block">
         <h2>Our Values</h2>
         <ul class="service-list">
           <li>Transparent communication with our clients</li>
@@ -66,30 +66,32 @@
 
     <!-- OUR TEAM -->
     <section id="our-team" class="content-section">
-      <div class="content-text-block">
+      <div class="text-block">
         <h2>Meet Our Team</h2>
         <p>Our skilled team members bring years of hands-on experience and a passion for helping homeowners. Every project is approached with professionalism, creativity, and care.</p>
         <div class="content-with-image" style="justify-content: center; flex-wrap: wrap;">
-          <img src="image/katie-fence-gate.jpeg" alt="Team Member 1" style="width: 200px; margin: 0.5rem;">
-          <img src="image/leslie-painting.jpeg" alt="Team Member 2" style="width: 200px; margin: 0.5rem;">
-          <img src="image/dawn-side-garage.jpeg" alt="Team Member 3" style="width: 200px; margin: 0.5rem;">
+          <img src="/image/katie-fence-gate.jpeg" alt="Team Member 1" style="width: 200px; margin: 0.5rem;">
+          <img src="/image/leslie-painting.jpeg" alt="Team Member 2" style="width: 200px; margin: 0.5rem;">
+          <img src="/image/dawn-side-garage.jpeg" alt="Team Member 3" style="width: 200px; margin: 0.5rem;">
         </div>
       </div>
     </section>
 
     <!-- CALL TO ACTION -->
     <section id="about-cta" class="content-section">
-      <div class="content-text-block">
+      <div class="text-block">
         <h2>Want to Work With Us?</h2>
         <p>Whether it's a home remodel, maintenance, or a painting project, we are ready to help. Get in touch with us today for a free consultation!</p>
-        <div class="call-to-action-button">
-          <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <div class="button">
+          <a href="pages/contact.html" class="btn btn-primary">Contact Us</a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Load footer -->
-  <div data-include="partials/footer.html"></div>
+  <!-- Load footer sections -->
+    <div data-include="/partials/email-prompt.html"></div>
+    <div data-include="/partials/footer.html"></div>
 </body>
 </html>

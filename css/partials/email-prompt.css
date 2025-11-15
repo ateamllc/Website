@@ -1,0 +1,8 @@
+#email-prompt {
+    padding: 3rem 2rem;
+    text-align: center;
+
+    .button {
+        margin-top: 1rem;
+    }
+}
