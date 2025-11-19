@@ -37,6 +37,12 @@ a {
     padding: 4rem 2rem;
 }
 
+.section-inner {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
 .text-block {
     max-width: 800px;
     margin: 0 auto;
@@ -183,6 +189,12 @@ main.content-sections {
 
 .contact-form textarea {
     resize: vertical;
+}
+
+.map-embed {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
 .map-embed iframe {
