@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Contact Us | A Team Handyman Services</title>
-  <meta name="description" content="Get in touch with A Team Handyman Services for home remodeling, painting, or maintenance services in Utah County. Call or email us today for a free consultation.">
+  <meta name="description"
+    content="Get in touch with A Team Handyman Services for home remodeling, painting, or maintenance services in Utah County. Call or email us today for a free consultation.">
 
-  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,400i,700i&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
 
@@ -20,7 +25,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF8P30SBZG"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
 
     gtag('config', 'G-VF8P30SBZG');
@@ -30,7 +38,7 @@
 
 <body>
   <header id="site-header">
-      <div data-include="/pages/partials/nav.html"></div>
+    <div data-include="/pages/partials/nav.html"></div>
   </header>
 
   <main class="content-sections">
@@ -53,12 +61,23 @@
           <p class="eyebrow">Contact details</p>
           <h2>We're local to Utah County</h2>
           <p><strong>Phone:</strong> <a href="tel:+12085054606">(208) 505-4606</a></p>
-          <p><strong>Email:</strong> <a href="mailto:contact@a-team-handyman-services.com">contact@a-team-handyman-services.com</a></p>
-          <p><strong>Service Areas:</strong> Provo, Orem, Springville, Spanish Fork, Payson, and surrounding neighborhoods.</p>
+          <p><strong>Email:</strong> <a
+              href="mailto:contact@a-team-handyman-services.com">contact@a-team-handyman-services.com</a></p>
+          <p><strong>Service Areas:</strong> Provo, Orem, Springville, Spanish Fork, Payson, and surrounding
+            neighborhoods.</p>
           <p>Share a few details about your vision and we'll put together a tailored plan and estimate.</p>
         </div>
 
-        <form id="contact-form" action="/thank-you.html" method="post" class="contact-form">
+        <form action="https://api.web3forms.com/submit" method="post" class="contact-form" data-success-url="https://a-team-handyman-services.com/pages/thank-you.html">
+          <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
+
+          <input type="hidden" name="subject" value="New contact request from A Team Handyman Services">
+          <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
+          
+          <label class="contact-honey" style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true">
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </label>
+          
           <label for="name">Name</label>
           <input id="name" name="name" required>
 
@@ -84,7 +103,9 @@
           <p>We meet homeowners on-site for most consultations. Here's where most of our projects happen:</p>
         </div>
         <div class="map-embed">
-          <iframe src="https://www.google.com/maps?q=A%20Team%20Handyman%20Services%2C%20Provo%2C%20UT&output=embed" title="A Team Handyman Services on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" height="320" allowfullscreen></iframe>
+          <iframe src="https://www.google.com/maps?q=A%20Team%20Handyman%20Services%2C%20Provo%2C%20UT&output=embed"
+            title="A Team Handyman Services on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            height="320" allowfullscreen></iframe>
         </div>
       </div>
     </section>
@@ -93,7 +114,52 @@
   <!-- Load footer sections -->
   <div data-include="/pages/partials/email-prompt.html"></div>
   <div data-include="/pages/partials/footer.html"></div>
-  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+
+      const honeypot = form.querySelector('input[name="_honey"]');
+      const redirectField = form.querySelector('input[name="redirect"]');
+      const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || '/pages/thank-you.html';
+
+      form.addEventListener('submit', async function (event) {
+        if (honeypot && honeypot.value) {
+          event.preventDefault();
+          return;
+        }
+
+        event.preventDefault();
+
+        // Ensure redirect is absolute so Web3Forms can use it; also use it client-side on any result.
+        const origin = (window.location && window.location.origin && window.location.origin !== 'null')
+          ? window.location.origin.replace(/\/$/, '')
+          : 'https://a-team-handyman-services.com';
+        const redirectValue = successUrl.startsWith('http')
+          ? successUrl
+          : origin + successUrl.replace(/^\//, '/');
+        if (redirectField) {
+          redirectField.value = redirectValue;
+        }
+
+        try {
+          const formData = new FormData(form);
+          if (!formData.get('redirect')) {
+            formData.append('redirect', redirectValue);
+          }
+          await fetch(form.action, {
+            method: 'POST',
+            body: formData
+          });
+        } catch (err) {
+          console.error('Web3Forms submit error', err);
+        } finally {
+          window.location.href = redirectValue;
+        }
+      });
+    });
+  </script>
 
 </body>
+
 </html>
