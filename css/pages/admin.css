@@ -384,6 +384,18 @@ body.admin-body {
   border: 1px solid #fca5a5;
 }
 
+.badge.poor {
+  background: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fda4af;
+}
+
+.badge.critical {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
 .kpi-target {
   color: #475569;
   font-size: 0.95rem;
