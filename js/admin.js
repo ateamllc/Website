@@ -218,6 +218,7 @@
       if (input && !newValue) input.value = '';
     });
     applyDataBindings();
+    updateKpiStatuses();
   };
 
   const wireDataOverrides = () => {
@@ -322,6 +323,48 @@
     });
   };
 
+  const parseNumber = (raw) => {
+    if (!raw) return NaN;
+    const normalized = raw.toString().trim().toLowerCase();
+    const multiplier = normalized.includes('m') ? 1_000_000 : normalized.includes('k') ? 1_000 : 1;
+    const numeric = parseFloat(normalized.replace(/[^0-9.\-]/g, ''));
+    if (Number.isNaN(numeric)) return NaN;
+    return numeric * multiplier;
+  };
+
+  const evaluateStatus = (current, target, direction = 'up') => {
+    if (!target || Number.isNaN(target) || Number.isNaN(current)) {
+      return { label: 'Unknown', className: 'caution' };
+    }
+    const safeCurrent = direction === 'down' ? Math.abs(current) || 0.0001 : current || 0.0001;
+    const performance = direction === 'down' ? target / safeCurrent : current / target;
+    if (performance >= 1.1) return { label: 'Exceeding', className: 'good' };
+    if (performance >= 0.9) return { label: 'On track', className: 'good' };
+    if (performance >= 0.75) return { label: 'Caution', className: 'caution' };
+    if (performance >= 0.6) return { label: 'Poor', className: 'poor' };
+    return { label: 'Critical', className: 'critical' };
+  };
+
+  const updateKpiStatuses = () => {
+    document.querySelectorAll('[data-badge]').forEach((badge) => {
+      const target = parseNumber(badge.dataset.targetValue);
+      const direction = badge.dataset.direction || 'up';
+      const card = badge.closest('.kpi-card');
+      const valueEl = card ? card.querySelector('.kpi-value') : null;
+      const badgeValue = parseNumber(badge.dataset.currentValue);
+      const currentVal = !Number.isNaN(badgeValue)
+        ? badgeValue
+        : valueEl
+          ? parseNumber(valueEl.textContent)
+          : NaN;
+      const { label, className } = evaluateStatus(currentVal, target, direction);
+
+      badge.textContent = label;
+      badge.classList.remove('good', 'caution', 'alert', 'poor', 'critical');
+      badge.classList.add(className);
+    });
+  };
+
   const wireDataHistory = () => {
     const modal = document.querySelector('[data-modal]');
     if (!modal) return;
@@ -351,4 +394,5 @@
   wireDataOverrides();
   wireDataHistory();
   applyDataBindings();
+  updateKpiStatuses();
 })();
