@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="robots" content="noindex, nofollow">
+  <title>User Access | A Team Handyman Services</title>
+  <meta name="description" content="Admin-only controls for user credentials, permissions, and sign-in management.">
+
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/pages/admin.css">
+  <script src="/js/admin.js" defer></script>
+</head>
+
+<body class="admin-body" data-require-auth="admin">
+  <div class="admin-shell">
+    <header class="admin-topbar" aria-label="Admin navigation">
+      <div class="admin-brand">
+        <div class="brand-logo">
+          <img src="/image/logo.png" alt="A Team Handyman Services Logo">
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+        <span>A Team Admin</span>
+      </div>
+      <div class="admin-links">
+        <span aria-live="polite">Signed in as <strong data-admin-name>—</strong></span>
+        <a href="/pages/admin-dashboard.html">Dashboard</a>
+        <a href="/pages/admin-users.html" aria-current="page">User access</a>
+        <button type="button" class="pill-button secondary" data-sign-out>Sign out</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="admin-layout">
+        <section class="admin-hero" aria-labelledby="user-admin-title">
+          <p class="eyebrow">Admin only</p>
+          <h1 id="user-admin-title">Credentials &amp; permissions</h1>
+          <p>Plan the controls for issuing accounts, assigning roles, and auditing sign-ins.</p>
+          <div class="status-meta">
+            <span class="meta-pill">Role: admin</span>
+            <span class="meta-pill">Mock controls — requires server-side auth</span>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>User provisioning</h2>
+          <p>Future admin workflow for creating users and scoping what they can see.</p>
+          <ul class="list-grid">
+            <li>Create users with role presets (Owner, Ops, Finance, Field Lead, Read-only).</li>
+            <li>Toggle per-KPI visibility and edit rights.</li>
+            <li>Force password resets and revoke sessions instantly.</li>
+          </ul>
+          <div class="user-badges">
+            <span class="user-chip">Add user</span>
+            <span class="user-chip">Set role</span>
+            <span class="user-chip">Reset password</span>
+            <span class="user-chip">Revoke access</span>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Session security</h2>
+          <p>Checklist to complete when wiring to real authentication.</p>
+          <ul class="list-grid">
+            <li>Enforce MFA on admin accounts and when accessing financial KPIs.</li>
+            <li>Expire idle sessions and rotate refresh tokens.</li>
+            <li>Log sign-ins by IP/device with alerts for anomalies.</li>
+            <li>Restrict admin routes behind server-side checks and WAF rules.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
