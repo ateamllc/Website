@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Data Hub | A Team Handyman Services</title>
+  <meta name="description" content="Master data inputs powering KPIs across all admin dashboards.">
+
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/pages/admin.css">
+  <script src="/js/admin.js" defer></script>
+</head>
+
+<body class="admin-body" data-require-auth="admin">
+  <div class="admin-shell">
+    <header class="admin-topbar" aria-label="Admin navigation">
+      <div class="admin-brand">
+        <div class="brand-logo">
+          <img src="/image/logo.png" alt="A Team Handyman Services Logo">
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+        <span>A Team Admin</span>
+      </div>
+      <div class="admin-links">
+        <span aria-live="polite">Signed in as <strong data-admin-name>—</strong></span>
+        <a href="/pages/admin-dashboard.html">Dashboard</a>
+        <a href="/pages/admin-data.html" aria-current="page">Data hub</a>
+        <a href="/pages/admin-users.html">User access</a>
+        <button type="button" class="pill-button secondary" data-sign-out>Sign out</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="admin-layout">
+        <section class="admin-hero" aria-labelledby="data-hub-title">
+          <p class="eyebrow">Source of truth</p>
+          <h1 id="data-hub-title">Master data inputs</h1>
+          <p>One-stop view of every data point powering all dashboard KPIs. Track freshness, source, and manual overrides.</p>
+          <div class="status-meta">
+            <span class="meta-pill">Mock data — ready for API hooks</span>
+            <span class="meta-pill">Roles: admin only</span>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Legend</h2>
+          <div class="kpi-meta">
+            <span class="badge fresh">Fresh (&lt; 24h)</span>
+            <span class="badge good">Recent (1–3 days)</span>
+            <span class="badge stale">Stale (3–7 days)</span>
+            <span class="badge expired">Expired (&gt; 7 days)</span>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>QuickBooks Online — Balance Sheet</h2>
+          <div class="data-table" role="table" aria-label="Balance Sheet data points">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row">
+              <span>Cash &amp; Cash Equivalents</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>API</span>
+              <span>$9,000</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Accounts Receivable</span>
+              <span><span class="badge stale">5 days</span></span>
+              <span>API</span>
+              <span>$18,000</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Accounts Payable</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span>$7,000</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Owner Distributions</span>
+              <span><span class="badge stale">6 days</span></span>
+              <span>API</span>
+              <span>$37,000</span>
+              <input type="text" placeholder="Override value">
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>QuickBooks Online — Profit &amp; Loss</h2>
+          <div class="data-table" role="table" aria-label="Profit and loss data points">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row">
+              <span>Monthly Revenue</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>API</span>
+              <span>$13,800</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>COGS</span>
+              <span><span class="badge good">1 day</span></span>
+              <span>API</span>
+              <span>$7,800</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Operating Expenses</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span>$3,200</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Net Profit</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>Calculated</span>
+              <span>$2,800 (20.2%)</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Owner Pay</span>
+              <span><span class="badge stale">5 days</span></span>
+              <span>API</span>
+              <span>$6,000/mo</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Employee Payroll</span>
+              <span><span class="badge stale">6 days</span></span>
+              <span>API</span>
+              <span>$4,200/mo</span>
+              <input type="text" placeholder="Override value">
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>CRM / Lead Capture</h2>
+          <div class="data-table" role="table" aria-label="Lead data">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row">
+              <span>Leads per Week</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>API</span>
+              <span>10</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Pipeline Value</span>
+              <span><span class="badge good">1 day</span></span>
+              <span>API</span>
+              <span>$120,000</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Win Rate</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span>32%</span>
+              <input type="text" placeholder="Override value">
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Time Tracking / Ops</h2>
+          <div class="data-table" role="table" aria-label="Operational data">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row">
+              <span>Billable Hours (All)</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>API</span>
+              <span>88 hrs</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Jobs Scheduled</span>
+              <span><span class="badge good">1 day</span></span>
+              <span>API</span>
+              <span>24</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>On-Time Completion</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span>92%</span>
+              <input type="text" placeholder="Override value">
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Payroll / HR</h2>
+          <div class="data-table" role="table" aria-label="Payroll data">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row">
+              <span>Owner Hours</span>
+              <span><span class="badge stale">5 days</span></span>
+              <span>Manual</span>
+              <span>12 hrs</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Crew Utilization</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span>85%</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Headcount</span>
+              <span><span class="badge good">3 days</span></span>
+              <span>Manual</span>
+              <span>6</span>
+              <input type="text" placeholder="Override value">
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Marketing Analytics</h2>
+          <div class="data-table" role="table" aria-label="Marketing data">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row">
+              <span>Cost per Lead</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span>$42</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Landing Conversion</span>
+              <span><span class="badge stale">6 days</span></span>
+              <span>File upload</span>
+              <span>3.2%</span>
+              <input type="text" placeholder="Override value">
+            </div>
+            <div class="data-row" role="row">
+              <span>Organic Traffic</span>
+              <span><span class="badge good">1 day</span></span>
+              <span>API</span>
+              <span>4.2k/mo</span>
+              <input type="text" placeholder="Override value">
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Notes &amp; next steps</h2>
+          <ul class="list-grid">
+            <li>Swap mock values with API responses from QBO, CRM, time tracking, payroll, and analytics tools.</li>
+            <li>Calculate freshness based on timestamps and surface warnings for stale data.</li>
+            <li>Persist manual overrides and reflect them in KPI calculations, with audit logs.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
