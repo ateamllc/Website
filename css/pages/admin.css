@@ -515,3 +515,70 @@ body.admin-body {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  z-index: 50;
+}
+
+.modal[hidden] {
+  display: none !important;
+}
+
+.modal-dialog {
+  background: #fff;
+  width: min(720px, 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  display: grid;
+  gap: 1rem;
+}
+
+.modal-close {
+  align-self: start;
+  justify-self: end;
+  background: #0f172a;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+.history-wrapper h3 {
+  margin-bottom: 0.25rem;
+}
+
+.history-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.history-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.history-refs h4 {
+  margin-bottom: 0.35rem;
+}
+
+.history-refs ul {
+  padding-left: 1rem;
+}
+
+.data-row [data-name] {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: #cbd5e1;
+}

@@ -66,33 +66,33 @@
               <span role="columnheader">Current value</span>
               <span role="columnheader">Manual override</span>
             </div>
-            <div class="data-row" role="row">
-              <span>Cash &amp; Cash Equivalents</span>
+            <div class="data-row" role="row" data-id="bs_cash" data-default-value="$9,000" data-history="2024-05|$8,000;2024-06|$8,500;2024-07|$9,000" data-references="Company: Cash Reserve;Finance: Cash Runway;Accounting: Balance sheet health">
+              <span data-name>Cash &amp; Cash Equivalents</span>
               <span><span class="badge fresh">Today</span></span>
               <span>API</span>
-              <span>$9,000</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$9,000</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Accounts Receivable</span>
+            <div class="data-row" role="row" data-id="bs_ar" data-default-value="$18,000" data-history="2024-05|$14,000;2024-06|$16,000;2024-07|$18,000" data-references="Finance: AR Outstanding;Accounting: AR Aging;Company: Cash Reserve">
+              <span data-name>Accounts Receivable</span>
               <span><span class="badge stale">5 days</span></span>
               <span>API</span>
-              <span>$18,000</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$18,000</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Accounts Payable</span>
+            <div class="data-row" role="row" data-id="bs_ap" data-default-value="$7,000" data-history="2024-05|$9,000;2024-06|$8,000;2024-07|$7,000" data-references="Finance: AP Due;Accounting: AP Aging;Company: Net Profit Margin">
+              <span data-name>Accounts Payable</span>
               <span><span class="badge good">2 days</span></span>
               <span>API</span>
-              <span>$7,000</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$7,000</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Owner Distributions</span>
+            <div class="data-row" role="row" data-id="bs_owner_distributions" data-default-value="$37,000" data-history="2024-05|$30,000;2024-06|$34,000;2024-07|$37,000" data-references="Company: Owner Pay;Finance: Net Margin;Accounting: Owner draws">
+              <span data-name>Owner Distributions</span>
               <span><span class="badge stale">6 days</span></span>
               <span>API</span>
-              <span>$37,000</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$37,000</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
           </div>
         </section>
@@ -107,47 +107,47 @@
               <span role="columnheader">Current value</span>
               <span role="columnheader">Manual override</span>
             </div>
-            <div class="data-row" role="row">
-              <span>Monthly Revenue</span>
+            <div class="data-row" role="row" data-id="pl_revenue" data-default-value="$13,800" data-history="2024-05|$11,200;2024-06|$12,600;2024-07|$13,800" data-references="Company: Monthly Revenue;Sales: Pipeline Coverage;Finance: Net Margin;DBAs: Revenue tiles">
+              <span data-name>Monthly Revenue</span>
               <span><span class="badge fresh">Today</span></span>
               <span>API</span>
-              <span>$13,800</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$13,800</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>COGS</span>
+            <div class="data-row" role="row" data-id="pl_cogs" data-default-value="$7,800" data-history="2024-05|$7,200;2024-06|$7,500;2024-07|$7,800" data-references="Company: Net Profit Margin;Finance: Net Margin;DBAs: Gross Margin">
+              <span data-name>COGS</span>
               <span><span class="badge good">1 day</span></span>
               <span>API</span>
-              <span>$7,800</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$7,800</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Operating Expenses</span>
+            <div class="data-row" role="row" data-id="pl_opex" data-default-value="$3,200" data-history="2024-05|$3,000;2024-06|$3,100;2024-07|$3,200" data-references="Finance: Burn vs Plan;Company: Net Margin">
+              <span data-name>Operating Expenses</span>
               <span><span class="badge good">2 days</span></span>
               <span>API</span>
-              <span>$3,200</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$3,200</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Net Profit</span>
+            <div class="data-row" role="row" data-id="pl_net_profit" data-default-value="$2,800 (20.2%)" data-history="2024-05|$1,900;2024-06|$2,300;2024-07|$2,800" data-references="Company: Net Profit Margin;Finance: Net Margin">
+              <span data-name>Net Profit</span>
               <span><span class="badge fresh">Today</span></span>
               <span>Calculated</span>
-              <span>$2,800 (20.2%)</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$2,800 (20.2%)</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Owner Pay</span>
+            <div class="data-row" role="row" data-id="pl_owner_pay" data-default-value="$6,000/mo" data-history="2024-05|$5,000;2024-06|$5,500;2024-07|$6,000" data-references="Company: Owner Pay goal;Finance: Net Margin;Payroll: Owner Hours">
+              <span data-name>Owner Pay</span>
               <span><span class="badge stale">5 days</span></span>
               <span>API</span>
-              <span>$6,000/mo</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$6,000/mo</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Employee Payroll</span>
+            <div class="data-row" role="row" data-id="pl_employee_pay" data-default-value="$4,200/mo" data-history="2024-05|$3,800;2024-06|$4,000;2024-07|$4,200" data-references="Company: Employee Pay goal;Payroll: Crew Utilization;DBAs: Labor costs">
+              <span data-name>Employee Payroll</span>
               <span><span class="badge stale">6 days</span></span>
               <span>API</span>
-              <span>$4,200/mo</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$4,200/mo</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
           </div>
         </section>
@@ -162,26 +162,26 @@
               <span role="columnheader">Current value</span>
               <span role="columnheader">Manual override</span>
             </div>
-            <div class="data-row" role="row">
-              <span>Leads per Week</span>
+            <div class="data-row" role="row" data-id="crm_leads" data-default-value="10" data-history="2024-05|7;2024-06|9;2024-07|10" data-references="Company: Weekly Lead Flow;Sales: Leads per week;Marketing: Leads per week;DBAs: Lead-to-booked">
+              <span data-name>Leads per Week</span>
               <span><span class="badge fresh">Today</span></span>
               <span>API</span>
-              <span>10</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>10</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Pipeline Value</span>
+            <div class="data-row" role="row" data-id="crm_pipeline" data-default-value="$120,000" data-history="2024-05|$90,000;2024-06|$105,000;2024-07|$120,000" data-references="Sales: Pipeline Value;Finance: Revenue forecast">
+              <span data-name>Pipeline Value</span>
               <span><span class="badge good">1 day</span></span>
               <span>API</span>
-              <span>$120,000</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$120,000</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Win Rate</span>
+            <div class="data-row" role="row" data-id="crm_win_rate" data-default-value="32%" data-history="2024-05|28%;2024-06|30%;2024-07|32%" data-references="Sales: Win Rate;Marketing: CAC modeling">
+              <span data-name>Win Rate</span>
               <span><span class="badge good">2 days</span></span>
               <span>API</span>
-              <span>32%</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>32%</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
           </div>
         </section>
@@ -196,26 +196,26 @@
               <span role="columnheader">Current value</span>
               <span role="columnheader">Manual override</span>
             </div>
-            <div class="data-row" role="row">
-              <span>Billable Hours (All)</span>
+            <div class="data-row" role="row" data-id="ops_billable_hours" data-default-value="88 hrs" data-history="2024-05|72 hrs;2024-06|81 hrs;2024-07|88 hrs" data-references="Company: Billable Employee Hours;Operations: Crew Utilization;DBAs: Billable Hours">
+              <span data-name>Billable Hours (All)</span>
               <span><span class="badge fresh">Today</span></span>
               <span>API</span>
-              <span>88 hrs</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>88 hrs</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Jobs Scheduled</span>
+            <div class="data-row" role="row" data-id="ops_jobs_scheduled" data-default-value="24" data-history="2024-05|18;2024-06|20;2024-07|24" data-references="Operations: Jobs Scheduled;DBAs: Backlog">
+              <span data-name>Jobs Scheduled</span>
               <span><span class="badge good">1 day</span></span>
               <span>API</span>
-              <span>24</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>24</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>On-Time Completion</span>
+            <div class="data-row" role="row" data-id="ops_on_time" data-default-value="92%" data-history="2024-05|89%;2024-06|91%;2024-07|92%" data-references="Operations: On-Time Completion;DBAs: Quality metrics;Company: Net Promoter">
+              <span data-name>On-Time Completion</span>
               <span><span class="badge good">2 days</span></span>
               <span>API</span>
-              <span>92%</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>92%</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
           </div>
         </section>
@@ -230,26 +230,26 @@
               <span role="columnheader">Current value</span>
               <span role="columnheader">Manual override</span>
             </div>
-            <div class="data-row" role="row">
-              <span>Owner Hours</span>
+            <div class="data-row" role="row" data-id="hr_owner_hours" data-default-value="12 hrs" data-history="2024-05|15 hrs;2024-06|14 hrs;2024-07|12 hrs" data-references="Company: Owner Workload;Payroll: Owner Hours">
+              <span data-name>Owner Hours</span>
               <span><span class="badge stale">5 days</span></span>
               <span>Manual</span>
-              <span>12 hrs</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>12 hrs</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Crew Utilization</span>
+            <div class="data-row" role="row" data-id="hr_utilization" data-default-value="85%" data-history="2024-05|80%;2024-06|83%;2024-07|85%" data-references="Operations: Crew Utilization;DBAs: Utilization;Company: Billable Hours">
+              <span data-name>Crew Utilization</span>
               <span><span class="badge good">2 days</span></span>
               <span>API</span>
-              <span>85%</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>85%</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Headcount</span>
+            <div class="data-row" role="row" data-id="hr_headcount" data-default-value="6" data-history="2024-05|5;2024-06|6;2024-07|6" data-references="Operations: Scheduling;DBAs: Crew Hours">
+              <span data-name>Headcount</span>
               <span><span class="badge good">3 days</span></span>
               <span>Manual</span>
-              <span>6</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>6</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
           </div>
         </section>
@@ -264,26 +264,26 @@
               <span role="columnheader">Current value</span>
               <span role="columnheader">Manual override</span>
             </div>
-            <div class="data-row" role="row">
-              <span>Cost per Lead</span>
+            <div class="data-row" role="row" data-id="mkt_cpl" data-default-value="$42" data-history="2024-05|$48;2024-06|$45;2024-07|$42" data-references="Marketing: Cost per Lead;Sales: CAC vs Win rate">
+              <span data-name>Cost per Lead</span>
               <span><span class="badge good">2 days</span></span>
               <span>API</span>
-              <span>$42</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>$42</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Landing Conversion</span>
+            <div class="data-row" role="row" data-id="mkt_conversion" data-default-value="3.2%" data-history="2024-05|2.8%;2024-06|3.0%;2024-07|3.2%" data-references="Marketing: Landing Conversion;Sales: Lead quality">
+              <span data-name>Landing Conversion</span>
               <span><span class="badge stale">6 days</span></span>
               <span>File upload</span>
-              <span>3.2%</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>3.2%</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
-            <div class="data-row" role="row">
-              <span>Organic Traffic</span>
+            <div class="data-row" role="row" data-id="mkt_organic" data-default-value="4.2k/mo" data-history="2024-05|3.6k/mo;2024-06|3.9k/mo;2024-07|4.2k/mo" data-references="Marketing: Organic Visits;Sales: Lead flow forecast">
+              <span data-name>Organic Traffic</span>
               <span><span class="badge good">1 day</span></span>
               <span>API</span>
-              <span>4.2k/mo</span>
-              <input type="text" placeholder="Override value">
+              <span data-value>4.2k/mo</span>
+              <input type="text" placeholder="Override value" data-override-input>
             </div>
           </div>
         </section>
@@ -296,6 +296,12 @@
             <li>Persist manual overrides and reflect them in KPI calculations, with audit logs.</li>
           </ul>
         </section>
+        <div data-modal class="modal" hidden aria-hidden="true" role="dialog" aria-label="History modal">
+          <div class="modal-dialog">
+            <button class="modal-close" type="button" data-close-modal aria-label="Close history modal">Close</button>
+            <div data-modal-body></div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
