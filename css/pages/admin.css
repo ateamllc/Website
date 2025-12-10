@@ -594,3 +594,29 @@ body.admin-body {
   text-decoration: underline;
   text-decoration-color: #cbd5e1;
 }
+
+.history-chart {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.history-chart-row {
+  display: grid;
+  grid-template-columns: 1.2fr 4fr 0.8fr;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.history-bar {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.history-bar-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+}

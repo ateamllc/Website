@@ -365,6 +365,50 @@
     });
   };
 
+  const wireKpiHistory = () => {
+    document.querySelectorAll('[data-kpi-history]').forEach((card) => {
+      card.addEventListener('click', () => {
+        const raw = card.dataset.kpiHistory || '';
+        if (!raw) return;
+        const pairs = raw.split(';').map((item) => item.split(':').map((s) => s.trim())).filter((arr) => arr.length === 2);
+        if (!pairs.length) return;
+        const values = pairs.map(([label, value]) => (parseNumber(value)));
+        const max = Math.max(...values, 1);
+
+        const container = document.createElement('div');
+        container.className = 'history-wrapper';
+        const title = document.createElement('h3');
+        title.textContent = card.querySelector('h3')?.textContent || 'KPI history';
+        container.appendChild(title);
+
+        const chart = document.createElement('div');
+        chart.className = 'history-chart';
+        pairs.forEach(([label, value], idx) => {
+          const row = document.createElement('div');
+          row.className = 'history-chart-row';
+          const lbl = document.createElement('span');
+          lbl.textContent = label;
+          const bar = document.createElement('div');
+          bar.className = 'history-bar';
+          const fill = document.createElement('div');
+          fill.className = 'history-bar-fill';
+          const percent = Math.max(4, Math.min(100, (values[idx] / max) * 100));
+          fill.style.width = `${percent}%`;
+          bar.appendChild(fill);
+          const val = document.createElement('strong');
+          val.textContent = pairs[idx][1];
+          row.appendChild(lbl);
+          row.appendChild(bar);
+          row.appendChild(val);
+          chart.appendChild(row);
+        });
+
+        container.appendChild(chart);
+        openModal(container);
+      });
+    });
+  };
+
   const wireDataHistory = () => {
     const modal = document.querySelector('[data-modal]');
     if (!modal) return;
@@ -395,4 +439,5 @@
   wireDataHistory();
   applyDataBindings();
   updateKpiStatuses();
+  wireKpiHistory();
 })();
