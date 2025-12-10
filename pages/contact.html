@@ -17,6 +17,47 @@
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,400i,700i&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
+  <style>
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .social-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+      text-align: center;
+      gap: 10px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .social-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+    }
+    .social-card img {
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+    }
+    .social-card span {
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .social-groups > div {
+      margin-bottom: 16px;
+    }
+    .social-groups h3 {
+      margin-bottom: 6px;
+    }
+  </style>
 
   <script src="/js/loader.js" defer></script>
   <script src="/js/scripts.js" defer></script>
@@ -68,7 +109,7 @@
           <p>Share a few details about your vision and we'll put together a tailored plan and estimate.</p>
         </div>
 
-        <form action="https://api.web3forms.com/submit" method="post" class="contact-form" data-success-url="https://a-team-handyman-services.com/pages/thank-you.html">
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" data-success-url="https://a-team-handyman-services.com/pages/thank-you.html">
           <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
 
           <input type="hidden" name="subject" value="New contact request from A Team Handyman Services">
@@ -106,6 +147,61 @@
           <iframe src="https://www.google.com/maps?q=A%20Team%20Handyman%20Services%2C%20Provo%2C%20UT&output=embed"
             title="A Team Handyman Services on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
             height="320" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section light-grey">
+      <div class="section-inner">
+        <div class="text-block text-left">
+          <p class="eyebrow">Connect with us</p>
+          <h2>Follow our latest projects</h2>
+          <p>See fresh work, behind-the-scenes updates, and quick tips across our brands.</p>
+        </div>
+        <div class="social-groups">
+          <div>
+            <h3>Main Handyman Socials</h3>
+            <div class="social-grid">
+              <a class="social-card" href="https://www.facebook.com/p/A-Team-Handyman-Services-61571483293182/" target="_blank" rel="noopener">
+                <img src="/image/New%20Logos/A%20Team%20Handyman%20Services%20logo.png" alt="A Team Handyman Services on Facebook">
+                <span>Facebook</span>
+              </a>
+              <a class="social-card" href="https://www.instagram.com/ateamhandyman.co/" target="_blank" rel="noopener">
+                <img src="/image/New%20Logos/A%20Team%20Handyman%20Services%20logo.png" alt="A Team Handyman Services on Instagram">
+                <span>Instagram</span>
+              </a>
+              <a class="social-card" href="https://www.linkedin.com/company/a-team-property-improvement/" target="_blank" rel="noopener">
+                <img src="/image/New%20Logos/A%20Team%20Property%20Improvement%20logo.png" alt="A Team Property Improvement on LinkedIn">
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3>Painting Socials</h3>
+            <div class="social-grid">
+              <a class="social-card" href="https://www.facebook.com/profile.php?id=61582681021710" target="_blank" rel="noopener">
+                <img src="/image/New%20Logos/A%20Team%20Painting%20logo.png" alt="A Team Painting on Facebook">
+                <span>Facebook</span>
+              </a>
+              <a class="social-card" href="https://www.instagram.com/ateampainting.co/" target="_blank" rel="noopener">
+                <img src="/image/New%20Logos/A%20Team%20Painting%20logo.png" alt="A Team Painting on Instagram">
+                <span>Instagram</span>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3>Fencing Socials</h3>
+            <div class="social-grid">
+              <a class="social-card" href="https://www.facebook.com/profile.php?id=61582445155094" target="_blank" rel="noopener">
+                <img src="/image/New%20Logos/A%20Team%20Fences%20%26%20Outdoor%20Structures%20logo.png" alt="A Team Fencing on Facebook">
+                <span>Facebook</span>
+              </a>
+              <a class="social-card" href="https://www.instagram.com/ateamfencing.co/" target="_blank" rel="noopener">
+                <img src="/image/New%20Logos/A%20Team%20Fences%20%26%20Outdoor%20Structures%20logo.png" alt="A Team Fencing on Instagram">
+                <span>Instagram</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
