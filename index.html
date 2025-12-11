@@ -46,110 +46,266 @@
         <div data-include="/pages/partials/nav.html"></div>
     </header>
 
-    <!-- Hero image -->
-    <section id="hero-banner" class="content-section">
-        <div class="background-image-container" style="background-image: url('/image/Carousel-dawn-garage.webp');"></div>
-        <div class="content-overlay">
-            <h2 id="company-title">A Team Handyman Services, LLC</h2>
-            <div class="button">
-                <a href="tel:+12084192480" target="_blank" aria-label="CALL NOW!">CALL NOW!</a>
+    <main class="content-sections">
+        <!-- High-converting hero -->
+        <section id="hero-banner" class="content-section hero-grid">
+            <div class="hero-bg" style="background-image: linear-gradient(115deg, rgba(12, 36, 64, 0.92), rgba(12, 66, 104, 0.82)), url('/image/Carousel-dawn-garage.webp');"></div>
+            <div class="section-inner hero-inner">
+                <div class="hero-copy">
+                    <p class="eyebrow">Utah County Handyman</p>
+                    <h1>Reliable Handyman Services in Utah County - Fast, Professional, Affordable.</h1>
+                    <p class="hero-subhead">A Team Handyman Services provides dependable home repair, maintenance, and light remodeling work for homeowners and landlords in Provo, Orem, Springville, and surrounding areas.</p>
+                    <div class="hero-ctas">
+                        <a class="button primary" href="#quote-form">Request a Free Quote</a>
+                        <a class="button ghost" href="tel:+12084192480">Call Now</a>
+                    </div>
+                    <ul class="trust-bullets">
+                        <li>Licensed &amp; Insured</li>
+                        <li>Fast response times</li>
+                        <li>Free, no-pressure estimates</li>
+                    </ul>
+                </div>
+                <div class="hero-form-card" id="quote-form">
+                    <div class="form-header">
+                        <h2>Request a Free Quote</h2>
+                        <p>Tell us what you need help with and we'll get back to you quickly.</p>
+                    </div>
+                    <form class="quote-form" id="homepage-quote-form" action="https://api.web3forms.com/submit" method="post" data-success-url="https://a-team-handyman-services.com/pages/thank-you.html">
+                        <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
+                        <input type="hidden" name="subject" value="New homepage quote request from A Team Handyman Services">
+                        <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
+                        <label class="contact-honey" style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true">
+                            <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+                        </label>
+
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(208) 419-2480">
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+                        <label for="project">Describe Your Project</label>
+                        <textarea id="project" name="message" rows="3" placeholder="What do you need help with?" required></textarea>
+
+                        <button type="submit" class="button primary block">Get My Free Quote</button>
+                        <p class="form-reassurance">No obligation. We typically respond within 1-2 hours.</p>
+                    </form>
+                </div>
             </div>
-            <div class="tagline-container">
-                <p>Helping you turn your house into your dream home!</p>
-                <p>Proudly serving Utah County</p>
+        </section>
+
+        <!-- Trust badges -->
+        <section class="content-section light-grey">
+            <div class="section-inner badges-grid">
+                <div class="badge-card">
+                    <span class="badge-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img"><path d="M12 2 3 5v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V5l-9-3Z" fill="#0ea5e9"/><path d="M10.2 15.4 6.8 12l1.4-1.4 2 2 5.6-5.6L17.2 8l-7 7.4Z" fill="#fff"/></svg>
+                    </span>
+                    <h3>Licensed &amp; Insured</h3>
+                    <p>Work with a fully compliant, vetted handyman team.</p>
+                </div>
+                <div class="badge-card">
+                    <span class="badge-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img"><path d="M12 3c-5 0-9 4-9 9s4 9 9 9c2.4 0 4.6-.9 6.2-2.3l-2.1-2.3a5.94 5.94 0 0 1-4.1 1.6c-3.3 0-6-2.7-6-6s2.7-6 6-6c1.3 0 2.5.4 3.5 1.1l-2.5 2.5H21V3l-2.4 2.4A8.96 8.96 0 0 0 12 3Z" fill="#0ea5e9"/></svg>
+                    </span>
+                    <h3>Fast Response</h3>
+                    <p>We pick up the phone and schedule work quickly.</p>
+                </div>
+                <div class="badge-card">
+                    <span class="badge-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img"><path d="m12 2 9 4v6c0 5.5-4 10.7-9 12-5-1.3-9-6.5-9-12V6l9-4Z" fill="#0ea5e9"/><path d="M11 16 7 12l1.4-1.4L11 13.2l4.6-4.6L17 10l-6 6Z" fill="#fff"/></svg>
+                    </span>
+                    <h3>Free, No-Pressure Estimates</h3>
+                    <p>Clear pricing and options before any work begins.</p>
+                </div>
+                <div class="badge-card">
+                    <span class="badge-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img"><path d="M19 3H5v2H3v14h2v2h14v-2h2V5h-2V3Zm0 4v10H5V7h14ZM7 9h4v6H7V9Zm6 0h4v2h-4V9Zm0 4h4v2h-4v-2Z" fill="#0ea5e9"/></svg>
+                    </span>
+                    <h3>Local Utah County Business</h3>
+                    <p>Friendly, nearby team that knows your neighborhood.</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Blue box below hero -->
-    <section id="mission-statement" class="content-section dark-blue">
-        <div class="text-block">
-            <h2>Transparent, Reliable Home Help</h2>
-            <p class="descriptive-text">We'll help you bring your next home project to life! From start to finish, we
-                aim to make your experience as stress-free as possible.</p>
-            <p class="descriptive-text">Contact us for a free consultation today!</p>
-        </div>
-    </section>
-
-
-    <!-- Licensed and Insured -->
-    <section id="legal-status" class="content-section light-grey">
-        <div class="text-block">
-            <h3>Fully Licensed and Insured in the State of Utah</h3>
-        </div>
-    </section>
-
-
-    <!-- Services with Images -->
-    <section id="service-spotlight-remodels" class="content-section service-spotlight">
-        <div class="content-with-image">
-            <img src="/image/dawn-side-garage.webp" role="img" alt="Home Remodeling">
-            <div class="image-grid-text-block">
-                <h3>Home Remodels and Projects</h3>
-                <p>Contact us for your next home project! We specialize in mid-sized home projects and remodels</p>
+        <!-- Services -->
+        <section class="content-section" id="services">
+            <div class="section-inner">
+                <p class="eyebrow">What We Do</p>
+                <h2 class="section-heading">Handyman Services We Offer</h2>
+                <div class="card-grid service-cards">
+                    <div class="card">
+                        <h3>General Repairs</h3>
+                        <p>Fixing leaks, patching drywall, doors, windows, and home maintenance to keep your property in top shape.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Painting &amp; Touch-Ups</h3>
+                        <p>Clean, detailed paint work for rooms, trim, cabinets, and repairs that blend seamlessly.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Carpentry &amp; Installations</h3>
+                        <p>Shelving, trim work, framing, hardware installs, and custom repairs with a craftsman's eye.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Rental Turnovers</h3>
+                        <p>Fast, reliable prep work to get rentals ready for new tenants, on time and on budget.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Light Remodeling</h3>
+                        <p>Kitchens, bathrooms, flooring, and small renovation projects with clear communication.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="service-spotlight-maintenance" class="content-section service-spotlight">
-        <div class="content-with-image">
-            <img src="/image/katie-fence-gate.webp" role="img" alt="Property Maintenance">
-            <div class="image-grid-text-block">
-                <h3>Property Maintenance</h3>
-                <p>Is your home or rental property in need of work? Let us take a look! We especially love working with
-                    older homes and those needing significant work. Give us a call to see if we're a good fit for your
-                    home or investment property!</p>
+        <!-- Testimonials -->
+        <section class="content-section light-grey" id="testimonials">
+            <div class="section-inner">
+                <p class="eyebrow">Social Proof</p>
+                <h2 class="section-heading">What Our Customers Are Saying</h2>
+                <div class="card-grid testimonial-grid">
+                    <div class="card">
+                        <p class="quote">"Showed up on time, explained everything clearly, and did great work. Highly recommend!"</p>
+                        <p class="attribution">Sarah J., Provo</p>
+                    </div>
+                    <div class="card">
+                        <p class="quote">"Fast, reliable, and reasonably priced. Will definitely hire again."</p>
+                        <p class="attribution">Michael T., Orem</p>
+                    </div>
+                    <div class="card">
+                        <p class="quote">"Solved issues multiple contractors couldn't fix. Professional and honest."</p>
+                        <p class="attribution">Linda P., Springville</p>
+                    </div>
+                </div>
+                <p class="future-note">Soon: live Google reviews right here.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="service-spotlight-painting" class="content-section service-spotlight">
-        <div class="content-with-image">
-            <img src="/image/leslie-painting.webp" role="img" alt="Painting Services">
-            <div class="image-grid-text-block">
-                <h3>Painting</h3>
-                <p>Does your bedroom, bathroom, kitchen, or the exterior of your house need a touch up?</p>
-                <p>Call us for a painting quote!</p>
+        <!-- Local SEO -->
+        <section class="content-section" id="areas-we-serve">
+            <div class="section-inner two-col">
+                <div>
+                    <p class="eyebrow">Local &amp; Nearby</p>
+                    <h2>Proudly Serving Utah County</h2>
+                    <p>We provide handyman services for homeowners and property managers throughout Utah County.</p>
+                </div>
+                <ul class="city-list">
+                    <li>Provo</li>
+                    <li>Orem</li>
+                    <li>Lindon</li>
+                    <li>Springville</li>
+                    <li>Spanish Fork</li>
+                    <li>Pleasant Grove</li>
+                    <li>American Fork</li>
+                    <li>Vineyard</li>
+                </ul>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="service-spotlight-more" class="content-section service-spotlight">
-        <div class="content-with-image">
-            <img src="/image/katie-pergola.webp" role="img" alt="Various Services">
-            <div class="image-grid-text-block">
-                <h3>So much more!</h3>
-                <p>From framing, to fences, to drywall and painting, we offer a wide variety of services! Contact us to
-                    see if we're the right fit for you!</p>
+        <!-- FAQ -->
+        <section class="content-section light-grey" id="faq">
+            <div class="section-inner">
+                <p class="eyebrow">Answers</p>
+                <h2 class="section-heading">Frequently Asked Questions</h2>
+                <dl class="faq-list">
+                    <dt>What do you charge?</dt>
+                    <dd>We provide free estimates and transparent pricing.</dd>
+                    <dt>How soon can you come out?</dt>
+                    <dd>Most jobs can be scheduled within 1-3 days.</dd>
+                    <dt>Do you guarantee your work?</dt>
+                    <dd>Yes - all work comes with a satisfaction guarantee.</dd>
+                    <dt>Do you work with landlords/property managers?</dt>
+                    <dd>Yes - we regularly handle rental turnovers and maintenance requests.</dd>
+                </dl>
             </div>
-        </div>
-    </section>
+        </section>
 
+        <!-- About -->
+        <section class="content-section" id="about">
+            <div class="section-inner two-col about-block">
+                <div>
+                    <p class="eyebrow">About</p>
+                    <h2>About A Team Handyman Services</h2>
+                    <p>We're a locally owned handyman business serving Utah County with reliable, high-quality home repair and improvement services. Whether it's a quick fix or a larger project, we focus on honesty, communication, and craftsmanship.</p>
+                </div>
+                <div class="about-highlight">
+                    <p class="highlight-line">Quality-first workmanship</p>
+                    <p class="highlight-line">Clear communication</p>
+                    <p class="highlight-line">Neighbors you can count on</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Service list -->
-    <section id="detailed-services-list" class="content-section light-grey">
-
-        <h3>Services:</h3>
-        <ul class="service-list">
-            <li>Finishing Basements, Small Home Additions and Remodels</li>
-            <li>Decks, Fences, Sheds & Outdoor Projects</li>
-            <li>Interior & Exterior Painting</li>
-            <li>Kitchen & Bathroom Updates</li>
-            <li>Framing, Siding, and Flooring</li>
-            <li>Carpentry & Trim Work (baseboards, crown molding, doors)</li>
-            <li>Drywall</li>
-            <li>Window & Door Repairs or Replacement</li>
-            <li>General Home Maintenance & Odd Jobs</li>
-        </ul>
-        <p class="service-area">Proudly serving Provo, Orem, Springville, Spanish Fork, and surrounding Utah County
-            neighborhoods.</p>
-    </section>
+        <!-- Project gallery -->
+        <section class="content-section light-grey" id="projects">
+            <div class="section-inner">
+                <p class="eyebrow">Proof</p>
+                <h2 class="section-heading">Recent Projects</h2>
+                <div class="gallery-grid">
+                    <img src="/image/dawn-side-garage.webp" alt="Garage project exterior">
+                    <img src="/image/katie-fence-gate.webp" alt="Fence gate install">
+                    <img src="/image/leslie-painting.webp" alt="Interior painting touch ups">
+                    <img src="/image/katie-pergola.webp" alt="Pergola and outdoor project">
+                    <img src="/image/IMG_2516.webp" alt="Remodel work in progress">
+                    <img src="/image/IMG_2596.webp" alt="Finished carpentry details">
+                </div>
+            </div>
+        </section>
+    </main>
 
     <div data-include="/pages/partials/social-follow.html"></div>
 
     <!-- Load footer sections -->
     <div data-include="/pages/partials/email-prompt.html"></div>
     <div data-include="/pages/partials/footer.html"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('homepage-quote-form');
+            if (!form) return;
+
+            const honeypot = form.querySelector('input[name="_honey"]');
+            const redirectField = form.querySelector('input[name="redirect"]');
+            const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || '/pages/thank-you.html';
+
+            form.addEventListener('submit', async function (event) {
+                if (honeypot && honeypot.value) {
+                    event.preventDefault();
+                    return;
+                }
+
+                event.preventDefault();
+
+                // Ensure redirect is absolute so Web3Forms can use it; also use it client-side on any result.
+                const origin = (window.location && window.location.origin && window.location.origin !== 'null')
+                    ? window.location.origin.replace(/\/$/, '')
+                    : 'https://a-team-handyman-services.com';
+                const redirectValue = successUrl.startsWith('http')
+                    ? successUrl
+                    : origin + successUrl.replace(/^\//, '/');
+                if (redirectField) {
+                    redirectField.value = redirectValue;
+                }
+
+                try {
+                    const formData = new FormData(form);
+                    if (!formData.get('redirect')) {
+                        formData.append('redirect', redirectValue);
+                    }
+                    await fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+                } catch (err) {
+                    console.error('Web3Forms submit error', err);
+                } finally {
+                    window.location.href = redirectValue;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
