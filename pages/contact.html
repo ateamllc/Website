@@ -43,7 +43,7 @@
 
   <main class="content-sections">
     <section class="hero-banner page-hero">
-      <div class="background-image-container" style="background-image: url('/image/leslie-painting.jpeg');"></div>
+      <div class="background-image-container" style="background-image: url('/image/leslie-painting.webp');"></div>
       <div class="content-overlay">
         <p class="hero-eyebrow">Get in touch</p>
         <h1 class="hero-title">Let's talk about your next project</h1>
@@ -68,7 +68,7 @@
           <p>Share a few details about your vision and we'll put together a tailored plan and estimate.</p>
         </div>
 
-        <form action="https://api.web3forms.com/submit" method="post" class="contact-form" data-success-url="https://a-team-handyman-services.com/pages/thank-you.html">
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" data-success-url="https://a-team-handyman-services.com/pages/thank-you.html">
           <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
 
           <input type="hidden" name="subject" value="New contact request from A Team Handyman Services">
@@ -109,6 +109,8 @@
         </div>
       </div>
     </section>
+
+    <div data-include="/pages/partials/social-follow.html"></div>
   </main>
 
   <!-- Load footer sections -->

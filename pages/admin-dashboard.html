@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard | A Team Handyman Services</title>
+  <meta name="description" content="Private KPI dashboard for A Team Handyman Services leadership.">
+
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/pages/admin.css">
+  <script src="/js/admin.js" defer></script>
+</head>
+
+<body class="admin-body" data-require-auth="any">
+  <div class="admin-shell">
+    <header class="admin-topbar" aria-label="Admin navigation">
+      <div class="admin-brand">
+        <div class="brand-logo">
+          <img src="/image/logo.png" alt="A Team Handyman Services Logo">
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+        <span>A Team Admin</span>
+      </div>
+      <div class="admin-links">
+        <span aria-live="polite">Signed in as <strong data-admin-name>—</strong></span>
+        <a href="/pages/admin-dashboard.html">Dashboard</a>
+        <a href="/pages/admin-data.html">Data hub</a>
+        <a href="/pages/admin-users.html">User access</a>
+        <button type="button" class="pill-button secondary" data-sign-out>Sign out</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="admin-layout">
+        <section class="admin-hero" aria-labelledby="kpi-hero-title">
+          <p class="eyebrow">Executive KPIs</p>
+          <h1 id="kpi-hero-title">Performance dashboard</h1>
+          <p>Fast snapshot of revenue, profitability, liquidity, pipeline, utilization, and owner workload.</p>
+          <div class="status-meta">
+            <span class="meta-pill">Admin view</span>
+            <span class="meta-pill">Mock data — ready for integrations</span>
+          </div>
+        </section>
+
+        <nav class="tab-bar" role="tablist" aria-label="Dashboard profiles">
+          <button class="tab-button is-active" role="tab" aria-selected="true" data-tab-target="company">Company wide</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-tab-target="sales">Sales</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-tab-target="marketing">Marketing</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-tab-target="finances">Finances</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-tab-target="accounting">Accounting</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-tab-target="operations">Operations</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-tab-target="handyman">Handyman</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-tab-target="painting">Painting</button>
+          <button class="tab-button" role="tab" aria-selected="false" data-tab-target="fences">Fences</button>
+        </nav>
+
+        <!-- Company wide -->
+        <section class="dashboard-panel is-active" data-tab-panel="company" role="tabpanel">
+          <div class="spotlight" aria-labelledby="company-spotlight">
+            <h2 id="company-spotlight">Company wide goals</h2>
+            <p>Shared KPIs everyone tracks: revenue, savings, owner pay, and employee pay.</p>
+            <div class="progress-wrap" aria-label="Yearly goal progress">
+              <div class="progress-row">
+                <div class="progress-header">
+                  <span>Total revenue</span>
+                  <span>$108k / $150k</span>
+                </div>
+                <div class="progress-bar" aria-hidden="true">
+                  <div class="progress-fill" style="width: 72%;"></div>
+                </div>
+              </div>
+              <div class="progress-row">
+                <div class="progress-header">
+                  <span>Total company savings</span>
+                  <span>$9.0k / $20k</span>
+                </div>
+                <div class="progress-bar" aria-hidden="true">
+                  <div class="progress-fill" style="width: 45%;"></div>
+                </div>
+              </div>
+              <div class="progress-row">
+                <div class="progress-header">
+                  <span>Total owner pay</span>
+                  <span>$37k / $60k</span>
+                </div>
+                <div class="progress-bar" aria-hidden="true">
+                  <div class="progress-fill" style="width: 62%;"></div>
+                </div>
+              </div>
+              <div class="progress-row">
+                <div class="progress-header">
+                  <span>Total employee pay</span>
+                  <span>$29k / $50k</span>
+                </div>
+                <div class="progress-bar" aria-hidden="true">
+                  <div class="progress-fill" style="width: 58%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-header">
+            <h2 class="section-heading">This week</h2>
+            <p>Six live tiles, two rows by three columns. Targets are baked in to spotlight wins and gaps.</p>
+          </div>
+
+          <section class="kpi-grid" aria-label="Company wide KPIs">
+            <article class="kpi-card" data-kpi-history="Apr: $24,912; Jun: $5,237; Jul: $16,580; Aug: $10,384; Sep: $14,562; Oct: $7,570; Nov: $2,821">
+              <h3>Monthly Revenue</h3>
+              <div class="kpi-value" data-source-id="pl_revenue" data-default-value="$7.6k">$7.6k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="12500" data-direction="up">On track</span>
+                <span class="kpi-target">Target: $12.5k/mo (~$150k/yr)</span>
+              </div>
+            </article>
+
+            <article class="kpi-card" data-kpi-history="Aug: 12%; Sep: 8%; Oct: 7%">
+              <h3>Net Profit Margin</h3>
+              <div class="kpi-value" data-source-id="pl_net_profit" data-default-value="7%">7%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="15" data-direction="up">Healthy</span>
+                <span class="kpi-target">Target: 15%–20% net</span>
+              </div>
+            </article>
+
+            <article class="kpi-card" data-kpi-history="Aug: $3,800; Sep: $3,650; Oct: $3,487">
+              <h3>Cash Reserve</h3>
+              <div class="kpi-value" data-source-id="bs_cash" data-default-value="$3.5k">$3.5k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="10000" data-direction="up">Building</span>
+                <span class="kpi-target">Target: 10% of revenue; $10k–$15k by Nov</span>
+              </div>
+            </article>
+
+            <article class="kpi-card" data-kpi-history="Aug: 22 hrs; Sep: 23 hrs; Oct: 24 hrs">
+              <h3>Billable Employee Hours</h3>
+              <div class="kpi-value" data-source-id="ops_billable_hours" data-default-value="24 hrs / wk">24 hrs / wk</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="80" data-direction="up">Summer pace</span>
+                <span class="kpi-target">Target: 60–80 base; 100+ in summer</span>
+              </div>
+            </article>
+
+            <article class="kpi-card" data-kpi-history="Aug: 5; Sep: 6; Oct: 6">
+              <h3>Weekly Lead Flow</h3>
+              <div class="kpi-value" data-source-id="crm_leads" data-default-value="6 leads">6 leads</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="10" data-direction="up">Stable</span>
+                <span class="kpi-target">Target: 8–12 leads per week</span>
+              </div>
+            </article>
+
+            <article class="kpi-card" data-kpi-history="Aug: 36 hrs; Sep: 35 hrs; Oct: 35 hrs">
+              <h3>Owner Workload</h3>
+              <div class="kpi-value" data-source-id="hr_owner_hours" data-default-value="35 hrs / wk">35 hrs / wk</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="10" data-direction="down">Reduce</span>
+                <span class="kpi-target">Target: Under 10 hrs/week by Q4</span>
+              </div>
+            </article>
+          </section>
+
+          <section class="section-card" aria-labelledby="company-next-steps">
+            <div class="form-actions" style="justify-content: space-between;">
+              <div>
+                <p class="eyebrow">User &amp; permissions</p>
+                <h3 id="company-next-steps">Control center</h3>
+                <p>Route admins to issue new credentials, assign KPI visibility, and review sign-ins.</p>
+              </div>
+              <a class="pill-button" href="/pages/admin-users.html">Go to user access</a>
+            </div>
+            <ul class="list-grid">
+              <li>Assign KPI visibility by role (owner, ops, field lead, finance).</li>
+              <li>Wire KPIs to live sources (bookkeeping, CRM, time tracking, lead capture).</li>
+              <li>Log access history and enforce sign-out across devices.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Sales -->
+        <section class="dashboard-panel" data-tab-panel="sales" role="tabpanel" hidden>
+          <div class="spotlight" aria-labelledby="sales-spotlight">
+            <h2 id="sales-spotlight">Sales spotlight</h2>
+            <p>Company revenue and lead flow targets with sales-owned levers to hit them.</p>
+          </div>
+          <section class="kpi-grid" aria-label="Sales KPIs">
+            <article class="kpi-card" data-kpi-history="Aug: $22,000; Sep: $24,000; Oct: $25,000">
+              <h3>Pipeline Value</h3>
+              <div class="kpi-value" data-source-id="crm_pipeline" data-default-value="$25k">$25k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="50000" data-direction="up">Coverage 8.7x</span>
+                <span class="kpi-target">Target: 4–6x monthly goal</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: 26%; Sep: 27%; Oct: 28%">
+              <h3>Win Rate</h3>
+              <div class="kpi-value" data-source-id="crm_win_rate" data-default-value="28%">28%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="35" data-direction="up">Improve</span>
+                <span class="kpi-target">Target: 35%+</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: 5; Sep: 6; Oct: 6">
+              <h3>Leads / Week</h3>
+              <div class="kpi-value" data-source-id="crm_leads" data-default-value="6">6</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="10" data-direction="up">On target</span>
+                <span class="kpi-target">Target: 8–12</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Avg Deal Size</h3>
+              <div class="kpi-value">$3.8k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="3000" data-direction="up">Up</span>
+                <span class="kpi-target">Target: $3k–$4k</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Response Time</h3>
+              <div class="kpi-value">1.1 hrs</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="2" data-direction="down">Fast</span>
+                <span class="kpi-target">Target: &lt; 2 hrs</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Sales Cycle</h3>
+              <div class="kpi-value">8 days</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="10" data-direction="down">Lean</span>
+                <span class="kpi-target">Target: &lt; 10 days</span>
+              </div>
+            </article>
+          </section>
+          <section class="section-card">
+            <h3>Sales actions</h3>
+            <ul class="list-grid">
+              <li>Call-back SLAs for hot leads; text + email sequences for slower windows.</li>
+              <li>Bundle upsell checklist per service (handyman, paint, fences).</li>
+              <li>Track objections and close-loss reasons weekly.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Marketing -->
+        <section class="dashboard-panel" data-tab-panel="marketing" role="tabpanel" hidden>
+          <div class="spotlight" aria-labelledby="marketing-spotlight">
+            <h2 id="marketing-spotlight">Marketing spotlight</h2>
+            <p>Lead flow and CAC tied to the company revenue target.</p>
+          </div>
+          <section class="kpi-grid" aria-label="Marketing KPIs">
+            <article class="kpi-card" data-kpi-history="Aug: 5; Sep: 6; Oct: 6">
+              <h3>Leads / Week</h3>
+              <div class="kpi-value" data-source-id="crm_leads" data-default-value="6">6</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="10" data-direction="up">Steady</span>
+                <span class="kpi-target">Target: 8–12</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: $68; Sep: $66; Oct: $65">
+              <h3>Cost per Lead</h3>
+              <div class="kpi-value" data-source-id="mkt_cpl" data-default-value="$65">$65</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="55" data-direction="down">Efficient</span>
+                <span class="kpi-target">Target: &lt; $55</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: 2.9%; Sep: 3.0%; Oct: 3.0%">
+              <h3>Landing Conversion</h3>
+              <div class="kpi-value" data-source-id="mkt_conversion" data-default-value="3.0%">3.0%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="4" data-direction="up">Test</span>
+                <span class="kpi-target">Target: 4%+</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: 3.6k; Sep: 3.8k; Oct: 3.9k">
+              <h3>Organic Visits</h3>
+              <div class="kpi-value" data-default-value="3.9k/mo">3.9k/mo</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="5000" data-direction="up">Trending up</span>
+                <span class="kpi-target">Target: 5k/mo</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Review Velocity</h3>
+              <div class="kpi-value">12 / mo</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="10" data-direction="up">Healthy</span>
+                <span class="kpi-target">Target: 10–15</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Email Click Rate</h3>
+              <div class="kpi-value">6.8%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="5" data-direction="up">Above avg</span>
+                <span class="kpi-target">Target: 5%+</span>
+              </div>
+            </article>
+          </section>
+          <section class="section-card">
+            <h3>Marketing actions</h3>
+            <ul class="list-grid">
+              <li>A/B test landing CTA and hero image weekly.</li>
+              <li>Automate review follow-up post-job with SMS + email.</li>
+              <li>Track cost per booked job by channel.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Finances -->
+        <section class="dashboard-panel" data-tab-panel="finances" role="tabpanel" hidden>
+          <div class="spotlight" aria-labelledby="finances-spotlight">
+            <h2 id="finances-spotlight">Finance spotlight</h2>
+            <p>Shared company profitability and liquidity targets plus finance-owned controls.</p>
+          </div>
+          <section class="kpi-grid" aria-label="Finance KPIs">
+            <article class="kpi-card" data-kpi-history="Apr: $24,912; Jun: $5,237; Jul: $16,580; Aug: $10,384; Sep: $14,562; Oct: $7,570; Nov: $2,821">
+              <h3>Monthly Revenue</h3>
+              <div class="kpi-value" data-source-id="pl_revenue" data-default-value="$7.6k">$7.6k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="12500" data-direction="up">On track</span>
+                <span class="kpi-target">$12.5k goal</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: 12%; Sep: 8%; Oct: 7%">
+              <h3>Net Margin</h3>
+              <div class="kpi-value" data-source-id="pl_net_profit" data-default-value="7%">7%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="15" data-direction="up">Healthy</span>
+                <span class="kpi-target">Target: 15–20%</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: $3,800; Sep: $3,650; Oct: $3,487">
+              <h3>Cash Runway</h3>
+              <div class="kpi-value" data-source-id="bs_cash" data-default-value="3.5 weeks">3.5 weeks</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="8" data-direction="up">Build</span>
+                <span class="kpi-target">Target: 8+ weeks</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: $1,120; Sep: $1,040; Oct: $979">
+              <h3>AR Outstanding</h3>
+              <div class="kpi-value" data-source-id="bs_ar" data-default-value="$979">$979</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="10000" data-direction="down">Collect</span>
+                <span class="kpi-target">Target: &lt; $10k</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: $750; Sep: $320; Oct: $0">
+              <h3>AP Due</h3>
+              <div class="kpi-value" data-source-id="bs_ap" data-default-value="$0">$0</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="10000" data-direction="down">Controlled</span>
+                <span class="kpi-target">Target: &lt; $10k</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Burn vs Plan</h3>
+              <div class="kpi-value">-3%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="5" data-direction="down">Under plan</span>
+                <span class="kpi-target">Target: +/- 5%</span>
+              </div>
+            </article>
+          </section>
+          <section class="section-card">
+            <h3>Finance actions</h3>
+            <ul class="list-grid">
+              <li>Shorten AR collection cycle; add deposits to high-risk jobs.</li>
+              <li>Maintain 10% revenue cash reserve; sweep weekly.</li>
+              <li>Reforecast monthly based on pipeline and utilization.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Accounting -->
+        <section class="dashboard-panel" data-tab-panel="accounting" role="tabpanel" hidden>
+          <div class="spotlight" aria-labelledby="accounting-spotlight">
+            <h2 id="accounting-spotlight">Accounting spotlight</h2>
+            <p>Books hygiene and compliance supporting financial KPIs.</p>
+          </div>
+          <section class="kpi-grid" aria-label="Accounting KPIs">
+            <article class="kpi-card">
+              <h3>Books Status</h3>
+              <div class="kpi-value" data-default-value="Up to date">Up to date</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="1" data-direction="down" data-current-value="1">Current</span>
+                <span class="kpi-target">Close by day 5</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Reconciled Accounts</h3>
+              <div class="kpi-value" data-default-value="95%">95%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="100" data-direction="up">Finish</span>
+                <span class="kpi-target">Target: 100%</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>AR Aging &lt; 30</h3>
+              <div class="kpi-value" data-source-id="bs_ar" data-default-value="78%">78%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="90" data-direction="up">Push</span>
+                <span class="kpi-target">Target: 90%+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>AP Aging &lt; 30</h3>
+              <div class="kpi-value" data-source-id="bs_ap" data-default-value="86%">86%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="85" data-direction="up">Solid</span>
+                <span class="kpi-target">Target: 85%+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Expense Coding</h3>
+              <div class="kpi-value" data-default-value="90%">90%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="100" data-direction="up">Complete</span>
+                <span class="kpi-target">Target: 100%</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Payroll Accuracy</h3>
+              <div class="kpi-value">99%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="99" data-direction="up">Tight</span>
+                <span class="kpi-target">Target: 99%+</span>
+              </div>
+            </article>
+          </section>
+          <section class="section-card">
+            <h3>Accounting actions</h3>
+            <ul class="list-grid">
+              <li>Daily bank feed reconciliation.</li>
+              <li>Send AR reminders at 7/14/21 days.</li>
+              <li>Lock periods post-close and archive receipts.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Operations -->
+        <section class="dashboard-panel" data-tab-panel="operations" role="tabpanel" hidden>
+          <div class="spotlight" aria-labelledby="operations-spotlight">
+            <h2 id="operations-spotlight">Operations spotlight</h2>
+            <p>Utilization and delivery driving revenue and margin.</p>
+          </div>
+          <section class="kpi-grid" aria-label="Operations KPIs">
+            <article class="kpi-card" data-kpi-history="Aug: 10; Sep: 11; Oct: 12">
+              <h3>Jobs Scheduled</h3>
+              <div class="kpi-value" data-source-id="ops_jobs_scheduled" data-default-value="12">12</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="22" data-direction="up">Booked</span>
+                <span class="kpi-target">Target: 20–25</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: 88%; Sep: 89%; Oct: 90%">
+              <h3>On-Time Completion</h3>
+              <div class="kpi-value" data-source-id="ops_on_time" data-default-value="90%">90%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="90" data-direction="up">Strong</span>
+                <span class="kpi-target">Target: 90%+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Rework Rate</h3>
+              <div class="kpi-value">2%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="4" data-direction="down">Low</span>
+                <span class="kpi-target">Target: &lt; 4%</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Safety Incidents</h3>
+              <div class="kpi-value">0</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="0" data-direction="down">Clear</span>
+                <span class="kpi-target">Target: 0</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Net Promoter Score</h3>
+              <div class="kpi-value">68</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="70" data-direction="up">Improve</span>
+                <span class="kpi-target">Target: 70+</span>
+              </div>
+            </article>
+            <article class="kpi-card" data-kpi-history="Aug: 72%; Sep: 74%; Oct: 75%">
+              <h3>Crew Utilization</h3>
+              <div class="kpi-value" data-source-id="hr_utilization" data-default-value="75%">75%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="85" data-direction="up">Balanced</span>
+                <span class="kpi-target">Target: 80–90%</span>
+              </div>
+            </article>
+          </section>
+          <section class="section-card">
+            <h3>Operations actions</h3>
+            <ul class="list-grid">
+              <li>Finalize schedule lock on Fridays for the next week.</li>
+              <li>Daily standup to confirm materials and access.</li>
+              <li>Post-job QA checklist with customer sign-off.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Handyman -->
+        <section class="dashboard-panel" data-tab-panel="handyman" role="tabpanel" hidden>
+          <div class="spotlight" aria-labelledby="handyman-spotlight">
+            <h2 id="handyman-spotlight">Handyman spotlight</h2>
+            <p>Business-unit KPIs that ladder to company revenue and margin.</p>
+          </div>
+          <section class="kpi-grid" aria-label="Handyman KPIs">
+            <article class="kpi-card">
+              <h3>Revenue</h3>
+              <div class="kpi-value" data-default-value="$6.4k">$6.4k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="6000" data-direction="up">On pace</span>
+                <span class="kpi-target">Target: $6k/mo</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Billable Hours</h3>
+              <div class="kpi-value">42 hrs</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="42" data-direction="up">Healthy</span>
+                <span class="kpi-target">Target: 40–45</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Gross Margin</h3>
+              <div class="kpi-value">44%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="45" data-direction="up">Tight</span>
+                <span class="kpi-target">Target: 45%+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Repeat Customers</h3>
+              <div class="kpi-value">21%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="20" data-direction="up">Growing</span>
+                <span class="kpi-target">Target: 20%+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Job Backlog</h3>
+              <div class="kpi-value">1.4 wks</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="2" data-direction="down">Lean</span>
+                <span class="kpi-target">Target: 1–2 wks</span>
+              </div>
+            </article>
+          </section>
+          <section class="section-card">
+            <h3>Handyman actions</h3>
+            <ul class="list-grid">
+              <li>Upsell maintenance bundles during onsite visits.</li>
+              <li>Track travel time to reduce non-billable hours.</li>
+              <li>Promote reviews after quick-turn jobs.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Painting -->
+        <section class="dashboard-panel" data-tab-panel="painting" role="tabpanel" hidden>
+          <div class="spotlight" aria-labelledby="painting-spotlight">
+            <h2 id="painting-spotlight">Painting spotlight</h2>
+            <p>Parallel layout to the main dashboard for the painting DBA.</p>
+          </div>
+          <section class="kpi-grid" aria-label="Painting KPIs">
+            <article class="kpi-card">
+              <h3>Revenue</h3>
+              <div class="kpi-value" data-default-value="$4.1k">$4.1k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="5000" data-direction="up">Push</span>
+                <span class="kpi-target">Target: $5k/mo</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Gross Margin</h3>
+              <div class="kpi-value">46%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="45" data-direction="up">Healthy</span>
+                <span class="kpi-target">Target: 45%+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Crew Hours</h3>
+              <div class="kpi-value">28 hrs</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="28" data-direction="up">On plan</span>
+                <span class="kpi-target">Target: 25–30</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Avg Ticket</h3>
+              <div class="kpi-value">$2.9k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="2500" data-direction="up">Up</span>
+                <span class="kpi-target">Target: $2.5k+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Rework Rate</h3>
+              <div class="kpi-value">3%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="5" data-direction="down">Low</span>
+                <span class="kpi-target">Target: &lt; 5%</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Customer Rating</h3>
+              <div class="kpi-value">4.7 / 5</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="4.6" data-direction="up">Strong</span>
+                <span class="kpi-target">Target: 4.6+</span>
+              </div>
+            </article>
+          </section>
+          <section class="section-card">
+            <h3>Painting actions</h3>
+            <ul class="list-grid">
+              <li>Add photo-first proposals to lift close rate.</li>
+              <li>Standardize prep checklist to protect margin.</li>
+              <li>Offer winter touch-up packages for repeat clients.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Fences -->
+        <section class="dashboard-panel" data-tab-panel="fences" role="tabpanel" hidden>
+          <div class="spotlight" aria-labelledby="fences-spotlight">
+            <h2 id="fences-spotlight">Fences spotlight</h2>
+            <p>DBA layout aligned to the main dashboard for fencing jobs.</p>
+          </div>
+          <section class="kpi-grid" aria-label="Fences KPIs">
+            <article class="kpi-card">
+              <h3>Revenue</h3>
+              <div class="kpi-value" data-default-value="$3.3k">$3.3k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="4000" data-direction="up">Build</span>
+                <span class="kpi-target">Target: $4k/mo</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Gross Margin</h3>
+              <div class="kpi-value">43%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="45" data-direction="up">Improve</span>
+                <span class="kpi-target">Target: 45%+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Lead to Booked</h3>
+              <div class="kpi-value">29%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="25" data-direction="up">Solid</span>
+                <span class="kpi-target">Target: 25%+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Average Job Size</h3>
+              <div class="kpi-value">$4.4k</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="4000" data-direction="up">Healthy</span>
+                <span class="kpi-target">Target: $4k+</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Crew Utilization</h3>
+              <div class="kpi-value">81%</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="85" data-direction="up">On plan</span>
+                <span class="kpi-target">Target: 80–90%</span>
+              </div>
+            </article>
+            <article class="kpi-card">
+              <h3>Quality Punches</h3>
+              <div class="kpi-value">1.5 per job</div>
+              <div class="kpi-meta">
+                <span class="badge" data-badge data-target-value="1" data-direction="down">Reduce</span>
+                <span class="kpi-target">Target: &lt; 1</span>
+              </div>
+            </article>
+          </section>
+          <section class="section-card">
+            <h3>Fences actions</h3>
+            <ul class="list-grid">
+              <li>Pre-job site survey checklist for posts and utilities.</li>
+              <li>Material staging to cut same-day downtime.</li>
+              <li>Photo documentation for warranty and reviews.</li>
+            </ul>
+          </section>
+        </section>
+      </div>
+    </main>
+    <div data-modal class="modal" hidden aria-hidden="true" role="dialog" aria-label="KPI modal">
+      <div class="modal-dialog">
+        <button class="modal-close" type="button" data-close-modal aria-label="Close modal">Close</button>
+        <div data-modal-body></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -268,6 +268,110 @@ main.content-sections {
     width: 20vw;
 }
 
+.carousel-module {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+    width: 100%;
+}
+
+.carousel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.carousel-titles h3 {
+    margin: 4px 0 0;
+}
+
+.carousel-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.carousel-controls.is-hidden {
+    display: none;
+}
+
+.carousel-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.carousel-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+    background: #f8fafc;
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    position: relative;
+    min-height: 280px;
+}
+
+.carousel-track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 1fr);
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+    min-height: 240px;
+    width: 100%;
+}
+
+.carousel-card {
+    scroll-snap-align: start;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f1f5f9;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-track::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 999px;
+}
+
+.content-with-image .carousel-shell {
+    width: 100%;
+    margin: 0 auto 1.75rem;
+    display: block;
+}
+
 
 /* ==========================
    RESPONSIVE BREAKPOINTS
@@ -290,6 +394,14 @@ main.content-sections {
     .text-block {
         width: 100%;
         max-height: none;
+    }
+
+    .carousel-track {
+        grid-auto-columns: minmax(160px, 72%);
+    }
+
+    .carousel-header {
+        align-items: flex-start;
     }
 }
 

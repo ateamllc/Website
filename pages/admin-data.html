@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Data Hub | A Team Handyman Services</title>
+  <meta name="description" content="Master data inputs powering KPIs across all admin dashboards.">
+
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/pages/admin.css">
+  <script src="/js/admin.js" defer></script>
+</head>
+
+<body class="admin-body" data-require-auth="admin">
+  <div class="admin-shell">
+    <header class="admin-topbar" aria-label="Admin navigation">
+      <div class="admin-brand">
+        <div class="brand-logo">
+          <img src="/image/logo.png" alt="A Team Handyman Services Logo">
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+        <span>A Team Admin</span>
+      </div>
+      <div class="admin-links">
+        <span aria-live="polite">Signed in as <strong data-admin-name>—</strong></span>
+        <a href="/pages/admin-dashboard.html">Dashboard</a>
+        <a href="/pages/admin-data.html" aria-current="page">Data hub</a>
+        <a href="/pages/admin-users.html">User access</a>
+        <button type="button" class="pill-button secondary" data-sign-out>Sign out</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="admin-layout">
+        <section class="admin-hero" aria-labelledby="data-hub-title">
+          <p class="eyebrow">Source of truth</p>
+          <h1 id="data-hub-title">Master data inputs</h1>
+          <p>One-stop view of every data point powering all dashboard KPIs. Track freshness, source, and manual overrides.</p>
+          <div class="status-meta">
+            <span class="meta-pill">Mock data — ready for API hooks</span>
+            <span class="meta-pill">Roles: admin only</span>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Legend</h2>
+          <div class="kpi-meta">
+            <span class="badge fresh">Fresh (&lt; 24h)</span>
+            <span class="badge good">Recent (1–3 days)</span>
+            <span class="badge stale">Stale (3–7 days)</span>
+            <span class="badge expired">Expired (&gt; 7 days)</span>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>QuickBooks Online — Balance Sheet</h2>
+          <div class="data-table" role="table" aria-label="Balance Sheet data points">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row" data-id="bs_cash" data-default-value="$3,487.16" data-history="2025-08|$3,800;2025-09|$3,650;2025-10|$3,550" data-references="Company: Cash Reserve;Finance: Cash Runway;Accounting: Balance sheet health">
+              <span data-name>Cash &amp; Cash Equivalents</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>API</span>
+              <span data-value>$3,487.16</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="bs_ar" data-default-value="$979.38" data-history="2025-08|$1,120;2025-09|$1,040;2025-10|$979.38" data-references="Finance: AR Outstanding;Accounting: AR Aging;Company: Cash Reserve">
+              <span data-name>Accounts Receivable</span>
+              <span><span class="badge stale">5 days</span></span>
+              <span>API</span>
+              <span data-value>$979.38</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="bs_ap" data-default-value="$0" data-history="2025-08|$750;2025-09|$320;2025-10|$0" data-references="Finance: AP Due;Accounting: AP Aging;Company: Net Profit Margin">
+              <span data-name>Accounts Payable</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span data-value>$0</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="bs_owner_distributions" data-default-value="$20,531.87" data-history="2025-08|$18,000;2025-09|$19,500;2025-10|$20,531.87" data-references="Company: Owner Pay;Finance: Net Margin;Accounting: Owner draws">
+              <span data-name>Owner Distributions</span>
+              <span><span class="badge stale">6 days</span></span>
+              <span>API</span>
+              <span data-value>$20,531.87</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>QuickBooks Online — Profit &amp; Loss</h2>
+          <div class="data-table" role="table" aria-label="Profit and loss data points">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row" data-id="pl_revenue" data-default-value="$7,570" data-history="Apr 2025|$24,911;May 2025|$125;Jun 2025|$5,237;Jul 2025|$16,580;Aug 2025|$10,384;Sep 2025|$14,562;Oct 2025|$7,570;Nov 2025|$2,821" data-references="Company: Monthly Revenue;Sales: Pipeline Coverage;Finance: Net Margin;DBAs: Revenue tiles">
+              <span data-name>Monthly Revenue</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>API</span>
+              <span data-value>$7,570</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="pl_cogs" data-default-value="$4,553" data-history="Apr 2025|$6,000;Jun 2025|$817;Jul 2025|$3,859;Aug 2025|$8,199;Sep 2025|$10,809;Oct 2025|$4,553;Nov 2025|$3,618" data-references="Company: Net Profit Margin;Finance: Net Margin;DBAs: Gross Margin">
+              <span data-name>COGS</span>
+              <span><span class="badge good">1 day</span></span>
+              <span>API</span>
+              <span data-value>$4,553</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="pl_opex" data-default-value="$2,500" data-history="Aug 2025|$2,200;Sep 2025|$2,600;Oct 2025|$2,500" data-references="Finance: Burn vs Plan;Company: Net Margin">
+              <span data-name>Operating Expenses</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span data-value>$2,500</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="pl_net_profit" data-default-value="7%" data-history="Aug 2025|12%;Sep 2025|8%;Oct 2025|7%" data-references="Company: Net Profit Margin;Finance: Net Margin">
+              <span data-name>Net Profit</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>Calculated</span>
+              <span data-value>7%</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="pl_owner_pay" data-default-value="$1,750/mo" data-history="Aug 2025|$1,600;Sep 2025|$1,700;Oct 2025|$1,750" data-references="Company: Owner Pay goal;Finance: Net Margin;Payroll: Owner Hours">
+              <span data-name>Owner Pay</span>
+              <span><span class="badge stale">5 days</span></span>
+              <span>API</span>
+              <span data-value>$1,750/mo</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="pl_employee_pay" data-default-value="$2,000/mo" data-history="Aug 2025|$1,800;Sep 2025|$1,900;Oct 2025|$2,000" data-references="Company: Employee Pay goal;Payroll: Crew Utilization;DBAs: Labor costs">
+              <span data-name>Employee Payroll</span>
+              <span><span class="badge stale">6 days</span></span>
+              <span>API</span>
+              <span data-value>$2,000/mo</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>CRM / Lead Capture</h2>
+          <div class="data-table" role="table" aria-label="Lead data">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row" data-id="crm_leads" data-default-value="6" data-history="Aug 2025|5;Sep 2025|6;Oct 2025|6" data-references="Company: Weekly Lead Flow;Sales: Leads per week;Marketing: Leads per week;DBAs: Lead-to-booked">
+              <span data-name>Leads per Week</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>API</span>
+              <span data-value>6</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="crm_pipeline" data-default-value="$25,000" data-history="Aug 2025|$22,000;Sep 2025|$24,000;Oct 2025|$25,000" data-references="Sales: Pipeline Value;Finance: Revenue forecast">
+              <span data-name>Pipeline Value</span>
+              <span><span class="badge good">1 day</span></span>
+              <span>API</span>
+              <span data-value>$25,000</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="crm_win_rate" data-default-value="28%" data-history="Aug 2025|26%;Sep 2025|27%;Oct 2025|28%" data-references="Sales: Win Rate;Marketing: CAC modeling">
+              <span data-name>Win Rate</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span data-value>28%</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Time Tracking / Ops</h2>
+          <div class="data-table" role="table" aria-label="Operational data">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row" data-id="ops_billable_hours" data-default-value="24 hrs / wk" data-history="Aug 2025|22 hrs;Sep 2025|23 hrs;Oct 2025|24 hrs" data-references="Company: Billable Employee Hours;Operations: Crew Utilization;DBAs: Billable Hours">
+              <span data-name>Billable Hours (All)</span>
+              <span><span class="badge fresh">Today</span></span>
+              <span>API</span>
+              <span data-value>24 hrs / wk</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="ops_jobs_scheduled" data-default-value="12" data-history="Aug 2025|10;Sep 2025|11;Oct 2025|12" data-references="Operations: Jobs Scheduled;DBAs: Backlog">
+              <span data-name>Jobs Scheduled</span>
+              <span><span class="badge good">1 day</span></span>
+              <span>API</span>
+              <span data-value>12</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="ops_on_time" data-default-value="90%" data-history="Aug 2025|88%;Sep 2025|89%;Oct 2025|90%" data-references="Operations: On-Time Completion;DBAs: Quality metrics;Company: Net Promoter">
+              <span data-name>On-Time Completion</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span data-value>90%</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Payroll / HR</h2>
+          <div class="data-table" role="table" aria-label="Payroll data">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row" data-id="hr_owner_hours" data-default-value="35 hrs" data-history="Aug 2025|36 hrs;Sep 2025|35 hrs;Oct 2025|35 hrs" data-references="Company: Owner Workload;Payroll: Owner Hours">
+              <span data-name>Owner Hours</span>
+              <span><span class="badge stale">5 days</span></span>
+              <span>Manual</span>
+              <span data-value>35 hrs</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="hr_utilization" data-default-value="75%" data-history="Aug 2025|72%;Sep 2025|74%;Oct 2025|75%" data-references="Operations: Crew Utilization;DBAs: Utilization;Company: Billable Hours">
+              <span data-name>Crew Utilization</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span data-value>75%</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="hr_headcount" data-default-value="3" data-history="Aug 2025|3;Sep 2025|3;Oct 2025|3" data-references="Operations: Scheduling;DBAs: Crew Hours">
+              <span data-name>Headcount</span>
+              <span><span class="badge good">3 days</span></span>
+              <span>Manual</span>
+              <span data-value>3</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Marketing Analytics</h2>
+          <div class="data-table" role="table" aria-label="Marketing data">
+            <div class="data-row header" role="row">
+              <span role="columnheader">Data point</span>
+              <span role="columnheader">Last updated</span>
+              <span role="columnheader">Entry method</span>
+              <span role="columnheader">Current value</span>
+              <span role="columnheader">Manual override</span>
+            </div>
+            <div class="data-row" role="row" data-id="mkt_cpl" data-default-value="$65" data-history="Aug 2025|$68;Sep 2025|$66;Oct 2025|$65" data-references="Marketing: Cost per Lead;Sales: CAC vs Win rate">
+              <span data-name>Cost per Lead</span>
+              <span><span class="badge good">2 days</span></span>
+              <span>API</span>
+              <span data-value>$65</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="mkt_conversion" data-default-value="3.0%" data-history="Aug 2025|2.9%;Sep 2025|3.0%;Oct 2025|3.0%" data-references="Marketing: Landing Conversion;Sales: Lead quality">
+              <span data-name>Landing Conversion</span>
+              <span><span class="badge stale">6 days</span></span>
+              <span>File upload</span>
+              <span data-value>3.0%</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+            <div class="data-row" role="row" data-id="mkt_organic" data-default-value="3.9k/mo" data-history="Aug 2025|3.6k/mo;Sep 2025|3.8k/mo;Oct 2025|3.9k/mo" data-references="Marketing: Organic Visits;Sales: Lead flow forecast">
+              <span data-name>Organic Traffic</span>
+              <span><span class="badge good">1 day</span></span>
+              <span>API</span>
+              <span data-value>3.9k/mo</span>
+              <input type="text" placeholder="Override value" data-override-input>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <h2>Notes &amp; next steps</h2>
+          <ul class="list-grid">
+            <li>Swap mock values with API responses from QBO, CRM, time tracking, payroll, and analytics tools.</li>
+            <li>Calculate freshness based on timestamps and surface warnings for stale data.</li>
+            <li>Persist manual overrides and reflect them in KPI calculations, with audit logs.</li>
+          </ul>
+        </section>
+        <div data-modal class="modal" hidden aria-hidden="true" role="dialog" aria-label="History modal">
+          <div class="modal-dialog">
+            <button class="modal-close" type="button" data-close-modal aria-label="Close history modal">Close</button>
+            <div data-modal-body></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>

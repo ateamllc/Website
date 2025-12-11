@@ -3,6 +3,12 @@ const path = require('path');
 
 const rootDir = __dirname;
 const pagesDir = path.join(rootDir, 'pages');
+const excludedFiles = new Set([
+  path.join('pages', 'admin-dashboard.html'),
+  path.join('pages', 'admin-login.html'),
+  path.join('pages', 'admin-users.html'),
+  path.join('pages', 'admin-data.html'),
+]);
 
 function readDomain() {
   const cnamePath = path.join(rootDir, 'CNAME');
@@ -21,6 +27,8 @@ function collectHtmlFiles(dir, ignoreDirs = new Set()) {
       if (ignoreDirs.has(entry.name)) continue;
       results.push(...collectHtmlFiles(fullPath, ignoreDirs));
     } else if (entry.isFile() && entry.name.endsWith('.html')) {
+      const relativePath = path.relative(rootDir, fullPath);
+      if (excludedFiles.has(relativePath)) continue;
       results.push(fullPath);
     }
   }

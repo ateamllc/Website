@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Sign In | A Team Handyman Services</title>
+  <meta name="description" content="Secure sign in for the A Team Handyman Services admin dashboard.">
+
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/pages/admin.css">
+  <script src="/js/admin.js" defer></script>
+</head>
+
+<body class="admin-body" data-page="admin-login">
+  <div class="admin-shell">
+    <header class="admin-topbar" aria-label="Admin sign in header">
+      <div class="admin-brand">
+        <div class="brand-logo">
+          <img src="/image/logo.png" alt="A Team Handyman Services Logo">
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+        <span>A Team Admin</span>
+      </div>
+      <div class="admin-links">
+        <a href="/index.html">Public site</a>
+      </div>
+    </header>
+
+    <main class="auth-wrapper">
+      <section class="auth-card" aria-labelledby="admin-login-title">
+        <p class="eyebrow">Admin access</p>
+        <h1 id="admin-login-title">Sign in to continue</h1>
+        <p>Enter your admin credentials to open the private dashboard.</p>
+
+        <form data-admin-login novalidate>
+          <div class="form-field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" required aria-required="true" placeholder="Username">
+          </div>
+
+          <div class="form-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required aria-required="true" placeholder="Password">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="pill-button">Sign in</button>
+            <a class="subtle-link" href="/pages/privacy-policy.html">Privacy</a>
+          </div>
+          <p class="form-hint">Default admin username: <strong>ateam</strong> — keep this private until real accounts are issued.</p>
+          <p class="form-hint" data-feedback hidden aria-live="assertive"></p>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>
