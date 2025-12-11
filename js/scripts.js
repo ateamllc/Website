@@ -80,12 +80,26 @@
       return sampleCard ? sampleCard.getBoundingClientRect().width + 12 : track.clientWidth * 0.6;
     };
 
+    const controls = root.querySelector('.carousel-controls');
+    const refreshControls = () => {
+      const scrollable = track.scrollWidth - track.clientWidth > 8;
+      if (controls) controls.classList.toggle('is-hidden', !scrollable);
+    };
+
     const scrollBy = (direction) => {
       track.scrollBy({ left: direction * scrollAmount(), behavior: 'smooth' });
     };
 
     prevBtn && prevBtn.addEventListener('click', () => scrollBy(-1));
     nextBtn && nextBtn.addEventListener('click', () => scrollBy(1));
+
+    refreshControls();
+    window.addEventListener('resize', refreshControls);
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = refreshControls;
+    });
 
     container.dataset.carouselInit = 'true';
   };

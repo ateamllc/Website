@@ -274,6 +274,7 @@ main.content-sections {
     border-radius: 16px;
     padding: 18px;
     box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+    width: 100%;
 }
 
 .carousel-header {
@@ -292,6 +293,10 @@ main.content-sections {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+}
+
+.carousel-controls.is-hidden {
+    display: none;
 }
 
 .carousel-btn {
@@ -316,16 +321,19 @@ main.content-sections {
 .carousel-viewport {
     overflow: hidden;
     position: relative;
+    min-height: 280px;
 }
 
 .carousel-track {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(180px, 1fr);
+    grid-auto-columns: minmax(220px, 1fr);
     gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 6px;
+    min-height: 240px;
+    width: 100%;
 }
 
 .carousel-card {
@@ -359,9 +367,9 @@ main.content-sections {
 }
 
 .content-with-image .carousel-shell {
-    max-width: 520px;
     width: 100%;
-    margin: 0 auto 1rem;
+    margin: 0 auto 1.75rem;
+    display: block;
 }
 
 
