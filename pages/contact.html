@@ -62,7 +62,7 @@
           <h2>We're local to Utah County</h2>
           <p><strong>Phone:</strong> <a href="tel:+12084192480">(208) 419-2480</a></p>
           <p><strong>Email:</strong> <a
-              href="mailto:contact@a-team-handyman-services.com">contact@a-team-handyman-services.com</a></p>
+              href="mailto:projects@a-team-handyman-services.com">projects@a-team-handyman-services.com</a></p>
           <p><strong>Service Areas:</strong> Provo, Orem, Springville, Spanish Fork, Payson, and surrounding
             neighborhoods.</p>
           <p>Share a few details about your vision and we'll put together a tailored plan and estimate.</p>
@@ -73,11 +73,12 @@
 
           <input type="hidden" name="subject" value="New contact request from A Team Handyman Services">
           <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
-          
-          <label class="contact-honey" style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true">
-            <input type="text" name="_honey" tabindex="-1" autocomplete="off">
-          </label>
-          
+          <div class="contact-honey" aria-hidden="true" hidden>
+            <label for="contact-guard">Leave this field empty</label>
+            <input id="contact-guard" type="text" name="_honey" tabindex="-1" autocomplete="new-password"
+              inputmode="none">
+          </div>
+        
           <label for="name">Name</label>
           <input id="name" name="name" required>
 
@@ -122,11 +123,16 @@
       if (!form) return;
 
       const honeypot = form.querySelector('input[name="_honey"]');
+      if (honeypot) {
+        honeypot.value = '';
+        honeypot.setAttribute('autocomplete', 'new-password');
+        honeypot.setAttribute('aria-hidden', 'true');
+      }
       const redirectField = form.querySelector('input[name="redirect"]');
       const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || '/pages/thank-you.html';
 
       form.addEventListener('submit', async function (event) {
-        if (honeypot && honeypot.value) {
+        if (honeypot && honeypot.value.trim()) {
           event.preventDefault();
           return;
         }
