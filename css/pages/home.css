@@ -4,6 +4,229 @@
 }
 
 /* ==========================
+   TRUST / SOCIAL PROOF
+   ========================== */
+.trust-bar {
+    background: linear-gradient(90deg, #0ea5e9 0%, #2563eb 60%, #1d4ed8 100%);
+    color: #fff;
+    padding: 0.9rem 1rem;
+}
+
+.trust-bar__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.trust-bar__left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+.trust-bar__label {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.trust-bar__rating {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+}
+
+.trust-bar__score {
+    font-size: 1.05rem;
+}
+
+.trust-bar__count {
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.trust-bar__link {
+    color: #0f172a;
+    background: #fbbf24;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.35);
+    text-align: center;
+}
+
+.trust-feature {
+    background: #0f172a;
+    color: #e5e7eb;
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.trust-feature__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: 1fr;
+}
+
+.trust-feature__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+.trust-feature__stars {
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+}
+
+.trust-feature__label {
+    font-weight: 800;
+    margin: 0;
+}
+
+.trust-feature__sub {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.trust-feature__copy {
+    font-size: 1rem;
+    max-width: 760px;
+}
+
+.trust-feature__cta {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.trust-feature__link {
+    color: #0f172a;
+    background: #fbbf24;
+    padding: 0.65rem 1.05rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.35);
+}
+
+.hero-review-badge {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 23, 42, 0.7);
+    padding: 0.7rem 0.9rem;
+    border-radius: 12px;
+    margin: 0 auto 1rem;
+    width: fit-content;
+    backdrop-filter: blur(4px);
+}
+
+.hero-review-badge__stars {
+    letter-spacing: 0.06em;
+    font-size: 1.1rem;
+}
+
+.hero-review-badge__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.hero-review-badge__score {
+    font-weight: 800;
+}
+
+.hero-review-badge__count {
+    font-size: 0.95rem;
+    color: #dbeafe;
+}
+
+.hero-review-badge__link {
+    color: #0f172a;
+    background: #fbbf24;
+    padding: 0.45rem 0.75rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.trust-bar--slim {
+    padding: 0.8rem 1rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 720px) {
+    .trust-bar__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .trust-bar__left {
+        justify-content: center;
+    }
+
+    .trust-bar__link {
+        width: 100%;
+    }
+
+    .trust-feature__inner {
+        gap: 0.75rem;
+    }
+
+    .trust-feature__badge {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .trust-feature__cta {
+        justify-content: center;
+    }
+
+    .hero-review-badge {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 420px;
+    }
+}
+
+/* ==========================
    SERVICE SPOTLIGHT
    ========================== */
 .service-spotlight {

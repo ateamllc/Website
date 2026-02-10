@@ -11,7 +11,7 @@
 }
 
 .contact-banner {
-    --marquee-duration: 45s;
+    --marquee-duration: 50s;
     --marquee-gap: 1.7rem;
     background: linear-gradient(90deg, #0f172a 0%, #1f2937 60%, #0f172a 100%);
     color: #e5e7eb;
@@ -181,12 +181,12 @@
     text-decoration: none;
     color: #333;
     font-weight: 700;
-    border-radius: 3px;
 }
 
 .logo-link img {
     height: 50px;
     margin-right: 0.5rem;
+    border-radius: 4px;
 }
 
 .nav-toggle {
