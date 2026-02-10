@@ -12,20 +12,20 @@
 
 .contact-banner {
     --marquee-duration: 45s;
-    --marquee-gap: 2rem;
+    --marquee-gap: 1.7rem;
     background: linear-gradient(90deg, #0f172a 0%, #1f2937 60%, #0f172a 100%);
     color: #e5e7eb;
-    padding: 0.45rem 1rem;
+    padding: 0.38rem 0.9rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     overflow: hidden;
-    max-height: 57px;
+    max-height: 48px;
 }
 
 .contact-banner__inner {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 1rem;
+    gap: 0.85rem;
     max-width: 1200px;
     margin: 0 auto;
     height: 100%;
@@ -34,18 +34,18 @@
 .contact-banner__promo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.64rem;
     min-width: 0;
-    max-height: 30px;
+    max-height: 26px;
     overflow: hidden;
 }
 
 .contact-banner__tag {
     background: rgba(255, 255, 255, 0.12);
     color: #f8fafc;
-    padding: 0.3rem 0.6rem;
+    padding: 0.26rem 0.52rem;
     border-radius: 999px;
-    font-size: 0.8rem;
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.02em;
     white-space: nowrap;
@@ -55,7 +55,7 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    min-height: 24px;
+    min-height: 20px;
     mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
 }
@@ -78,7 +78,7 @@
 }
 
 .contact-banner__message {
-    font-size: 0.95rem;
+    font-size: 0.81rem;
     color: #f8fafc;
     opacity: 0.9;
 }
@@ -86,13 +86,13 @@
 .contact-banner__cta {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.64rem;
     justify-content: flex-end;
     min-width: 0;
 }
 
 .contact-banner__hours {
-    font-size: 0.9rem;
+    font-size: 0.77rem;
     color: #cbd5e1;
     text-align: right;
 }
@@ -101,15 +101,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.55rem 1rem;
+    padding: 0.36rem 0.78rem;
     background: #f59e0b;
     color: #0f172a;
     font-weight: 800;
     text-transform: uppercase;
     border-radius: 999px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.034em;
     text-decoration: none;
-    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.35);
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.32);
     position: relative;
 }
 
@@ -181,6 +181,7 @@
     text-decoration: none;
     color: #333;
     font-weight: 700;
+    border-radius: 3px;
 }
 
 .logo-link img {
