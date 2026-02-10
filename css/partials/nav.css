@@ -3,11 +3,164 @@
    ========================== */
 #site-header {
     background-color: #f8f8f8;
-    padding: 1rem 2rem;
+    padding: 0;
     border-bottom: 1px solid #ddd;
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+.contact-banner {
+    --marquee-duration: 45s;
+    --marquee-gap: 2rem;
+    background: linear-gradient(90deg, #0f172a 0%, #1f2937 60%, #0f172a 100%);
+    color: #e5e7eb;
+    padding: 0.45rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    max-height: 57px;
+}
+
+.contact-banner__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.contact-banner__promo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    max-height: 30px;
+    overflow: hidden;
+}
+
+.contact-banner__tag {
+    background: rgba(255, 255, 255, 0.12);
+    color: #f8fafc;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.contact-banner__marquee {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 24px;
+    mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.contact-banner__track {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--marquee-gap);
+    padding-inline-end: var(--marquee-gap);
+    white-space: nowrap;
+    will-change: transform;
+    animation: contact-marquee var(--marquee-duration) linear infinite;
+}
+
+.contact-banner__track--alt {
+    animation-delay: calc(var(--marquee-duration) / -2);
+}
+
+.contact-banner__message {
+    font-size: 0.95rem;
+    color: #f8fafc;
+    opacity: 0.9;
+}
+
+.contact-banner__cta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    min-width: 0;
+}
+
+.contact-banner__hours {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    text-align: right;
+}
+
+.contact-banner__call {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1rem;
+    background: #f59e0b;
+    color: #0f172a;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.35);
+    position: relative;
+}
+
+.contact-banner__call:hover,
+.contact-banner__call:focus-visible {
+    background: #fbbf24;
+    color: #0b1020;
+}
+
+.contact-banner__call::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.contact-banner__call:hover::after,
+.contact-banner__call:focus-visible::after {
+    opacity: 1;
+}
+
+.contact-banner__call:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.5);
+}
+
+.contact-banner__call:active {
+    transform: translateY(1px);
+}
+
+@keyframes contact-marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-banner__track {
+        animation: none;
+        position: relative;
+        transform: translateX(0);
+    }
+    .contact-banner__track--alt {
+        display: none;
+    }
 }
 
 .navigation-menu {
@@ -19,6 +172,7 @@
     margin: 0 auto;
     gap: 1rem;
     position: relative;
+    padding: 0.8rem 1rem;
 }
 
 .logo-link {
@@ -102,9 +256,21 @@
     border: 0;
 }
 
+@media (max-width: 1024px) {
+    .contact-banner {
+        padding: 0.4rem 0.9rem;
+    }
+
+    .contact-banner__tag,
+    .contact-banner__hours {
+        display: none;
+    }
+}
+
 @media (max-width: 900px) {
     .navigation-menu {
         flex-wrap: nowrap;
+        padding: 0.9rem;
     }
 
     .nav-toggle {
