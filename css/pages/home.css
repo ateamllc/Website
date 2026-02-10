@@ -16,7 +16,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.55rem;
     max-width: 1100px;
     margin: 0 auto;
 }
@@ -57,15 +57,19 @@
 }
 
 .trust-bar__link {
-    color: #0f172a;
-    background: #fbbf24;
-    padding: 0.55rem 0.9rem;
-    border-radius: 999px;
-    text-decoration: none;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.35);
-    text-align: center;
+    display: none;
+}
+
+.trust-bar__note {
+    margin: 0;
+    font-style: italic;
+    font-size: 0.92rem;
+}
+
+.trust-bar__note a {
+    color: #0b1224;
+    text-decoration: underline;
+    font-weight: 700;
 }
 
 .trust-feature {
@@ -114,29 +118,24 @@
     max-width: 760px;
 }
 
-.trust-feature__cta {
-    display: flex;
-    flex-wrap: wrap;
+.trust-feature__note {
+    margin: 0;
+    font-style: italic;
 }
 
-.trust-feature__link {
-    color: #0f172a;
-    background: #fbbf24;
-    padding: 0.65rem 1.05rem;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.35);
+.trust-feature__note a {
+    color: #fbbf24;
+    text-decoration: underline;
+    font-weight: 700;
 }
 
 .hero-review-badge {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
     background: rgba(15, 23, 42, 0.7);
-    padding: 0.7rem 0.9rem;
+    padding: 0.68rem 0.85rem;
     border-radius: 12px;
     margin: 0 auto 1rem;
     width: fit-content;
@@ -163,15 +162,16 @@
     color: #dbeafe;
 }
 
-.hero-review-badge__link {
-    color: #0f172a;
-    background: #fbbf24;
-    padding: 0.45rem 0.75rem;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
+.hero-review-badge__note {
+    grid-column: 1 / -1;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+.hero-review-badge__note a {
+    color: #fbbf24;
+    text-decoration: underline;
+    font-weight: 700;
 }
 
 .trust-bar--slim {
