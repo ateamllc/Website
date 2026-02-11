@@ -169,9 +169,31 @@
 }
 
 .hero-review-badge__note a {
-    color: #fbbf24;
+    color: inherit;
     text-decoration: underline;
     font-weight: 700;
+}
+
+@media (min-width: 768px) {
+    .hero-review-badge {
+        grid-template-columns: auto 1fr auto;
+        gap: 0.6rem;
+    }
+
+    .hero-review-badge__stars {
+        transform: translateX(-4px);
+    }
+
+    .hero-review-badge__note {
+        grid-column: 3 / 4;
+        text-align: right;
+        transform: translateX(4px);
+        font-size: 0.96rem;
+    }
+
+    .hero-review-badge__text {
+        align-items: flex-start;
+    }
 }
 
 .trust-bar--slim {
