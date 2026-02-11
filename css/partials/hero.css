@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    text-align: left;
     color: #fff;
     padding: 3rem 1.25rem;
 }
@@ -29,14 +29,141 @@
 .hero-banner .content-overlay,
 #hero-banner .content-overlay {
     max-width: 960px;
-    padding: 1.15rem 1.4rem;
+    padding: 1.4rem 1.6rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1.35rem;
     background: rgba(15, 23, 42, 0.42);
     border-radius: 14px;
     backdrop-filter: blur(3px);
+}
+
+#company-title,
+.hero-title,
+.hero-copy h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.7rem;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.35rem;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.hero-copy {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.hero-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-sub {
+    font-size: 1.05rem;
+    margin: 0.2rem 0 0;
+    line-height: 1.5;
+}
+
+.hero-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0.35rem 0 0;
+    display: grid;
+    gap: 0.35rem;
+}
+
+.hero-bullets li {
+    position: relative;
+    padding-left: 0.95rem;
+    line-height: 1.4;
+}
+
+.hero-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #fbbf24;
+    font-weight: 800;
+}
+
+.hero-actions {
+    display: grid;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+.hero-small-note {
+    font-size: 0.95rem;
+    color: #dbeafe;
+}
+
+.hero-review-card {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    display: grid;
+    gap: 0.55rem;
+    max-width: 440px;
+}
+
+.hero-review-card__top {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.hero-review-card__stars {
+    letter-spacing: 0.06em;
+    font-size: 1.05rem;
+}
+
+.hero-review-card__score {
+    font-weight: 700;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.hero-review-card__score span {
+    color: #cbd5e1;
+}
+
+.hero-review-card__count {
+    color: #cbd5e1;
+    font-weight: 600;
+}
+
+.hero-review-card__quote {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.hero-review-card__name {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.hero-review-card__link {
+    margin: 0;
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+.hero-review-card__link a {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 700;
 }
 
 #company-title,
@@ -106,12 +233,13 @@
 
     .hero-banner .content-overlay,
     #hero-banner .content-overlay {
-        padding: 1.05rem 1rem;
+        padding: 1.1rem 1.05rem;
         gap: 1.05rem;
     }
 
     #company-title,
-    .hero-title {
+    .hero-title,
+    .hero-copy h1 {
         font-size: 2.1rem;
     }
 
@@ -119,7 +247,24 @@
         font-size: 1rem;
     }
 
+    .hero-bullets li {
+        padding-left: 0.82rem;
+    }
+
     .page-hero {
         padding: 3.5rem 0;
+    }
+}
+
+@media (min-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .hero-banner .content-overlay,
+    #hero-banner .content-overlay {
+        padding: 1.6rem 1.8rem;
     }
 }
