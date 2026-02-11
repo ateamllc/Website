@@ -73,25 +73,27 @@
 }
 
 .hero-bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0.35rem 0 0;
     display: grid;
     gap: 0.35rem;
+    margin: 0.35rem 0 0;
 }
 
-.hero-bullets li {
-    position: relative;
-    padding-left: 0.95rem;
+.hero-bullet {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    margin: 0;
     line-height: 1.4;
 }
 
-.hero-bullets li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: #fbbf24;
-    font-weight: 800;
+.hero-bullet__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: #fbbf24;
+    display: inline-block;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
 }
 
 .hero-actions {

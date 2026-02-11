@@ -72,19 +72,28 @@
     font-weight: 700;
 }
 
-/* Proof & CTA strips */
-.proof-strip {
+/* Shared band styling */
+.services-mini-strip,
+.trust-cta-band,
+.proof-strip,
+.cta-strip {
     background: linear-gradient(90deg, #0f172a 0%, #1f2937 60%, #0f172a 100%);
     color: #e5e7eb;
 }
 
+.services-mini-strip__inner,
+.proof-strip__inner,
+.cta-strip__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Proof & CTA strips */
 .proof-strip__inner {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 0.75rem;
     padding: 1.1rem 1.25rem;
-    max-width: 1100px;
-    margin: 0 auto;
 }
 
 .proof-strip__item {
@@ -106,19 +115,11 @@
     font-size: 1.05rem;
 }
 
-.cta-strip {
-    background: #0e172a;
-    color: #e5e7eb;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
 .cta-strip__inner {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.75rem;
     padding: 1.35rem 1.25rem;
-    max-width: 1100px;
-    margin: 0 auto;
 }
 
 .cta-strip__content h3 {
@@ -346,6 +347,67 @@
     .cta-strip__inner {
         grid-template-columns: 1fr auto;
         align-items: center;
+    }
+}
+
+/* Combined trust + CTA band */
+.trust-cta-band {
+    background: linear-gradient(90deg, #0f172a 0%, #1f2937 60%, #0f172a 100%);
+    color: #e5e7eb;
+    padding: 0.4rem 0 0.5rem;
+}
+
+.trust-cta-band__inner {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.trust-cta-band .cta-strip__inner {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 1.15rem;
+}
+
+/* Mini services strip */
+.services-mini-strip {
+    background: #0e172a;
+    color: #e5e7eb;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.services-mini-strip__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0.45rem;
+    padding: 0.45rem 1rem;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.services-mini-strip__btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e5e7eb;
+    text-decoration: none;
+    padding: 0.42rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.services-mini-strip__btn:hover,
+.services-mini-strip__btn:focus-visible {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+    .services-mini-strip__inner {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        justify-content: stretch;
     }
 }
 
