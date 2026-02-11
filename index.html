@@ -93,7 +93,7 @@
                     <div class="hero-review-card__top">
                         <span class="hero-review-card__stars" aria-hidden="true">★★★★★</span>
                         <div class="hero-review-card__score">
-                            <strong>5.0</strong><span>/5</span> <span class="hero-review-card__count">(11)</span>
+                            <strong>5.0</strong><span>/ 5.0</span> <span class="hero-review-card__count">(11)</span>
                         </div>
                         <span class="sr-only">Rated 5 out of 5 based on 11 Google reviews</span>
                     </div>
@@ -105,20 +105,24 @@
         </div>
     </section>
 
-    <section class="services-mini-strip">
-        <div class="services-mini-strip__inner">
-            <a class="services-mini-strip__btn" href="/pages/landing/handyman.html">Handyman</a>
-            <a class="services-mini-strip__btn" href="/pages/landing/fences.html">Fences</a>
-            <a class="services-mini-strip__btn" href="/pages/landing/painting.html">Painting</a>
-            <a class="services-mini-strip__btn" href="/pages/landing/drywall-repair.html">Drywall</a>
-            <a class="services-mini-strip__btn" href="/pages/services.html">Other Services</a>
+    <!-- <section class="services-mini-strip">
+        <div class="services-mini-strip__controls">
+            <button class="services-mini-strip__arrow services-mini-strip__arrow--left" aria-label="Previous service">&#10094;</button>
+            <div class="services-mini-strip__inner" id="servicesMiniStrip">
+                <a class="services-mini-strip__btn" href="/pages/landing/handyman.html">Handyman</a>
+                <a class="services-mini-strip__btn" href="/pages/landing/fences.html">Fences</a>
+                <a class="services-mini-strip__btn" href="/pages/landing/painting.html">Painting</a>
+                <a class="services-mini-strip__btn" href="/pages/landing/drywall-repair.html">Drywall</a>
+                <a class="services-mini-strip__btn" href="/pages/services.html">Other Services</a>
+            </div>
+            <button class="services-mini-strip__arrow services-mini-strip__arrow--right" aria-label="Next service">&#10095;</button>
         </div>
-    </section>
+    </section> -->
 
     <section class="cta-strip">
         <div class="cta-strip__inner">
             <div class="cta-strip__content">
-                <h3>Ready to start? Talk with the owner today.</h3>
+                <h3>Ready to start? Talk with an owner today.</h3>
                 <p>Share your scope and photos—get a clear, written plan within one business day.</p>
             </div>
             <div class="cta-strip__action">
@@ -221,6 +225,43 @@
     <!-- Load footer sections -->
     <div data-include="/pages/partials/email-prompt.html"></div>
     <div data-include="/pages/partials/footer.html"></div>
+
+    <script>
+        (function () {
+            const container = document.getElementById('servicesMiniStrip');
+            if (!container) return;
+            const buttons = Array.from(container.querySelectorAll('.services-mini-strip__btn'));
+            const left = document.querySelector('.services-mini-strip__arrow--left');
+            const right = document.querySelector('.services-mini-strip__arrow--right');
+            let index = 0;
+            let timer;
+
+            const scrollToIndex = (i) => {
+                index = (i + buttons.length) % buttons.length;
+                const target = buttons[index];
+                target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            };
+
+            const next = () => scrollToIndex(index + 1);
+            const prev = () => scrollToIndex(index - 1);
+
+            const start = () => {
+                timer = setInterval(next, 3000);
+            };
+            const stop = () => {
+                if (timer) clearInterval(timer);
+            };
+
+            if (right) right.addEventListener('click', () => { stop(); next(); start(); });
+            if (left) left.addEventListener('click', () => { stop(); prev(); start(); });
+            container.addEventListener('pointerdown', stop);
+            container.addEventListener('pointerup', start);
+            container.addEventListener('mouseenter', stop);
+            container.addEventListener('mouseleave', start);
+
+            start();
+        })();
+    </script>
 </body>
 
 </html>
