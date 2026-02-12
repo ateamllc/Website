@@ -458,37 +458,166 @@
 /* ==========================
    SERVICE SPOTLIGHT
    ========================== */
+.service-spotlights {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.service-spotlights__intro {
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.service-spotlights__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: #e0f2fe;
+    color: #075985;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.service-spotlights__sub {
+    color: #475569;
+    margin: 0.35rem 0 0;
+}
+
+.service-spotlights__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
 .service-spotlight {
+    position: relative;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 16px 38px rgba(15, 23, 42, 0.1);
+    overflow: hidden;
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
-.content-with-image {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1000px;
-    margin: 1.5rem auto;
-    gap: 1.5rem;
+.service-spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(79, 70, 229, 0.08));
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
 }
 
-.content-with-image img {
-    width: 35%;
-    max-height: 250px;
-    border-radius: 10px;
+.service-spotlight:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 44px rgba(15, 23, 42, 0.14);
+    border-color: #cbd5e1;
+}
+
+.service-spotlight:hover::after {
+    opacity: 1;
+}
+
+.service-spotlight__image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.service-spotlight__image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
+    transition: transform 200ms ease;
 }
 
-.image-grid-text-block {
-    flex: 1;
-    min-width: 60%;
-    padding: 0 1rem;
+.service-spotlight:hover .service-spotlight__image img {
+    transform: scale(1.03);
+}
 
-    h3, p {
-        text-align: left;
+.service-spotlight__body {
+    position: relative;
+    padding: 1rem 1.2rem 1.3rem;
+    display: grid;
+    gap: 0.4rem;
+}
+
+.service-spotlight__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 10px;
+    background: #0ea5e9;
+    color: #f8fafc;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.01em;
+    width: fit-content;
+    box-shadow: 0 10px 18px rgba(14, 165, 233, 0.22);
+}
+
+.service-spotlight h3 {
+    margin: 0.2rem 0 0;
+}
+
+.service-spotlight__body p {
+    margin: 0;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.service-spotlight__cta {
+    margin-top: 0.6rem;
+}
+
+.service-spotlight__cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 700;
+    color: #0f172a;
+    text-decoration: none;
+    padding: 0.6rem 0.85rem;
+    border-radius: 10px;
+    border: 1px solid #0ea5e9;
+    background: #e0f2fe;
+    transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.service-spotlight__cta a::after {
+    content: "→";
+    font-size: 0.95rem;
+}
+
+.service-spotlight__cta a:hover,
+.service-spotlight__cta a:focus-visible {
+    background: #0ea5e9;
+    color: #f8fafc;
+    border-color: #0284c7;
+}
+
+@media (max-width: 960px) {
+    .service-spotlights__grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .service-spotlights__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-spotlight__body {
+        padding: 0.9rem 1rem 1.1rem;
     }
 }
 
