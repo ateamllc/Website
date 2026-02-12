@@ -130,5 +130,36 @@
     });
   };
 
+  const applyCurrentYear = (root = document) => {
+    const year = new Date().getFullYear();
+    root.querySelectorAll('[data-current-year], #current-year').forEach((el) => {
+      el.textContent = year;
+    });
+  };
+
+  const observeCurrentYearTargets = () => {
+    applyCurrentYear();
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (!(node instanceof Element)) return;
+          if (node.matches?.('[data-current-year], #current-year')) {
+            applyCurrentYear(node.parentElement || node);
+          } else {
+            const candidates = node.querySelectorAll?.('[data-current-year], #current-year');
+            if (candidates && candidates.length) {
+              candidates.forEach(() => applyCurrentYear(node));
+            }
+          }
+        });
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('load', applyCurrentYear);
+  };
+
   observeCarousels();
+  observeCurrentYearTargets();
 })();
