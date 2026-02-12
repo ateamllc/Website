@@ -493,6 +493,7 @@
 .service-spotlights__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
     gap: 1.25rem;
 }
 
@@ -505,6 +506,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 100%;
     transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
@@ -536,8 +538,10 @@
 .service-spotlight__body {
     position: relative;
     padding: 1rem 1.2rem 1.3rem;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 0.4rem;
+    flex: 1;
 }
 
 .service-spotlight__tag {
@@ -566,7 +570,9 @@
 }
 
 .service-spotlight__cta {
-    margin-top: 0.6rem;
+    margin-top: auto;
+    padding-top: 0.6rem;
+    align-self: flex-start;
 }
 
 .service-spotlight__cta a {
