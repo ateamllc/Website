@@ -107,6 +107,12 @@
     color: #dbeafe;
 }
 
+.hero-small-note a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
 .hero-review-card {
     background: rgba(15, 23, 42, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.08);
