@@ -5,9 +5,15 @@ on:
     branches:
       - main
       - master
+    paths-ignore:
+      - sitemap.xml
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * *'
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   build:
@@ -17,6 +23,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -26,14 +33,52 @@ jobs:
       - name: Generate sitemap
         run: node generate-sitemap.js
 
-      - name: Commit and push sitemap if changed
+      - name: Configure signing key
+        env:
+          BOT_SSH_PRIVATE_KEY: ${{ secrets.BOT_SSH_PRIVATE_KEY }}
+          BOT_SSH_PUBLIC_KEY: ${{ secrets.BOT_SSH_PUBLIC_KEY }}
         run: |
-          if git diff --quiet; then
+          mkdir -p ~/.ssh
+          echo "$BOT_SSH_PRIVATE_KEY" > ~/.ssh/bot_signing
+          echo "$BOT_SSH_PUBLIC_KEY" > ~/.ssh/bot_signing.pub
+          chmod 600 ~/.ssh/bot_signing ~/.ssh/bot_signing.pub
+          git config --global user.name "ateam-bot"
+          git config --global user.email "ateam-bot@users.noreply.github.com"
+          git config --global gpg.format ssh
+          git config --global user.signingkey ~/.ssh/bot_signing.pub
+          git config --global commit.gpgsign true
+          git config --global tag.gpgSign true
+
+      - name: Update sitemap branch and PR
+        env:
+          BOT_PAT: ${{ secrets.BOT_PAT }}
+          GH_TOKEN: ${{ secrets.BOT_PAT }}
+          REPO: ${{ github.repository }}
+        run: |
+          if git diff --quiet -- sitemap.xml; then
             echo "No sitemap changes to commit."
+            exit 0
+          fi
+
+          git remote set-url origin "https://x-access-token:${BOT_PAT}@github.com/${REPO}.git"
+          git fetch origin main
+          git checkout -B bot/sitemap origin/main
+          git add sitemap.xml
+          git commit -m "chore: update sitemap"
+
+          git push --force origin bot/sitemap
+
+          if gh pr view bot/sitemap --repo "$REPO" >/dev/null 2>&1; then
+            echo "Updating existing sitemap PR"
           else
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add sitemap.xml
-            git commit -m "chore: update sitemap"
-            git push
+            gh pr create --repo "$REPO" --base main --head bot/sitemap \
+              --title "chore: update sitemap" \
+              --body "Automated sitemap refresh."
+          fi
+
+          PR_STATE=$(gh pr view bot/sitemap --repo "$REPO" --json state --jq .state)
+          if [ "$PR_STATE" != "MERGED" ]; then
+            gh pr merge --repo "$REPO" --auto --squash --delete-branch bot/sitemap
+          else
+            echo "PR already merged."
           fi
