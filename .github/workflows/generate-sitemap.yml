@@ -68,17 +68,15 @@ jobs:
 
           git push --force origin bot/sitemap
 
-          if gh pr view bot/sitemap --repo "$REPO" >/dev/null 2>&1; then
-            echo "Updating existing sitemap PR"
-          else
-            gh pr create --repo "$REPO" --base main --head bot/sitemap \
+          PR_NUMBER=$(gh pr list --repo "$REPO" --state open --head bot/sitemap --json number --jq '.[0].number // empty')
+          if [ -z "$PR_NUMBER" ]; then
+            PR_NUMBER=$(gh pr create --repo "$REPO" --base main --head bot/sitemap \
               --title "chore: update sitemap" \
-              --body "Automated sitemap refresh."
+              --body "Automated sitemap refresh." \
+              --json number --jq .number)
+            echo "Created PR #$PR_NUMBER"
+          else
+            echo "Using existing open PR #$PR_NUMBER"
           fi
 
-          PR_STATE=$(gh pr view bot/sitemap --repo "$REPO" --json state --jq .state)
-          if [ "$PR_STATE" != "MERGED" ]; then
-            gh pr merge --repo "$REPO" --auto --squash --delete-branch bot/sitemap
-          else
-            echo "PR already merged."
-          fi
+          gh pr merge --repo "$REPO" --auto --squash --delete-branch "$PR_NUMBER"
