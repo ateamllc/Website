@@ -102,6 +102,8 @@
     if (reviews) {
       const rating = Number(reviews.rating);
       const max = Number(reviews.max) || 5;
+      const ratingDisplay = Number.isFinite(rating) ? rating.toFixed(1) : '';
+      const maxDisplay = Number.isFinite(max) ? max.toFixed(1) : '';
       const count = reviews.count;
       const starCount = Math.max(0, Math.min(max, Math.round(rating || 0)));
       const stars = '★'.repeat(starCount) + '☆'.repeat(Math.max(0, max - starCount));
@@ -110,10 +112,10 @@
         el.textContent = stars;
       });
       forEachNode('[data-site-review-rating]', (el) => {
-        el.textContent = rating ? rating.toFixed(1) : '';
+        el.textContent = ratingDisplay;
       });
       forEachNode('[data-site-review-max]', (el) => {
-        el.textContent = max;
+        el.textContent = maxDisplay;
       });
       forEachNode('[data-site-review-count]', (el) => {
         el.textContent = count ?? '';

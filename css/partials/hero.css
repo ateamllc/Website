@@ -152,6 +152,14 @@
     font-weight: 600;
 }
 
+.hero-review-card__count::before {
+    content: "(";
+}
+
+.hero-review-card__count::after {
+    content: ")";
+}
+
 .hero-review-card__quote {
     margin: 0;
     font-size: 1rem;
