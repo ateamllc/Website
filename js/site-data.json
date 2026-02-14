@@ -1,0 +1,15 @@
+{
+  "reviews": {
+    "count": 14,
+    "rating": 5,
+    "max": 5
+  },
+  "contact": {
+    "email": "projects@a-team-handyman-services.com",
+    "phoneE164": "+12084192480",
+    "phoneDisplay": "(208) 419-2480"
+  },
+  "pricing": {
+    "baseHourlyRate": 65
+  }
+}

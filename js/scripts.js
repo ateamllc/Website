@@ -35,6 +35,141 @@
     }
   });
 
+  const siteData = {
+    fetchOnce: () => {
+      if (window.__siteDataPromise) return window.__siteDataPromise;
+      window.__siteDataPromise = fetch('/js/site-data.json', { cache: 'no-cache' })
+        .then((res) => (res.ok ? res.json() : null))
+        .catch(() => null);
+      return window.__siteDataPromise;
+    },
+    get: (path, data) => path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), data),
+    renderTemplate: (template, data) =>
+      template.replace(/{{\s*([^}\s]+)\s*}}/g, (_, path) => {
+        const value = siteData.get(path, data);
+        return value !== undefined && value !== null ? value : '';
+      })
+  };
+
+  const applySiteValues = (root, data) => {
+    if (!data || !(root instanceof Element || root === document)) return;
+
+    const forEachNode = (selector, fn) => {
+      if (root.matches?.(selector)) fn(root);
+      root.querySelectorAll?.(selector).forEach(fn);
+    };
+
+    const { contact = {}, reviews = {}, pricing = {} } = data;
+    const phoneNumber = contact.phoneE164;
+    const phoneDisplay = contact.phoneDisplay || contact.phoneE164;
+    const emailAddress = contact.email;
+
+    const looksLikeNumber = (text = '') => /\d{3}[^0-9]*\d{3}[^0-9]*\d{4}/.test(text) || text.trim().startsWith('+');
+    const looksLikeEmail = (text = '') => text.includes('@');
+
+    if (phoneNumber) {
+      forEachNode('a[href^="tel:"], a[data-site-phone]', (link) => {
+        link.setAttribute('href', `tel:${phoneNumber}`);
+        if (looksLikeNumber(link.textContent)) {
+          link.textContent = phoneDisplay;
+        }
+      });
+
+      forEachNode('a[href^="sms:"], a[data-site-sms]', (link) => {
+        link.setAttribute('href', `sms:${phoneNumber}`);
+        if (looksLikeNumber(link.textContent)) {
+          link.textContent = phoneDisplay;
+        }
+      });
+
+      forEachNode('[data-site-phone-text]', (el) => {
+        el.textContent = phoneDisplay;
+      });
+    }
+
+    if (emailAddress) {
+      forEachNode('a[href^="mailto:"], a[data-site-email]', (link) => {
+        link.setAttribute('href', `mailto:${emailAddress}`);
+        if (looksLikeEmail(link.textContent)) {
+          link.textContent = emailAddress;
+        }
+      });
+      forEachNode('[data-site-email-text]', (el) => {
+        el.textContent = emailAddress;
+      });
+    }
+
+    if (reviews) {
+      const rating = Number(reviews.rating);
+      const max = Number(reviews.max) || 5;
+      const count = reviews.count;
+      const starCount = Math.max(0, Math.min(max, Math.round(rating || 0)));
+      const stars = '★'.repeat(starCount) + '☆'.repeat(Math.max(0, max - starCount));
+
+      forEachNode('[data-site-review-stars]', (el) => {
+        el.textContent = stars;
+      });
+      forEachNode('[data-site-review-rating]', (el) => {
+        el.textContent = rating ? rating.toFixed(1) : '';
+      });
+      forEachNode('[data-site-review-max]', (el) => {
+        el.textContent = max;
+      });
+      forEachNode('[data-site-review-count]', (el) => {
+        el.textContent = count ?? '';
+      });
+    }
+
+    if (pricing) {
+      const rate = pricing.baseHourlyRate;
+      const formatUSD = (value) =>
+        typeof Intl !== 'undefined'
+          ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value)
+          : `$${value}`;
+
+      forEachNode('[data-site-base-hourly-rate]', (el) => {
+        el.textContent = rate ?? '';
+      });
+      forEachNode('[data-site-base-hourly-rate-usd]', (el) => {
+        el.textContent = rate !== undefined && rate !== null ? formatUSD(rate) : '';
+      });
+    }
+
+    forEachNode('[data-site-template]', (el) => {
+      const template = el.dataset.siteTemplate;
+      if (template) {
+        el.textContent = siteData.renderTemplate(template, data);
+      }
+    });
+  };
+
+  const startSiteData = () => {
+    siteData.fetchOnce().then((data) => {
+      if (!data) return;
+
+      const apply = (node = document) => applySiteValues(node, data);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => apply(), { once: true });
+      } else {
+        apply();
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node instanceof Element) {
+              apply(node);
+            }
+          });
+        });
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  };
+
+  startSiteData();
+
   const initCarousel = (container) => {
     if (!container || container.dataset.carouselInit === 'true') return;
 
