@@ -4,6 +4,12 @@
   background: #f6f7fb;
 }
 
+.blog-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .blog-intro .text-block {
   max-width: 840px;
   margin: 0 auto 2rem auto;
@@ -21,12 +27,21 @@
   background: #ffffff;
   border: 1px solid #e4e7ee;
   border-radius: 12px;
-  padding: 1.25rem;
+  padding: 0 1.25rem 1.25rem 1.25rem;
   box-shadow: 0 8px 18px rgba(31, 41, 55, 0.08);
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.blog-card__thumb {
+  width: calc(100% + 2.5rem);
+  margin: 0 -1.25rem 0.75rem -1.25rem;
+  height: 170px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px 12px 0 0;
 }
 
 .blog-card:hover {
