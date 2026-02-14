@@ -73,10 +73,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- <section class="trust-feature">
         <div class="trust-feature__inner">
             <div class="trust-feature__badge">
-                <div class="trust-feature__stars" aria-hidden="true">★★★★★</div>
+                <div class="trust-feature__stars" aria-hidden="true" data-site-review-stars>★★★★★</div>
                 <div class="trust-feature__meta">
-                    <p class="trust-feature__label">5.0 Google rating</p>
-                    <p class="trust-feature__sub">Based on 11 recent reviews</p>
+                    <p class="trust-feature__label" data-site-template="{{reviews.rating}} Google rating">5.0 Google rating</p>
+                    <p class="trust-feature__sub" data-site-template="Based on {{reviews.count}} recent reviews">Based on 11 recent reviews</p>
                 </div>
             </div>
             <div class="trust-feature__copy">
