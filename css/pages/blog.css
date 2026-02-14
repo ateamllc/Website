@@ -112,6 +112,25 @@
   background: #f8fafc;
 }
 
+.article-page .page-hero {
+  min-height: 420px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.article-page .page-hero .content-overlay {
+  padding: 4.5rem 1.6rem 3.5rem 1.6rem;
+}
+
+.article-page .page-hero .hero-title {
+  max-width: 820px;
+}
+
+.article-page .page-hero .hero-sub {
+  max-width: 820px;
+  margin-top: 0.35rem;
+}
+
 .article-wrapper {
   max-width: 980px;
   margin: 0 auto;

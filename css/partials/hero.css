@@ -23,7 +23,7 @@
     background-size: cover;
     background-position: center;
     filter: brightness(0.55);
-    z-index: -1;
+    z-index: 0;
 }
 
 .hero-banner .content-overlay,
@@ -36,6 +36,8 @@
     background: rgba(15, 23, 42, 0.42);
     border-radius: 14px;
     backdrop-filter: blur(3px);
+    position: relative;
+    z-index: 1;
 }
 
 #company-title,
