@@ -217,11 +217,11 @@
           <div class="pill-group">
             <p class="pill-group__label">Skilled trades</p>
             <div class="pill-list">
-              <a class="pill" href="#pm" data-category="fulltime" data-role="pm">Project Manager</a>
+              <a class="pill" href="#project-manager" data-category="fulltime" data-role="project-manager">Project Manager</a>
+              <a class="pill" href="#carpenter" data-category="fulltime" data-role="carpenter">Carpenter</a>
               <a class="pill" href="#painter" data-category="fulltime" data-role="painter">Painter</a>
               <a class="pill" href="#fence" data-category="fulltime" data-role="fence">Fence specialist</a>
               <a class="pill" href="#drywall" data-category="fulltime" data-role="drywall">Drywall</a>
-              <a class="pill" href="#construction" data-category="fulltime" data-role="construction">General construction</a>
               <a class="pill" href="#handyman" data-category="fulltime" data-role="handyman">Handyman</a>
             </div>
           </div>
@@ -375,18 +375,20 @@
 
         <div class="role-category-pane active" data-category-pane="fulltime" role="tabpanel" aria-label="Full time roles">
           <div class="role-tab-buttons">
-            <button type="button" class="active" data-tab="painter" role="tab" aria-selected="false">Painter</button>
+            <button type="button" class="active" data-tab="project-manager" role="tab" aria-selected="true">Project Manager</button>
+            <button type="button" data-tab="carpenter" role="tab" aria-selected="false">Carpenter</button>
+            <button type="button" data-tab="painter" role="tab" aria-selected="false">Painter</button>
             <button type="button" data-tab="fence" role="tab" aria-selected="false">Fence Specialist</button>
             <button type="button" data-tab="drywall" role="tab" aria-selected="false">Drywall</button>
-            <button type="button" data-tab="handyman" role="tab" aria-selected="true">General Handyman</button>
             <button type="button" data-tab="construction" role="tab" aria-selected="false">General Construction</button>
-            <button type="button" data-tab="pm" role="tab" aria-selected="false">Project Manager</button>
+            <button type="button" data-tab="handyman" role="tab" aria-selected="false">General Handyman</button>
             <button type="button" data-tab="general-manager" role="tab" aria-selected="false">General Manager</button>
           </div>
         </div>
 
         <div class="role-category-pane" data-category-pane="parttime" role="tabpanel" aria-label="Part time roles">
           <div class="role-tab-buttons">
+            <button type="button" data-tab="carpenter-pt" role="tab" aria-selected="false">Carpenter (PT)</button>
             <button type="button" data-tab="painter-pt" role="tab" aria-selected="false">Painter (PT)</button>
             <button type="button" data-tab="fence-pt" role="tab" aria-selected="false">Fence Specialist (PT)</button>
             <button type="button" data-tab="drywall-pt" role="tab" aria-selected="false">Drywall (PT)</button>
@@ -397,7 +399,7 @@
 
         <div class="role-category-pane" data-category-pane="internships" role="tabpanel" aria-label="Internships">
           <div class="role-tab-buttons">
-            <button type="button" data-tab="sales" role="tab" aria-selected="true">Sales Intern</button>
+            <button type="button" data-tab="sales" role="tab" aria-selected="false">Sales Intern</button>
             <button type="button" data-tab="accounting" role="tab" aria-selected="false">Accounting Intern</button>
             <button type="button" data-tab="marketing" role="tab" aria-selected="false">Marketing Intern</button>
             <button type="button" data-tab="business-dev" role="tab" aria-selected="false">Biz Dev Intern</button>
@@ -407,23 +409,33 @@
         </div>
 
         <div class="role-content" id="role-section">
-        <div class="role-tab-content" id="general-manager" role="tabpanel">
-          <h3>General Manager</h3>
-          <p>Lead day-to-day ops, keep schedules on track, and ensure crews and clients have what they need.</p>
-          <ul>
-            <li>Oversee project pipeline, staffing, and quality checks.</li>
-            <li>Coordinate permits, materials, and subs; remove blockers fast.</li>
-            <li>Bonus: experience with construction scheduling or small-business ops.</li>
-          </ul>
-        </div>
-
-        <div class="role-tab-content" id="carpenter" role="tabpanel" hidden>
+        <div class="role-tab-content" id="project-manager" role="tabpanel">
           <h3>Project Manager</h3>
           <p>Own small remodels and custom builds around Provo, Orem, Lindon, and Springville—coordinate materials, and mentor apprentices.</p>
           <ul>
             <li>Comfortable with framing, trim, door/window installs, and client walk-throughs.</li>
             <li>Reads scopes/drawings and keeps sites safe and clean.</li>
             <li>Bonus: experience with decks, pergolas, or built-ins.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="carpenter" role="tabpanel" hidden>
+          <h3>Carpenter</h3>
+          <p>Lead carpentry scopes—framing, trim, doors, and built-ins—on Utah County remodels and additions.</p>
+          <ul>
+            <li>Build, set, and finish with clean lines; coordinate with PM on staging.</li>
+            <li>Comfortable reading scopes and solving in-field fit/finish issues.</li>
+            <li>Bonus: decks, pergolas, or custom built-ins experience.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="general-manager" role="tabpanel" hidden>
+          <h3>General Manager</h3>
+          <p>Lead day-to-day ops, keep schedules on track, and ensure crews and clients have what they need.</p>
+          <ul>
+            <li>Oversee project pipeline, staffing, and quality checks.</li>
+            <li>Coordinate permits, materials, and subs; remove blockers fast.</li>
+            <li>Bonus: experience with construction scheduling or small-business ops.</li>
           </ul>
         </div>
 
@@ -454,6 +466,16 @@
             <li>Hang, tape, and mud with clean corners and smooth sanding.</li>
             <li>Match textures and blend patches so repairs stay invisible.</li>
             <li>Bonus: experience with level 4/5 finishes or skim coating.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="carpenter-pt" role="tabpanel" hidden>
+          <h3>Carpenter (Part Time)</h3>
+          <p>Join carpentry scopes on a flexible schedule in central Utah County.</p>
+          <ul>
+            <li>Assist with framing, trim, and small built-ins.</li>
+            <li>Fit shifts around classes or other work; reliable start/finish windows.</li>
+            <li>Bonus: owns basic hand tools and is comfortable working solo from a scope.</li>
           </ul>
         </div>
 

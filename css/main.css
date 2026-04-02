@@ -3,6 +3,7 @@
 @import url("partials/hero.css");
 @import url("partials/email-prompt.css");
 @import url("partials/footer.css");
+@import url("partials/hiring-banner.css");
 
 /* Import Components files */
 @import url("components.css");
@@ -236,6 +237,11 @@ main.content-sections {
     object-fit: cover;
     border-radius: 16px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.team-careers-link {
+    margin: 1.1rem 0 0.4rem;
+    text-align: center;
 }
 
 .cta-section {
