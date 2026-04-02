@@ -1,0 +1,32 @@
+.hiring-banner {
+    background: #0a0a0a;
+    color: #f8fafc;
+    padding: 1.15rem 1rem;
+    text-align: center;
+}
+
+.hiring-banner__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 1.5;
+}
+
+.hiring-banner a {
+    color: #f8fafc;
+    text-decoration: none;
+    font-weight: 800;
+    border-bottom: 2px solid #f8fafc;
+    padding-bottom: 0.08rem;
+}
+
+.hiring-banner a:hover,
+.hiring-banner a:focus-visible {
+    color: #e0f2fe;
+    border-bottom-color: #e0f2fe;
+}
