@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Careers | A Team Property Improvement</title>
+  <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+
+  <meta name="description"
+    content="Join A Team Property Improvement in Utah County. Explore open roles for skilled tradespeople and apply using our quick application form.">
+
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,400i,700i&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <script src="/js/loader.js" defer></script>
+  <script src="/js/scripts.js" defer></script>
+
+  <style>
+    .careers-hero .content-overlay {
+      gap: 1rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #e0f2fe;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .career-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .career-highlight {
+      padding: 1.25rem;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .career-highlight h3 {
+      margin-bottom: 0.4rem;
+    }
+
+    .career-highlight p {
+      margin: 0;
+      color: #4b5563;
+    }
+
+    .role-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .role-category-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: flex-end;
+      margin-bottom: 0;
+    }
+
+    .role-category-tab {
+      flex: 1 1 calc(33.333% - 0.35rem);
+      text-align: center;
+      border: 1px solid #d4d4d8;
+      background: #f8fafc;
+      padding: 0.8rem 1rem 0.7rem;
+      border-radius: 12px 12px 0 0;
+      margin-bottom: -1px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .role-category-tab.active {
+      background: #fff;
+      color: #0f172a;
+      border-color: #1f2937;
+      border-bottom-color: #fff;
+      box-shadow: none;
+      z-index: 2;
+    }
+
+    .role-category-pane {
+      display: none;
+      width: 100%;
+      border: 1px solid #1f2937;
+      border-top: 1px solid #0f172a;
+      border-radius: 0 0 14px 14px;
+      padding: 1rem 1.1rem;
+      background: #fff;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .role-category-pane.active {
+      display: block;
+    }
+
+    .role-tab-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .role-tab-buttons button {
+      padding: 0.75rem 1rem;
+      border: 1px solid #d4d4d8;
+      background: #fff;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .role-tab-buttons button.active {
+      border-color: #0f172a;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    .role-content {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .role-tab-content {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.25rem;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .role-tab-content h3 {
+      margin-bottom: 0.35rem;
+    }
+
+    .role-tab-content ul {
+      padding-left: 1.1rem;
+      margin: 0.25rem 0 0;
+    }
+
+    .application-note {
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="site-header">
+    <div data-include="/pages/partials/nav.html"></div>
+  </header>
+
+  <main class="content-sections">
+    <section class="hero-banner page-hero careers-hero">
+      <div class="background-image-container" style="background-image: url('/image/IMG_2475.webp');"></div>
+      <div class="content-overlay">
+        <p class="hero-eyebrow">We're hiring</p>
+        <h1 class="hero-title">Grow your craft with a company that grows with you</h1>
+        <p class="hero-sub">A Team Property Improvement is expanding across Utah County—most of our projects are in Provo, Orem, Lindon, and Springville. We look for trustworthy teammates who care about quality, communicate clearly, and respect clients and crews alike.</p>
+        <div class="hero-bullets">
+          <div class="hero-bullet">
+            <span class="hero-bullet__dot"></span>
+            <span>Growing company with steady, local projects and repeat clients.</span>
+          </div>
+          <div class="hero-bullet">
+            <span class="hero-bullet__dot"></span>
+            <span>Clear scopes of work and direct access to leadership.</span>
+          </div>
+          <div class="hero-bullet">
+            <span class="hero-bullet__dot"></span>
+            <span>Opportunities to advance into lead roles and train apprentices.</span>
+          </div>
+          <div class="hero-bullet">
+            <span class="hero-bullet__dot"></span>
+            <span>Part-time and full-time roles with schedules that fit BYU, UVU, and other student calendars—most job sites are a short drive in Utah County.</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#career-form">Apply now</a>
+        </div>
+        <div class="pill-groups" aria-label="Position focus">
+          <div class="pill-group">
+            <p class="pill-group__label">Skilled trades</p>
+            <div class="pill-list">
+              <a class="pill" href="#pm" data-category="fulltime" data-role="pm">Project Manager</a>
+              <a class="pill" href="#painter" data-category="fulltime" data-role="painter">Painter</a>
+              <a class="pill" href="#fence" data-category="fulltime" data-role="fence">Fence specialist</a>
+              <a class="pill" href="#drywall" data-category="fulltime" data-role="drywall">Drywall</a>
+              <a class="pill" href="#construction" data-category="fulltime" data-role="construction">General construction</a>
+              <a class="pill" href="#handyman" data-category="fulltime" data-role="handyman">Handyman</a>
+            </div>
+          </div>
+          <div class="pill-group">
+            <p class="pill-group__label">Internships</p>
+            <div class="pill-list">
+              <a class="pill" href="#accounting" data-category="internships" data-role="accounting">Accounting</a>
+              <a class="pill" href="#marketing" data-category="internships" data-role="marketing">Marketing</a>
+              <a class="pill" href="#business-dev" data-category="internships" data-role="business-dev">Business development</a>
+              <a class="pill" href="#supply-chain" data-category="internships" data-role="supply-chain">Supply chain</a>
+              <a class="pill" href="#construction-mgmt" data-category="internships" data-role="construction-mgmt">Construction management</a>
+              <a class="pill" href="#sales" data-category="internships" data-role="sales">Sales</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-inner">
+        <div class="text-block text-left">
+          <p class="eyebrow">Why teammates stay</p>
+          <h2>Clear scopes, respectful clients, and repeat work</h2>
+          <p>We prioritize organization and communication so you can focus on quality craftsmanship. Most of our jobs come from referrals, so we work with homeowners who trust us and treat our crews well.</p>
+          <p>Crews stage from Provo and fan out to Orem, Lindon, Springville, Mapleton, and nearby Utah County neighborhoods, keeping drive time reasonable.</p>
+        </div>
+
+        <div class="career-highlight-grid">
+          <div class="career-highlight">
+            <h3>Predictable schedule</h3>
+            <p>Weekday work with start times that respect commute and daylight. We cluster jobs in central Utah County (Provo, Orem, Springville) to cut down on windshield time and accommodate school schedules.</p>
+          </div>
+          <div class="career-highlight">
+            <h3>Supplied & staged</h3>
+            <p>Materials are pre-ordered and ready. If you need a specialty tool, we’ll figure it out together before the job starts.</p>
+          </div>
+          <div class="career-highlight">
+            <h3>Growth path</h3>
+            <p>Opportunities to lead crews, mentor apprentices, and carve out specialties like custom carpentry or exterior builds.</p>
+          </div>
+          <div class="career-highlight">
+            <h3>Take-home pay</h3>
+            <p>Competitive hourly + bonuses for beating timelines without sacrificing quality. Pay depends on skill and experience; paid weekly via direct deposit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section light-grey">
+      <div class="section-inner contact-layout">
+        <div class="contact-details">
+          <p class="eyebrow">How to apply</p>
+          <h2>Quick application</h2>
+          <p>Share a few details and attach a recent resume or project list. We respond within one business day and schedule a short call before moving to a paid working trial.</p>
+          <ul>
+            <li>Licensed & insured company serving Utah County</li>
+            <li>W-2 and 1099 options available depending on role</li>
+            <li>We’re careful about safety, cleanup, and respecting client schedules</li>
+            <li>Submit once — we keep good candidates on file for upcoming projects</li>
+            <li>Live in Utah County or able to commute daily to Provo/Orem/Springville job sites</li>
+          </ul>
+        </div>
+
+        <form id="career-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" enctype="multipart/form-data" data-success-url="https://a-team-handyman-services.com/pages/thank-you.html">
+          <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
+          <input type="hidden" name="subject" value="New Career Application">
+          <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
+          <input type="hidden" name="from_email" value="contact@a-team-handyman-services.com">
+          <div class="contact-honey" aria-hidden="true" hidden>
+            <label for="career-guard">Leave this field empty</label>
+            <input id="career-guard" type="text" name="_honey" tabindex="-1" autocomplete="new-password" inputmode="none">
+          </div>
+
+          <label for="full-name">Full name</label>
+          <input id="full-name" name="name" required>
+
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required>
+
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" inputmode="tel">
+
+          <label for="location">City you work out of</label>
+          <input id="location" name="location" placeholder="e.g., Provo, Orem, Spanish Fork" required>
+
+          <label for="role">Role you’re interested in</label>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>Select a role</option>
+            <optgroup label="Full time roles">
+              <option>Painter</option>
+              <option>Fence Specialist</option>
+              <option>Drywall</option>
+              <option>General Construction</option>
+              <option>General Handyman</option>
+              <option>Project Manager</option>
+              <option>General Manager</option>
+            </optgroup>
+            <optgroup label="Part time roles">
+              <option>Painter (Part Time)</option>
+              <option>Fence Specialist (Part Time)</option>
+              <option>Drywall (Part Time)</option>
+              <option>General Construction (Part Time)</option>
+              <option>Handyman (Part Time)</option>
+            </optgroup>
+            <optgroup label="Training & apprentices">
+              <option>Apprentice</option>
+            </optgroup>
+            <optgroup label="Internships">
+              <option>Accounting Intern</option>
+              <option>Marketing Intern</option>
+              <option>Business Development Intern</option>
+              <option>Supply Chain / Purchasing Intern</option>
+              <option>Construction Management Intern</option>
+              <option>Sales Intern</option>
+            </optgroup>
+            <option>Other</option>
+          </select>
+
+          <label for="experience">Recent projects or specialties</label>
+          <textarea id="experience" name="experience" rows="4" placeholder="Tell us about projects you’re proud of, years of experience, specialties, and any certifications." required></textarea>
+          <p class="application-note">Pay is determined by role, skill, and experience; share details so we can place you accurately.</p>
+
+          <label for="start">Earliest start date</label>
+          <input id="start" name="start_date" type="date">
+
+          <label for="compensation">Preferred compensation (hourly or salary)</label>
+          <input id="compensation" name="preferred_compensation" placeholder="e.g., $24/hr or $55k salary">
+
+          <label for="resume">Upload resume or project list (PDF, DOC, DOCX)</label>
+          <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx">
+          <p class="application-note">If you don’t have a resume, attach a simple list of past jobs or references.</p>
+
+          <button type="submit" class="btn btn-primary">Submit application</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-inner role-tabs">
+        <div class="text-block text-left">
+          <p class="eyebrow">Open roles</p>
+          <h2>Where you could fit</h2>
+          <p>These tabs outline what we look for in each role. Use them during interviews or training to see where you can grow next.</p>
+        </div>
+
+        <div class="role-category-tabs" role="tablist" aria-label="Role categories">
+          <button type="button" class="role-category-tab active" role="tab" data-category="fulltime" aria-selected="true">Full time roles</button>
+          <button type="button" class="role-category-tab" role="tab" data-category="parttime" aria-selected="false">Part time roles</button>
+          <button type="button" class="role-category-tab" role="tab" data-category="internships" aria-selected="false">Internships</button>
+        </div>
+
+        <div class="role-category-pane active" data-category-pane="fulltime" role="tabpanel" aria-label="Full time roles">
+          <div class="role-tab-buttons">
+            <button type="button" class="active" data-tab="painter" role="tab" aria-selected="false">Painter</button>
+            <button type="button" data-tab="fence" role="tab" aria-selected="false">Fence Specialist</button>
+            <button type="button" data-tab="drywall" role="tab" aria-selected="false">Drywall</button>
+            <button type="button" data-tab="handyman" role="tab" aria-selected="true">General Handyman</button>
+            <button type="button" data-tab="construction" role="tab" aria-selected="false">General Construction</button>
+            <button type="button" data-tab="pm" role="tab" aria-selected="false">Project Manager</button>
+            <button type="button" data-tab="general-manager" role="tab" aria-selected="false">General Manager</button>
+          </div>
+        </div>
+
+        <div class="role-category-pane" data-category-pane="parttime" role="tabpanel" aria-label="Part time roles">
+          <div class="role-tab-buttons">
+            <button type="button" data-tab="painter-pt" role="tab" aria-selected="false">Painter (PT)</button>
+            <button type="button" data-tab="fence-pt" role="tab" aria-selected="false">Fence Specialist (PT)</button>
+            <button type="button" data-tab="drywall-pt" role="tab" aria-selected="false">Drywall (PT)</button>
+            <button type="button" data-tab="construction-pt" role="tab" aria-selected="false">General Construction (PT)</button>
+            <button type="button" data-tab="handyman-pt" role="tab" aria-selected="false">Handyman (PT)</button>
+          </div>
+        </div>
+
+        <div class="role-category-pane" data-category-pane="internships" role="tabpanel" aria-label="Internships">
+          <div class="role-tab-buttons">
+            <button type="button" data-tab="sales" role="tab" aria-selected="true">Sales Intern</button>
+            <button type="button" data-tab="accounting" role="tab" aria-selected="false">Accounting Intern</button>
+            <button type="button" data-tab="marketing" role="tab" aria-selected="false">Marketing Intern</button>
+            <button type="button" data-tab="business-dev" role="tab" aria-selected="false">Biz Dev Intern</button>
+            <button type="button" data-tab="supply-chain" role="tab" aria-selected="false">Supply Chain Intern</button>
+            <button type="button" data-tab="construction-mgmt" role="tab" aria-selected="false">Construction Mgmt Intern</button>
+          </div>
+        </div>
+
+        <div class="role-content" id="role-section">
+        <div class="role-tab-content" id="general-manager" role="tabpanel">
+          <h3>General Manager</h3>
+          <p>Lead day-to-day ops, keep schedules on track, and ensure crews and clients have what they need.</p>
+          <ul>
+            <li>Oversee project pipeline, staffing, and quality checks.</li>
+            <li>Coordinate permits, materials, and subs; remove blockers fast.</li>
+            <li>Bonus: experience with construction scheduling or small-business ops.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="carpenter" role="tabpanel" hidden>
+          <h3>Project Manager</h3>
+          <p>Own small remodels and custom builds around Provo, Orem, Lindon, and Springville—coordinate materials, and mentor apprentices.</p>
+          <ul>
+            <li>Comfortable with framing, trim, door/window installs, and client walk-throughs.</li>
+            <li>Reads scopes/drawings and keeps sites safe and clean.</li>
+            <li>Bonus: experience with decks, pergolas, or built-ins.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="painter" role="tabpanel" hidden>
+          <h3>Painter</h3>
+          <p>Interior/exterior painting with attention to prep, cut lines, and cleanup.</p>
+          <ul>
+            <li>Surface prep, masking, primer selection, and sheen matching.</li>
+            <li>Comfortable with sprayers and HVLP, plus brush-and-roll.</li>
+            <li>Bonus: staining, cabinet refinishing, drywall patch/texture.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="fence" role="tabpanel" hidden>
+          <h3>Fence Specialist</h3>
+          <p>Build and repair wood and vinyl fences with clean lines and solid posts.</p>
+          <ul>
+            <li>Set posts in concrete, align panels, and troubleshoot terrain changes.</li>
+            <li>Understands local utility marking and property line etiquette.</li>
+            <li>Bonus: gates, latches, and small retaining tie-ins.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="drywall" role="tabpanel" hidden>
+          <h3>Drywall</h3>
+          <p>Handle installs, repairs, and finishes that disappear once painted.</p>
+          <ul>
+            <li>Hang, tape, and mud with clean corners and smooth sanding.</li>
+            <li>Match textures and blend patches so repairs stay invisible.</li>
+            <li>Bonus: experience with level 4/5 finishes or skim coating.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="handyman" role="tabpanel" hidden>
+          <h3>General Handyman</h3>
+          <p>Tackle punch lists, minor repairs, and punch-out work between larger projects across Utah County.</p>
+          <ul>
+            <li>Confident with drywall patches, caulking, hardware swaps, and fixture installs.</li>
+            <li>Friendly communicator who represents us well in quick visits.</li>
+            <li>Bonus: light plumbing/electrical certifications.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="painter-pt" role="tabpanel" hidden>
+          <h3>Painter (Part Time)</h3>
+          <p>Support interior or exterior projects in scheduled blocks that fit your week—mostly in central Utah County.</p>
+          <ul>
+            <li>Prep, cut lines, and cleanup on smaller scopes or punch work.</li>
+            <li>Coordinate timing with lead painter to keep sites flowing.</li>
+            <li>Bonus: flexible availability for touch-ups or weekend slots.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="fence-pt" role="tabpanel" hidden>
+          <h3>Fence Specialist (Part Time)</h3>
+          <p>Join fence builds or repairs for planned shifts.</p>
+          <ul>
+            <li>Assist setting posts, aligning panels, and installing gates.</li>
+            <li>Work scheduled days that fit classes or another job.</li>
+            <li>Bonus: experience with terrain adjustments or gate hardware.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="handyman-pt" role="tabpanel" hidden>
+          <h3>Handyman (Part Time)</h3>
+          <p>Knock out punch lists and small repairs in predictable blocks.</p>
+          <ul>
+            <li>Drywall patches, caulking, fixture swaps, and quick fixes.</li>
+            <li>Clear scopes and materials prepped so you can move fast.</li>
+            <li>Bonus: evening or weekend availability.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="construction" role="tabpanel" hidden>
+          <h3>General Construction</h3>
+          <p>Support framing, demo, and finishes on remodels and additions in Provo, Orem, Lindon, Springville, and nearby Utah County neighborhoods.</p>
+          <ul>
+            <li>Assist with layout, framing, siding, and site prep.</li>
+            <li>Coordinate with leads to keep tools and materials staged.</li>
+            <li>Bonus: comfortable reading scopes and working on ladders or lifts.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="drywall-pt" role="tabpanel" hidden>
+          <h3>Drywall (Part Time)</h3>
+          <p>Take on scheduled patches and small hangs that fit around school or other work.</p>
+          <ul>
+            <li>Daytime or evening blocks available; reliable start/finish windows.</li>
+            <li>Blend patches and match textures so homeowners barely notice.</li>
+            <li>Bonus: comfortable working solo with clear scopes.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="construction-pt" role="tabpanel" hidden>
+          <h3>General Construction (Part Time)</h3>
+          <p>Join crews for scheduled shifts on builds and remodel phases around Provo, Orem, and Springville.</p>
+          <ul>
+            <li>Help with demo, cleanup, staging, and light framing or siding.</li>
+            <li>Shift-based work that can fit around classes or another job.</li>
+            <li>Bonus: eagerness to learn tool safety and site sequencing.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="accounting" role="tabpanel" hidden>
+          <h3>Accounting Intern</h3>
+          <p>Support bookkeeping and job-cost tracking while learning contractor accounting basics.</p>
+          <ul>
+            <li>Assist with expense coding, receipts, and vendor invoices.</li>
+            <li>Help reconcile weekly payouts and track project profitability.</li>
+            <li>Bonus: familiarity with QuickBooks or Google Sheets.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="marketing" role="tabpanel" hidden>
+          <h3>Marketing Intern</h3>
+          <p>Amplify our brand with local marketing that brings in quality leads in Provo, Orem, and the Wasatch Front.</p>
+          <ul>
+            <li>Draft social posts, short case studies, and simple graphics.</li>
+            <li>Coordinate photo/video capture on select jobs.</li>
+            <li>Bonus: experience with Canva, Instagram, or basic SEO.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="business-dev" role="tabpanel" hidden>
+          <h3>Business Development Intern</h3>
+          <p>Research and open partnerships in Utah County that create steady project flow.</p>
+          <ul>
+            <li>Map local builders/HOAs/realtors and support outreach.</li>
+            <li>Maintain a simple CRM of conversations and follow-ups.</li>
+            <li>Bonus: comfortable talking with vendors and property managers.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="supply-chain" role="tabpanel" hidden>
+          <h3>Supply Chain / Purchasing Intern</h3>
+          <p>Keep jobs staged with the right materials at the right time.</p>
+          <ul>
+            <li>Price-compare suppliers, place orders, and track deliveries.</li>
+            <li>Build reusable material lists for common scopes.</li>
+            <li>Bonus: interest in inventory systems or process mapping.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="construction-mgmt" role="tabpanel" hidden>
+          <h3>Construction Management Intern</h3>
+          <p>Coordinate timelines, subs, and checklists so projects stay on track.</p>
+          <ul>
+            <li>Assist with schedules, permits, and site readiness checklists.</li>
+            <li>Shadow leads during client walk-throughs and punch lists.</li>
+            <li>Bonus: familiarity with Gantt tools or simple project trackers.</li>
+          </ul>
+        </div>
+
+        <div class="role-tab-content" id="sales" role="tabpanel" hidden>
+          <h3>Sales Intern</h3>
+          <p>Help qualify inbound leads and keep proposals organized.</p>
+          <ul>
+            <li>Assist with intake calls, note-taking, and follow-up scheduling.</li>
+            <li>Draft simple estimates or proposal outlines with guidance.</li>
+            <li>Bonus: confident communicator comfortable on the phone.</li>
+          </ul>
+        </div>
+        </div> <!-- /.role-content -->
+      </div>
+    </section>
+
+    <div data-include="/pages/partials/social-follow.html"></div>
+  </main>
+
+  <div data-include="/pages/partials/email-prompt.html"></div>
+  <div data-include="/pages/partials/footer.html"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('career-form');
+      if (form) {
+        const honeypot = form.querySelector('input[name="_honey"]');
+        const redirectField = form.querySelector('input[name="redirect"]');
+        const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || '/pages/thank-you.html';
+
+        form.addEventListener('submit', async function (event) {
+          if (honeypot && honeypot.value.trim()) {
+            event.preventDefault();
+            return;
+          }
+
+          event.preventDefault();
+          const origin = (window.location && window.location.origin && window.location.origin !== 'null')
+            ? window.location.origin.replace(/\/$/, '')
+            : 'https://a-team-handyman-services.com';
+          const redirectValue = successUrl.startsWith('http') ? successUrl : origin + successUrl.replace(/^\//, '/');
+          if (redirectField) {
+            redirectField.value = redirectValue;
+          }
+
+          try {
+            const formData = new FormData(form);
+            if (!formData.get('redirect')) {
+              formData.append('redirect', redirectValue);
+            }
+            await fetch(form.action, {
+              method: 'POST',
+              body: formData
+            });
+          } catch (err) {
+            console.error('Web3Forms submit error', err);
+          } finally {
+            window.location.href = redirectValue;
+          }
+        });
+      }
+
+      const categoryTabs = document.querySelectorAll('.role-category-tab');
+      const categoryPanes = document.querySelectorAll('.role-category-pane');
+      const tabButtons = document.querySelectorAll('.role-tab-buttons button');
+      const tabPanels = document.querySelectorAll('.role-tab-content');
+
+      const setActiveRole = (button) => {
+        if (!button) return;
+        tabButtons.forEach((btn) => {
+          const isActive = btn === button;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        tabPanels.forEach((panel) => {
+          const isActive = panel.id === button.dataset.tab;
+          panel.hidden = !isActive;
+          panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        });
+      };
+
+      const setActiveCategory = (category) => {
+        categoryTabs.forEach((tab) => {
+          const isActive = tab.dataset.category === category;
+          tab.classList.toggle('active', isActive);
+          tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        categoryPanes.forEach((pane) => {
+          const isActive = pane.dataset.categoryPane === category;
+          pane.classList.toggle('active', isActive);
+        });
+        const activePane = document.querySelector(`.role-category-pane[data-category-pane=\"${category}\"]`);
+        if (activePane) {
+          const currentActiveInPane = activePane.querySelector('.role-tab-buttons button.active');
+          const firstButton = activePane.querySelector('.role-tab-buttons button');
+          setActiveRole(currentActiveInPane || firstButton);
+        }
+      };
+
+      tabButtons.forEach((button) => {
+        button.addEventListener('click', () => setActiveRole(button));
+      });
+
+      categoryTabs.forEach((tab) => {
+        tab.addEventListener('click', () => setActiveCategory(tab.dataset.category));
+      });
+
+      const pillLinks = document.querySelectorAll('.pill[data-role]');
+      pillLinks.forEach((pill) => {
+        pill.addEventListener('click', (e) => {
+          e.preventDefault();
+          const category = pill.dataset.category || 'fulltime';
+          setActiveCategory(category);
+          const targetButton = document.querySelector(`.role-tab-buttons button[data-tab=\"${pill.dataset.role}\"]`);
+          setActiveRole(targetButton);
+          const roleSection = document.getElementById('role-section');
+          if (roleSection) {
+            roleSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Initialize with whatever is marked active
+      setActiveCategory('fulltime');
+    });
+  </script>
+</body>
+
+</html>
