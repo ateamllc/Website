@@ -106,28 +106,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <form id="contact-form" action="https://api.web3forms.com/submit" method="post" class="contact-form"
-          data-success-url="https://a-team-handyman-services.com/pages/thank-you.html">
+          data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
           <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
 
           <input type="hidden" name="subject" value="IMPORTANT!! Incoming Lead from website contact form">
           <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
           <div class="contact-honey" aria-hidden="true" hidden>
             <label for="contact-guard">Leave this field empty</label>
-            <input id="contact-guard" type="text" name="_honey" tabindex="-1" autocomplete="new-password"
-              inputmode="none">
+            <input id="contact-guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none"
+              data-lpignore="true" data-form-type="other">
           </div>
-        
+
           <label for="name">Name</label>
-          <input id="name" name="name" required>
+          <input id="name" name="name" autocomplete="name" required>
 
           <label for="email">Email</label>
-          <input id="email" type="email" name="email" required>
+          <input id="email" type="email" name="email" autocomplete="email" required>
 
           <label for="phone">Phone</label>
-          <input id="phone" name="phone">
+          <input id="phone" name="phone" autocomplete="tel" inputmode="tel">
 
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="6" placeholder="Tell us about your project" required></textarea>
+          <textarea id="message" name="message" rows="6" placeholder="Tell us about your project" autocomplete="on" required></textarea>
 
           <button type="submit" class="btn btn-primary">Send request</button>
         </form>
@@ -160,11 +160,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       const form = document.getElementById('contact-form');
       if (!form) return;
 
-      const honeypot = form.querySelector('input[name="_honey"]');
+      const honeypot = form.querySelector('input[name=\"_honey\"]');
       if (honeypot) {
         honeypot.value = '';
-        honeypot.setAttribute('autocomplete', 'new-password');
+        honeypot.setAttribute('autocomplete', 'off');
         honeypot.setAttribute('aria-hidden', 'true');
+        honeypot.setAttribute('data-lpignore', 'true');
       }
       const redirectField = form.querySelector('input[name="redirect"]');
       const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || '/pages/thank-you.html';
