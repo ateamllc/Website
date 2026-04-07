@@ -76,13 +76,30 @@
             <div class="hero-grid">
                 <div class="hero-copy">
                     <p class="hero-eyebrow">Local, licensed & insured</p>
-                    <h1 id="company-title">Home help you can trust</h1>
-                    <p class="hero-sub">Fences, painting, drywall,and property maintenance delivered on-time and on-budget in Utah County.</p>
-                    <div class="hero-bullets" role="list">
-                        <p class="hero-bullet" role="listitem"><span aria-hidden="true" class="hero-bullet__dot"></span>Fast scheduling with clear, written quotes</p>
-                        <p class="hero-bullet" role="listitem"><span aria-hidden="true" class="hero-bullet__dot"></span>Owner-led crews and spotless clean-up</p>
-                        <p class="hero-bullet" role="listitem"><span aria-hidden="true" class="hero-bullet__dot"></span>Honest options that fit your budget</p>
+                    <h1 id="company-title">
+                        <span class="hero-title-mobile">Reliable Utah County Home Help</span>
+                        <span class="hero-title-desktop">Utah County Home Help You Can Trust</span>
+                    </h1>
+                    <div class="hero-details">
+                        <p class="hero-sub">Fences, painting, drywall,and property maintenance delivered on-time and on-budget in Utah County.</p>
+                        <div class="hero-bullets" role="list">
+                            <p class="hero-bullet" role="listitem"><span aria-hidden="true" class="hero-bullet__dot"></span>Fast scheduling with clear, written quotes</p>
+                            <p class="hero-bullet" role="listitem"><span aria-hidden="true" class="hero-bullet__dot"></span>Owner-led crews and spotless clean-up</p>
+                            <p class="hero-bullet" role="listitem"><span aria-hidden="true" class="hero-bullet__dot"></span>Honest options that fit your budget</p>
+                        </div>
                     </div>
+                    <aside class="hero-review-card hero-review-card--inline" aria-label="Google review highlight">
+                        <div class="hero-review-card__top">
+                            <span class="hero-review-card__stars" aria-hidden="true">★★★★★</span>
+                            <div class="hero-review-card__score">
+                                <strong>5.0</strong><span>/ 5.0</span> <span class="hero-review-card__count">(18)</span>
+                            </div>
+                            <span class="sr-only">Rated 5 out of 5 based on 18 Google reviews</span>
+                        </div>
+                        <p class="hero-review-card__quote">“Quick service, great quality and good guys to work with. Totally recommend them.”</p>
+                        <p class="hero-review-card__name">— Kevin</p>
+                        <p class="hero-review-card__link"><a href="https://share.google/Zc4DtLCCPvvMNXxlH" target="_blank" rel="noopener">Read our Google reviews</a></p>
+                    </aside>
                     <div class="hero-actions">
                         <div class="button">
                             <a href="tel:+12084192480" target="_blank" aria-label="CALL NOW!">Call now</a>
@@ -90,18 +107,42 @@
                         <p class="hero-small-note">or <a href="sms:+12084192480" aria-label="Text photos to (208) 419-2480 for a quick estimate">text photos to (208) 419-2480</a> for a quick estimate</p>
                     </div>
                 </div>
-                <aside class="hero-review-card" aria-label="Google review highlight">
-                    <div class="hero-review-card__top">
-                        <span class="hero-review-card__stars" aria-hidden="true">★★★★★</span>
-                        <div class="hero-review-card__score">
-                            <strong>5.0</strong><span>/ 5.0</span> <span class="hero-review-card__count">(18)</span>
+                <div class="hero-aside">
+                    <div class="hero-form-card" aria-label="Request a free estimate">
+                        <div class="hero-form-card__heading">
+                            <p class="hero-eyebrow hero-form-eyebrow">Free estimate</p>
+                            <h3 class="hero-form-title">Tell us about your project</h3>
+                            <p class="hero-form-note">Share the basics now—attach photos by text after submitting for the fastest quote.</p>
                         </div>
-                        <span class="sr-only">Rated 5 out of 5 based on 18 Google reviews</span>
+                        <form id="hero-estimate-form" action="https://api.web3forms.com/submit" method="post" class="contact-form hero-form"
+                            data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
+                            <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
+
+                            <input type="hidden" name="subject" value="IMPORTANT!! Incoming Lead from home page estimate form">
+                            <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
+                            <div class="contact-honey" aria-hidden="true" hidden>
+                                <label for="hero-contact-guard">Leave this field empty</label>
+                                <input id="hero-contact-guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none"
+                                    data-lpignore="true" data-form-type="other">
+                            </div>
+
+                            <label for="hero-name">Name</label>
+                            <input id="hero-name" name="name" autocomplete="name" required>
+
+                            <label for="hero-email">Email</label>
+                            <input id="hero-email" type="email" name="email" autocomplete="email" required>
+
+                            <label for="hero-phone">Phone</label>
+                            <input id="hero-phone" name="phone" autocomplete="tel" inputmode="tel">
+
+                            <label for="hero-project">Project details</label>
+                            <textarea id="hero-project" name="message" rows="4" placeholder="Scope, timeline, address, budget" required></textarea>
+
+                            <button type="submit" class="btn btn-primary">Get my estimate</button>
+                            <p class="hero-form-footnote">We aim to respond within one business day.</p>
+                        </form>
                     </div>
-                    <p class="hero-review-card__quote">“Quick service, great quality and good guys to work with. Totally recommend them.”</p>
-                    <p class="hero-review-card__name">— Kevin</p>
-                    <p class="hero-review-card__link"><a href="https://share.google/Zc4DtLCCPvvMNXxlH" target="_blank" rel="noopener">Read our Google reviews</a></p>
-                </aside>
+                </div>
             </div>
         </div>
     </section>
@@ -259,6 +300,58 @@
         </div>
     </section>
     <div data-include="/pages/partials/footer.html"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('hero-estimate-form');
+            if (!form) return;
+
+            const honeypot = form.querySelector('input[name="_honey"]');
+            if (honeypot) {
+                honeypot.value = '';
+                honeypot.setAttribute('autocomplete', 'off');
+                honeypot.setAttribute('aria-hidden', 'true');
+                honeypot.setAttribute('data-lpignore', 'true');
+            }
+
+            const redirectField = form.querySelector('input[name="redirect"]');
+            const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || '/pages/thank-you.html';
+
+            form.addEventListener('submit', async function (event) {
+                if (honeypot && honeypot.value.trim()) {
+                    event.preventDefault();
+                    return;
+                }
+
+                event.preventDefault();
+
+                const origin = (window.location && window.location.origin && window.location.origin !== 'null')
+                    ? window.location.origin.replace(/\/$/, '')
+                    : 'https://a-team-handyman-services.com';
+                const redirectValue = successUrl.startsWith('http')
+                    ? successUrl
+                    : origin + successUrl.replace(/^\//, '/');
+                if (redirectField) {
+                    redirectField.value = redirectValue;
+                }
+
+                try {
+                    const formData = new FormData(form);
+                    if (!formData.get('redirect')) {
+                        formData.append('redirect', redirectValue);
+                    }
+                    await fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+                } catch (err) {
+                    console.error('Web3Forms submit error', err);
+                } finally {
+                    window.location.href = redirectValue;
+                }
+            });
+        });
+    </script>
 
     <script>
         (function () {
