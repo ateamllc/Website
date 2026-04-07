@@ -285,30 +285,30 @@
           </ul>
         </div>
 
-        <form id="career-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" enctype="multipart/form-data" data-success-url="/pages/thank-you.html">
+        <form id="career-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" enctype="multipart/form-data" data-success-url="/pages/thank-you.html" autocomplete="on">
           <input type="hidden" name="access_key" value="7080aedc-3921-4214-8163-f7a6b8c00ad4">
           <input type="hidden" name="subject" value="New Job Application: {{name}} - {{role}}">
           <input type="hidden" name="redirect" value="/pages/thank-you.html">
           <input type="hidden" name="from_email" value="contact@a-team-handyman-services.com">
           <div class="contact-honey" aria-hidden="true" hidden>
             <label for="career-guard">Leave this field empty</label>
-            <input id="career-guard" type="text" name="_honey" tabindex="-1" autocomplete="new-password" inputmode="none">
+            <input id="career-guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none" data-lpignore="true" data-form-type="other">
           </div>
 
           <label for="full-name">Full name</label>
-          <input id="full-name" name="name" required>
+          <input id="full-name" name="name" autocomplete="name" required>
 
           <label for="email">Email</label>
-          <input id="email" type="email" name="email" required>
+          <input id="email" type="email" name="email" autocomplete="email" required>
 
           <label for="phone">Phone</label>
-          <input id="phone" name="phone" inputmode="tel">
+          <input id="phone" name="phone" autocomplete="tel" inputmode="tel">
 
           <label for="location">City you work out of</label>
-          <input id="location" name="location" placeholder="e.g., Provo, Orem, Spanish Fork" required>
+          <input id="location" name="location" placeholder="e.g., Provo, Orem, Spanish Fork" autocomplete="address-level2" required>
 
           <label for="role">Role you’re interested in</label>
-          <select id="role" name="role" required>
+          <select id="role" name="role" autocomplete="organization-title" required>
             <option value="" disabled selected>Select a role</option>
             <optgroup label="Full time roles">
               <option>Painter</option>
@@ -341,17 +341,17 @@
           </select>
 
           <label for="experience">Recent projects or specialties</label>
-          <textarea id="experience" name="experience" rows="4" placeholder="Tell us about projects you’re proud of, years of experience, specialties, and any certifications." required></textarea>
+          <textarea id="experience" name="experience" rows="4" placeholder="Tell us about projects you’re proud of, years of experience, specialties, and any certifications." autocomplete="on" required></textarea>
           <p class="application-note">Pay is determined by role, skill, and experience; share details so we can place you accurately.</p>
 
           <label for="start">Earliest start date</label>
-          <input id="start" name="start_date" type="date">
+          <input id="start" name="start_date" type="date" autocomplete="on">
 
           <label for="compensation">Preferred compensation (hourly or salary)</label>
-          <input id="compensation" name="preferred_compensation" placeholder="e.g., $15/hr or $55k salary">
+          <input id="compensation" name="preferred_compensation" placeholder="e.g., $15/hr or $55k salary" autocomplete="on">
 
           <label for="resume-link">Resume or project link (paste URL)</label>
-          <input id="resume-link" name="resume_link" type="url" placeholder="https://drive.google.com/… or portfolio link">
+          <input id="resume-link" name="resume_link" type="url" placeholder="https://drive.google.com/… or portfolio link" autocomplete="url">
           <p class="application-note">Paste a link to your resume/portfolio instead. If you need to send a file, email it to <a href="mailto:contact@a-team-handyman-services.com">contact@a-team-handyman-services.com</a>.</p>
 
           <button type="submit" class="btn btn-primary">Submit application</button>
@@ -628,6 +628,9 @@
 
         if (honeypot) {
           honeypot.value = '';
+          honeypot.setAttribute('autocomplete', 'off');
+          honeypot.setAttribute('aria-hidden', 'true');
+          honeypot.setAttribute('data-lpignore', 'true');
         }
 
         form.addEventListener('submit', async function (event) {
