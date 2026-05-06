@@ -95,23 +95,53 @@
 
     const prevBtn = root.querySelector('[data-carousel-prev]');
     const nextBtn = root.querySelector('[data-carousel-next]');
+    const viewport = root.querySelector('.carousel-viewport');
     const scrollAmount = () => {
       const sampleCard = root.querySelector('.carousel-card');
       return sampleCard ? sampleCard.getBoundingClientRect().width + 12 : track.clientWidth * 0.6;
     };
+    let manualOffset = 0;
+
+    const getTrackOffset = () => {
+      const transform = window.getComputedStyle(track).transform;
+      if (!transform || transform === 'none') return manualOffset;
+
+      const values = transform.match(/matrix.*\((.+)\)/);
+      if (!values) return manualOffset;
+
+      const parts = values[1].split(',').map((value) => Number.parseFloat(value.trim()));
+      return Number.isFinite(parts[4]) ? Math.abs(parts[4]) : manualOffset;
+    };
+
+    const pauseAutoscroll = () => {
+      if (!shouldAutoscroll) return;
+
+      manualOffset = getTrackOffset();
+      root.classList.add('is-manual');
+      track.style.transform = `translateX(-${manualOffset}px)`;
+      track.getBoundingClientRect();
+    };
 
     const controls = root.querySelector('.carousel-controls');
     const refreshControls = () => {
-      if (shouldAutoscroll) {
-        if (controls) controls.classList.add('is-hidden');
-        return;
-      }
-
-      const scrollable = track.scrollWidth - track.clientWidth > 8;
+      const visibleWidth = shouldAutoscroll && viewport ? viewport.clientWidth : track.clientWidth;
+      const scrollable = track.scrollWidth - visibleWidth > 8;
       if (controls) controls.classList.toggle('is-hidden', !scrollable);
     };
 
     const scrollBy = (direction) => {
+      if (shouldAutoscroll) {
+        pauseAutoscroll();
+        const loopWidth = track.scrollWidth / 2;
+        manualOffset += direction * scrollAmount();
+
+        if (manualOffset < 0) manualOffset += loopWidth;
+        if (manualOffset >= loopWidth) manualOffset -= loopWidth;
+
+        track.style.transform = `translateX(-${manualOffset}px)`;
+        return;
+      }
+
       track.scrollBy({ left: direction * scrollAmount(), behavior: 'smooth' });
     };
 
