@@ -35,12 +35,95 @@
     }
   });
 
-  const initCarousel = (container) => {
-    if (!container || container.dataset.carouselInit === 'true') return;
+  const carouselSelector = '[data-carousel-images], [data-carousel-folder]';
+
+  const getInlineCarouselImages = (container) => (
+    (container.dataset.carouselImages || '')
+      .split(',')
+      .map((src) => src.trim())
+      .filter(Boolean)
+      .map((src) => ({ src, tags: [] }))
+  );
+
+  const normalizeCarouselEntry = (entry, folder) => {
+    const isObject = entry && typeof entry === 'object' && !Array.isArray(entry);
+    const rawSrc = isObject ? entry.src : entry;
+    const src = String(rawSrc || '').trim();
+    if (!src) return null;
+
+    const tags = isObject && Array.isArray(entry.tags)
+      ? entry.tags.map((tag) => String(tag).trim()).filter(Boolean)
+      : [];
+    const resolvedSrc = src.startsWith('/') || /^https?:\/\//i.test(src) ? src : `${folder}/${src}`;
+
+    return { src: resolvedSrc, tags };
+  };
+
+  const arrangeCarouselEntries = (entries, tag, interval) => {
+    if (!tag || !interval || interval < 2) return entries;
+
+    const tagged = entries.filter((entry) => entry.tags.includes(tag));
+    const untagged = entries.filter((entry) => !entry.tags.includes(tag));
+    if (!tagged.length || !untagged.length) return entries;
+
+    const arranged = [];
+    let taggedIndex = 0;
+    let untaggedIndex = 0;
+
+    while (taggedIndex < tagged.length || untaggedIndex < untagged.length) {
+      const group = [];
+
+      if (taggedIndex < tagged.length) {
+        group.push(tagged[taggedIndex]);
+        taggedIndex += 1;
+      }
+
+      while (group.length < interval && untaggedIndex < untagged.length) {
+        group.push(untagged[untaggedIndex]);
+        untaggedIndex += 1;
+      }
+
+      while (group.length < interval && taggedIndex < tagged.length) {
+        group.push(tagged[taggedIndex]);
+        taggedIndex += 1;
+      }
+
+      arranged.push(...group);
+    }
+
+    return arranged;
+  };
+
+  const resolveCarouselImages = async (container) => {
+    const inlineImages = getInlineCarouselImages(container);
+    const folder = (container.dataset.carouselFolder || '').replace(/\/$/, '');
+    if (!folder) return inlineImages;
+
+    try {
+      const response = await fetch(`${folder}/manifest.json`);
+      if (!response.ok) throw new Error(`Carousel manifest returned ${response.status}`);
+
+      const manifest = await response.json();
+      const entries = Array.isArray(manifest) ? manifest : manifest.images;
+      if (!Array.isArray(entries)) throw new Error('Carousel manifest must be an array or include an images array');
+
+      return entries
+        .map((entry) => normalizeCarouselEntry(entry, folder))
+        .filter(Boolean);
+    } catch (error) {
+      console.warn(`Could not load carousel images from ${folder}/manifest.json`, error);
+      return inlineImages;
+    }
+  };
+
+  const initCarousel = async (container) => {
+    if (!container || container.dataset.carouselInit === 'true' || container.dataset.carouselInit === 'loading') return;
 
     const root = container.querySelector('[data-carousel-root]');
     const track = root ? root.querySelector('.carousel-track') : null;
     if (!root || !track) return;
+
+    container.dataset.carouselInit = 'loading';
 
     const titleText = container.dataset.carouselTitle;
     const eyebrowText = container.dataset.carouselEyebrow;
@@ -48,18 +131,20 @@
     const rows = Number(container.dataset.carouselRows || 1);
     const shouldAutoscroll = container.dataset.carouselAutoscroll === 'true';
     const speed = container.dataset.carouselSpeed || '90s';
+    const featuredTag = container.dataset.carouselFeaturedTag || '';
+    const featuredEvery = Number(container.dataset.carouselFeaturedEvery || 0);
 
     const titleEl = root.querySelector('.carousel-title');
     const eyebrowEl = root.querySelector('.carousel-eyebrow');
     if (titleText && titleEl) titleEl.textContent = titleText;
     if (eyebrowText && eyebrowEl) eyebrowEl.textContent = eyebrowText;
 
-    const images = (container.dataset.carouselImages || '')
-      .split(',')
-      .map((src) => src.trim())
-      .filter(Boolean);
+    const images = arrangeCarouselEntries(await resolveCarouselImages(container), featuredTag, featuredEvery);
 
-    if (!images.length) return;
+    if (!images.length) {
+      container.dataset.carouselInit = 'true';
+      return;
+    }
 
     root.classList.toggle('is-two-row', rows === 2);
     root.classList.toggle('is-autoscroll', shouldAutoscroll);
@@ -69,7 +154,7 @@
       ? images.concat(images[0])
       : images;
 
-    const createCard = (src, idx, isClone = false) => {
+    const createCard = (entry, idx, isClone = false) => {
       const card = document.createElement('div');
       card.className = 'carousel-card';
       if (isClone) {
@@ -80,7 +165,7 @@
 
       const img = document.createElement('img');
       img.loading = 'lazy';
-      img.src = src;
+      img.src = entry.src;
       img.alt = isClone ? '' : `${label} ${idx + 1}`;
 
       card.appendChild(img);
@@ -88,9 +173,9 @@
     };
 
     track.innerHTML = '';
-    displayImages.forEach((src, idx) => createCard(src, idx));
+    displayImages.forEach((entry, idx) => createCard(entry, idx));
     if (shouldAutoscroll) {
-      displayImages.forEach((src, idx) => createCard(src, idx, true));
+      displayImages.forEach((entry, idx) => createCard(entry, idx, true));
     }
 
     const prevBtn = root.querySelector('[data-carousel-prev]');
@@ -150,9 +235,9 @@
 
     refreshControls();
     window.addEventListener('resize', refreshControls);
-    images.forEach((src) => {
+    images.forEach((entry) => {
       const img = new Image();
-      img.src = src;
+      img.src = entry.src;
       img.onload = refreshControls;
     });
 
@@ -163,12 +248,17 @@
     const tryInit = (node) => {
       if (!(node instanceof Element)) return;
 
-      if (node.hasAttribute('data-carousel-images')) {
+      if (node.matches && node.matches(carouselSelector)) {
         initCarousel(node);
       }
 
+      const carouselParent = node.closest ? node.closest(carouselSelector) : null;
+      if (carouselParent) {
+        initCarousel(carouselParent);
+      }
+
       if (node.querySelectorAll) {
-        node.querySelectorAll('[data-carousel-images]').forEach((el) => initCarousel(el));
+        node.querySelectorAll(carouselSelector).forEach((el) => initCarousel(el));
       }
     };
 
@@ -183,7 +273,7 @@
     observer.observe(document.body, { childList: true, subtree: true });
 
     window.addEventListener('load', () => {
-      document.querySelectorAll('[data-carousel-images]').forEach((el) => initCarousel(el));
+      document.querySelectorAll(carouselSelector).forEach((el) => initCarousel(el));
     });
   };
 
