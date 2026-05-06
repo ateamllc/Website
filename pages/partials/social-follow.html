@@ -1,45 +1,142 @@
 <style>
   .social-follow-more {
     text-align: center;
-    padding: 32px 16px 48px;
+    padding: 40px 16px 52px;
   }
   .social-follow-inner {
-    max-width: 1180px;
+    max-width: 1260px;
     margin: 0 auto;
   }
   .social-follow-more h3 {
     margin-bottom: 8px;
     font-size: 28px;
   }
-  .social-follow-more p {
+  .social-follow-inner > p {
     color: #334155;
     margin-bottom: 18px;
     font-size: 17px;
   }
   .social-cta-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .social-unified-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    color: #0f172a;
+    overflow: hidden;
+    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.13);
+  }
+  .social-preview-grid-wrap {
+    display: block;
+  }
+  .social-preview-head {
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 14px;
-    flex-wrap: wrap;
+    padding: 16px 18px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
   }
-  .social-pill {
+  .social-profile-lines {
+    display: grid;
+    gap: 6px;
+    justify-items: center;
+    min-width: 0;
+  }
+  .social-preview-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    flex: 0 0 auto;
+  }
+  .social-profile-line {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 18px;
-    background: #fff;
-    border-radius: 999px;
-    font-weight: 700;
+    gap: 7px;
     color: #0f172a;
+    font-weight: 800;
+    font-size: 1rem;
+    line-height: 1.2;
     text-decoration: none;
-    box-shadow: 0 10px 32px rgba(15, 23, 42, 0.12);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    width: fit-content;
   }
-  .social-pill:hover {
+  .social-profile-line:hover {
+    text-decoration: underline;
+  }
+  .social-profile-line--secondary {
+    color: #0f172a;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+  .social-network-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+  }
+  .social-network-mark svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+  .social-preview-body {
+    display: grid;
+    padding: 14px;
+    background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+  }
+  .social-post-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  .social-post-grid img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+  .social-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 16px;
+    border-top: 1px solid #e2e8f0;
+    background: #f8fafc;
+  }
+  .social-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 190px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.09);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .social-action-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 42px rgba(15, 23, 42, 0.18);
+    border-color: #cbd5e1;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
   }
-  .social-pill svg {
+  .social-action-button svg {
     width: 24px;
     height: 24px;
     display: block;
@@ -70,34 +167,87 @@
     height: 56px;
     object-fit: contain;
   }
+  @media (max-width: 760px) {
+    .social-preview-head {
+      align-items: center;
+    }
+    .social-post-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 </style>
 
 <section class="social-follow-more">
   <div class="social-follow-inner">
     <h3>Find us on social</h3>
-    <p>We post frequent project pictures and videos. Follow us to keep up!</p>
+    <p>See current project photos, jobsite updates, and finished work before you book.</p>
     <!-- <p>We post daily stories and reels of work in progress. Follow us to keep up.</p> -->
     <div class="social-cta-row">
-      <a class="social-pill" href="https://www.facebook.com/p/A-Team-Handyman-Services-61571483293182/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path fill="#1877F2" d="M22 12.073C22 6.505 17.523 2 12 2S2 6.505 2 12.073c0 5.018 3.657 9.167 8.438 9.93v-7.03H7.898v-2.9h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.47h-1.26c-1.243 0-1.63.774-1.63 1.567v1.88h2.773l-.443 2.9h-2.33v7.03C18.343 21.24 22 17.091 22 12.073z"/>
-        </svg>
-        Facebook
-      </a>
-      <a class="social-pill" href="https://www.instagram.com/ateamhandyman.co/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="igGradientPartial" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#f58529"/>
-              <stop offset="50%" stop-color="#dd2a7b"/>
-              <stop offset="100%" stop-color="#515bd4"/>
-            </linearGradient>
-          </defs>
-          <path fill="url(#igGradientPartial)" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z"/>
-          <path fill="#fff" d="M12 8.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5zm0 5.8A2.3 2.3 0 1 1 14.3 12 2.31 2.31 0 0 1 12 14.3zm4.6-6.8a.9.9 0 1 1 .9-.9.9.9 0 0 1-.9.9z"/>
-        </svg>
-        Instagram
-      </a>
+      <article class="social-unified-card" aria-label="A Team Handyman social previews">
+        <div class="social-preview-grid-wrap">
+          <div class="social-preview-head">
+            <img class="social-preview-avatar" src="/image/New%20Logos/Alternate%20-%20A%20Team%20Handyman%20logo.png" alt="A Team Handyman logo">
+            <div class="social-profile-lines">
+              <a class="social-profile-line" href="https://www.facebook.com/p/A-Team-Handyman-Services-61571483293182/" target="_blank" rel="noopener">
+                A Team Handyman Services
+                <span class="social-network-mark" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path fill="#1877F2" d="M22 12.073C22 6.505 17.523 2 12 2S2 6.505 2 12.073c0 5.018 3.657 9.167 8.438 9.93v-7.03H7.898v-2.9h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.47h-1.26c-1.243 0-1.63.774-1.63 1.567v1.88h2.773l-.443 2.9h-2.33v7.03C18.343 21.24 22 17.091 22 12.073z"/>
+                  </svg>
+                </span>
+              </a>
+              <a class="social-profile-line social-profile-line--secondary" href="https://www.instagram.com/ateamhandyman.co/" target="_blank" rel="noopener">
+                @ateamhandyman.co
+                <span class="social-network-mark" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <defs>
+                      <linearGradient id="igGradientMarkPartial" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f58529"/>
+                        <stop offset="50%" stop-color="#dd2a7b"/>
+                        <stop offset="100%" stop-color="#515bd4"/>
+                      </linearGradient>
+                    </defs>
+                    <path fill="url(#igGradientMarkPartial)" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z"/>
+                    <path fill="#fff" d="M12 8.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5zm0 5.8A2.3 2.3 0 1 1 14.3 12 2.31 2.31 0 0 1 12 14.3zm4.6-6.8a.9.9 0 1 1 .9-.9.9.9 0 0 1-.9.9z"/>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="social-preview-body">
+            <div class="social-post-grid" aria-hidden="true">
+              <img src="/image/dawn-side-garage.webp" alt="">
+              <img src="/image/IMG_2521.webp" alt="">
+              <img src="/image/IMG_5159.webp" alt="">
+              <img src="/image/katie-fence-gate.webp" alt="">
+              <img src="/image/img_2669.webp" alt="">
+              <img src="/image/Carousel-dawn-garage.webp" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="social-button-row">
+          <a class="social-action-button" href="https://www.facebook.com/p/A-Team-Handyman-Services-61571483293182/" target="_blank" rel="noopener" aria-label="Open A Team Handyman Services on Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="#1877F2" d="M22 12.073C22 6.505 17.523 2 12 2S2 6.505 2 12.073c0 5.018 3.657 9.167 8.438 9.93v-7.03H7.898v-2.9h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.47h-1.26c-1.243 0-1.63.774-1.63 1.567v1.88h2.773l-.443 2.9h-2.33v7.03C18.343 21.24 22 17.091 22 12.073z"/>
+            </svg>
+            Follow on Facebook
+          </a>
+          <a class="social-action-button" href="https://www.instagram.com/ateamhandyman.co/" target="_blank" rel="noopener" aria-label="Open A Team Handyman on Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="igGradientButtonPartial" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f58529"/>
+                  <stop offset="50%" stop-color="#dd2a7b"/>
+                  <stop offset="100%" stop-color="#515bd4"/>
+                </linearGradient>
+              </defs>
+              <path fill="url(#igGradientButtonPartial)" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z"/>
+              <path fill="#fff" d="M12 8.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5zm0 5.8A2.3 2.3 0 1 1 14.3 12 2.31 2.31 0 0 1 12 14.3zm4.6-6.8a.9.9 0 1 1 .9-.9.9.9 0 0 1-.9.9z"/>
+            </svg>
+            Follow on Instagram
+          </a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
