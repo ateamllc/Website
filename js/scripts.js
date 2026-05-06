@@ -45,6 +45,9 @@
     const titleText = container.dataset.carouselTitle;
     const eyebrowText = container.dataset.carouselEyebrow;
     const label = container.dataset.carouselLabel || 'Project photo';
+    const rows = Number(container.dataset.carouselRows || 1);
+    const shouldAutoscroll = container.dataset.carouselAutoscroll === 'true';
+    const speed = container.dataset.carouselSpeed || '90s';
 
     const titleEl = root.querySelector('.carousel-title');
     const eyebrowEl = root.querySelector('.carousel-eyebrow');
@@ -58,20 +61,37 @@
 
     if (!images.length) return;
 
-    track.innerHTML = '';
-    images.forEach((src, idx) => {
+    root.classList.toggle('is-two-row', rows === 2);
+    root.classList.toggle('is-autoscroll', shouldAutoscroll);
+    root.style.setProperty('--carousel-duration', speed);
+
+    const displayImages = shouldAutoscroll && rows === 2 && images.length % 2 !== 0
+      ? images.concat(images[0])
+      : images;
+
+    const createCard = (src, idx, isClone = false) => {
       const card = document.createElement('div');
       card.className = 'carousel-card';
-      card.setAttribute('role', 'listitem');
+      if (isClone) {
+        card.setAttribute('aria-hidden', 'true');
+      } else {
+        card.setAttribute('role', 'listitem');
+      }
 
       const img = document.createElement('img');
       img.loading = 'lazy';
       img.src = src;
-      img.alt = `${label} ${idx + 1}`;
+      img.alt = isClone ? '' : `${label} ${idx + 1}`;
 
       card.appendChild(img);
       track.appendChild(card);
-    });
+    };
+
+    track.innerHTML = '';
+    displayImages.forEach((src, idx) => createCard(src, idx));
+    if (shouldAutoscroll) {
+      displayImages.forEach((src, idx) => createCard(src, idx, true));
+    }
 
     const prevBtn = root.querySelector('[data-carousel-prev]');
     const nextBtn = root.querySelector('[data-carousel-next]');
@@ -82,6 +102,11 @@
 
     const controls = root.querySelector('.carousel-controls');
     const refreshControls = () => {
+      if (shouldAutoscroll) {
+        if (controls) controls.classList.add('is-hidden');
+        return;
+      }
+
       const scrollable = track.scrollWidth - track.clientWidth > 8;
       if (controls) controls.classList.toggle('is-hidden', !scrollable);
     };

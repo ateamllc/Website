@@ -331,9 +331,10 @@ main.content-sections {
 }
 
 .carousel-track {
+    --carousel-card-size: minmax(220px, 1fr);
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(220px, 1fr);
+    grid-auto-columns: var(--carousel-card-size);
     gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -356,6 +357,44 @@ main.content-sections {
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+.carousel-module.is-two-row .carousel-viewport {
+    min-height: calc((220px * 2) + 12px);
+}
+
+.carousel-module.is-two-row .carousel-track {
+    grid-template-rows: repeat(2, 220px);
+    min-height: calc((220px * 2) + 12px);
+}
+
+.carousel-module.is-autoscroll .carousel-viewport {
+    overflow: hidden;
+}
+
+.carousel-module.is-autoscroll .carousel-track {
+    --carousel-card-size: 220px;
+    width: max-content;
+    overflow: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+    animation: carousel-marquee var(--carousel-duration, 90s) linear infinite;
+    will-change: transform;
+}
+
+.carousel-module.is-autoscroll:hover .carousel-track,
+.carousel-module.is-autoscroll:focus-within .carousel-track {
+    animation-play-state: paused;
+}
+
+.carousel-module.is-autoscroll .carousel-card {
+    scroll-snap-align: none;
+}
+
+@keyframes carousel-marquee {
+    to {
+        transform: translateX(calc(-50% - 6px));
+    }
 }
 
 .carousel-track::-webkit-scrollbar {
@@ -403,7 +442,20 @@ main.content-sections {
     }
 
     .carousel-track {
-        grid-auto-columns: minmax(160px, 72%);
+        --carousel-card-size: minmax(160px, 72%);
+    }
+
+    .carousel-module.is-two-row .carousel-viewport {
+        min-height: calc((160px * 2) + 12px);
+    }
+
+    .carousel-module.is-two-row .carousel-track {
+        grid-template-rows: repeat(2, 160px);
+        min-height: calc((160px * 2) + 12px);
+    }
+
+    .carousel-module.is-autoscroll .carousel-track {
+        --carousel-card-size: 160px;
     }
 
     .carousel-header {
