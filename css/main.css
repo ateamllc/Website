@@ -387,6 +387,11 @@ main.content-sections {
     animation-play-state: paused;
 }
 
+.carousel-module.is-autoscroll.is-manual .carousel-track {
+    animation: none;
+    transition: transform 0.45s ease;
+}
+
 .carousel-module.is-autoscroll .carousel-card {
     scroll-snap-align: none;
 }
