@@ -323,6 +323,7 @@ main.content-sections {
     margin-top: -2rem;
     padding: 0.95rem 1rem;
     overflow: hidden;
+    min-height: 54px;
 }
 
 .trust-strip__inner {
@@ -389,6 +390,7 @@ main.content-sections {
     background: #f8fafc;
     margin-top: -2rem;
     margin-bottom: -2rem;
+    min-height: 430px;
 }
 
 .review-carousel-frame {
@@ -764,6 +766,7 @@ main.content-sections {
     width: 100%;
     margin: 0 auto 1.75rem;
     display: block;
+    min-height: 540px;
 }
 
 
@@ -805,6 +808,10 @@ main.content-sections {
     .carousel-module.is-two-row .carousel-track {
         grid-template-rows: repeat(2, 160px);
         min-height: calc((160px * 2) + 12px);
+    }
+
+    .content-with-image .carousel-shell {
+        min-height: 430px;
     }
 
     .carousel-module.is-autoscroll .carousel-track {
