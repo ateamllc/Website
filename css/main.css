@@ -378,12 +378,26 @@ main.content-sections {
     order: 4;
 }
 
-.handyman-lander .scope-clarity-section {
+.handyman-lander .what-we-do-section {
     order: 5;
 }
 
-.handyman-lander .final-cta-section {
+.handyman-lander .scope-clarity-section {
     order: 6;
+}
+
+.handyman-lander .faq-section {
+    order: 7;
+}
+
+.handyman-lander .final-cta-section {
+    order: 8;
+}
+
+.scope-clarity-section {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .review-carousel-section {
