@@ -42,6 +42,9 @@ const normalizeEntry = (entry) => {
     if (!src) return null;
 
     const nextEntry = { src };
+    if (entry.alt) {
+      nextEntry.alt = String(entry.alt).trim();
+    }
     if (Array.isArray(entry.tags) && entry.tags.length) {
       nextEntry.tags = entry.tags.map((tag) => String(tag).trim()).filter(Boolean);
     }

@@ -56,7 +56,9 @@
       : [];
     const resolvedSrc = src.startsWith('/') || /^https?:\/\//i.test(src) ? src : `${folder}/${src}`;
 
-    return { src: resolvedSrc, tags };
+    const alt = isObject && entry.alt ? String(entry.alt).trim() : '';
+
+    return { src: resolvedSrc, tags, alt };
   };
 
   const arrangeCarouselEntries = (entries, tag, interval) => {
@@ -168,7 +170,7 @@
       img.decoding = 'async';
       img.fetchPriority = 'low';
       img.src = entry.src;
-      img.alt = isClone ? '' : `${label} ${idx + 1}`;
+      img.alt = isClone ? '' : entry.alt || `${label} ${idx + 1}`;
 
       card.appendChild(img);
       track.appendChild(card);
@@ -673,6 +675,67 @@
     }
   };
 
+  const initFaqSection = async (section) => {
+    const list = section.querySelector('[data-faq-items]');
+    if (!list || section.dataset.snippetInit === 'true' || section.dataset.snippetInit === 'loading') return;
+
+    section.dataset.snippetInit = 'loading';
+    setText(section, '[data-faq-eyebrow]', section.dataset.faqEyebrow);
+    setText(section, '[data-faq-title]', section.dataset.faqTitle);
+
+    try {
+      const items = await loadJson(section.dataset.faqSrc);
+      if (!Array.isArray(items)) throw new Error('FAQ data must be an array');
+
+      list.innerHTML = '';
+      items.forEach((item) => {
+        const question = document.createElement('dt');
+        question.textContent = item.question || '';
+        list.appendChild(question);
+
+        const answer = document.createElement('dd');
+        answer.textContent = item.answer || '';
+        list.appendChild(answer);
+      });
+      section.dataset.snippetInit = 'true';
+    } catch (error) {
+      section.dataset.snippetInit = 'error';
+      console.warn('Could not initialize FAQ section', error);
+    }
+  };
+
+  const initWhatWeDoSection = async (section) => {
+    const list = section.querySelector('[data-what-we-do-items]');
+    if (!list || section.dataset.snippetInit === 'true' || section.dataset.snippetInit === 'loading') return;
+
+    section.dataset.snippetInit = 'loading';
+    setText(section, '[data-what-we-do-eyebrow]', section.dataset.whatWeDoEyebrow);
+    setText(section, '[data-what-we-do-title]', section.dataset.whatWeDoTitle);
+    setText(section, '[data-what-we-do-intro]', section.dataset.whatWeDoIntro);
+
+    const cta = section.querySelector('[data-what-we-do-cta]');
+    if (cta) {
+      cta.textContent = section.dataset.whatWeDoCtaLabel || cta.textContent;
+      cta.href = section.dataset.whatWeDoCtaHref || cta.href;
+    }
+
+    try {
+      const items = await loadJson(section.dataset.whatWeDoSrc);
+      if (!Array.isArray(items)) throw new Error('What we do data must be an array');
+
+      list.innerHTML = '';
+      items.forEach((item) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+      });
+      section.dataset.snippetInit = 'true';
+    } catch (error) {
+      section.dataset.snippetInit = 'error';
+      console.warn('Could not initialize what we do section', error);
+    }
+  };
+
   const findSnippetRoots = (root, selector) => {
     const matches = [];
     if (root instanceof Element && root.matches(selector)) matches.push(root);
@@ -722,6 +785,8 @@
     findSnippetRoots(root, '[data-final-cta]').forEach((section) => initFinalCta(section));
     findSnippetRoots(root, '[data-sticky-cta]').forEach((container) => initStickyCtaSnippet(container));
     findSnippetRoots(root, '[data-problem-solution]').forEach((container) => initProblemSolution(container));
+    findSnippetRoots(root, '[data-faq-section]').forEach((section) => initFaqSection(section));
+    findSnippetRoots(root, '[data-what-we-do-section]').forEach((section) => initWhatWeDoSection(section));
   };
 
   const observeLandingSnippets = () => {
