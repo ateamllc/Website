@@ -1,0 +1,50 @@
+<div class="section-inner contact-layout">
+  <div class="contact-details">
+    <p class="eyebrow" data-estimate-eyebrow>Fast estimate</p>
+    <h2 data-estimate-title>Share the list and a few photos</h2>
+    <p data-estimate-copy></p>
+    <p><strong data-estimate-note>Phone is used only to call or text about this estimate. No spam.</strong></p>
+    <div class="section-ctas section-ctas--left">
+      <a class="btn btn-outline" data-estimate-call href="tel:+18014777526" data-track-event="click_call" data-track-label="Form section call CTA">Call first</a>
+      <a class="btn btn-outline" data-estimate-text href="sms:+18014777526" data-track-event="click_sms" data-track-label="Form section text CTA">Text photos</a>
+    </div>
+  </div>
+
+  <form action="https://api.web3forms.com/submit" method="post" enctype="multipart/form-data" class="contact-form estimate-form"
+    data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
+    <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
+    <input type="hidden" name="subject" value="Landing page estimate request">
+    <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
+    <div class="contact-honey" aria-hidden="true" hidden>
+      <label data-for="guard">Leave this field empty</label>
+      <input data-field="guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none">
+    </div>
+
+    <label data-for="name">Name</label>
+    <input data-field="name" name="name" autocomplete="name" required>
+
+    <label data-for="phone">Phone</label>
+    <input data-field="phone" name="phone" autocomplete="tel" inputmode="tel" required>
+    <p class="form-microcopy">Used only to text or call about your estimate.</p>
+
+    <label data-for="city">Project city or address</label>
+    <input data-field="city" name="city_or_address" autocomplete="street-address" required>
+
+    <label data-for="message">What do you need help with?</label>
+    <textarea data-field="message" name="message" rows="5" placeholder="Example: patch two drywall holes, repair loose baseboard, replace door hardware..." required></textarea>
+
+    <label data-for="timing">Preferred timing</label>
+    <select data-field="timing" name="preferred_timing">
+      <option value="">Select one</option>
+      <option>This week if available</option>
+      <option>Next 1-2 weeks</option>
+      <option>This month</option>
+      <option>Flexible</option>
+    </select>
+
+    <label data-for="photos">Upload photos</label>
+    <input data-field="photos" name="attachment" type="file" accept="image/*" multiple>
+
+    <button type="submit" class="btn btn-primary" data-estimate-submit>Submit estimate request</button>
+  </form>
+</div>

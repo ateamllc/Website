@@ -230,16 +230,16 @@ main.content-sections {
 }
 
 .estimate-photo-section .contact-details .btn-outline {
-    background: #fff;
-    border-color: #fff;
-    color: #182741;
+    background: #f59e0b;
+    border-color: #f59e0b;
+    color: #0f172a;
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.22);
 }
 
 .estimate-photo-section .contact-details .btn-outline:hover,
 .estimate-photo-section .contact-details .btn-outline:focus-visible {
-    background: #f8fafc;
-    border-color: #f8fafc;
+    background: #fbbf24;
+    border-color: #fbbf24;
     color: #0f172a;
 }
 
@@ -357,6 +357,34 @@ main.content-sections {
     letter-spacing: 0.04em;
 }
 
+.handyman-lander .hero-banner {
+    order: 0;
+}
+
+.handyman-lander .trust-strip {
+    order: 1;
+}
+
+.handyman-lander .review-carousel-section {
+    order: 2;
+}
+
+.handyman-lander .content-with-image {
+    order: 3;
+}
+
+.handyman-lander .estimate-photo-section {
+    order: 4;
+}
+
+.handyman-lander .scope-clarity-section {
+    order: 5;
+}
+
+.handyman-lander .final-cta-section {
+    order: 6;
+}
+
 .review-carousel-section {
     background: #f8fafc;
     margin-top: -2rem;
@@ -393,10 +421,18 @@ main.content-sections {
     color: #475569;
     box-shadow: 0 14px 28px rgba(15, 23, 42, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     cursor: pointer;
-    font-size: 2.35rem;
-    font-weight: 500;
-    line-height: 0;
     transform: translateY(-50%);
+}
+
+.review-carousel-button svg {
+    display: block;
+    width: 1.45rem;
+    height: 1.45rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.25;
 }
 
 .review-carousel-button--prev {
@@ -786,6 +822,18 @@ main.content-sections {
     .mobile-sticky-cta a {
         min-height: 3.15rem;
         padding: 0.72rem 0.55rem;
+    }
+
+    .handyman-lander .problem-solution-copy {
+        display: none;
+    }
+
+    .handyman-lander .content-with-image {
+        padding-bottom: 1.5rem;
+    }
+
+    .handyman-lander .content-with-image .carousel-shell {
+        margin-bottom: 0;
     }
 }
 
