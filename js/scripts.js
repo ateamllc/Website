@@ -165,6 +165,8 @@
 
       const img = document.createElement('img');
       img.loading = 'lazy';
+      img.decoding = 'async';
+      img.fetchPriority = 'low';
       img.src = entry.src;
       img.alt = isClone ? '' : `${label} ${idx + 1}`;
 
@@ -235,13 +237,31 @@
 
     refreshControls();
     window.addEventListener('resize', refreshControls);
-    images.forEach((entry) => {
-      const img = new Image();
-      img.src = entry.src;
-      img.onload = refreshControls;
-    });
 
     container.dataset.carouselInit = 'true';
+  };
+
+  const scheduleCarouselInit = (container) => {
+    if (!container || container.dataset.carouselInit === 'true' || container.dataset.carouselInit === 'loading' || container.dataset.carouselObserve === 'true') return;
+    if (!container.querySelector('[data-carousel-root]')) return;
+
+    if (container.dataset.carouselLazyInit === 'false' || !('IntersectionObserver' in window)) {
+      initCarousel(container);
+      return;
+    }
+
+    container.dataset.carouselObserve = 'true';
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        observer.disconnect();
+        delete container.dataset.carouselObserve;
+        initCarousel(container);
+      });
+    }, { rootMargin: '700px 0px' });
+
+    observer.observe(container);
   };
 
   const observeCarousels = () => {
@@ -249,16 +269,16 @@
       if (!(node instanceof Element)) return;
 
       if (node.matches && node.matches(carouselSelector)) {
-        initCarousel(node);
+        scheduleCarouselInit(node);
       }
 
       const carouselParent = node.closest ? node.closest(carouselSelector) : null;
       if (carouselParent) {
-        initCarousel(carouselParent);
+        scheduleCarouselInit(carouselParent);
       }
 
       if (node.querySelectorAll) {
-        node.querySelectorAll(carouselSelector).forEach((el) => initCarousel(el));
+        node.querySelectorAll(carouselSelector).forEach((el) => scheduleCarouselInit(el));
       }
     };
 
@@ -273,7 +293,7 @@
     observer.observe(document.body, { childList: true, subtree: true });
 
     window.addEventListener('load', () => {
-      document.querySelectorAll(carouselSelector).forEach((el) => initCarousel(el));
+      document.querySelectorAll(carouselSelector).forEach((el) => scheduleCarouselInit(el));
     });
   };
 
@@ -743,10 +763,39 @@
     window.addEventListener('resize', updateStickyCta);
   };
 
+  const observeLazyBackgrounds = () => {
+    const applyBackground = (el) => {
+      if (!el || el.dataset.lazyBgLoaded === 'true' || !el.dataset.lazyBg) return;
+
+      el.style.setProperty('--section-bg-image', `url('${el.dataset.lazyBg}')`);
+      el.dataset.lazyBgLoaded = 'true';
+    };
+
+    const targets = document.querySelectorAll('[data-lazy-bg]');
+    if (!targets.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach((el) => applyBackground(el));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        applyBackground(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '700px 0px' });
+
+    targets.forEach((el) => observer.observe(el));
+  };
+
   observeCarousels();
   observeCurrentYearTargets();
   observeTrackingTargets();
   observeLandingSnippets();
   observeReviewCarousels();
   observeStickyCta();
+  observeLazyBackgrounds();
 })();
