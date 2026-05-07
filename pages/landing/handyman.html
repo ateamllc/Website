@@ -47,38 +47,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </header>
 
   <main class="content-sections handyman-lander">
-    <section class="hero-banner page-hero">
-      <div class="background-image-container" style="background-image: url('/image/IMG_2597.webp');"></div>
-      <div class="content-overlay">
-        <p class="hero-eyebrow">Provo / Orem / Utah County</p>
-        <h1 class="hero-title">Handyman services for punch lists, repairs, and small projects</h1>
-        <p class="hero-sub">Reliable help for drywall patches, trim repairs, doors, fixtures, caulking, rental turns, and general home maintenance.</p>
-        <div class="hero-ctas">
-          <a class="btn btn-primary" href="#handyman-estimate-form" data-track-event="estimate_form_start" data-track-label="Hero estimate CTA"><span class="hero-estimate-full">Free Estimate</span><span class="hero-estimate-short" aria-hidden="true">Estimate</span></a>
-          <a class="btn btn-outline" href="tel:+18014777526" data-track-event="click_call" data-track-label="Hero call CTA"><span class="hero-call-full">Call (801) 477-7526</span><span class="hero-call-short" aria-hidden="true">Call</span></a>
-          <a class="btn btn-outline" href="sms:+18014777526" data-track-event="click_sms" data-track-label="Hero text CTA">Text</a>
-        </div>
-      </div>
+    <section
+      class="hero-banner page-hero"
+      data-landing-hero
+      data-hero-image="/image/IMG_2597.webp"
+      data-hero-eyebrow="Provo / Orem / Utah County"
+      data-hero-title="Handyman services for punch lists, repairs, and small projects"
+      data-hero-subtitle="Reliable help for drywall patches, trim repairs, doors, fixtures, caulking, rental turns, and general home maintenance."
+      data-primary-label="Free Estimate"
+      data-primary-mobile-label="Estimate"
+      data-primary-href="#handyman-estimate-form"
+      data-call-label="Call (801) 477-7526"
+      data-call-mobile-label="Call"
+      data-call-href="tel:+18014777526"
+      data-text-label="Text"
+      data-text-href="sms:+18014777526"
+      data-include="/pages/partials/landing/hero.html">
     </section>
 
-    <section class="trust-strip" aria-label="Handyman service trust points">
-      <div class="trust-strip__inner">
-        <a class="trust-strip__item trust-strip__review" href="https://share.google/Zc4DtLCCPvvMNXxlH" target="_blank" rel="noopener">
-          <span aria-hidden="true">★★★★★</span>
-          <strong>5.0 Google rating</strong>
-        </a>
-        <span class="trust-strip__item">Locally owned in Utah County</span>
-        <span class="trust-strip__item">Licensed and insured</span>
-        <span class="trust-strip__item">Often same-week openings</span>
-        <a class="trust-strip__item trust-strip__item--clone trust-strip__review" href="https://share.google/Zc4DtLCCPvvMNXxlH" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-          <span aria-hidden="true">★★★★★</span>
-          <strong>5.0 Google rating</strong>
-        </a>
-        <span class="trust-strip__item trust-strip__item--clone" aria-hidden="true">Locally owned in Utah County</span>
-        <span class="trust-strip__item trust-strip__item--clone" aria-hidden="true">Licensed and insured</span>
-        <span class="trust-strip__item trust-strip__item--clone" aria-hidden="true">Often same-week openings</span>
-      </div>
-    </section>
+    <section class="trust-strip" aria-label="Handyman service trust points" data-trust-src="/data/landing/handyman-trust.json" data-include="/pages/partials/landing/trust-strip.html"></section>
 
     <section class="content-section content-with-image">
       <div class="text-block text-left">
@@ -94,179 +81,68 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           data-carousel-featured-every="6"
           data-include="/pages/partials/carousel.html">
         </div>
-        <p class="eyebrow">Your list, handled</p>
-        <h2>Problems <span class="service-arrow" aria-hidden="true">➡</span> solutions</h2>
-        <ul class="service-list">
-          <li>Your rental needs corrections before inspection or move-in <span class="service-arrow" aria-hidden="true">➡</span> <a href="/pages/landing/rental-ready-maintenance.html">rental-ready maintenance</a></li>
-          <li>Your door, trim, or baseboards are damaged <span class="service-arrow" aria-hidden="true">➡</span> <a href="/pages/landing/door-repair-installation.html">door repair</a> and <a href="/pages/landing/trim-baseboard-installation.html">trim/baseboard work</a></li>
-          <li>Drywall holes need patching, texture, and paint blend <span class="service-arrow" aria-hidden="true">➡</span> <a href="/pages/landing/drywall-repair.html">drywall repair</a></li>
-          <li>A punch list has been sitting for months <span class="service-arrow" aria-hidden="true">➡</span> <a href="/pages/landing/honey-do.html">honey-do list visits</a></li>
-          <li>Caulk, weatherstripping, siding, or exterior trim is failing <span class="service-arrow" aria-hidden="true">➡</span> <a href="/pages/landing/siding.html">siding and exterior fixes</a></li>
-          <li>You need focused installs like <a href="/pages/landing/tv-mounting.html">TV mounting</a> or <a href="/pages/landing/furniture-assembly.html">furniture assembly</a></li>
-        </ul>
-        <p>Need something else? If it’s not a fit we’ll point you to a trusted trade partner.</p>
-        <div class="section-ctas">
-          <a class="btn btn-primary" href="#handyman-estimate-form" data-track-event="estimate_form_start" data-track-label="Service list estimate CTA">Send us your list</a>
-          <a class="btn btn-outline" href="/pages/services.html">See all services</a>
+        <div
+          data-problem-solution
+          data-problem-src="/data/landing/handyman-problems.json"
+          data-problem-eyebrow="Your list, handled"
+          data-problem-title-start="Problems"
+          data-problem-title-end="solutions"
+          data-problem-note="Need something else? If it’s not a fit we’ll point you to a trusted trade partner."
+          data-primary-label="Send us your list"
+          data-primary-href="#handyman-estimate-form"
+          data-secondary-label="See all services"
+          data-secondary-href="/pages/services.html"
+          data-include="/pages/partials/landing/problem-solution.html">
         </div>
       </div>
     </section>
 
-    <section class="content-section estimate-photo-section">
-      <div class="section-inner contact-layout">
-        <div class="contact-details">
-          <p class="eyebrow">Fast estimate</p>
-          <h2>Share the list and a few photos</h2>
-          <p>We use your notes and photos to confirm whether the work fits our scope, whether a visit block or fixed estimate makes sense, and how soon we can schedule.</p>
-          <p><strong>Phone is used only to call or text about this estimate. No spam.</strong></p>
-          <div class="section-ctas section-ctas--left">
-            <a class="btn btn-outline" href="tel:+18014777526" data-track-event="click_call" data-track-label="Form section call CTA">Call first</a>
-            <a class="btn btn-outline" href="sms:+18014777526" data-track-event="click_sms" data-track-label="Form section text CTA">Text photos</a>
-          </div>
-        </div>
-
-        <form id="handyman-estimate-form" action="https://api.web3forms.com/submit" method="post" enctype="multipart/form-data" class="contact-form estimate-form"
-          data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" data-track-form="handyman_landing_estimate" autocomplete="on">
-          <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
-          <input type="hidden" name="subject" value="IMPORTANT!! Handyman landing page estimate request">
-          <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
-          <div class="contact-honey" aria-hidden="true" hidden>
-            <label for="handyman-guard">Leave this field empty</label>
-            <input id="handyman-guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none">
-          </div>
-
-          <label for="handyman-name">Name</label>
-          <input id="handyman-name" name="name" autocomplete="name" required>
-
-          <label for="handyman-phone">Phone</label>
-          <input id="handyman-phone" name="phone" autocomplete="tel" inputmode="tel" required>
-          <p class="form-microcopy">Used only to text or call about your estimate.</p>
-
-          <label for="handyman-city">Project city or address</label>
-          <input id="handyman-city" name="city_or_address" autocomplete="street-address" required>
-
-          <label for="handyman-message">What do you need help with?</label>
-          <textarea id="handyman-message" name="message" rows="5" placeholder="Example: patch two drywall holes, repair loose baseboard, replace door hardware..." required></textarea>
-
-          <label for="handyman-timing">Preferred timing</label>
-          <select id="handyman-timing" name="preferred_timing">
-            <option value="">Select one</option>
-            <option>This week if available</option>
-            <option>Next 1-2 weeks</option>
-            <option>This month</option>
-            <option>Flexible</option>
-          </select>
-
-          <label for="handyman-photos">Upload photos</label>
-          <input id="handyman-photos" name="attachment" type="file" accept="image/*" multiple>
-
-          <button type="submit" class="btn btn-primary">Submit estimate request</button>
-        </form>
-      </div>
+    <section
+      class="content-section estimate-photo-section"
+      data-estimate-form
+      data-form-id="handyman-estimate-form"
+      data-track-form="handyman_landing_estimate"
+      data-subject="IMPORTANT!! Handyman landing page estimate request"
+      data-estimate-eyebrow="Fast estimate"
+      data-estimate-title="Share the list and a few photos"
+      data-estimate-copy="We use your notes and photos to confirm whether the work fits our scope, whether a visit block or fixed estimate makes sense, and how soon we can schedule."
+      data-estimate-note="Phone is used only to call or text about this estimate. No spam."
+      data-call-label="Call first"
+      data-text-label="Text photos"
+      data-include="/pages/partials/landing/estimate-form.html">
     </section>
 
-    <section class="content-section review-carousel-section">
-      <div class="section-inner">
-        <div class="text-block">
-          <p class="eyebrow">Google reviews</p>
-          <h2>Homeowners choose us for quick, clean work</h2>
-          <p>Rated 5.0 on Google from recent customers. Swipe or scroll through the review highlights.</p>
-        </div>
-        <div class="review-carousel-frame">
-          <button type="button" class="review-carousel-button review-carousel-button--prev" data-review-carousel-prev aria-label="Previous reviews">‹</button>
-          <div class="review-carousel" aria-label="Customer review carousel">
-            <article class="review-card">
-              <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-              <p class="review-card__quote">&ldquo;I loved this handyman service. They were on time, ready to work, respectful and keep the work area neat and clean... If you're looking to have some jobs done around your home, give them a call!&rdquo;</p>
-              <p class="review-card__name">Heidi</p>
-            </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;These young men are the best, wonderful to work with. Super reasonable rates. I loved their attention to detail, as well as the quality of their work... High marks for their excellent work, even higher for their kindness and generosity.&rdquo;</p>
-            <p class="review-card__name">Ellen</p>
-          </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;They were so helpful and friendly. Finished the project fast, did a great job, and cleaned up nicely. I highly recommend these guys!&rdquo;</p>
-            <p class="review-card__name">Addie</p>
-          </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;Excellent boys that came and did such a good job. They really made their money and time worth it for me. I will definitely have them back again.&rdquo;</p>
-            <p class="review-card__name">Chelsea</p>
-          </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;I had the A-team build me a HUUUGE fence. They nailed it. Quick service, great quality and good guys to work with. Totally recommend them.&rdquo;</p>
-            <p class="review-card__name">Kevin</p>
-          </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;These good young men have been wonderful for us and our house. They have been willing to do anything, and done it well. They have listened to our needs, been trustworthy, and clean up after their jobs very well.&rdquo;</p>
-            <p class="review-card__name">Nancy</p>
-          </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;They were personable and responsive and took care of all my questions and after-the-fact-tasks. Good work!&rdquo;</p>
-            <p class="review-card__name">G</p>
-          </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;They did an AMAZING job on projects big and small for me... They will be my first call for all future projects.&rdquo;</p>
-            <p class="review-card__name">Dawn</p>
-          </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;I've had good experiences with this group. They honor their bid, show up when they say they will, do good work, and communicate well... I would absolutely hire them again.&rdquo;</p>
-            <p class="review-card__name">Marcie</p>
-          </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;Did a great job fast efficient. Did great work. Thanks&rdquo;</p>
-            <p class="review-card__name">Kathy</p>
-          </article>
-          <article class="review-card">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">&ldquo;They were punctual, fixed the problem and it's been working great ever since! Kind, professional, highly recommend.&rdquo;</p>
-            <p class="review-card__name">Jessica</p>
-          </article>
-          <article class="review-card review-card--cta">
-            <div class="review-card__stars" aria-hidden="true">★★★★★</div>
-            <p class="review-card__quote">Read more customer feedback before you schedule.</p>
-            <a class="btn btn-primary" href="https://share.google/Zc4DtLCCPvvMNXxlH" target="_blank" rel="noopener">See Google reviews</a>
-          </article>
-          </div>
-          <button type="button" class="review-carousel-button review-carousel-button--next" data-review-carousel-next aria-label="Next reviews">›</button>
-        </div>
-      </div>
+    <section
+      class="content-section review-carousel-section"
+      data-review-section
+      data-review-eyebrow="Google reviews"
+      data-review-title="Homeowners choose us for clean, reliable, high quality work"
+      data-review-intro="Rated 5.0 on Google from recent customers. Swipe or scroll through the review highlights."
+      data-reviews-src="/data/landing/handyman-reviews.json"
+      data-include="/pages/partials/landing/review-carousel.html">
     </section>
 
-    <section class="content-section light-grey">
-      <div class="text-block text-left">
-        <p class="eyebrow">Scope clarity</p>
-        <h2>When we may refer you out</h2>
-        <ul class="service-list">
-          <li>New electrical circuits, panel work, or troubleshooting that requires an electrician</li>
-          <li>Major plumbing reroutes, sewer issues, or work needing a licensed plumber</li>
-          <li>Roof leak diagnosis, structural repairs, or engineering concerns</li>
-          <li>Large remodels that need a general contractor or permit management</li>
-          <li>Jobs requiring permits outside our license or scope</li>
-        </ul>
-        <div class="section-ctas">
-          <a class="btn btn-primary" href="#handyman-estimate-form" data-track-event="estimate_form_start" data-track-label="Fit section estimate CTA">Check if your job fits</a>
-        </div>
-      </div>
+    <section
+      class="content-section scope-clarity-section"
+      data-scope-section
+      data-scope-eyebrow="Scope clarity"
+      data-scope-title="When we may refer you out"
+      data-scope-src="/data/landing/handyman-scope.json"
+      data-scope-cta-label="Check if your job fits"
+      data-scope-cta-href="#handyman-estimate-form"
+      data-include="/pages/partials/landing/scope-clarity.html">
     </section>
 
-    <section class="content-section cta-section final-cta-section">
-      <div class="text-block">
-        <h2>Ready to get started?</h2>
-        <p>Send us your list and photos—our team will confirm scope, timeline, and pricing before we arrive.</p>
-        <div class="hero-ctas">
-          <a class="btn btn-outline" href="tel:+18014777526" data-track-event="click_call" data-track-label="Final call CTA">Talk with us</a>
-          <a class="btn btn-primary" href="#handyman-estimate-form" data-track-event="estimate_form_start" data-track-label="Final estimate CTA">Request a free estimate</a>
-        </div>
-      </div>
+    <section
+      class="content-section cta-section final-cta-section"
+      data-final-cta
+      data-final-cta-title="Ready to get started?"
+      data-final-cta-copy="Send us your list and photos—our team will confirm scope, timeline, and pricing before we arrive."
+      data-secondary-label="Talk with us"
+      data-secondary-href="tel:+18014777526"
+      data-primary-label="Request a free estimate"
+      data-primary-href="#handyman-estimate-form"
+      data-include="/pages/partials/landing/final-cta.html">
     </section>
   </main>
 
@@ -274,10 +150,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div data-include="/pages/partials/social-follow.html"></div>
   <div data-include="/pages/partials/email-prompt.html"></div>
   <div data-include="/pages/partials/footer.html"></div>
-  <div class="mobile-sticky-cta" aria-label="Quick contact options">
-    <a href="tel:+18014777526" data-track-event="click_call" data-track-label="Sticky call CTA">Call</a>
-    <a href="sms:+18014777526" data-track-event="click_sms" data-track-label="Sticky text CTA">Text</a>
-    <a href="#handyman-estimate-form" data-track-event="estimate_form_start" data-track-label="Sticky estimate CTA">Free Estimate</a>
+  <div
+    class="mobile-sticky-cta"
+    aria-label="Quick contact options"
+    data-sticky-cta
+    data-call-label="Call"
+    data-call-href="tel:+18014777526"
+    data-text-label="Text"
+    data-text-href="sms:+18014777526"
+    data-estimate-label="Free Estimate"
+    data-estimate-href="#handyman-estimate-form"
+    data-include="/pages/partials/landing/sticky-cta.html">
   </div>
   
 </body>

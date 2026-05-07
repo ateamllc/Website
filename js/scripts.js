@@ -329,51 +329,399 @@
       });
     });
 
-    document.querySelectorAll('form[data-track-form]').forEach((form) => {
-      let started = false;
+    document.addEventListener('input', (event) => {
+      const form = event.target.closest('form[data-track-form]');
+      if (!form || form.dataset.trackStarted === 'true') return;
+
       const startEvent = form.dataset.trackStartEvent || 'estimate_form_start';
+      form.dataset.trackStarted = 'true';
+      trackEvent(startEvent, {
+        event_category: 'lead_form',
+        event_label: form.dataset.trackForm
+      });
+    });
+
+    document.addEventListener('submit', (event) => {
+      const form = event.target.closest('form[data-track-form]');
+      if (!form) return;
+
       const submitEvent = form.dataset.trackSubmitEvent || 'estimate_form_submit';
-
-      form.addEventListener('input', () => {
-        if (started) return;
-        started = true;
-        trackEvent(startEvent, {
-          event_category: 'lead_form',
-          event_label: form.dataset.trackForm
-        });
-      }, { once: true });
-
-      form.addEventListener('submit', () => {
-        trackEvent(submitEvent, {
-          event_category: 'lead_form',
-          event_label: form.dataset.trackForm
-        });
+      trackEvent(submitEvent, {
+        event_category: 'lead_form',
+        event_label: form.dataset.trackForm
       });
     });
   };
 
+  const loadJson = async (src) => {
+    if (!src) return null;
+
+    const response = await fetch(src);
+    if (!response.ok) throw new Error(`JSON request failed for ${src}: ${response.status}`);
+    return response.json();
+  };
+
+  const setText = (root, selector, value) => {
+    const el = root.querySelector(selector);
+    if (el && value) el.textContent = value;
+  };
+
+  const createTrustItem = (item, isClone = false) => {
+    const el = document.createElement(item.href ? 'a' : 'span');
+    el.className = `trust-strip__item${item.stars ? ' trust-strip__review' : ''}${isClone ? ' trust-strip__item--clone' : ''}`;
+
+    if (item.href) {
+      el.href = item.href;
+      el.target = '_blank';
+      el.rel = 'noopener';
+    }
+
+    if (isClone) {
+      el.setAttribute('aria-hidden', 'true');
+      if (item.href) el.tabIndex = -1;
+    }
+
+    if (item.stars) {
+      const stars = document.createElement('span');
+      stars.setAttribute('aria-hidden', 'true');
+      stars.textContent = '★★★★★';
+      el.appendChild(stars);
+
+      const strong = document.createElement('strong');
+      strong.textContent = item.label || '';
+      el.appendChild(strong);
+      return el;
+    }
+
+    el.textContent = item.label || '';
+    return el;
+  };
+
+  const initTrustStrip = async (section) => {
+    const target = section.querySelector('[data-trust-strip-items]');
+    if (!target || section.dataset.snippetInit === 'true' || section.dataset.snippetInit === 'loading') return;
+
+    section.dataset.snippetInit = 'loading';
+    try {
+      const items = await loadJson(section.dataset.trustSrc);
+      if (!Array.isArray(items)) throw new Error('Trust strip data must be an array');
+
+      target.innerHTML = '';
+      items.forEach((item) => target.appendChild(createTrustItem(item)));
+      items.forEach((item) => target.appendChild(createTrustItem(item, true)));
+      section.dataset.snippetInit = 'true';
+    } catch (error) {
+      section.dataset.snippetInit = 'error';
+      console.warn('Could not initialize trust strip', error);
+    }
+  };
+
+  const createReviewCard = (review) => {
+    const article = document.createElement('article');
+    article.className = review.href ? 'review-card review-card--cta' : 'review-card';
+
+    const stars = document.createElement('div');
+    stars.className = 'review-card__stars';
+    stars.setAttribute('aria-hidden', 'true');
+    stars.textContent = '★★★★★';
+    article.appendChild(stars);
+
+    const quote = document.createElement('p');
+    quote.className = 'review-card__quote';
+    quote.textContent = review.quote || '';
+    article.appendChild(quote);
+
+    if (review.href) {
+      const link = document.createElement('a');
+      link.className = 'btn btn-primary';
+      link.href = review.href;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = review.label || 'Read more';
+      article.appendChild(link);
+      return article;
+    }
+
+    const name = document.createElement('p');
+    name.className = 'review-card__name';
+    name.textContent = review.name || '';
+    article.appendChild(name);
+    return article;
+  };
+
+  const initReviewCarouselControls = (section) => {
+    const carousel = section.querySelector('.review-carousel');
+    const prevBtn = section.querySelector('[data-review-carousel-prev]');
+    const nextBtn = section.querySelector('[data-review-carousel-next]');
+    if (!carousel || !prevBtn || !nextBtn || section.dataset.reviewControlsInit === 'true') return;
+
+    const scrollAmount = () => {
+      const card = carousel.querySelector('.review-card');
+      if (!card) return carousel.clientWidth * 0.85;
+
+      const gap = Number.parseFloat(window.getComputedStyle(carousel).columnGap || '0');
+      return card.getBoundingClientRect().width + gap;
+    };
+
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+    });
+
+    section.dataset.reviewControlsInit = 'true';
+  };
+
+  const initReviewSection = async (section) => {
+    const target = section.querySelector('[data-review-carousel-items]');
+    if (!target || section.dataset.snippetInit === 'true' || section.dataset.snippetInit === 'loading') return;
+
+    section.dataset.snippetInit = 'loading';
+    setText(section, '[data-review-eyebrow]', section.dataset.reviewEyebrow);
+    setText(section, '[data-review-title]', section.dataset.reviewTitle);
+    setText(section, '[data-review-intro]', section.dataset.reviewIntro);
+
+    try {
+      const data = await loadJson(section.dataset.reviewsSrc);
+      const reviews = Array.isArray(data) ? data : data.reviews;
+      if (!Array.isArray(reviews)) throw new Error('Review data must be an array or include a reviews array');
+
+      target.innerHTML = '';
+      reviews.forEach((review) => target.appendChild(createReviewCard(review)));
+      if (data.cta) target.appendChild(createReviewCard(data.cta));
+      section.dataset.snippetInit = 'true';
+      initReviewCarouselControls(section);
+    } catch (error) {
+      section.dataset.snippetInit = 'error';
+      console.warn('Could not initialize review carousel', error);
+    }
+  };
+
+  const initEstimateForm = (section) => {
+    const form = section.querySelector('form');
+    if (!form || section.dataset.snippetInit === 'true') return;
+
+    setText(section, '[data-estimate-eyebrow]', section.dataset.estimateEyebrow);
+    setText(section, '[data-estimate-title]', section.dataset.estimateTitle);
+    setText(section, '[data-estimate-copy]', section.dataset.estimateCopy);
+    setText(section, '[data-estimate-note]', section.dataset.estimateNote);
+    setText(section, '[data-estimate-submit]', section.dataset.submitLabel);
+
+    const formId = section.dataset.formId || 'estimate-form';
+    form.id = formId;
+    form.dataset.trackForm = section.dataset.trackForm || formId;
+
+    const subject = form.querySelector('input[name="subject"]');
+    if (subject && section.dataset.subject) subject.value = section.dataset.subject;
+
+    section.querySelectorAll('[data-field]').forEach((field) => {
+      field.id = `${formId}-${field.dataset.field}`;
+    });
+
+    section.querySelectorAll('[data-for]').forEach((label) => {
+      label.setAttribute('for', `${formId}-${label.dataset.for}`);
+    });
+
+    const call = section.querySelector('[data-estimate-call]');
+    if (call) {
+      call.textContent = section.dataset.callLabel || call.textContent;
+      if (section.dataset.callHref) call.href = section.dataset.callHref;
+    }
+
+    const text = section.querySelector('[data-estimate-text]');
+    if (text) {
+      text.textContent = section.dataset.textLabel || text.textContent;
+      if (section.dataset.textHref) text.href = section.dataset.textHref;
+    }
+
+    section.dataset.snippetInit = 'true';
+  };
+
+  const initScopeSection = async (section) => {
+    const list = section.querySelector('[data-scope-items]');
+    if (!list || section.dataset.snippetInit === 'true' || section.dataset.snippetInit === 'loading') return;
+
+    section.dataset.snippetInit = 'loading';
+    setText(section, '[data-scope-eyebrow]', section.dataset.scopeEyebrow);
+    setText(section, '[data-scope-title]', section.dataset.scopeTitle);
+
+    const cta = section.querySelector('[data-scope-cta]');
+    if (cta) {
+      cta.textContent = section.dataset.scopeCtaLabel || cta.textContent;
+      cta.href = section.dataset.scopeCtaHref || cta.href;
+    }
+
+    try {
+      const items = await loadJson(section.dataset.scopeSrc);
+      if (!Array.isArray(items)) throw new Error('Scope clarity data must be an array');
+
+      list.innerHTML = '';
+      items.forEach((item) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+      });
+      section.dataset.snippetInit = 'true';
+    } catch (error) {
+      section.dataset.snippetInit = 'error';
+      console.warn('Could not initialize scope clarity section', error);
+    }
+  };
+
+  const initFinalCta = (section) => {
+    if (!section.querySelector('[data-final-cta-title]') || section.dataset.snippetInit === 'true') return;
+
+    setText(section, '[data-final-cta-title]', section.dataset.finalCtaTitle);
+    setText(section, '[data-final-cta-copy]', section.dataset.finalCtaCopy);
+
+    const secondary = section.querySelector('[data-final-cta-secondary]');
+    if (secondary) {
+      secondary.textContent = section.dataset.secondaryLabel || secondary.textContent;
+      secondary.href = section.dataset.secondaryHref || secondary.href;
+    }
+
+    const primary = section.querySelector('[data-final-cta-primary]');
+    if (primary) {
+      primary.textContent = section.dataset.primaryLabel || primary.textContent;
+      primary.href = section.dataset.primaryHref || primary.href;
+    }
+
+    section.dataset.snippetInit = 'true';
+  };
+
+  const initStickyCtaSnippet = (container) => {
+    if (!container.querySelector('[data-sticky-call]') || container.dataset.snippetInit === 'true') return;
+
+    const call = container.querySelector('[data-sticky-call]');
+    call.textContent = container.dataset.callLabel || call.textContent;
+    call.href = container.dataset.callHref || call.href;
+
+    const text = container.querySelector('[data-sticky-text]');
+    text.textContent = container.dataset.textLabel || text.textContent;
+    text.href = container.dataset.textHref || text.href;
+
+    const estimate = container.querySelector('[data-sticky-estimate]');
+    estimate.textContent = container.dataset.estimateLabel || estimate.textContent;
+    estimate.href = container.dataset.estimateHref || estimate.href;
+
+    container.dataset.snippetInit = 'true';
+  };
+
+  const initProblemSolution = async (container) => {
+    const list = container.querySelector('[data-problem-items]');
+    if (!list || container.dataset.snippetInit === 'true' || container.dataset.snippetInit === 'loading') return;
+
+    container.dataset.snippetInit = 'loading';
+    setText(container, '[data-problem-eyebrow]', container.dataset.problemEyebrow);
+    setText(container, '[data-problem-title-start]', container.dataset.problemTitleStart);
+    setText(container, '[data-problem-title-end]', container.dataset.problemTitleEnd);
+    setText(container, '[data-problem-note]', container.dataset.problemNote);
+
+    const primary = container.querySelector('[data-problem-primary]');
+    if (primary) {
+      primary.textContent = container.dataset.primaryLabel || primary.textContent;
+      primary.href = container.dataset.primaryHref || primary.href;
+    }
+
+    const secondary = container.querySelector('[data-problem-secondary]');
+    if (secondary) {
+      secondary.textContent = container.dataset.secondaryLabel || secondary.textContent;
+      secondary.href = container.dataset.secondaryHref || secondary.href;
+    }
+
+    try {
+      const items = await loadJson(container.dataset.problemSrc);
+      if (!Array.isArray(items)) throw new Error('Problem solution data must be an array');
+
+      list.innerHTML = '';
+      items.forEach((item) => {
+        const li = document.createElement('li');
+        if (item.html) {
+          li.innerHTML = item.html;
+        } else {
+          li.innerHTML = `${item.problem || ''} <span class="service-arrow" aria-hidden="true">➡</span> ${item.solutionHtml || ''}`;
+        }
+        list.appendChild(li);
+      });
+      container.dataset.snippetInit = 'true';
+    } catch (error) {
+      container.dataset.snippetInit = 'error';
+      console.warn('Could not initialize problem solution section', error);
+    }
+  };
+
+  const findSnippetRoots = (root, selector) => {
+    const matches = [];
+    if (root instanceof Element && root.matches(selector)) matches.push(root);
+    if (root.querySelectorAll) {
+      root.querySelectorAll(selector).forEach((el) => matches.push(el));
+    }
+    return matches;
+  };
+
+  const initLandingHero = (section) => {
+    if (!section.querySelector('[data-landing-hero-bg]') || section.dataset.snippetInit === 'true') return;
+
+    const background = section.querySelector('[data-landing-hero-bg]');
+    if (background && section.dataset.heroImage) {
+      background.style.backgroundImage = `url('${section.dataset.heroImage}')`;
+    }
+
+    setText(section, '[data-landing-hero-eyebrow]', section.dataset.heroEyebrow);
+    setText(section, '[data-landing-hero-title]', section.dataset.heroTitle);
+    setText(section, '[data-landing-hero-subtitle]', section.dataset.heroSubtitle);
+    setText(section, '[data-landing-hero-primary-full]', section.dataset.primaryLabel);
+    setText(section, '[data-landing-hero-primary-short]', section.dataset.primaryMobileLabel);
+    setText(section, '[data-landing-hero-call-full]', section.dataset.callLabel);
+    setText(section, '[data-landing-hero-call-short]', section.dataset.callMobileLabel);
+
+    const primary = section.querySelector('[data-landing-hero-primary]');
+    if (primary) primary.href = section.dataset.primaryHref || primary.href;
+
+    const call = section.querySelector('[data-landing-hero-call]');
+    if (call) call.href = section.dataset.callHref || call.href;
+
+    const text = section.querySelector('[data-landing-hero-text]');
+    if (text) {
+      text.textContent = section.dataset.textLabel || text.textContent;
+      text.href = section.dataset.textHref || text.href;
+    }
+
+    section.dataset.snippetInit = 'true';
+  };
+
+  const initLandingSnippets = (root = document) => {
+    findSnippetRoots(root, '[data-landing-hero]').forEach((section) => initLandingHero(section));
+    findSnippetRoots(root, '[data-trust-src]').forEach((section) => initTrustStrip(section));
+    findSnippetRoots(root, '[data-review-section]').forEach((section) => initReviewSection(section));
+    findSnippetRoots(root, '[data-estimate-form]').forEach((section) => initEstimateForm(section));
+    findSnippetRoots(root, '[data-scope-section]').forEach((section) => initScopeSection(section));
+    findSnippetRoots(root, '[data-final-cta]').forEach((section) => initFinalCta(section));
+    findSnippetRoots(root, '[data-sticky-cta]').forEach((container) => initStickyCtaSnippet(container));
+    findSnippetRoots(root, '[data-problem-solution]').forEach((container) => initProblemSolution(container));
+  };
+
+  const observeLandingSnippets = () => {
+    initLandingSnippets();
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (!(node instanceof Element)) return;
+          initLandingSnippets(node.parentElement || node);
+        });
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('load', () => initLandingSnippets());
+  };
+
   const observeReviewCarousels = () => {
     document.querySelectorAll('.review-carousel-section').forEach((section) => {
-      const carousel = section.querySelector('.review-carousel');
-      const prevBtn = section.querySelector('[data-review-carousel-prev]');
-      const nextBtn = section.querySelector('[data-review-carousel-next]');
-      if (!carousel || !prevBtn || !nextBtn) return;
-
-      const scrollAmount = () => {
-        const card = carousel.querySelector('.review-card');
-        if (!card) return carousel.clientWidth * 0.85;
-
-        const gap = Number.parseFloat(window.getComputedStyle(carousel).columnGap || '0');
-        return card.getBoundingClientRect().width + gap;
-      };
-
-      prevBtn.addEventListener('click', () => {
-        carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-      });
-
-      nextBtn.addEventListener('click', () => {
-        carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-      });
+      initReviewCarouselControls(section);
     });
   };
 
@@ -397,6 +745,7 @@
   observeCarousels();
   observeCurrentYearTargets();
   observeTrackingTargets();
+  observeLandingSnippets();
   observeReviewCarousels();
   observeStickyCta();
 })();
