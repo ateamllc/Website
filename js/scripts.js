@@ -546,6 +546,7 @@
     section.dataset.snippetInit = 'loading';
     setText(section, '[data-scope-eyebrow]', section.dataset.scopeEyebrow);
     setText(section, '[data-scope-title]', section.dataset.scopeTitle);
+    setText(section, '[data-scope-intro]', section.dataset.scopeIntro);
 
     const cta = section.querySelector('[data-scope-cta]');
     if (cta) {
