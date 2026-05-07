@@ -272,12 +272,60 @@
 
 @media (max-width: 1024px) {
     .contact-banner {
+        display: flex;
+        align-items: center;
         padding: 0.4rem 0.9rem;
+        min-height: 36px;
     }
 
     .contact-banner__tag,
     .contact-banner__hours {
         display: none;
+    }
+
+    .contact-banner__call {
+        display: none;
+    }
+
+    .contact-banner__inner {
+        grid-template-columns: 1fr;
+        align-items: center;
+        width: 100%;
+        gap: 0;
+    }
+
+    .contact-banner__promo,
+    .contact-banner__marquee,
+    .contact-banner__track {
+        align-items: center;
+    }
+
+    .contact-banner__cta {
+        display: none;
+    }
+
+    .contact-banner__promo {
+        max-height: none;
+        width: 100%;
+    }
+
+    .contact-banner__marquee {
+        min-height: 1.2rem;
+    }
+
+    .contact-banner__track {
+        top: 50%;
+        transform: translateY(-50%);
+        animation-name: contact-marquee-centered;
+    }
+}
+
+@keyframes contact-marquee-centered {
+    0% {
+        transform: translate(100%, -50%);
+    }
+    100% {
+        transform: translate(-100%, -50%);
     }
 }
 
