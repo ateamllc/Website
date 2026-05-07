@@ -354,14 +354,15 @@
 
     .nav-list {
         position: absolute;
-        top: calc(100% + 0.5rem);
+        top: 100%;
         left: 0;
         right: 0;
         flex-direction: column;
         padding: 1.5rem;
         background-color: #f8f8f8;
         border: 1px solid #ddd;
-        border-radius: 0.5rem;
+        border-top: 0;
+        border-radius: 0 0 0.5rem 0.5rem;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         display: none;
     }
