@@ -313,6 +313,19 @@
     justify-content: center;
 }
 
+.handyman-lander .page-hero .hero-ctas .btn {
+    min-height: 3rem;
+    padding: 0.82rem 1.15rem;
+    border-radius: 999px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.hero-call-short,
+.hero-estimate-short {
+    display: none;
+}
+
 .hero-banner .btn-outline,
 #hero-banner .btn-outline {
     color: #fff;
@@ -375,6 +388,36 @@
 
     .page-hero {
         padding: 3.5rem 0;
+    }
+
+    .handyman-lander .page-hero .hero-ctas {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.45rem;
+        width: 100%;
+    }
+
+    .handyman-lander .page-hero .hero-ctas .btn {
+        min-width: 0;
+        min-height: 2.95rem;
+        padding: 0.72rem 0.5rem;
+        border-radius: 999px;
+        font-size: 0.86rem;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    .handyman-lander .page-hero .hero-call-full {
+        display: none;
+    }
+
+    .handyman-lander .page-hero .hero-call-short,
+    .handyman-lander .page-hero .hero-estimate-short {
+        display: inline;
+    }
+
+    .handyman-lander .page-hero .hero-estimate-full {
+        display: none;
     }
 }
 

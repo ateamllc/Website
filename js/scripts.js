@@ -307,6 +307,96 @@
     window.addEventListener('load', () => applyCurrentYear());
   };
 
+  const trackEvent = (eventName, params = {}) => {
+    if (!eventName) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...params });
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
+  };
+
+  const observeTrackingTargets = () => {
+    document.addEventListener('click', (event) => {
+      const target = event.target.closest('[data-track-event]');
+      if (!target) return;
+
+      trackEvent(target.dataset.trackEvent, {
+        event_category: target.dataset.trackCategory || 'landing_page',
+        event_label: target.dataset.trackLabel || target.textContent.trim()
+      });
+    });
+
+    document.querySelectorAll('form[data-track-form]').forEach((form) => {
+      let started = false;
+      const startEvent = form.dataset.trackStartEvent || 'estimate_form_start';
+      const submitEvent = form.dataset.trackSubmitEvent || 'estimate_form_submit';
+
+      form.addEventListener('input', () => {
+        if (started) return;
+        started = true;
+        trackEvent(startEvent, {
+          event_category: 'lead_form',
+          event_label: form.dataset.trackForm
+        });
+      }, { once: true });
+
+      form.addEventListener('submit', () => {
+        trackEvent(submitEvent, {
+          event_category: 'lead_form',
+          event_label: form.dataset.trackForm
+        });
+      });
+    });
+  };
+
+  const observeReviewCarousels = () => {
+    document.querySelectorAll('.review-carousel-section').forEach((section) => {
+      const carousel = section.querySelector('.review-carousel');
+      const prevBtn = section.querySelector('[data-review-carousel-prev]');
+      const nextBtn = section.querySelector('[data-review-carousel-next]');
+      if (!carousel || !prevBtn || !nextBtn) return;
+
+      const scrollAmount = () => {
+        const card = carousel.querySelector('.review-card');
+        if (!card) return carousel.clientWidth * 0.85;
+
+        const gap = Number.parseFloat(window.getComputedStyle(carousel).columnGap || '0');
+        return card.getBoundingClientRect().width + gap;
+      };
+
+      prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+      });
+    });
+  };
+
+  const observeStickyCta = () => {
+    const stickyCta = document.querySelector('.mobile-sticky-cta');
+    const trigger = document.querySelector('.handyman-lander .carousel-shell');
+    if (!stickyCta || !trigger) return;
+
+    const updateStickyCta = () => {
+      const triggerBottom = trigger.getBoundingClientRect().bottom;
+      const isPastCarousel = triggerBottom <= window.innerHeight;
+      stickyCta.classList.toggle('is-visible', isPastCarousel);
+      document.body.classList.toggle('has-sticky-cta', isPastCarousel);
+    };
+
+    updateStickyCta();
+    window.addEventListener('scroll', updateStickyCta, { passive: true });
+    window.addEventListener('resize', updateStickyCta);
+  };
+
   observeCarousels();
   observeCurrentYearTargets();
+  observeTrackingTargets();
+  observeReviewCarousels();
+  observeStickyCta();
 })();
