@@ -211,6 +211,11 @@
     transform: translateX(3px);
 }
 
+.home-review-carousel-section.review-carousel-section {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .trust-feature {
     background: #0f172a;
     color: #e5e7eb;
