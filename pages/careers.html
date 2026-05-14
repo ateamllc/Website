@@ -285,10 +285,10 @@
           </ul>
         </div>
 
-        <form id="career-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" enctype="multipart/form-data" data-success-url="/pages/thank-you.html" autocomplete="on">
+        <form id="career-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
           <input type="hidden" name="access_key" value="7080aedc-3921-4214-8163-f7a6b8c00ad4">
           <input type="hidden" name="subject" value="New Job Application: {{name}} - {{role}}">
-          <input type="hidden" name="redirect" value="/pages/thank-you.html">
+          <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
           <input type="hidden" name="from_email" value="contact@a-team-handyman-services.com">
           <div class="contact-honey" aria-hidden="true" hidden>
             <label for="career-guard">Leave this field empty</label>
@@ -724,7 +724,7 @@
       if (form) {
         const honeypot = form.querySelector('input[name=\"_honey\"]');
         const redirectField = form.querySelector('input[name=\"redirect\"]');
-        const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || '/pages/thank-you.html';
+        const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://a-team-handyman-services.com/pages/thank-you.html';
 
         if (honeypot) {
           honeypot.value = '';

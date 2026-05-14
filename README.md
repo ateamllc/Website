@@ -55,7 +55,9 @@ Carousels use `pages/partials/carousel.html` plus `data-carousel-*` attributes. 
 
 Use real project photos where possible. The photo carousel is part proof, part trust builder, and should appear early enough that visitors see credible work before deep copy.
 
-All autoscrolling landing-page carousels should use the same movement speed. When changing carousel speed, update the shared expectation here and apply it consistently across every lander instead of tuning pages one by one.
+All autoscrolling landing-page image carousels should use the handyman lander carousel as the reference speed: `data-carousel-speed="160s"`. The shared JavaScript and CSS fallback speed should also remain `160s`, so new autoscrolling lander carousels move consistently even when the attribute is omitted. When changing carousel speed, update this shared expectation and apply it consistently across every lander instead of tuning pages one by one.
+
+Review carousels should be ordered for the specific service lander. Put the most relevant reviews for that service in the first cards, and avoid showing reviews for less relevant services in the first couple of review cards. General trust reviews can follow service-specific reviews, and unrelated-but-positive reviews should be pushed later in the carousel.
 
 ### Forms
 
@@ -64,7 +66,7 @@ Forms sitewide currently cannot support file or image uploads because the site d
 All forms should redirect to the actual A Team thank-you page after submission:
 
 ```text
-/pages/thank-you.html
+https://a-team-handyman-services.com/pages/thank-you.html
 ```
 
 Preserve that redirect when creating or editing forms.
