@@ -55,6 +55,20 @@ Carousels use `pages/partials/carousel.html` plus `data-carousel-*` attributes. 
 
 Use real project photos where possible. The photo carousel is part proof, part trust builder, and should appear early enough that visitors see credible work before deep copy.
 
+All autoscrolling landing-page carousels should use the same movement speed. When changing carousel speed, update the shared expectation here and apply it consistently across every lander instead of tuning pages one by one.
+
+### Forms
+
+Forms sitewide currently cannot support file or image uploads because the site does not have a W3Forms Pro subscription. Do not add upload fields unless the form provider/account is upgraded and the implementation is tested end to end.
+
+All forms should redirect to the actual A Team thank-you page after submission:
+
+```text
+/pages/thank-you.html
+```
+
+Preserve that redirect when creating or editing forms.
+
 ### Tracking
 
 Clickable elements can send analytics through `data-track-event`, `data-track-category`, and `data-track-label`. Estimate forms use `data-track-form` and trigger start/submit events in `js/scripts.js`.
