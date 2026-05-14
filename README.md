@@ -103,6 +103,25 @@ Good landers should make the next step obvious: call, text photos, or request an
 
 ## Page Notes
 
+### Home Page
+
+File: `index.html`
+
+Current structure:
+
+- Hero with real project background, owner/contact CTAs, inline Google review proof, and the main estimate form.
+- CTA strip for call/text conversion, followed by a compact proof strip for schedule, license, response, and service-area trust.
+- Property manager bar immediately after the proof strip. This is a slim B2B pathway to `pages/landing/property-manager-portal.html` and should stay visually distinct from the homeowner service flow.
+- Classic Google review carousel immediately below the property manager bar. It uses `pages/partials/landing/review-carousel.html`, `data-review-section`, and `data/landing/handyman-reviews.json`.
+- Popular services section with the four current spotlight cards: handyman, painting, fences, and custom projects.
+- Detailed services list, social follow, email prompt, hiring banner, and footer.
+
+Strategic notes:
+
+- The home page is the broad homeowner entry point, so it should quickly establish trust, conversion options, and the main service categories before deeper service lists.
+- The property manager bar should remain a short routing element, not a full section, because the dedicated lander carries the B2B qualification work.
+- Review proof now appears before service spotlights so visitors see customer trust before comparing service categories.
+
 ### Handyman Lander
 
 File: `pages/landing/handyman.html`
