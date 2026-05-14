@@ -157,29 +157,34 @@ Strategic notes:
 - If this page is upgraded to the newer landing system, preserve the same customer concerns: prep, surface repair, clean lines, sheen/product fit, cleanup, and quote clarity.
 - Add review proof, stronger local/service-area signals, and an estimate form if making this a priority SEO or paid-traffic lander.
 
-### Property Maintenance for Landlords Lander
+### Property Manager Portal Lander
 
-File: `pages/landing/property-maintenance-landlords.html`
+File: `pages/landing/property-manager-portal.html`
 
 Purpose:
 
-- Convert landlords or property owners who need ongoing rental maintenance, turnover repairs, seasonal upkeep, and tenant coordination.
+- Convert Utah County property managers, owners, and operators who need recurring, on-call, or contract-style maintenance support across multiple properties.
+- Position A Team as a maintenance relationship for approved accounts, not just a one-off handyman vendor.
+- Qualify account fit before promising preferred pricing, on-call response, or recurring terms.
 
 Current structure:
 
-- Static hero with landlord/rental-maintenance positioning.
-- Early carousel with maintenance-oriented project images.
-- "What we cover" list focused on recurring walkthroughs, filter changes, caulking, weatherproofing, drywall/paint/trim, doors/windows/locks, and exterior touch-ups.
-- "Management made easy" grid with scheduled visits, tenant-friendly work, and clear reporting.
-- Final CTA asking for portfolio size and priorities.
+- Uses the reusable landing hero partial with a B2B/account-review CTA, call CTA, and text CTA.
+- Uses JSON-LD for local business, service, and FAQ schema.
+- Shows a trust strip immediately after the hero.
+- Uses an operator-focused overview section before the carousel to explain multi-property fit, account options, and owner clarity.
+- Uses the handyman image carousel as visual proof, with the standard autoscroll speed of `160s`.
+- Uses problem-solution, estimate/account application, what-we-do, scope-clarity, FAQ, final CTA, and mobile sticky CTA sections.
+- Does not currently use a review carousel; this is acceptable because the page is more B2B-facing and the stronger proof points are operational fit, communication, scope boundaries, and account process.
 
 Strategic notes:
 
 - This page is about operational reliability, not one-off repair excitement.
-- The buyer is likely responsible for multiple properties and cares about communication, documentation, tenant coordination, scheduling, and preventing bigger issues.
-- Copy should emphasize proactive maintenance, photo updates, clear reporting, and owner visibility.
-- Avoid making the page sound like general handyman work only. The landlord angle is the differentiator.
-- If upgraded, add stronger form fields around number of units/properties, recurring maintenance cadence, emergency expectations, and tenant access coordination.
+- The buyer likely manages multiple properties and cares about communication, documentation, tenant coordination, scheduling, predictable approvals, and avoiding vendor churn.
+- Copy should emphasize recurring maintenance, photo updates, clear reporting, account review, owner visibility, and practical boundaries.
+- Avoid making the page sound like general handyman work only. The property manager/account relationship is the differentiator.
+- Keep preferred pricing and on-call language conditional on account approval, property count, work type, access, and payment process.
+- If reviews are added later, order them around recurring reliability, communication, tenant-friendly work, punch lists, and multi-job trust before showing unrelated service reviews.
 
 ## Creating New Landers
 
@@ -193,7 +198,7 @@ For new priority landers, start from `pages/landing/handyman.html` and adjust:
 - Estimate form subject and tracking label.
 - Service-specific scope limits and qualification language.
 
-For lower-priority/simple landers, the older static pattern used by `painting.html` and `property-maintenance-landlords.html` is acceptable, but avoid duplicating that pattern for pages that need strong SEO, paid traffic, or lead qualification.
+For lower-priority/simple landers, the older static pattern used by `painting.html` is acceptable, but avoid duplicating that pattern for pages that need strong SEO, paid traffic, or lead qualification.
 
 Before adding a new lander, define:
 
