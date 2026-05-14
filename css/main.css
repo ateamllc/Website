@@ -546,6 +546,52 @@ main.content-sections {
     margin-bottom: 1.25rem;
 }
 
+.pro-connect-overview {
+    background: #ffffff;
+    margin-bottom: -2rem;
+}
+
+.pro-connect-lander .pro-connect-overview {
+    order: 2;
+}
+
+.pro-connect-heading {
+    max-width: 790px;
+    margin: 0 auto 1.75rem;
+    text-align: left;
+}
+
+.pro-connect-heading h2 {
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 0.8rem;
+}
+
+.pro-connect-proof {
+    display: grid;
+    gap: 0;
+    max-width: 790px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid #dbe3ee;
+    border-bottom: 1px solid #dbe3ee;
+}
+
+.pro-connect-proof li {
+    margin: 0;
+    padding: 0.85rem 0;
+    color: #475569;
+    border-top: 1px solid #e8edf3;
+}
+
+.pro-connect-proof li:first-child {
+    border-top: 0;
+}
+
+.pro-connect-proof strong {
+    color: #0f172a;
+}
+
 .service-arrow {
     display: inline-block;
     margin: 0 0.45rem;
@@ -855,6 +901,14 @@ main.content-sections {
 
     .handyman-lander .content-with-image .carousel-shell {
         margin-bottom: 0;
+    }
+
+    .pro-connect-overview {
+        padding-top: 3rem;
+    }
+
+    .pro-connect-proof li {
+        padding: 0.95rem 0;
     }
 }
 
