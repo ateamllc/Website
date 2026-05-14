@@ -1,0 +1,53 @@
+{
+  "reviews": [
+    {
+      "quote": "I had the A-team build me a HUUUGE fence. They nailed it. Quick service, great quality and good guys to work with. Totally recommend them.",
+      "name": "Kevin"
+    },
+    {
+      "quote": "I loved this handyman service. They were on time, ready to work, respectful and keep the work area neat and clean... If you're looking to have some jobs done around your home, give them a call!",
+      "name": "Heidi"
+    },
+    {
+      "quote": "These young men are the best, wonderful to work with. Super reasonable rates. I loved their attention to detail, as well as the quality of their work... High marks for their excellent work, even higher for their kindness and generosity.",
+      "name": "Ellen"
+    },
+    {
+      "quote": "They were so helpful and friendly. Finished the project fast, did a great job, and cleaned up nicely. I highly recommend these guys!",
+      "name": "Addie"
+    },
+    {
+      "quote": "Excellent boys that came and did such a good job. They really made their money and time worth it for me. I will definitely have them back again.",
+      "name": "Chelsea"
+    },
+    {
+      "quote": "These good young men have been wonderful for us and our house. They have been willing to do anything, and done it well. They have listened to our needs, been trustworthy, and clean up after their jobs very well.",
+      "name": "Nancy"
+    },
+    {
+      "quote": "They were personable and responsive and took care of all my questions and after-the-fact-tasks. Good work!",
+      "name": "G"
+    },
+    {
+      "quote": "They did an AMAZING job on projects big and small for me... They will be my first call for all future projects.",
+      "name": "Dawn"
+    },
+    {
+      "quote": "I've had good experiences with this group. They honor their bid, show up when they say they will, do good work, and communicate well... I would absolutely hire them again.",
+      "name": "Marcie"
+    },
+    {
+      "quote": "Did a great job fast efficient. Did great work. Thanks",
+      "name": "Kathy"
+    },
+    {
+      "quote": "They were punctual, fixed the problem and it's been working great ever since! Kind, professional, highly recommend.",
+      "name": "Jessica"
+    }
+  ],
+  "cta": {
+    "quote": "Read more customer feedback before you schedule.",
+    "label": "See Google reviews",
+    "href": "https://share.google/Zc4DtLCCPvvMNXxlH"
+  }
+}

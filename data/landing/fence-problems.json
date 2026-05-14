@@ -1,0 +1,25 @@
+[
+  {
+    "problem": "You need a new privacy fence around the yard",
+    "solutionHtml": "<a href=\"/pages/blog/build-basic-wood-fence.html\">wood fence installation</a>"
+  },
+  {
+    "problem": "A gate drags, sags, or no longer latches",
+    "solutionHtml": "<a href=\"/pages/landing/fence-repair.html\">gate and fence repair</a>"
+  },
+  {
+    "problem": "Wind or weather damaged posts and panels",
+    "solutionHtml": "<a href=\"/pages/landing/fence-repair.html\">post replacement and storm repair</a>"
+  },
+  {
+    "problem": "The fence needs stain or weather protection",
+    "solutionHtml": "<a href=\"/pages/landing/deck-fence-staining.html\">deck and fence staining</a>"
+  },
+  {
+    "problem": "You need a practical boundary for pets, kids, or a rental",
+    "solutionHtml": "<a href=\"/pages/services.html\">chain link &amp; outdoor fencing</a>"
+  },
+  {
+    "html": "You are planning another outdoor build like <a href=\"/pages/landing/pergolas.html\">pergolas and outdoor structures</a>"
+  }
+]
