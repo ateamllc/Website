@@ -1,29 +1,66 @@
 <style>
-  .social-follow-more {
+  .social-proof-section {
     text-align: center;
     padding: 40px 16px 52px;
   }
-  .social-follow-inner {
-    max-width: 860px;
+  .social-proof-inner {
+    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
   }
-  .social-follow-more h3 {
+  .social-proof-section h3 {
     margin-bottom: 8px;
     font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: 0.025em;
+    font-kerning: none;
   }
-  .social-follow-inner > p {
+  .social-proof-inner > p {
     color: #334155;
     margin-bottom: 18px;
     font-size: 17px;
   }
-  .social-cta-row {
+  .social-preview-mockup {
     display: grid;
     grid-template-columns: 1fr;
-    max-width: 720px;
+    width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
+    min-width: 0;
     text-align: left;
   }
-  .social-unified-card {
+  .social-preview-mockup .carousel-module {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+  .social-preview-mockup .carousel-viewport {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    min-height: 0;
+    -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0, #000 28px, #000 calc(100% - 28px), rgba(0, 0, 0, 0.35) 100%);
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0, #000 28px, #000 calc(100% - 28px), rgba(0, 0, 0, 0.35) 100%);
+  }
+  .social-preview-mockup .carousel-track {
+    --carousel-card-size: minmax(170px, 220px);
+    min-height: 0;
+    padding-bottom: 4px;
+  }
+  .social-preview-mockup .carousel-module.is-autoscroll .carousel-track {
+    animation-direction: reverse;
+  }
+  .social-preview-mockup .carousel-card {
+    border-radius: 10px;
+  }
+  .social-profile-card {
     background: #fff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
@@ -31,30 +68,30 @@
     overflow: hidden;
     box-shadow: 0 18px 44px rgba(15, 23, 42, 0.13);
   }
-  .social-preview-grid-wrap {
+  .social-profile-card-frame {
     display: block;
   }
-  .social-preview-head {
+  .social-profile-header {
     display: grid;
     justify-items: center;
     justify-content: center;
     padding: 18px 20px;
     border-bottom: 1px solid #e2e8f0;
   }
-  .social-profile-top {
+  .social-profile-identity {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 18px;
-    text-align: center;
+    text-align: left;
   }
-  .social-profile-lines {
+  .social-profile-links {
     display: grid;
     gap: 7px;
-    justify-items: center;
+    justify-items: start;
     min-width: 0;
   }
-  .social-preview-avatar {
+  .social-profile-avatar {
     width: 74px;
     height: 74px;
     border-radius: 50%;
@@ -63,7 +100,7 @@
     border: 1px solid #e2e8f0;
     flex: 0 0 auto;
   }
-  .social-profile-line {
+  .social-profile-link {
     display: inline-flex;
     align-items: center;
     gap: 7px;
@@ -74,10 +111,10 @@
     text-decoration: none;
     width: fit-content;
   }
-  .social-profile-line:hover {
+  .social-profile-link:hover {
     text-decoration: underline;
   }
-  .social-profile-line--secondary {
+  .social-profile-link--secondary {
     color: #0f172a;
     font-weight: 800;
     font-size: 1rem;
@@ -91,9 +128,11 @@
     color: #334155;
     font-size: 0.95rem;
     line-height: 1.35;
-    max-width: 460px;
+    width: 100%;
+    max-width: none;
     text-align: left;
     justify-self: stretch;
+    box-sizing: border-box;
   }
   .social-profile-bio strong {
     color: #0f172a;
@@ -107,7 +146,7 @@
   .social-profile-bio a:hover {
     text-decoration: underline;
   }
-  .social-network-mark {
+  .social-link-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -116,12 +155,12 @@
     height: 24px;
     border-radius: 999px;
   }
-  .social-network-mark svg {
+  .social-link-icon svg {
     width: 22px;
     height: 22px;
     display: block;
   }
-  .social-preview-body {
+  .social-post-preview {
     display: grid;
     padding: 12px 22px;
     background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
@@ -138,7 +177,7 @@
     border-radius: 8px;
     display: block;
   }
-  .social-button-row {
+  .social-profile-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -147,7 +186,7 @@
     border-top: 1px solid #e2e8f0;
     background: #f8fafc;
   }
-  .social-action-button {
+  .social-profile-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -163,23 +202,39 @@
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.09);
     transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
   }
-  .social-action-button:hover {
+  .social-profile-action:hover {
     transform: translateY(-2px);
     border-color: #cbd5e1;
     box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
   }
-  .social-action-button svg {
+  .social-profile-action svg {
     width: 24px;
     height: 24px;
     display: block;
   }
-  .other-accounts {
+  .social-account-directory {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
-    margin-top: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 0;
   }
-  .other-card {
+  .social-account-directory-wrap {
+    margin: 24px 0 0;
+  }
+  .social-account-group {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    grid-template-rows: auto repeat(2, 1fr);
+  }
+  .social-account-group h4 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 1rem;
+    font-weight: 800;
+    text-align: center;
+  }
+  .social-account-card {
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 14px;
@@ -187,27 +242,66 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    min-height: 88px;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
     text-decoration: none;
     color: #0f172a;
   }
-  .other-card:hover {
+  .social-account-card:hover {
     box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16);
   }
-  .other-card img {
+  .social-account-logo {
+    position: relative;
+    width: 58px;
+    height: 58px;
+    flex: 0 0 auto;
+  }
+  .social-account-logo img {
     width: 56px;
     height: 56px;
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    background: #f8fafc;
     object-fit: contain;
+    display: block;
+  }
+  .social-account-platform {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
+  }
+  .social-account-platform svg {
+    width: 13px;
+    height: 13px;
+    display: block;
+  }
+  .social-account-platform--facebook {
+    background: #1877f2;
+  }
+  .social-account-platform--instagram {
+    background: linear-gradient(135deg, #f58529 0%, #dd2a7b 52%, #515bd4 100%);
+  }
+  .social-account-name {
+    font-weight: 800;
+    line-height: 1.25;
   }
   @media (max-width: 760px) {
-    .social-preview-head {
+    .social-profile-header {
       gap: 14px;
       padding: 16px;
     }
-    .social-profile-top {
+    .social-profile-identity {
       gap: 14px;
     }
-    .social-preview-avatar {
+    .social-profile-avatar {
       width: 64px;
       height: 64px;
     }
@@ -215,35 +309,50 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 6px;
     }
-    .social-preview-body {
+    .social-post-preview {
       padding: 10px 14px;
+    }
+    .social-account-directory {
+      grid-template-columns: 1fr;
     }
   }
 </style>
 
-<section class="social-follow-more">
-  <div class="social-follow-inner">
-    <h3>Find us on social</h3>
+<section class="social-proof-section">
+  <div class="social-proof-inner">
+    <h3>Want more proof? Check us out on socials</h3>
     <p>See current project photos, jobsite updates, and finished work before you book.</p>
     <!-- <p>We post daily stories and reels of work in progress. Follow us to keep up.</p> -->
-    <div class="social-cta-row">
-      <article class="social-unified-card" aria-label="A Team Handyman social previews">
-        <div class="social-preview-grid-wrap">
-          <div class="social-preview-head">
-            <div class="social-profile-top">
-              <img class="social-preview-avatar" src="/image/New%20Logos/A%20Team%20Handyman%20Services%20logo.png" alt="A Team Handyman Services logo">
-              <div class="social-profile-lines">
-                <a class="social-profile-line" href="https://www.facebook.com/p/A-Team-Handyman-Services-61571483293182/" target="_blank" rel="noopener">
-                  A Team Handyman Services
-                  <span class="social-network-mark" aria-hidden="true">
+    <div
+      class="social-preview-mockup"
+      data-carousel-label="A Team project photo"
+      data-carousel-rows="1"
+      data-carousel-autoscroll="true"
+      data-carousel-speed="320s"
+      data-carousel-folder="/image/handyman-photos"
+      data-carousel-lazy-init="false">
+      <div class="carousel-module" data-carousel-root>
+        <div class="carousel-viewport">
+          <div class="carousel-track" role="list"></div>
+        </div>
+      </div>
+      <!--
+      <article class="social-profile-card" aria-label="A Team Handyman social media preview">
+        <div class="social-profile-card-frame">
+          <div class="social-profile-header">
+            <div class="social-profile-identity">
+              <img class="social-profile-avatar" src="/image/New%20Logos/A%20Team%20Handyman%20Services%20logo.png" alt="A Team Handyman Services logo">
+              <div class="social-profile-links">
+                <a class="social-profile-link" href="https://www.facebook.com/p/A-Team-Handyman-Services-61571483293182/" target="_blank" rel="noopener">
+                  <span class="social-link-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" focusable="false">
                       <path fill="#1877F2" d="M22 12.073C22 6.505 17.523 2 12 2S2 6.505 2 12.073c0 5.018 3.657 9.167 8.438 9.93v-7.03H7.898v-2.9h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.47h-1.26c-1.243 0-1.63.774-1.63 1.567v1.88h2.773l-.443 2.9h-2.33v7.03C18.343 21.24 22 17.091 22 12.073z"/>
                     </svg>
                   </span>
+                  A Team Handyman Services
                 </a>
-                <a class="social-profile-line social-profile-line--secondary" href="https://www.instagram.com/ateamhandyman.co/" target="_blank" rel="noopener">
-                  @ateamhandyman.co
-                  <span class="social-network-mark" aria-hidden="true">
+                <a class="social-profile-link social-profile-link--secondary" href="https://www.instagram.com/ateamhandyman.co/" target="_blank" rel="noopener">
+                  <span class="social-link-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" focusable="false">
                       <defs>
                         <linearGradient id="igGradientMarkPartial" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -256,6 +365,7 @@
                       <path fill="#fff" d="M12 8.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5zm0 5.8A2.3 2.3 0 1 1 14.3 12 2.31 2.31 0 0 1 12 14.3zm4.6-6.8a.9.9 0 1 1 .9-.9.9.9 0 0 1-.9.9z"/>
                     </svg>
                   </span>
+                  @ateamhandyman.co
                 </a>
               </div>
             </div>
@@ -267,7 +377,7 @@
               <a href="tel:+18014777526">(801) 477-7526</a>
             </div>
           </div>
-          <div class="social-preview-body">
+          <div class="social-post-preview">
             <div class="social-post-grid" aria-hidden="true">
               <img src="/image/dawn-side-garage.webp" alt="">
               <img src="/image/IMG_2521.webp" alt="">
@@ -278,14 +388,14 @@
             </div>
           </div>
         </div>
-        <div class="social-button-row">
-          <a class="social-action-button" href="https://www.facebook.com/p/A-Team-Handyman-Services-61571483293182/" target="_blank" rel="noopener" aria-label="Open A Team Handyman Services on Facebook">
+        <div class="social-profile-actions">
+          <a class="social-profile-action" href="https://www.facebook.com/p/A-Team-Handyman-Services-61571483293182/" target="_blank" rel="noopener" aria-label="Open A Team Handyman Services on Facebook">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path fill="#1877F2" d="M22 12.073C22 6.505 17.523 2 12 2S2 6.505 2 12.073c0 5.018 3.657 9.167 8.438 9.93v-7.03H7.898v-2.9h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.47h-1.26c-1.243 0-1.63.774-1.63 1.567v1.88h2.773l-.443 2.9h-2.33v7.03C18.343 21.24 22 17.091 22 12.073z"/>
             </svg>
             Follow on Facebook
           </a>
-          <a class="social-action-button" href="https://www.instagram.com/ateamhandyman.co/" target="_blank" rel="noopener" aria-label="Open A Team Handyman on Instagram">
+          <a class="social-profile-action" href="https://www.instagram.com/ateamhandyman.co/" target="_blank" rel="noopener" aria-label="Open A Team Handyman on Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <defs>
                 <linearGradient id="igGradientButtonPartial" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -301,43 +411,89 @@
           </a>
         </div>
       </article>
+      -->
     </div>
-  </div>
-</section>
-
-<section class="social-follow-more" style="padding-top: 0;">
-  <div class="social-follow-inner">
-    <h3>Check out our other accounts</h3>
-    <p>Brand-specific updates for painting and fencing teams.</p>
-    <div class="other-accounts">
-      <a class="other-card" href="https://www.facebook.com/profile.php?id=61582681021710" target="_blank" rel="noopener">
-        <img src="/image/New%20Logos/A%20Team%20Painting%20logo.png" alt="A Team Painting Facebook">
-        <div>
-          <strong>Painting Facebook</strong>
-          <div>@ateampainting.co</div>
+    <div class="social-account-directory-wrap">
+      <div class="social-account-directory">
+        <div class="social-account-group">
+          <h4>Handyman Services</h4>
+          <a class="social-account-card" href="https://www.facebook.com/p/A-Team-Handyman-Services-61571483293182/" target="_blank" rel="noopener">
+            <div class="social-account-logo">
+              <img src="/image/New%20Logos/A%20Team%20Handyman%20Services%20logo.png" alt="A Team Handyman Services Facebook">
+              <span class="social-account-platform social-account-platform--facebook" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path fill="#fff" d="M14.2 8.3V6.9c0-.7.5-.9.9-.9h2.2V2.2L14.3 2c-3.4 0-4.2 2.1-4.2 4.5v1.8H7.3v4.2h2.8V22h4.4v-9.5h3.2l.5-4.2h-3.7z"/>
+                </svg>
+              </span>
+            </div>
+            <strong class="social-account-name">A Team Handyman Services</strong>
+          </a>
+          <a class="social-account-card" href="https://www.instagram.com/ateamhandyman.co/" target="_blank" rel="noopener">
+            <div class="social-account-logo">
+              <img src="/image/New%20Logos/A%20Team%20Handyman%20Services%20logo.png" alt="A Team Handyman Services Instagram">
+              <span class="social-account-platform social-account-platform--instagram" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path fill="#fff" d="M12 7.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6zm0 7.2A2.8 2.8 0 1 1 14.8 12 2.8 2.8 0 0 1 12 14.8zm4.9-7.6a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/>
+                  <path fill="#fff" d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5zm3.2 15A3.2 3.2 0 0 1 17 20.2H7A3.2 3.2 0 0 1 3.8 17V7A3.2 3.2 0 0 1 7 3.8h10A3.2 3.2 0 0 1 20.2 7z"/>
+                </svg>
+              </span>
+            </div>
+            <strong class="social-account-name">@ateamhandyman.co</strong>
+          </a>
         </div>
-      </a>
-      <a class="other-card" href="https://www.instagram.com/ateampainting.co/" target="_blank" rel="noopener">
-        <img src="/image/New%20Logos/A%20Team%20Painting%20logo.png" alt="A Team Painting Instagram">
-        <div>
-          <strong>Painting Instagram</strong>
-          <div>@ateampainting.co</div>
+        <div class="social-account-group">
+          <h4>Painting &amp; Drywall</h4>
+          <a class="social-account-card" href="https://www.facebook.com/profile.php?id=61582681021710" target="_blank" rel="noopener">
+            <div class="social-account-logo">
+              <img src="/image/New%20Logos/A%20Team%20Painting%20logo.png" alt="A Team Painting Facebook">
+              <span class="social-account-platform social-account-platform--facebook" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path fill="#fff" d="M14.2 8.3V6.9c0-.7.5-.9.9-.9h2.2V2.2L14.3 2c-3.4 0-4.2 2.1-4.2 4.5v1.8H7.3v4.2h2.8V22h4.4v-9.5h3.2l.5-4.2h-3.7z"/>
+                </svg>
+              </span>
+            </div>
+            <strong class="social-account-name">A Team Painting</strong>
+          </a>
+          <a class="social-account-card" href="https://www.instagram.com/ateampainting.co/" target="_blank" rel="noopener">
+            <div class="social-account-logo">
+              <img src="/image/New%20Logos/A%20Team%20Painting%20logo.png" alt="A Team Painting Instagram">
+              <span class="social-account-platform social-account-platform--instagram" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path fill="#fff" d="M12 7.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6zm0 7.2A2.8 2.8 0 1 1 14.8 12 2.8 2.8 0 0 1 12 14.8zm4.9-7.6a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/>
+                  <path fill="#fff" d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5zm3.2 15A3.2 3.2 0 0 1 17 20.2H7A3.2 3.2 0 0 1 3.8 17V7A3.2 3.2 0 0 1 7 3.8h10A3.2 3.2 0 0 1 20.2 7z"/>
+                </svg>
+              </span>
+            </div>
+            <strong class="social-account-name">@ateampainting.co</strong>
+          </a>
         </div>
-      </a>
-      <a class="other-card" href="https://www.facebook.com/profile.php?id=61582445155094" target="_blank" rel="noopener">
-        <img src="/image/New%20Logos/A%20Team%20Fences%20%26%20Outdoor%20Structures%20logo.png" alt="A Team Fencing Facebook">
-        <div>
-          <strong>Fencing Facebook</strong>
-          <div>@ateamfencing.co</div>
+        <div class="social-account-group">
+          <h4>Fencing &amp; Outdoor Structures</h4>
+          <a class="social-account-card" href="https://www.facebook.com/profile.php?id=61582445155094" target="_blank" rel="noopener">
+            <div class="social-account-logo">
+              <img src="/image/New%20Logos/A%20Team%20Fences%20%26%20Outdoor%20Structures%20logo.png" alt="A Team Fencing Facebook">
+              <span class="social-account-platform social-account-platform--facebook" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path fill="#fff" d="M14.2 8.3V6.9c0-.7.5-.9.9-.9h2.2V2.2L14.3 2c-3.4 0-4.2 2.1-4.2 4.5v1.8H7.3v4.2h2.8V22h4.4v-9.5h3.2l.5-4.2h-3.7z"/>
+                </svg>
+              </span>
+            </div>
+            <strong class="social-account-name">A Team Fencing &amp; Outdoor Structures</strong>
+          </a>
+          <a class="social-account-card" href="https://www.instagram.com/ateamfencing.co/" target="_blank" rel="noopener">
+            <div class="social-account-logo">
+              <img src="/image/New%20Logos/A%20Team%20Fences%20%26%20Outdoor%20Structures%20logo.png" alt="A Team Fencing Instagram">
+              <span class="social-account-platform social-account-platform--instagram" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path fill="#fff" d="M12 7.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6zm0 7.2A2.8 2.8 0 1 1 14.8 12 2.8 2.8 0 0 1 12 14.8zm4.9-7.6a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/>
+                  <path fill="#fff" d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5zm3.2 15A3.2 3.2 0 0 1 17 20.2H7A3.2 3.2 0 0 1 3.8 17V7A3.2 3.2 0 0 1 7 3.8h10A3.2 3.2 0 0 1 20.2 7z"/>
+                </svg>
+              </span>
+            </div>
+            <strong class="social-account-name">@ateamfencing.co</strong>
+          </a>
         </div>
-      </a>
-      <a class="other-card" href="https://www.instagram.com/ateamfencing.co/" target="_blank" rel="noopener">
-        <img src="/image/New%20Logos/A%20Team%20Fences%20%26%20Outdoor%20Structures%20logo.png" alt="A Team Fencing Instagram">
-        <div>
-          <strong>Fencing Instagram</strong>
-          <div>@ateamfencing.co</div>
-        </div>
-      </a>
+      </div>
     </div>
   </div>
 </section>
