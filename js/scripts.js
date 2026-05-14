@@ -530,6 +530,14 @@
     setText(section, '[data-estimate-copy]', section.dataset.estimateCopy);
     setText(section, '[data-estimate-note]', section.dataset.estimateNote);
     setText(section, '[data-estimate-submit]', section.dataset.submitLabel);
+    setText(section, '[data-for="city"]', section.dataset.cityLabel);
+    setText(section, '[data-for="message"]', section.dataset.messageLabel);
+    setText(section, '.form-microcopy', section.dataset.phoneMicrocopy);
+
+    const messageField = section.querySelector('[data-field="message"]');
+    if (messageField && section.dataset.messagePlaceholder) {
+      messageField.placeholder = section.dataset.messagePlaceholder;
+    }
 
     const formId = section.dataset.formId || 'estimate-form';
     form.id = formId;
