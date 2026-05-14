@@ -189,10 +189,6 @@ main.content-sections {
     background-color: #fff;
 }
 
-.contact-form input[type="file"] {
-    padding: 0.65rem;
-}
-
 .contact-form textarea {
     resize: vertical;
 }
@@ -778,7 +774,7 @@ main.content-sections {
     overflow: visible;
     scroll-snap-type: none;
     padding-bottom: 0;
-    animation: carousel-marquee var(--carousel-duration, 90s) linear infinite;
+    animation: carousel-marquee var(--carousel-duration, 160s) linear infinite;
     will-change: transform;
 }
 

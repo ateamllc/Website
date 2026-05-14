@@ -132,7 +132,7 @@
     const label = container.dataset.carouselLabel || 'Project photo';
     const rows = Number(container.dataset.carouselRows || 1);
     const shouldAutoscroll = container.dataset.carouselAutoscroll === 'true';
-    const speed = container.dataset.carouselSpeed || '90s';
+    const speed = container.dataset.carouselSpeed || '160s';
     const featuredTag = container.dataset.carouselFeaturedTag || '';
     const featuredEvery = Number(container.dataset.carouselFeaturedEvery || 0);
 

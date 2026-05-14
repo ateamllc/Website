@@ -17,10 +17,6 @@
       "name": "Chelsea"
     },
     {
-      "quote": "I had the A-team build me a HUUUGE fence. They nailed it. Quick service, great quality and good guys to work with. Totally recommend them.",
-      "name": "Kevin"
-    },
-    {
       "quote": "These good young men have been wonderful for us and our house. They have been willing to do anything, and done it well. They have listened to our needs, been trustworthy, and clean up after their jobs very well.",
       "name": "Nancy"
     },
@@ -43,6 +39,10 @@
     {
       "quote": "They were punctual, fixed the problem and it's been working great ever since! Kind, professional, highly recommend.",
       "name": "Jessica"
+    },
+    {
+      "quote": "I had the A-team build me a HUUUGE fence. They nailed it. Quick service, great quality and good guys to work with. Totally recommend them.",
+      "name": "Kevin"
     }
   ],
   "cta": {

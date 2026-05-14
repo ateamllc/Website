@@ -168,7 +168,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         honeypot.setAttribute('data-lpignore', 'true');
       }
       const redirectField = form.querySelector('input[name="redirect"]');
-      const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || '/pages/thank-you.html';
+      const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://a-team-handyman-services.com/pages/thank-you.html';
 
       form.addEventListener('submit', async function (event) {
         if (honeypot && honeypot.value.trim()) {
