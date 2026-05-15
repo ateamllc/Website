@@ -176,6 +176,36 @@ Strategic notes:
 - If this page is upgraded to the newer landing system, preserve the same customer concerns: prep, surface repair, clean lines, sheen/product fit, cleanup, and quote clarity.
 - Add review proof, stronger local/service-area signals, and an estimate form if making this a priority SEO or paid-traffic lander.
 
+### Fences Lander
+
+File: `pages/landing/fences.html`
+
+Purpose:
+
+- Convert visitors looking for fence installation and fence repair in Provo, Orem, and Utah County.
+- Capture wood privacy fences, chain link fences, gates, post replacement, storm damage repairs, staining, sealing, and practical outdoor boundary projects.
+- Make it easy for homeowners and property owners to call, text photos, or request a free fence estimate.
+
+Current structure:
+
+- Uses the newer reusable landing-page system modeled after `pages/landing/handyman.html`.
+- Uses JSON-LD for local business, service, and FAQ schema.
+- Uses the reusable landing hero partial with service area, estimate CTA, call CTA, and text-photo CTA.
+- Uses `image/fence-photos/IMG_5190_result.webp` as the current hero and estimate-section background image.
+- Shows a trust strip immediately after the hero.
+- Uses a two-row autoscrolling fence project carousel from `image/fence-photos/manifest.json`, with the standard autoscroll speed of `160s`.
+- The fence carousel manifest is curated from real fence project photos and should favor informative progress and finished work over repeated angles.
+- Uses problem-solution, estimate form, review carousel, what-we-do, scope-clarity, FAQ, final CTA, social follow, and mobile sticky CTA sections.
+- The review carousel is ordered with fence-specific feedback first, followed by broader trust reviews.
+
+Strategic notes:
+
+- This page is a priority service lander and should stay closer to the handyman lander structure than the older static landers.
+- Photo proof is central. Keep real fence photos high on the page and avoid generic stock-style imagery.
+- Copy should emphasize practical fence outcomes: privacy, security, pets, gates, rentals, weather damage, clean lines, and durable repairs.
+- Keep fence-needs links pointed to valid supporting pages rather than back to this same lander.
+- Preserve scope clarity around property lines, utilities, HOA/city requirements, access, slope, old fence removal, haul-away, material choices, and permit-heavy work.
+
 ### Property Manager Portal Lander
 
 File: `pages/landing/property-manager-portal.html`
