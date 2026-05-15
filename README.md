@@ -162,19 +162,22 @@ Purpose:
 
 Current structure:
 
-- Static hero with a real painting/project image background.
-- Early carousel with painting project images.
-- "What we paint" list focused on interiors and durable finishes.
-- Process section with prep, prime/paint, cleanup/walkthrough.
-- Final CTA for quote requests.
+- Uses the newer reusable landing-page system modeled after `pages/landing/handyman.html`.
+- Uses JSON-LD for local business, service, and FAQ schema.
+- Uses the reusable landing hero partial with service area, estimate CTA, call CTA, and text-photo CTA.
+- Uses `image/painting-photos/CB26CFFF-F28D-4819-A3EE-A40617070C4C.webp` as the current hero and estimate-section background image.
+- Shows a trust strip immediately after the hero.
+- Uses a two-row autoscrolling painting project carousel from `image/painting-photos/manifest.json`, with the standard autoscroll speed of `160s`.
+- Uses problem-solution, estimate form, review carousel, what-we-do, scope-clarity, FAQ, final CTA, social follow, and mobile sticky CTA sections.
 
 Strategic notes:
 
 - The page sells cleanliness, prep discipline, finish quality, and low hassle.
 - The headline "Crisp lines, smooth walls, zero mess" is intentionally outcome-based rather than a generic "Painting Services" headline.
-- The process section exists to reduce buyer anxiety. Painting customers care about protection, masking, furniture/floor handling, cleanup, and walkthroughs.
-- If this page is upgraded to the newer landing system, preserve the same customer concerns: prep, surface repair, clean lines, sheen/product fit, cleanup, and quote clarity.
-- Add review proof, stronger local/service-area signals, and an estimate form if making this a priority SEO or paid-traffic lander.
+- The page is now a priority-style lander and should stay close to the handyman/fence lander structure.
+- Painting customers care about protection, masking, furniture/floor handling, surface repair, cleanup, and walkthroughs. Keep those concerns visible in estimate copy, scope clarity, and FAQs.
+- Preserve scope clarity around water damage, mold, lead-paint concerns, specialty coatings, cabinet/trim finish expectations, exterior access, and major substrate repairs.
+- Photo proof and review proof should stay high on the page. Use real images from `image/painting-photos/` and keep the manifest curated if low-value repeated angles are added later.
 
 ### Fences Lander
 
