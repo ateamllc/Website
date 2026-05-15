@@ -1,0 +1,18 @@
+[
+  {
+    "problem": "The list is too small for separate contractors",
+    "solutionHtml": "bundled handyman visit for small practical repairs"
+  },
+  {
+    "problem": "Several rooms each need one fix",
+    "solutionHtml": "prioritized visit planning and clear time expectations"
+  },
+  {
+    "problem": "A rental or home sale has punch-list items",
+    "solutionHtml": "repair list review before scheduling"
+  },
+  {
+    "problem": "You are not sure what fits in one visit",
+    "solutionHtml": "photo-based triage and scope recommendations"
+  }
+]
