@@ -253,6 +253,224 @@ main.content-sections {
     color: #0f172a;
 }
 
+.door-hanger-hero {
+    position: relative;
+    min-height: auto;
+    isolation: isolate;
+    overflow: hidden;
+    background: #0f172a;
+}
+
+.door-hanger-hero__media {
+    position: absolute;
+    inset: -2%;
+    z-index: 0;
+    background: url("/image/img_2666.webp") 92% 92% / cover no-repeat;
+    opacity: 0.42;
+    transform: scale(1.12);
+}
+
+.door-hanger-hero__inner {
+    position: relative;
+    z-index: 1;
+    width: min(1180px, calc(100% - 2rem));
+    min-height: 720px;
+    margin: 0 auto;
+    padding: clamp(4rem, 9vh, 6.5rem) 0 4rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
+    gap: 2rem;
+    align-items: center;
+}
+
+.door-hanger-copy {
+    color: #fff;
+    max-width: 680px;
+}
+
+.door-hanger-offer-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.42rem 0.72rem;
+    margin-bottom: 0.85rem;
+    border: 1px solid rgba(251, 191, 36, 0.7);
+    border-radius: 8px;
+    color: #fbbf24;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.door-hanger-offer {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.door-hanger-offer__amount {
+    color: #fbbf24;
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(4rem, 10vw, 7.25rem);
+    font-weight: 700;
+    line-height: 0.95;
+    text-transform: uppercase;
+}
+
+.door-hanger-offer__detail {
+    max-width: 190px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.15;
+    text-transform: uppercase;
+}
+
+.door-hanger-copy h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.1rem, 4.5vw, 3.7rem);
+    line-height: 1.02;
+    margin-bottom: 1rem;
+}
+
+.door-hanger-intro {
+    max-width: 620px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.12rem;
+}
+
+.door-hanger-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.door-hanger-actions .btn-outline {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.door-hanger-proof {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 0.85rem;
+    max-width: 520px;
+}
+
+.door-hanger-proof div {
+    border-left: 4px solid #f59e0b;
+    padding-left: 0.85rem;
+}
+
+.door-hanger-proof dt {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.door-hanger-proof dd {
+    color: #fff;
+    font-weight: 800;
+}
+
+.door-hanger-form {
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 1.25rem;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.32);
+    margin-top: -1rem;
+}
+
+.door-hanger-form__header h2 {
+    font-family: 'Oswald', sans-serif;
+    line-height: 1.08;
+}
+
+.door-hanger-form__header p:last-child {
+    color: #475569;
+    margin-top: 0.35rem;
+}
+
+.door-hanger-terms {
+    border: 1px solid #f59e0b;
+    border-radius: 8px;
+    background: #fffbeb;
+    color: #713f12;
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.45;
+    padding: 0.75rem;
+}
+
+.door-hanger-form button {
+    width: 100%;
+}
+
+@media (max-width: 860px) {
+    .door-hanger-hero__media {
+        inset: -8% -8% auto -8%;
+        height: 34rem;
+        background-position: 96% bottom;
+        transform: scale(1.28);
+    }
+
+    .door-hanger-hero,
+    .door-hanger-hero__inner {
+        min-height: auto;
+    }
+
+    .door-hanger-hero__inner {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        padding: 3rem 0 0.75rem;
+    }
+
+    .door-hanger-form {
+        margin-top: 0;
+    }
+
+    .door-hanger-proof {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .door-hanger-hero__media {
+        inset: -6% -6% auto -6%;
+        height: 31rem;
+        background-position: 100% 100%;
+        transform: scale(1.2);
+    }
+
+    .door-hanger-hero__inner {
+        width: min(100% - 1rem, 1180px);
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .door-hanger-actions .btn {
+        width: 100%;
+    }
+
+    .door-hanger-offer {
+        gap: 0.75rem;
+    }
+
+    .door-hanger-offer__detail {
+        max-width: 150px;
+        font-size: 1rem;
+    }
+
+    .door-hanger-form {
+        padding: 1rem;
+    }
+}
+
 .map-embed {
     display: flex;
     justify-content: center;

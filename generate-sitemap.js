@@ -8,6 +8,7 @@ const excludedFiles = new Set([
   path.join('pages', 'admin-login.html'),
   path.join('pages', 'admin-users.html'),
   path.join('pages', 'admin-data.html'),
+  path.join('pages', 'door-hanger-offer.html'),
 ]);
 
 function readDomain() {
