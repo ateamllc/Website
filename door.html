@@ -79,6 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <form id="door-hanger-form" action="https://api.web3forms.com/submit" method="post" class="contact-form door-hanger-form"
+          data-require-contact
           data-discount-codes
           data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
           <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
@@ -112,13 +113,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <input id="door-hanger-last-name" name="last_name" autocomplete="family-name" required>
 
           <label for="door-hanger-phone">Phone</label>
-          <input id="door-hanger-phone" name="phone" autocomplete="tel" inputmode="tel" required>
+          <input id="door-hanger-phone" name="phone" autocomplete="tel" inputmode="tel">
 
           <label for="door-hanger-email">Email</label>
           <input id="door-hanger-email" type="email" name="email" autocomplete="email">
 
           <label for="door-hanger-city">Project address</label>
-          <input id="door-hanger-city" name="project_address" autocomplete="street-address" required>
+          <input id="door-hanger-city" name="project_address" autocomplete="street-address">
 
           <label for="door-hanger-message">What do you need help with?</label>
           <textarea id="door-hanger-message" name="project_description" rows="3" placeholder="Example: fence gate repair, drywall patch, painting, rental turnover list..." required></textarea>
@@ -246,6 +247,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://a-team-handyman-services.com/pages/thank-you.html';
 
       form.addEventListener('submit', async function (event) {
+        if (window.ATeamForms && !window.ATeamForms.validateContactRequirement(form)) {
+          event.preventDefault();
+          return;
+        }
+
         if (honeypot && honeypot.value.trim()) {
           event.preventDefault();
           return;
