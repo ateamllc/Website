@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow,noarchive,noimageindex">
+  <title>Knocking Process | A Team Property Improvement</title>
+  <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <style>
+    body.knocking-process-page {
+      background: #f8fafc;
+      color: #172033;
+    }
+
+    .knocking-main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .knocking-hero {
+      background: linear-gradient(135deg, #0f172a 0%, #182741 68%, #243b61 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1rem 0;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+    }
+
+    .knocking-hero h1,
+    .knocking-section h2,
+    .knocking-card h3 {
+      font-family: 'Oswald', sans-serif;
+      line-height: 1.1;
+      color: inherit;
+    }
+
+    .knocking-hero h1 {
+      font-size: clamp(2rem, 11vw, 4rem);
+      margin-bottom: 0.8rem;
+    }
+
+    .knocking-hero p {
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 40rem;
+    }
+
+    .knocking-alert {
+      margin-top: 1rem;
+      padding: 0.9rem;
+      border-left: 4px solid #f59e0b;
+      background: rgba(255, 255, 255, 0.08);
+      font-weight: 700;
+    }
+
+    .knocking-section {
+      padding: 1.25rem 0;
+      scroll-margin-top: 140px;
+    }
+
+    .knocking-quick-grid {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .knocking-quick-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .knocking-quick-card h2 {
+      font-family: 'Oswald', sans-serif;
+      color: #182741;
+      font-size: 1.45rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .knocking-quick-list {
+      display: grid;
+      gap: 0.65rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .knocking-quick-list li a {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.65rem;
+      align-items: start;
+      color: #334155;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 0.25rem;
+      margin: -0.25rem;
+    }
+
+    .knocking-quick-list li a:hover,
+    .knocking-quick-list li a:focus-visible {
+      background: #fff7ed;
+      color: #172033;
+      outline: none;
+    }
+
+    .knocking-lead-form {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    .knocking-form-grid {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .knocking-field {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .knocking-field label {
+      color: #182741;
+      font-weight: 800;
+      font-size: 0.94rem;
+    }
+
+    .knocking-field input,
+    .knocking-field textarea,
+    .knocking-field select {
+      width: 100%;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #fff;
+      color: #172033;
+      font: inherit;
+    }
+
+    .knocking-field textarea {
+      resize: vertical;
+    }
+
+    .knocking-field--full,
+    .knocking-lead-form button {
+      grid-column: 1 / -1;
+    }
+
+    .knocking-form-note {
+      grid-column: 1 / -1;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    .knocking-section h2 {
+      color: #182741;
+      font-size: 1.8rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .knocking-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.85rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      scroll-margin-top: 140px;
+    }
+
+    .knocking-card h3 {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      color: #182741;
+      font-size: 1.18rem;
+      margin-bottom: 0.55rem;
+      text-transform: uppercase;
+    }
+
+    .knocking-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 999px;
+      background: #f59e0b;
+      color: #0f172a;
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .knocking-card p,
+    .knocking-card li {
+      color: #334155;
+    }
+
+    .knocking-card p + p,
+    .knocking-card ul,
+    .knocking-card ol,
+    .knocking-card blockquote {
+      margin-top: 0.7rem;
+    }
+
+    .knocking-card ul,
+    .knocking-card ol {
+      padding-left: 1.25rem;
+    }
+
+    .knocking-card li + li {
+      margin-top: 0.35rem;
+    }
+
+    .knocking-quote {
+      border-left: 4px solid #f59e0b;
+      background: #fff7ed;
+      padding: 0.85rem;
+      color: #172033;
+      font-weight: 700;
+    }
+
+    .knocking-quote p + p {
+      margin-top: 0.45rem;
+    }
+
+    .knocking-system {
+      background: #182741;
+      color: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0 2rem;
+      text-align: center;
+      font-weight: 800;
+      box-shadow: 0 14px 40px rgba(24, 39, 65, 0.22);
+    }
+
+    .knocking-system span {
+      color: #f59e0b;
+    }
+
+    strong {
+      color: #0f172a;
+    }
+
+    .knocking-hero strong,
+    .knocking-system strong {
+      color: inherit;
+    }
+
+    @media (min-width: 720px) {
+      .knocking-main {
+        padding: 1.25rem;
+      }
+
+      .knocking-hero {
+        padding: 2rem;
+      }
+
+      .knocking-section {
+        padding: 1.75rem 0;
+      }
+
+      .knocking-card {
+        padding: 1.25rem;
+      }
+
+      .knocking-quick-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .knocking-lead-form {
+        padding: 1.25rem;
+      }
+
+      .knocking-form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="knocking-process-page">
+  <main class="knocking-main">
+    <section class="knocking-hero" aria-labelledby="knocking-title">
+      <h1 id="knocking-title">Door Lead Process</h1>
+    </section>
+
+    <section id="quick-steps" class="knocking-section" aria-label="Quick knocking steps">
+      <div class="knocking-quick-grid">
+        <article class="knocking-quick-card">
+          <h2>At the Door: 1-2-3</h2>
+          <ol class="knocking-quick-list">
+            <li><a href="#door-flyer"><span class="knocking-number">1</span><span>Always give them the flyer</span></a></li>
+            <li><a href="#door-info"><span class="knocking-number">2</span><span>Yes, we need email, phone, &amp; addy</span></a></li>
+            <li><a href="#door-phone"><span class="knocking-number">3</span><span>No info on your personal phone</span></a></li>
+          </ol>
+        </article>
+
+        <article class="knocking-quick-card">
+          <h2>When Home: 1-2-3-4</h2>
+          <ol class="knocking-quick-list">
+            <li><a href="#home-trello"><span class="knocking-number">1</span><span>Make the Trello card</span></a></li>
+            <li><a href="#home-text"><span class="knocking-number">2</span><span>Text within an hour</span></a></li>
+            <li><a href="#home-qbo"><span class="knocking-number">3</span><span>Send the estimate within 24 hours via QBO</span></a></li>
+            <li><a href="#home-archive"><span class="knocking-number">4</span><span>Archive the form email</span></a></li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="lead-form" class="knocking-section" aria-labelledby="lead-form-title">
+      <form action="https://api.web3forms.com/submit" method="post" class="knocking-lead-form" autocomplete="on">
+        <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
+        <input type="hidden" name="subject" value="IMPORTANT!! DOOR KNOCKING LEAD SUBMISSION">
+        <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/knocking-submitted.html">
+        <input type="hidden" name="lead_source" value="Door knocking internal lead form">
+
+        <div class="knocking-form-grid">
+          <div class="knocking-field knocking-field--full">
+            <p class="eyebrow">Submit the lead</p>
+            <h2 id="lead-form-title">Door Knocking Lead Form</h2>
+            <p class="knocking-form-note">Enter whatever info they are willing to give. Take what you can get and submit it.</p>
+          </div>
+
+          <div class="contact-honey" aria-hidden="true" hidden>
+            <label for="knocking-guard">Leave this field empty</label>
+            <input id="knocking-guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none">
+          </div>
+
+          <div class="knocking-field">
+            <label for="client-first-name">Client first name</label>
+            <input id="client-first-name" name="client_first_name" autocomplete="given-name">
+          </div>
+
+          <div class="knocking-field">
+            <label for="client-last-name">Client last name</label>
+            <input id="client-last-name" name="client_last_name" autocomplete="family-name">
+          </div>
+
+          <div class="knocking-field">
+            <label for="client-phone">Client phone</label>
+            <input id="client-phone" name="client_phone" autocomplete="tel" inputmode="tel">
+          </div>
+
+          <div class="knocking-field">
+            <label for="client-email">Client email</label>
+            <input id="client-email" type="email" name="client_email" autocomplete="email">
+          </div>
+
+          <div class="knocking-field knocking-field--full">
+            <label for="client-address">Address</label>
+            <input id="client-address" name="client_address" autocomplete="street-address">
+          </div>
+
+          <div class="knocking-field knocking-field--full">
+            <label for="project-notes">Project description, measurements, and notes</label>
+            <textarea id="project-notes" name="project_notes" rows="4" placeholder="Example: fence gate repair, drywall patch, painting, rental punch list. Include measurements, materials, access notes, urgency, and whether photos were taken."></textarea>
+          </div>
+
+          <p class="knocking-form-note">After submitting: text from Google Voice, make the Trello card, send through QBO, then archive the form email after everything is entered.</p>
+          <button type="submit" class="btn btn-primary">Submit Lead</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="door-process" class="knocking-section" aria-labelledby="door-title">
+      <h2 id="door-title">At the Door Process</h2>
+
+      <article id="door-flyer" class="knocking-card">
+        <h3><span class="knocking-number">1</span> Always give them the hanger/flyer</h3>
+        <p>Hand it to them as soon as they open. It gives them our services, phone number, website, and a reminder for later.</p>
+      </article>
+
+      <article id="door-info" class="knocking-card">
+        <h3><span class="knocking-number">2</span> Yes, we need email, phone, &amp; addy</h3>
+        <p>Submit <strong>all info they are willing to give</strong> into the form.</p>
+        <ul>
+          <li>Name</li>
+          <li>Phone</li>
+          <li>Email</li>
+          <li>Address</li>
+          <li>Project description</li>
+          <li>Measurements/notes</li>
+          <li>Before pictures when possible</li>
+        </ul>
+        <blockquote class="knocking-quote">
+          <p>"What's a good phone number to contact you?"</p>
+          <p>"What's a good email we can send the estimate to?"</p>
+          <p>"And what is the address here?"</p>
+          <p>"Awesome, we will text you from our number <strong>within about 1 hour</strong> and email you that estimate <strong>within 24 hours</strong>."</p>
+        </blockquote>
+        <p>Put all of it in the form and hit submit.</p>
+      </article>
+
+      <article id="door-phone" class="knocking-card">
+        <h3><span class="knocking-number">3</span> No info on your personal phone</h3>
+        <p>Real lead info goes in the company system, not personal notes, contacts, texts, screenshots, or memory.</p>
+      </article>
+    </section>
+
+    <section id="home-process" class="knocking-section" aria-labelledby="home-title">
+      <h2 id="home-title">When You Get Home Process</h2>
+
+      <article id="home-trello" class="knocking-card">
+        <h3><span class="knocking-number">1</span> Make the Trello card</h3>
+        <p>Put every real lead in Trello. Use the right column, add your label, or add a manager if passing it off.</p>
+        <blockquote class="knocking-quote">
+          <p>{Client full name} - {2-3 word project description}</p>
+          <p>John Smith - Fence Gate Repair</p>
+        </blockquote>
+      </article>
+
+      <article id="home-text" class="knocking-card">
+        <h3><span class="knocking-number">2</span> Text within an hour</h3>
+        <p>Text from Google Voice: <strong>(801) 477-7526</strong>. Do not use your personal number.</p>
+        <blockquote class="knocking-quote">
+          <p>Hi, this is ___ from A Team. We talked about ____ for you. Here's our number to contact us and we will get your estimate to you within the next day or so. Thanks!</p>
+        </blockquote>
+      </article>
+
+      <article id="home-qbo" class="knocking-card">
+        <h3><span class="knocking-number">3</span> Send the estimate within 24 hours via QBO</h3>
+        <p>You or your manager should send the official estimate through <strong>QuickBooks Online</strong> within 24 hours whenever possible.</p>
+        <ul>
+          <li>Send the standard QBO email.</li>
+          <li>Download the QBO PDF using "Print" and text it from Google Voice.</li>
+          <li>No random text estimates, screenshots, unofficial-only PDFs, or verbal-only pricing.</li>
+        </ul>
+      </article>
+
+      <article id="home-archive" class="knocking-card">
+        <h3><span class="knocking-number">4</span> Archive the form email once it is fully entered</h3>
+        <p>Once the lead is in contacts, Trello, and QBO, archive the form email so the inbox does not become another lead list.</p>
+      </article>
+    </section>
+
+    <div class="knocking-system">
+      The form email is just the starting point. The real system is:<br>
+      <span>Contacts -&gt; Trello -&gt; QBO -&gt; Google Voice follow-up</span>
+    </div>
+  </main>
+</body>
+</html>
