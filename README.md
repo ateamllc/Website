@@ -143,6 +143,8 @@ Form reference spreadsheets live in `docs/reference/`:
 - `docs/reference/form-field-matrix.csv` lists every website form as a column and the submitted backend field names under each form.
 - `docs/reference/form-subjects.csv` lists each form, page path, `form_id`, and standardized subject line.
 
+These CSV files are manual repo references, not generated dynamically. Update them in the same commit whenever a form field, `form_id`, page path, or subject line changes.
+
 Avoid duplicate field names for different meanings. Keep visible labels customer-friendly, but keep submitted names stable for Google Contacts, QuickBooks Online, Trello, Gmail filters, Zapier, and other automation.
 
 Automation setup notes:
