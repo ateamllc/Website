@@ -106,6 +106,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <form id="contact-form" action="https://api.web3forms.com/submit" method="post" class="contact-form"
+          data-require-contact
           data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
           <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
 
@@ -131,7 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <input id="last-name" name="last_name" autocomplete="family-name" required>
 
           <label for="email">Email</label>
-          <input id="email" type="email" name="email" autocomplete="email" required>
+          <input id="email" type="email" name="email" autocomplete="email">
 
           <label for="phone">Phone</label>
           <input id="phone" name="phone" autocomplete="tel" inputmode="tel">
@@ -193,6 +194,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://a-team-handyman-services.com/pages/thank-you.html';
 
       form.addEventListener('submit', async function (event) {
+        if (window.ATeamForms && !window.ATeamForms.validateContactRequirement(form)) {
+          event.preventDefault();
+          return;
+        }
+
         if (honeypot && honeypot.value.trim()) {
           event.preventDefault();
           return;

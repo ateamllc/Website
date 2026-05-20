@@ -375,6 +375,39 @@
     });
   };
 
+  const validateContactRequirement = (form) => {
+    if (!form || !form.matches('[data-require-contact]')) return true;
+
+    const fields = ['phone', 'email', 'project_address']
+      .map((name) => form.querySelector(`[name="${name}"]`))
+      .filter(Boolean);
+    if (!fields.length || fields.some((field) => field.value.trim())) {
+      fields.forEach((field) => field.setCustomValidity(''));
+      return true;
+    }
+
+    const target = fields[0];
+    target.setCustomValidity('Please add at least one communication method');
+    target.reportValidity();
+    fields.forEach((field) => {
+      field.addEventListener('input', () => {
+        fields.forEach((contactField) => contactField.setCustomValidity(''));
+      }, { once: true });
+    });
+    return false;
+  };
+
+  window.ATeamForms = Object.assign(window.ATeamForms || {}, {
+    validateContactRequirement
+  });
+
+  document.addEventListener('submit', (event) => {
+    if (!validateContactRequirement(event.target)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+  }, true);
+
   const loadJson = async (src) => {
     if (!src) return null;
 

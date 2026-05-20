@@ -115,6 +115,14 @@ Use `N/A` when the form is not service-specific, such as careers, door knocking,
 
 Preferred backend field names include `first_name`, `last_name`, `company_name`, `phone`, `email`, `project_address`, `project_city`, `project_state`, `project_zip`, `property_type`, `service_category`, `discount_code`, `offer_detail`, `offer_terms`, `project_description`, `measurements_notes`, `urgency`, `preferred_timeline`, `budget_range`, `preferred_contact_method`, `preferred_contact_time`, `lead_source`, `role_applied_for`, `applicant_city`, `applicant_experience_example`, `consent_to_contact`, `employee_name`, `assigned_to`, `photos_taken`, `form_source`, `form_id`, `form_name`, `page_url`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, and `submitted_at`.
 
+Contact validation rules:
+
+- The home page estimate form requires `phone`.
+- Other non-careers lead forms should use `data-require-contact` and the shared validator in `js/scripts.js` to require at least one of `phone`, `email`, or `project_address`.
+- Do not put native `required` on `phone`, `email`, or `project_address` for forms using `data-require-contact`; otherwise the browser will require that exact field instead of allowing any one communication method.
+- The shared validation message should remain `Please add at least one communication method`.
+- Careers is a separate application workflow and should not use the lead-form communication-method validator.
+
 Current approved `discount_code` values:
 
 - `HANGER100`: $100 off first >$500 job

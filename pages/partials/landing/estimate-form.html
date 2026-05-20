@@ -11,6 +11,7 @@
   </div>
 
   <form action="https://api.web3forms.com/submit" method="post" class="contact-form estimate-form"
+    data-require-contact
     data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
     <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
     <input type="hidden" name="subject" value="A Team Lead | Landing Page Estimate">
@@ -34,14 +35,14 @@
     <input data-field="last-name" name="last_name" autocomplete="family-name" required>
 
     <label data-for="phone">Phone</label>
-    <input data-field="phone" name="phone" autocomplete="tel" inputmode="tel" required>
+    <input data-field="phone" name="phone" autocomplete="tel" inputmode="tel">
     <p class="form-microcopy">Used only to text or call about your estimate.</p>
 
     <label data-for="email">Email</label>
     <input data-field="email" type="email" name="email" autocomplete="email">
 
     <label data-for="city">Project city or address</label>
-    <input data-field="city" name="project_address" autocomplete="street-address" required>
+    <input data-field="city" name="project_address" autocomplete="street-address">
 
     <label data-for="message">What do you need help with?</label>
     <textarea data-field="message" name="project_description" rows="5" placeholder="Example: patch two drywall holes, repair loose baseboard, replace door hardware..." required></textarea>
