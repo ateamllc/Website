@@ -13,28 +13,41 @@
   <form action="https://api.web3forms.com/submit" method="post" class="contact-form estimate-form"
     data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
     <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
-    <input type="hidden" name="subject" value="Landing page estimate request">
+    <input type="hidden" name="subject" value="A Team Lead | Landing Page Estimate">
+    <input type="hidden" name="from_name" value="A Team Property Improvement">
+    <input type="hidden" name="form_id" value="landing_page_estimate">
+    <input type="hidden" name="form_name" value="Landing Page Estimate">
+    <input type="hidden" name="form_source" value="Website landing page">
+    <input type="hidden" name="page_url" value="">
+    <input type="hidden" name="service_category" value="Unspecified">
+    <input type="hidden" name="lead_source" value="website_landing_page">
     <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
     <div class="contact-honey" aria-hidden="true" hidden>
       <label data-for="guard">Leave this field empty</label>
-      <input data-field="guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none">
+      <input data-field="guard" type="text" name="botcheck" tabindex="-1" autocomplete="off" inputmode="none">
     </div>
 
-    <label data-for="name">Name</label>
-    <input data-field="name" name="name" autocomplete="name" required>
+    <label data-for="first-name">First name</label>
+    <input data-field="first-name" name="first_name" autocomplete="given-name" required>
+
+    <label data-for="last-name">Last name</label>
+    <input data-field="last-name" name="last_name" autocomplete="family-name" required>
 
     <label data-for="phone">Phone</label>
     <input data-field="phone" name="phone" autocomplete="tel" inputmode="tel" required>
     <p class="form-microcopy">Used only to text or call about your estimate.</p>
 
+    <label data-for="email">Email</label>
+    <input data-field="email" type="email" name="email" autocomplete="email">
+
     <label data-for="city">Project city or address</label>
-    <input data-field="city" name="city_or_address" autocomplete="street-address" required>
+    <input data-field="city" name="project_address" autocomplete="street-address" required>
 
     <label data-for="message">What do you need help with?</label>
-    <textarea data-field="message" name="message" rows="5" placeholder="Example: patch two drywall holes, repair loose baseboard, replace door hardware..." required></textarea>
+    <textarea data-field="message" name="project_description" rows="5" placeholder="Example: patch two drywall holes, repair loose baseboard, replace door hardware..." required></textarea>
 
     <label data-for="timing">Preferred timing</label>
-    <select data-field="timing" name="preferred_timing">
+    <select data-field="timing" name="preferred_timeline">
       <option value="">Select one</option>
       <option>This week if available</option>
       <option>Next 1-2 weeks</option>

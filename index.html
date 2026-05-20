@@ -118,25 +118,32 @@
                             data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
                             <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
 
-                            <input type="hidden" name="subject" value="IMPORTANT!! Incoming Lead from home page estimate form">
+                            <input type="hidden" name="subject" value="A Team Lead | Home Page Estimate">
+                            <input type="hidden" name="from_name" value="A Team Property Improvement">
+                            <input type="hidden" name="form_id" value="home_page_estimate">
+                            <input type="hidden" name="form_name" value="Home Page Estimate">
+                            <input type="hidden" name="form_source" value="Website home page">
+                            <input type="hidden" name="page_url" value="https://a-team-handyman-services.com/">
+                            <input type="hidden" name="service_category" value="Unspecified">
+                            <input type="hidden" name="lead_source" value="website_home_page">
                             <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
                             <div class="contact-honey" aria-hidden="true" hidden>
                                 <label for="hero-contact-guard">Leave this field empty</label>
-                                <input id="hero-contact-guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none"
+                                <input id="hero-contact-guard" type="text" name="botcheck" tabindex="-1" autocomplete="off" inputmode="none"
                                     data-lpignore="true" data-form-type="other">
                             </div>
 
-                            <label for="hero-name">Name</label>
-                            <input id="hero-name" name="name" autocomplete="name" required>
+                            <label for="hero-first-name">First name</label>
+                            <input id="hero-first-name" name="first_name" autocomplete="given-name" required>
 
-                            <label for="hero-email">Email</label>
-                            <input id="hero-email" type="email" name="email" autocomplete="email" required>
+                            <label for="hero-last-name">Last name</label>
+                            <input id="hero-last-name" name="last_name" autocomplete="family-name" required>
 
                             <label for="hero-phone">Phone</label>
                             <input id="hero-phone" name="phone" autocomplete="tel" inputmode="tel">
 
                             <label for="hero-project">Project details</label>
-                            <textarea id="hero-project" name="message" rows="4" placeholder="Scope, timeline, address, budget" required></textarea>
+                            <textarea id="hero-project" name="project_description" rows="3" placeholder="Scope, timeline, address, budget" required></textarea>
 
                             <button type="submit" class="btn btn-primary">Get my estimate</button>
                             <p class="hero-form-footnote">We aim to respond within one business day.</p>
@@ -329,7 +336,7 @@
             const form = document.getElementById('hero-estimate-form');
             if (!form) return;
 
-            const honeypot = form.querySelector('input[name="_honey"]');
+            const honeypot = form.querySelector('input[name="botcheck"], input[name="_honey"]');
             if (honeypot) {
                 honeypot.value = '';
                 honeypot.setAttribute('autocomplete', 'off');

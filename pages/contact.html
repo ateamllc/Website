@@ -109,16 +109,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
           <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
 
-          <input type="hidden" name="subject" value="IMPORTANT!! Incoming Lead from website contact form">
+          <input type="hidden" name="subject" value="A Team Lead | Contact Page Estimate">
+          <input type="hidden" name="from_name" value="A Team Property Improvement">
+          <input type="hidden" name="form_id" value="contact_page">
+          <input type="hidden" name="form_name" value="Contact Page Estimate">
+          <input type="hidden" name="form_source" value="Website contact page">
+          <input type="hidden" name="page_url" value="https://a-team-handyman-services.com/pages/contact.html">
+          <input type="hidden" name="service_category" value="Unspecified">
+          <input type="hidden" name="lead_source" value="website_contact_page">
           <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
           <div class="contact-honey" aria-hidden="true" hidden>
             <label for="contact-guard">Leave this field empty</label>
-            <input id="contact-guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none"
+            <input id="contact-guard" type="text" name="botcheck" tabindex="-1" autocomplete="off" inputmode="none"
               data-lpignore="true" data-form-type="other">
           </div>
 
-          <label for="name">Name</label>
-          <input id="name" name="name" autocomplete="name" required>
+          <label for="first-name">First name</label>
+          <input id="first-name" name="first_name" autocomplete="given-name" required>
+
+          <label for="last-name">Last name</label>
+          <input id="last-name" name="last_name" autocomplete="family-name" required>
 
           <label for="email">Email</label>
           <input id="email" type="email" name="email" autocomplete="email" required>
@@ -126,8 +136,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <label for="phone">Phone</label>
           <input id="phone" name="phone" autocomplete="tel" inputmode="tel">
 
+          <label for="project-address">Project address</label>
+          <input id="project-address" name="project_address" autocomplete="street-address">
+
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="6" placeholder="Tell us about your project" autocomplete="on" required></textarea>
+          <textarea id="message" name="project_description" rows="6" placeholder="Tell us about your project" autocomplete="on" required></textarea>
+
+          <label for="preferred-timeline">Preferred timing</label>
+          <select id="preferred-timeline" name="preferred_timeline">
+            <option value="">Select one</option>
+            <option>This week if available</option>
+            <option>Next 1-2 weeks</option>
+            <option>This month</option>
+            <option>Flexible</option>
+          </select>
 
           <button type="submit" class="btn btn-primary">Send request</button>
         </form>
@@ -160,7 +182,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       const form = document.getElementById('contact-form');
       if (!form) return;
 
-      const honeypot = form.querySelector('input[name=\"_honey\"]');
+      const honeypot = form.querySelector('input[name=\"botcheck\"], input[name=\"_honey\"]');
       if (honeypot) {
         honeypot.value = '';
         honeypot.setAttribute('autocomplete', 'off');
