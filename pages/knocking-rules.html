@@ -320,11 +320,19 @@
     </section>
 
     <section id="lead-form" class="knocking-section" aria-labelledby="lead-form-title">
-      <form action="https://api.web3forms.com/submit" method="post" class="knocking-lead-form" autocomplete="on">
+      <form id="door-knocking-lead-form" action="https://api.web3forms.com/submit" method="post" class="knocking-lead-form" data-discount-codes autocomplete="on">
         <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
-        <input type="hidden" name="subject" value="IMPORTANT!! DOOR KNOCKING LEAD SUBMISSION">
+        <input type="hidden" name="subject" value="A Team Lead | Door Knocking Lead">
+        <input type="hidden" name="from_name" value="A Team Property Improvement">
+        <input type="hidden" name="form_id" value="door_knocking_lead">
+        <input type="hidden" name="form_name" value="Door Knocking Lead">
+        <input type="hidden" name="form_source" value="Internal door knocking lead form">
+        <input type="hidden" name="page_url" value="https://a-team-handyman-services.com/pages/knocking-rules.html">
+        <input type="hidden" name="service_category" value="N/A">
+        <input type="hidden" name="lead_source" value="door_knocking">
+        <input type="hidden" name="offer_detail" value="">
+        <input type="hidden" name="offer_terms" value="">
         <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/knocking-submitted.html">
-        <input type="hidden" name="lead_source" value="Door knocking internal lead form">
 
         <div class="knocking-form-grid">
           <div class="knocking-field knocking-field--full">
@@ -335,37 +343,55 @@
 
           <div class="contact-honey" aria-hidden="true" hidden>
             <label for="knocking-guard">Leave this field empty</label>
-            <input id="knocking-guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none">
+            <input id="knocking-guard" type="text" name="botcheck" tabindex="-1" autocomplete="off" inputmode="none">
           </div>
 
           <div class="knocking-field">
             <label for="client-first-name">Client first name</label>
-            <input id="client-first-name" name="client_first_name" autocomplete="given-name">
+            <input id="client-first-name" name="first_name" autocomplete="given-name">
           </div>
 
           <div class="knocking-field">
             <label for="client-last-name">Client last name</label>
-            <input id="client-last-name" name="client_last_name" autocomplete="family-name">
+            <input id="client-last-name" name="last_name" autocomplete="family-name">
           </div>
 
           <div class="knocking-field">
             <label for="client-phone">Client phone</label>
-            <input id="client-phone" name="client_phone" autocomplete="tel" inputmode="tel">
+            <input id="client-phone" name="phone" autocomplete="tel" inputmode="tel">
           </div>
 
           <div class="knocking-field">
             <label for="client-email">Client email</label>
-            <input id="client-email" type="email" name="client_email" autocomplete="email">
+            <input id="client-email" type="email" name="email" autocomplete="email">
           </div>
 
           <div class="knocking-field knocking-field--full">
             <label for="client-address">Address</label>
-            <input id="client-address" name="client_address" autocomplete="street-address">
+            <input id="client-address" name="project_address" autocomplete="street-address">
+          </div>
+
+          <div class="knocking-field knocking-field--full">
+            <label for="preferred-timeline">Preferred timing</label>
+            <select id="preferred-timeline" name="preferred_timeline">
+              <option value="">Select one</option>
+              <option>This week if available</option>
+              <option>Next 1-2 weeks</option>
+              <option>This month</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+
+          <div class="knocking-field knocking-field--full">
+            <label for="discount-code">Discount given</label>
+            <select id="discount-code" name="discount_code">
+              <option value="">No discount selected</option>
+            </select>
           </div>
 
           <div class="knocking-field knocking-field--full">
             <label for="project-notes">Project description, measurements, and notes</label>
-            <textarea id="project-notes" name="project_notes" rows="4" placeholder="Example: fence gate repair, drywall patch, painting, rental punch list. Include measurements, materials, access notes, urgency, and whether photos were taken."></textarea>
+            <textarea id="project-notes" name="project_description" rows="4" placeholder="Example: fence gate repair, drywall patch, painting, rental punch list. Include measurements, materials, access notes, urgency, and whether photos were taken."></textarea>
           </div>
 
           <p class="knocking-form-note">After submitting: text from Google Voice, make the Trello card, send through QBO, then archive the form email after everything is entered.</p>
@@ -450,5 +476,6 @@
       <span>Contacts -&gt; Trello -&gt; QBO -&gt; Google Voice follow-up</span>
     </div>
   </main>
+  <script src="/js/discount-codes.js" defer></script>
 </body>
 </html>

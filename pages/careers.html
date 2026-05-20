@@ -287,16 +287,25 @@
 
         <form id="career-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" data-success-url="https://a-team-handyman-services.com/pages/thank-you.html" autocomplete="on">
           <input type="hidden" name="access_key" value="7080aedc-3921-4214-8163-f7a6b8c00ad4">
-          <input type="hidden" name="subject" value="New Job Application: {{name}} - {{role}}">
+          <input type="hidden" name="subject" value="A Team Careers | New Job Applicant">
+          <input type="hidden" name="from_name" value="A Team Property Improvement">
+          <input type="hidden" name="form_id" value="careers_application">
+          <input type="hidden" name="form_name" value="Careers Application">
+          <input type="hidden" name="form_source" value="Website careers page">
+          <input type="hidden" name="page_url" value="https://a-team-handyman-services.com/pages/careers.html">
+          <input type="hidden" name="service_category" value="N/A">
+          <input type="hidden" name="lead_source" value="website_careers_page">
           <input type="hidden" name="redirect" value="https://a-team-handyman-services.com/pages/thank-you.html">
-          <input type="hidden" name="from_email" value="contact@a-team-handyman-services.com">
           <div class="contact-honey" aria-hidden="true" hidden>
             <label for="career-guard">Leave this field empty</label>
-            <input id="career-guard" type="text" name="_honey" tabindex="-1" autocomplete="off" inputmode="none" data-lpignore="true" data-form-type="other">
+            <input id="career-guard" type="text" name="botcheck" tabindex="-1" autocomplete="off" inputmode="none" data-lpignore="true" data-form-type="other">
           </div>
 
-          <label for="full-name">Full name</label>
-          <input id="full-name" name="name" autocomplete="name" required>
+          <label for="first-name">First name</label>
+          <input id="first-name" name="first_name" autocomplete="given-name" required>
+
+          <label for="last-name">Last name</label>
+          <input id="last-name" name="last_name" autocomplete="family-name" required>
 
           <label for="email">Email</label>
           <input id="email" type="email" name="email" autocomplete="email" required>
@@ -305,10 +314,10 @@
           <input id="phone" name="phone" autocomplete="tel" inputmode="tel">
 
           <label for="location">City you work out of</label>
-          <input id="location" name="location" placeholder="e.g., Provo, Orem, Spanish Fork" autocomplete="address-level2" required>
+          <input id="location" name="applicant_city" placeholder="e.g., Provo, Orem, Spanish Fork" autocomplete="address-level2" required>
 
           <label for="role">Role you’re interested in</label>
-          <select id="role" name="role" autocomplete="organization-title" required>
+          <select id="role" name="role_applied_for" autocomplete="organization-title" required>
             <option value="" disabled selected>Select a role</option>
             <optgroup label="Full time roles">
               <option>Painter</option>
@@ -341,7 +350,7 @@
           </select>
 
           <label for="experience">Recent projects or specialties</label>
-          <textarea id="experience" name="experience" rows="4" placeholder="Tell us about projects you’re proud of, years of experience, specialties, and any certifications." autocomplete="on" required></textarea>
+          <textarea id="experience" name="applicant_experience_example" rows="4" placeholder="Tell us about projects you’re proud of, years of experience, specialties, and any certifications." autocomplete="on" required></textarea>
           <p class="application-note">Pay is determined by role, skill, and experience; share details so we can place you accurately.</p>
 
           <label for="start">Earliest start date</label>
@@ -722,7 +731,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       const form = document.getElementById('career-form');
       if (form) {
-        const honeypot = form.querySelector('input[name=\"_honey\"]');
+        const honeypot = form.querySelector('input[name=\"botcheck\"], input[name=\"_honey\"]');
         const redirectField = form.querySelector('input[name=\"redirect\"]');
         const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://a-team-handyman-services.com/pages/thank-you.html';
 

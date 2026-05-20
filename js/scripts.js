@@ -525,6 +525,37 @@
     const form = section.querySelector('form');
     if (!form || section.dataset.snippetInit === 'true') return;
 
+    const titleCase = (value) => String(value || '')
+      .replace(/[-_]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    const formId = section.dataset.formId || 'landing-page-estimate';
+    const formKey = formId.replace(/-form$/, '').replace(/-/g, '_');
+    const subjectFormName = (section.dataset.subject || '').replace(/^A Team Lead \|\s*/, '').trim();
+    const formName = section.dataset.formName || subjectFormName || titleCase(formId.replace(/-form$/, ''));
+    const serviceCategories = {
+      deck_fence_staining_estimate: 'Fences, Gates & Outdoor Structures',
+      door_repair_installation_estimate: 'Fixture Installs & Replacements',
+      drywall_repair_estimate: 'Drywall Repair & Finish Work',
+      fence_estimate: 'Fences, Gates & Outdoor Structures',
+      fence_repair_estimate: 'Fences, Gates & Outdoor Structures',
+      flooring_estimate: 'General Construction',
+      framing_estimate: 'General Construction',
+      furniture_assembly_estimate: 'Fixture Installs & Replacements',
+      handyman_estimate: 'Fixture Installs & Replacements',
+      honey_do_estimate: 'Fixture Installs & Replacements',
+      painting_estimate: 'Interior/Exterior Painting',
+      pergolas_estimate: 'Fences, Gates & Outdoor Structures',
+      property_manager_application: 'Property Management & Maintenance',
+      rental_ready_maintenance_estimate: 'Property Management & Maintenance',
+      roofing_estimate: 'General Construction',
+      shed_building_estimate: 'Fences, Gates & Outdoor Structures',
+      siding_estimate: 'General Construction',
+      trim_baseboard_installation_estimate: 'General Construction',
+      tv_mounting_estimate: 'Fixture Installs & Replacements'
+    };
+
     setText(section, '[data-estimate-eyebrow]', section.dataset.estimateEyebrow);
     setText(section, '[data-estimate-title]', section.dataset.estimateTitle);
     setText(section, '[data-estimate-copy]', section.dataset.estimateCopy);
@@ -539,12 +570,22 @@
       messageField.placeholder = section.dataset.messagePlaceholder;
     }
 
-    const formId = section.dataset.formId || 'estimate-form';
     form.id = formId;
     form.dataset.trackForm = section.dataset.trackForm || formId;
 
-    const subject = form.querySelector('input[name="subject"]');
-    if (subject && section.dataset.subject) subject.value = section.dataset.subject;
+    const setHiddenValue = (name, value) => {
+      const field = form.querySelector(`input[name="${name}"]`);
+      if (field && value) field.value = value;
+    };
+
+    setHiddenValue('subject', `A Team Lead | ${formName}`);
+    setHiddenValue('from_name', section.dataset.fromName || 'A Team Property Improvement');
+    setHiddenValue('form_id', formKey);
+    setHiddenValue('form_name', formName);
+    setHiddenValue('form_source', section.dataset.formSource || 'Website landing page');
+    setHiddenValue('page_url', window.location.href);
+    setHiddenValue('service_category', section.dataset.serviceCategory || serviceCategories[formKey] || 'Unspecified');
+    setHiddenValue('lead_source', section.dataset.leadSource || 'website_landing_page');
 
     section.querySelectorAll('[data-field]').forEach((field) => {
       field.id = `${formId}-${field.dataset.field}`;

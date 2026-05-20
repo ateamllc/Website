@@ -63,13 +63,95 @@ Review carousels should be ordered for the specific service lander. Put the most
 
 Forms sitewide currently cannot support file or image uploads because the site does not have a W3Forms Pro subscription. Do not add upload fields unless the form provider/account is upgraded and the implementation is tested end to end.
 
+Customer-facing lead, estimate, offer, and application forms submit through Web3Forms:
+
+```text
+https://api.web3forms.com/submit
+```
+
+Use lowercase `snake_case` for every submitted `name=""` value. Do not use spaces, punctuation, uppercase letters, or full customer-facing questions as backend field names.
+
+Every Web3Forms form must include these hidden fields:
+
+- `access_key`
+- `subject`
+- `from_name`
+- `form_id`
+- `form_name`
+- `form_source`
+- `page_url`
+- `redirect` when the form already redirects
+- `botcheck` honeypot when spam protection is present or easy to add
+
+Forms should include `lead_source` as a stable snake_case routing value.
+
+Use this subject format for lead automation:
+
+```text
+A Team Lead | {Form Name}
+```
+
+Careers uses a separate subject namespace:
+
+```text
+A Team Careers | New Job Applicant
+```
+
+Approved `service_category` values:
+
+- `General Construction`
+- `Fences, Gates & Outdoor Structures`
+- `Interior/Exterior Painting`
+- `Drywall Repair & Finish Work`
+- `Fixture Installs & Replacements`
+- `Property Management & Maintenance`
+- `Other`
+- `N/A`
+- `Unspecified`
+
+Use `N/A` when the form is not service-specific, such as careers, door knocking, or a door hanger offer claim. Use `Unspecified` when the form is a general customer estimate request that has not collected or inferred a service category, such as the home or contact page forms. Service landing pages should submit the mapped category for that lander.
+
+Preferred backend field names include `first_name`, `last_name`, `company_name`, `phone`, `email`, `project_address`, `project_city`, `project_state`, `project_zip`, `property_type`, `service_category`, `discount_code`, `offer_detail`, `offer_terms`, `project_description`, `measurements_notes`, `urgency`, `preferred_timeline`, `budget_range`, `preferred_contact_method`, `preferred_contact_time`, `lead_source`, `role_applied_for`, `applicant_city`, `applicant_experience_example`, `consent_to_contact`, `employee_name`, `assigned_to`, `photos_taken`, `form_source`, `form_id`, `form_name`, `page_url`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, and `submitted_at`.
+
+Current approved `discount_code` values:
+
+- `HANGER100`: $100 off first >$500 job
+
+Discount code metadata is managed in `data/offers/discount-codes.json`. For any form that submits a `discount_code`, submit matching `offer_detail` and `offer_terms`. Door hanger submissions auto-tag `HANGER100`. Door knocking submissions populate discount options and matching offer fields from the shared discount code data; blank discount keeps `offer_detail` and `offer_terms` blank.
+
+Current `lead_source` values:
+
+- `website_home_page`
+- `website_contact_page`
+- `website_landing_page`
+- `website_careers_page`
+- `door_hanger`
+- `door_knocking`
+
+Form reference spreadsheets live in `docs/reference/`:
+
+- `docs/reference/form-field-matrix.csv` lists every website form as a column and the submitted backend field names under each form.
+- `docs/reference/form-subjects.csv` lists each form, page path, `form_id`, and standardized subject line.
+
+Avoid duplicate field names for different meanings. Keep visible labels customer-friendly, but keep submitted names stable for Google Contacts, QuickBooks Online, Trello, Gmail filters, Zapier, and other automation.
+
+Automation setup notes:
+
+- Route lead emails primarily by `subject`, then use `form_id` and `lead_source` for exact workflow branching.
+- Treat `A Team Careers | New Job Applicant` as a separate careers workflow, not a customer lead workflow.
+- Treat `service_category=Unspecified` as a customer estimate where the service is not yet known.
+- Treat `service_category=N/A` as a non-service-specific workflow such as careers, door knocking intake, or door hanger offer claim.
+- Door knocking intentionally redirects to `/pages/knocking-submitted.html`; other public Web3Forms forms should use `/pages/thank-you.html`.
+- If `discount_code` is present, read the paired `offer_detail` and `offer_terms` fields before creating the estimate, Trello card, or QBO note.
+- The admin login form is not a Web3Forms lead form and should be ignored by external lead automations.
+
 All forms should redirect to the actual A Team thank-you page after submission:
 
 ```text
 https://a-team-handyman-services.com/pages/thank-you.html
 ```
 
-Preserve that redirect when creating or editing forms.
+Preserve that redirect when creating or editing forms, except for internal workflows that intentionally use a different success page such as the door knocking lead form redirecting to `/pages/knocking-submitted.html`.
 
 ### Tracking
 
@@ -241,6 +323,14 @@ Strategic notes:
 - Avoid making the page sound like general handyman work only. The property manager/account relationship is the differentiator.
 - Keep preferred pricing and on-call language conditional on account approval, property count, work type, access, and payment process.
 - If reviews are added later, order them around recurring reliability, communication, tenant-friendly work, punch lists, and multi-job trust before showing unrelated service reviews.
+
+## Door Hanger and Knocking Pages
+
+`door.html` is the door hanger QR landing page. It should stay noindex, preserve the $100-off offer language, and submit through Web3Forms with `form_id="door_hanger_offer"` and subject `A Team Lead | Door Hanger Offer`.
+
+`pages/knocking-rules.html` is the internal door knocking process and lead-entry page. It should stay noindex, preserve the internal follow-up instructions, and submit through Web3Forms with `form_id="door_knocking_lead"` and subject `A Team Lead | Door Knocking Lead`. Its success path is intentionally `pages/knocking-submitted.html` instead of the public thank-you page.
+
+For both pages, keep the customer/process purpose intact and only change form fields when needed for backend parsing.
 
 ## Creating New Landers
 
