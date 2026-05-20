@@ -31,7 +31,7 @@ jobs:
           node-version: '18'
 
       - name: Generate sitemap
-        run: node generate-sitemap.js
+        run: node scripts/generate-sitemap.js
 
       - name: Configure signing key
         env:

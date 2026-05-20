@@ -1,8 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const rootDir = __dirname;
-const pagesDir = path.join(rootDir, 'pages');
+const rootDir = path.resolve(__dirname, '..');
 const excludedFiles = new Set([
   path.join('pages', 'admin-dashboard.html'),
   path.join('pages', 'admin-login.html'),
