@@ -17,7 +17,9 @@ Use this document to preserve why pages are built the way they are, not just wha
 - Global behavior lives mostly in `js/scripts.js`.
 - Client-side includes are handled by `js/loader.js` through `data-include`.
 - Landing content data lives in `data/landing/` when a page uses JSON-backed snippets.
-- Project images live in `image/`; the large handyman gallery uses `image/handyman-photos/manifest.json`.
+- Project images live in `image/`; brand marks live in `image/brand/`; large service galleries use `manifest.json` files inside their photo folders.
+- Repo-only reference material lives in `docs/reference/`; design/source artifacts that are not served directly belong in `docs/design/`.
+- Maintenance scripts live in `scripts/`, including `scripts/generate-sitemap.js`.
 
 The site is static. Avoid adding build tooling unless there is a clear reason. Existing pages rely on browser-side `fetch`, so local testing should use a server rather than directly opening HTML files when checking partials or JSON-backed sections.
 
