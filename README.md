@@ -87,6 +87,8 @@ Every Web3Forms form must include these hidden fields:
 
 Forms should include `lead_source` as a stable snake_case routing value.
 
+Web3Forms routes delivery through the configured `access_key`. Do not add destination email addresses to form HTML, hidden fields, JSON-LD, scripts, or visible page content. To change the inbox that receives submissions, update the Web3Forms access key configuration or replace the access key with one configured for the desired inbox.
+
 Use this subject format for lead automation:
 
 ```text
