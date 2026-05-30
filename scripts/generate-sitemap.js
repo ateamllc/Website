@@ -19,7 +19,7 @@ function readDomain() {
     const domain = fs.readFileSync(cnamePath, 'utf8').split('\n')[0].trim();
     if (domain) return `https://${domain}`;
   }
-  return 'https://a-team-handyman-services.com';
+  return 'https://ateamutah.com';
 }
 
 function collectHtmlFiles(dir, ignoreDirs = new Set()) {
