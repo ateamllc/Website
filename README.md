@@ -162,7 +162,7 @@ Automation setup notes:
 All forms should redirect to the actual A Team thank-you page after submission:
 
 ```text
-https://a-team-handyman-services.com/pages/thank-you.html
+https://ateamutah.com/pages/thank-you.html
 ```
 
 Preserve that redirect when creating or editing forms, except for internal workflows that intentionally use a different success page such as the door knocking lead form redirecting to `/pages/knocking-submitted.html`.
