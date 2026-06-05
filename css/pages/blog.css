@@ -259,6 +259,147 @@
   font-weight: 700;
 }
 
+/* Training-style blog articles */
+.training-article .article-lead {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: #1f2937;
+}
+
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0.75rem 0 1.4rem 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.responsive-table table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 0.8rem 0.9rem;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+  vertical-align: top;
+  color: #334155;
+}
+
+.responsive-table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.responsive-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.module-card {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #fbfdff;
+}
+
+.module-label {
+  display: inline-block;
+  margin: 0 0 0.4rem 0;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #0f3f7a;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.module-card h2 {
+  margin-top: 0;
+}
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0.8rem 0 1rem 0;
+}
+
+.learning-grid > div,
+.checklist-panel,
+.resource-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 1rem;
+}
+
+.learning-grid h3,
+.checklist-panel h3,
+.resource-card h3 {
+  margin-top: 0;
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #0f172a;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.resource-link {
+  margin: 0.65rem 0 0 0;
+  font-size: 0.92rem;
+}
+
+.resource-link a {
+  color: #0b63ce;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.resource-link a:hover {
+  text-decoration: underline;
+}
+
+.checklist-panel {
+  margin-top: 1rem;
+}
+
+@media (max-width: 720px) {
+  .learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .module-card {
+    padding: 1rem;
+  }
+}
+
 @media (max-width: 720px) {
   .article-header {
     margin-top: -60px;

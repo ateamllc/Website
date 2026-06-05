@@ -346,6 +346,82 @@ Strategic notes:
 
 For both pages, keep the customer/process purpose intact and only change form fields when needed for backend parsing.
 
+## Badge and Tutorial Blog Pages
+
+Badge/tutorial pages are public blog articles that also work as internal training references. Use `pages/blog/how-to-paint-a-team-way.html` as the current template. These pages should feel useful to homeowners first, while still being structured enough for crew training, sign-off, and repeatable standards.
+
+Purpose:
+
+- Teach a practical skill path, not just publish a marketing article.
+- Explain A Team standards in customer-friendly language.
+- Give crew members a module-by-module learning checklist.
+- Create a reusable page format for future badges such as drywall, fence repair, door repair, trim, caulking, or customer walkthroughs.
+
+Required page structure:
+
+- Standard blog HTML shell with nav include, blog CSS, footer include, metadata, GTM, and analytics matching existing blog articles.
+- Hero with real service/project imagery, a clear badge/tutorial eyebrow, direct H1, and short subtitle.
+- Article header with author, updated date, and estimated read time.
+- Short lead paragraph that explains the skill and outcome without making the page sound like a private employee manual.
+- A concise A Team standard callout near the top.
+- Repeated `.module-card` sections for each training module.
+- Each module should include:
+  - `Module N` label.
+  - Module heading.
+  - Two-column `.learning-grid`.
+  - `Core Skills` list.
+  - `Key Takeaways` list.
+  - 1-3 paragraphs of practical instruction.
+  - Tables, checklists, or resource cards only where they belong in that module.
+- Final CTA using the existing `.article-cta` pattern.
+- Social share links when the page is public.
+
+Content rules:
+
+- Address homeowners naturally, with internal standards woven in rather than framed as private training notes.
+- Avoid saying the page is "written for two audiences"; let the content do that work.
+- Use operational, inspectable standards: prep, safety, cleanup, customer communication, walkthroughs, and quality control.
+- Keep module language concrete. Prefer "no roller holidays, no dry lap marks" over broad claims like "professional results."
+- Include "Core Skills" and "Key Takeaways" above or near the start of every module.
+- Keep tables inside the module where the decision is used. Do not create a detached table dump at the top.
+- Add checklist panels for inspection, safety, professionalism, or end-of-job standards when they are more useful than prose.
+
+Tables:
+
+- Use `.responsive-table` for all tutorial tables.
+- Use tables for decision references such as paint selection, sheen choice, roller nap length, tool selection, PPE, prep steps, or troubleshooting.
+- Keep table columns scannable: topic, default/recommendation, why, notes/watch-for.
+- For painting pages, Sherwin-Williams recommendations should be labeled as A Team defaults, not universal rules.
+
+Video and resource cards:
+
+- Use `.resource-grid`, `.resource-card`, and `.video-frame`.
+- Match the working embed pattern used on the painting badge page:
+
+```html
+<div class="video-frame">
+  <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Resource title" loading="lazy" allowfullscreen></iframe>
+</div>
+```
+
+- Prefer direct `youtube-nocookie.com/embed/VIDEO_ID` URLs. Avoid fragile YouTube search iframes unless a direct video ID is unavailable and the embed is tested.
+- Always include a normal fallback link under the frame:
+
+```html
+<p class="resource-link"><a href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank" rel="noopener">Open video resource</a></p>
+```
+
+- If the requested resource is not a YouTube video, use a tested embeddable source only if it renders reliably in the page. Otherwise link it as a resource instead of forcing an iframe.
+
+Maintenance when adding a badge/tutorial page:
+
+- Add the new file under `pages/blog/`.
+- Add a card to `pages/blog.html`.
+- Reuse or extend `css/pages/blog.css`; do not create one-off inline styles unless unavoidable.
+- Regenerate `sitemap.xml` with `node scripts/generate-sitemap.js`.
+- Test through a local server because includes and iframes should be checked over HTTP.
+- Verify the page has no broken resource frames, no orphaned standalone tables, and no language that makes the article read like an internal-only manual.
+
 ## Creating New Landers
 
 For new priority landers, start from `pages/landing/handyman.html` and adjust:
