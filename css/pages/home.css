@@ -727,6 +727,116 @@
     text-align: center;
 }
 
+.home-guides-section {
+    background: linear-gradient(90deg, #0f172a 0%, #1f2937 60%, #0f172a 100%);
+}
+
+.home-guides {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.home-guides__intro {
+    max-width: 760px;
+    margin: 0 auto 1.5rem;
+}
+
+.home-guides__intro h2 {
+    margin-bottom: 0.75rem;
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+}
+
+.home-guides__intro p {
+    color: #dbe7f5;
+    margin: 0;
+}
+
+.home-guides__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.home-guide-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    height: 100%;
+    padding: 0 0 1.2rem;
+    color: #182741;
+    text-align: left;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #d5dce6;
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.home-guide-card:hover,
+.home-guide-card:focus-visible {
+    transform: translateY(-3px);
+    border-color: #94a3b8;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.14);
+}
+
+.home-guide-card__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #182741;
+    background-position: center;
+    background-size: cover;
+}
+
+.home-guide-card h3 {
+    margin: 0.35rem 1.2rem 0;
+    font-family: 'Oswald', sans-serif;
+    color: #182741;
+    line-height: 1.2;
+}
+
+.home-guide-card p {
+    margin: 0 1.2rem;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.home-guide-card__link {
+    margin-top: auto;
+    padding: 0 1.2rem;
+    color: #182741;
+    font-weight: 800;
+}
+
+.home-guides__more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.9rem 1.2rem;
+    color: #182741;
+    background: #f59e0b;
+    border-radius: 10px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+.home-guides__more:hover,
+.home-guides__more:focus-visible {
+    background: #fbbf24;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+    transform: translateY(-1px);
+}
+
 .service-list {
     list-style: disc inside;
     margin-top: 1rem;
@@ -740,6 +850,8 @@
     margin-bottom: 0.5rem;
 }
 
-.service-area {
-    margin-top: 1rem;
+@media (max-width: 820px) {
+    .home-guides__grid {
+        grid-template-columns: 1fr;
+    }
 }
