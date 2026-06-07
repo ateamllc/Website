@@ -361,7 +361,7 @@ Required page structure:
 
 - Standard blog HTML shell with nav include, blog CSS, footer include, metadata, GTM, and analytics matching existing blog articles.
 - Hero with real service/project imagery, a clear badge/tutorial eyebrow, direct H1, and short subtitle.
-- Article header with author, updated date, and estimated read time.
+- Article header with author, updated date, and `Read/watch` time when videos are part of the lesson. Estimate the combined skim/read time plus the main videos a reader is expected to watch.
 - Short lead paragraph that explains the skill and outcome without making the page sound like a private employee manual.
 - A concise A Team standard callout near the top.
 - Repeated `.module-card` sections for each training module.
@@ -374,6 +374,7 @@ Required page structure:
   - 1-3 paragraphs of practical instruction.
   - Tables, checklists, or resource cards only where they belong in that module.
 - Final CTA using the existing `.article-cta` pattern.
+- Bottom Q&A section when the topic has common customer questions or useful SEO queries.
 - Social share links when the page is public.
 
 Content rules:
@@ -385,6 +386,9 @@ Content rules:
 - Include "Core Skills" and "Key Takeaways" above or near the start of every module.
 - Keep tables inside the module where the decision is used. Do not create a detached table dump at the top.
 - Add checklist panels for inspection, safety, professionalism, or end-of-job standards when they are more useful than prose.
+- Add a small number of natural internal links to related landers, blog guides, service pages, and contact pages where they genuinely help the reader continue. Avoid forcing links into every paragraph.
+- Include a few sales and SEO plugs, but keep them tied to the lesson: examples include painting services, drywall repair before painting, estimate requests, service area language, and related A Team guides.
+- Use the Q&A section for search-friendly questions, customer objections, and next-step service links. Keep answers useful first and promotional second.
 
 Tables:
 
