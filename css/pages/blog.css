@@ -125,6 +125,7 @@
 /* Article pages */
 .article-page {
   background: #f8fafc;
+  overflow-x: hidden;
 }
 
 .article-page .page-hero {
@@ -150,6 +151,8 @@
   max-width: 980px;
   margin: 0 auto;
   padding: 0 1.25rem 4rem 1.25rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .article-header {
@@ -182,6 +185,8 @@
   padding: 1.5rem;
   margin-top: 1.5rem;
   box-shadow: 0 8px 18px rgba(31, 41, 55, 0.08);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .article-body h2,
@@ -266,9 +271,25 @@
   color: #1f2937;
 }
 
+.training-article,
+.training-article * {
+  min-width: 0;
+}
+
+.training-article p,
+.training-article li,
+.training-article h1,
+.training-article h2,
+.training-article h3,
+.training-article a {
+  overflow-wrap: anywhere;
+}
+
 .responsive-table {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin: 0.75rem 0 1.4rem 0;
   border: 1px solid #e2e8f0;
   border-radius: 10px;
@@ -306,6 +327,8 @@
   border: 1px solid #dbe3ee;
   border-radius: 12px;
   background: #fbfdff;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .module-label {
@@ -349,7 +372,7 @@
 
 .resource-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
@@ -367,6 +390,7 @@
   position: absolute;
   inset: 0;
   width: 100%;
+  max-width: 100%;
   height: 100%;
   border: 0;
 }
@@ -391,12 +415,56 @@
 }
 
 @media (max-width: 720px) {
+  .training-article.article-body {
+    padding: 1rem;
+  }
+
+  .training-article .article-lead {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
   .learning-grid {
     grid-template-columns: 1fr;
   }
 
   .module-card {
+    margin: 1rem 0;
     padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .learning-grid > div,
+  .checklist-panel,
+  .resource-card {
+    padding: 0.85rem;
+  }
+
+  .resource-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+  }
+
+  .responsive-table {
+    margin: 0.65rem 0 1.1rem 0;
+    border-radius: 8px;
+  }
+
+  .responsive-table table {
+    min-width: 620px;
+  }
+
+  .responsive-table th,
+  .responsive-table td {
+    padding: 0.65rem 0.7rem;
+  }
+
+  .video-frame {
+    border-radius: 7px;
+  }
+
+  .resource-link {
+    font-size: 0.9rem;
   }
 }
 
@@ -414,5 +482,47 @@
   .cta-card__actions,
   .article-cta .cta-buttons {
     width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .article-wrapper {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    overflow-x: hidden;
+  }
+
+  .article-header {
+    padding: 0.9rem;
+  }
+
+  .article-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    font-size: 0.88rem;
+  }
+
+  .training-article.article-body {
+    padding: 0.8rem;
+  }
+
+  .module-card {
+    padding: 0.8rem;
+  }
+
+  .module-label {
+    font-size: 0.76rem;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .responsive-table table {
+    min-width: 560px;
+  }
+
+  .article-cta .btn {
+    width: 100%;
+    text-align: center;
   }
 }
