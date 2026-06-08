@@ -35,6 +35,76 @@
     }
   });
 
+  const scrollResourceCarousel = (button) => {
+    const carousel = button.closest('[data-resource-carousel]');
+    const track = carousel ? carousel.querySelector('.resource-grid') : null;
+    if (!track) return;
+
+    const direction = button.matches('[data-resource-prev]') ? -1 : 1;
+    const cards = Array.from(track.querySelectorAll('.resource-card'));
+    if (!cards.length) return;
+
+    const currentIndex = Number.parseInt(carousel.dataset.resourceIndex || '0', 10);
+    const nextIndex = Math.max(0, Math.min(cards.length - 1, currentIndex + direction));
+    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap || '0');
+    const offset = nextIndex * (track.clientWidth + gap);
+
+    carousel.dataset.resourceIndex = String(nextIndex);
+    track.style.transform = `translateX(-${offset}px)`;
+  };
+
+  const initResourceCarousels = () => {
+    document.querySelectorAll('[data-resource-prev], [data-resource-next]').forEach((button) => {
+      if (button.dataset.resourceScrollInit === 'true') return;
+      button.dataset.resourceScrollInit = 'true';
+      button.addEventListener('click', () => scrollResourceCarousel(button));
+    });
+  };
+
+  /* Sidebar functionality is paused while the painting guide uses integrated links.
+  const initArticleRelatedSidebar = () => {
+    const sidebar = document.querySelector('.article-related');
+    const article = document.querySelector('.article-main');
+    if (!sidebar || !article) return;
+
+    let ticking = false;
+
+    const updateSidebar = () => {
+      ticking = false;
+
+      sidebar.classList.remove('is-fixed');
+      sidebar.style.removeProperty('--article-related-left');
+      sidebar.style.removeProperty('--article-related-top');
+
+      if (!window.matchMedia('(min-width: 1599px)').matches) return;
+
+      const siteHeader = document.querySelector('#site-header');
+      const headerBottom = siteHeader ? siteHeader.getBoundingClientRect().bottom : 0;
+      const pinOffset = Math.max(16, Math.round(headerBottom) + 16);
+      const articleRect = article.getBoundingClientRect();
+      const sidebarRect = sidebar.getBoundingClientRect();
+      const articleTop = articleRect.top + window.scrollY;
+
+      if (window.scrollY + pinOffset < articleTop) return;
+
+      const left = articleRect.left - sidebarRect.width - 24;
+      sidebar.style.setProperty('--article-related-left', `${Math.max(16, left)}px`);
+      sidebar.style.setProperty('--article-related-top', `${pinOffset}px`);
+      sidebar.classList.add('is-fixed');
+    };
+
+    const scheduleUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateSidebar);
+    };
+
+    updateSidebar();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+  };
+  */
+
   const carouselSelector = '[data-carousel-images], [data-carousel-folder]';
 
   const getInlineCarouselImages = (container) => (
@@ -939,6 +1009,8 @@
   };
 
   observeCarousels();
+  initResourceCarousels();
+  // initArticleRelatedSidebar();
   observeCurrentYearTargets();
   observeTrackingTargets();
   observeLandingSnippets();
