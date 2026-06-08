@@ -361,9 +361,13 @@ Required page structure:
 
 - Standard blog HTML shell with nav include, blog CSS, footer include, metadata, GTM, and analytics matching existing blog articles.
 - Hero with real service/project imagery, a clear badge/tutorial eyebrow, direct H1, and short subtitle.
+- Keep only one true `<h1>` on the page. If the article header repeats the title visually, use normal text or a styled paragraph instead of a second H1.
 - Article header with author, updated date, and `Read/watch` time when videos are part of the lesson. Estimate the combined skim/read time plus the main videos a reader is expected to watch.
 - Short lead paragraph that explains the skill and outcome without making the page sound like a private employee manual.
+- Early conversion CTA after the intro when the page covers a service A Team sells. Keep it helpful and specific, with one clear estimate/contact link.
+- Compact "In This Guide" jump-link section for longer module pages. Add matching `id` attributes to module headings.
 - A concise A Team standard callout near the top.
+- A short order-of-operations section before Module 1 when the topic has a repeatable job sequence.
 - Repeated `.module-card` sections for each training module.
 - Each module should include:
   - `Module N` label.
@@ -388,6 +392,7 @@ Content rules:
 - Add checklist panels for inspection, safety, professionalism, or end-of-job standards when they are more useful than prose.
 - Add a small number of natural internal links to related landers, blog guides, service pages, and contact pages where they genuinely help the reader continue. Avoid forcing links into every paragraph.
 - Include a few sales and SEO plugs, but keep them tied to the lesson: examples include painting services, drywall repair before painting, estimate requests, service area language, and related A Team guides.
+- Add subtle mid-page CTAs after major decision or production modules when they fit naturally. Avoid turning every module into a sales block.
 - Use the Q&A section for search-friendly questions, customer objections, and next-step service links. Keep answers useful first and promotional second.
 
 Tables:
@@ -415,6 +420,7 @@ Video and resource cards:
 <p class="resource-link"><a href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank" rel="noopener">Open video resource</a></p>
 ```
 
+- Add a short "watch for" sentence before each video link so readers know what skill or detail matters in the resource.
 - If the requested resource is not a YouTube video, use a tested embeddable source only if it renders reliably in the page. Otherwise link it as a resource instead of forcing an iframe.
 
 Maintenance when adding a badge/tutorial page:
