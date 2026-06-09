@@ -363,12 +363,23 @@ Required page structure:
 - Hero with real service/project imagery, a clear badge/tutorial eyebrow, direct H1, and short subtitle.
 - Keep only one true `<h1>` on the page. If the article header repeats the title visually, use normal text or a styled paragraph instead of a second H1.
 - Article header with author, updated date, and `Read/watch` time when videos are part of the lesson. Estimate the combined skim/read time plus the main videos a reader is expected to watch.
-- Short lead paragraph that explains the skill and outcome without making the page sound like a private employee manual.
-- Early conversion CTA after the intro when the page covers a service A Team sells. Keep it helpful and specific, with one clear estimate/contact link.
-- Compact "In This Guide" jump-link section for longer module pages. Add matching `id` attributes to module headings.
-- A concise A Team standard callout near the top.
-- A short order-of-operations section before Module 1 when the topic has a repeatable job sequence.
-- Repeated `.module-card` sections for each training module.
+- Use `.article-content-layout` for long badge pages that need a desktop sidebar.
+- Desktop sidebar:
+  - Use `.article-related` outside the main content column.
+  - Show it only at wide desktop widths where it does not squeeze content; the painting template hides it below `1599px`.
+  - Use native CSS `position: sticky`, not a scroll-driven fixed-position JavaScript toggle.
+  - Include a numbered "In This Guide" list plus related guides and service links.
+- Top related-links card:
+  - Use a separate `.article-body.article-related-inline` near the top for related guides and service links.
+  - Hide this card above the desktop-sidebar breakpoint when the sidebar is available.
+  - Format links as one-column bullet lists, not pill grids, so the section stays compact.
+- Intro article body:
+  - Short lead paragraph that explains the skill and outcome without making the page sound like a private employee manual.
+  - Early conversion CTA when the page covers a service A Team sells. Keep it helpful and specific, with one clear estimate/contact link.
+  - A concise A Team standard callout near the top.
+  - A short order-of-operations section before Module 1 when the topic has a repeatable job sequence.
+  - A compact "In This Guide" jump-link section after the order-of-operations section for narrower screens. Use a single-column numbered list and matching `id` attributes on module headings.
+- Each training module should be its own top-level `.article-body.training-article.module-card` section. Do not nest module cards inside a larger article body; this creates too many visual boxes.
 - Each module should include:
   - `Module N` label.
   - Module heading.
@@ -377,9 +388,8 @@ Required page structure:
   - `Key Takeaways` list.
   - 1-3 paragraphs of practical instruction.
   - Tables, checklists, or resource cards only where they belong in that module.
-- Final CTA using the existing `.article-cta` pattern.
-- Bottom Q&A section when the topic has common customer questions or useful SEO queries.
-- Social share links when the page is public.
+- Use one final `.article-body` for bottom Q&A, "when to hire" copy, final CTA, and social share links when those sections are present. Keep them grouped instead of scattering several small cards.
+- Add a separate bottom `.article-body.related-card-island` for visual "Keep Learning" cards when useful.
 
 Content rules:
 
@@ -404,7 +414,8 @@ Tables:
 
 Video and resource cards:
 
-- Use `.resource-grid`, `.resource-card`, and `.video-frame`.
+- Use `.resource-carousel`, `.resource-grid`, `.resource-card`, and `.video-frame` for module videos when there are multiple resources.
+- Carousel arrow buttons use `data-resource-prev` and `data-resource-next`; `js/scripts.js` measures the active `.video-frame` and sets `--resource-arrow-top` so arrows stay centered on the video across mobile, tablet, and desktop. Do not position arrows with a static card-level `top: 50%` if the card has text below the video.
 - Match the working embed pattern used on the painting badge page:
 
 ```html
@@ -430,7 +441,8 @@ Maintenance when adding a badge/tutorial page:
 - Reuse or extend `css/pages/blog.css`; do not create one-off inline styles unless unavoidable.
 - Regenerate `sitemap.xml` with `node scripts/generate-sitemap.js`.
 - Test through a local server because includes and iframes should be checked over HTTP.
-- Verify the page has no broken resource frames, no orphaned standalone tables, and no language that makes the article read like an internal-only manual.
+- Verify the page has no broken resource frames, no orphaned standalone tables, no nested module-card layers, no horizontal overflow, and no language that makes the article read like an internal-only manual.
+- For pages with a sidebar, verify both breakpoint states: the sidebar should appear only when there is room, and the inline related-links card should serve narrower viewports.
 
 ## Creating New Landers
 
