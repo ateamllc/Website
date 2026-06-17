@@ -150,6 +150,138 @@
       resize: vertical;
     }
 
+    .knocking-field .knocking-checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: fit-content;
+    }
+
+    .knocking-field .knocking-checkbox-label input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+    .knocking-starting-text {
+      color: #64748b;
+      font-size: 0.82rem;
+      gap: 0.45rem;
+    }
+
+    .knocking-starting-text .knocking-checkbox-label {
+      color: #94a3b8;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .knocking-starting-text .knocking-advanced-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .knocking-starting-text textarea {
+      color: #64748b;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      background: #f8fafc;
+      min-height: 6.25rem;
+      padding: 0.6rem 0.7rem;
+    }
+
+    .knocking-starting-text input[type="text"] {
+      color: #475569;
+      font-size: 0.86rem;
+      background: #f8fafc;
+      padding: 0.6rem 0.7rem;
+    }
+
+    .knocking-starting-text input[type="radio"] {
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+    .knocking-starting-text summary {
+      color: #64748b;
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .knocking-starting-text summary:hover,
+    .knocking-starting-text summary:focus-visible {
+      color: #475569;
+    }
+
+    .knocking-starting-text[open] summary {
+      margin-bottom: 0.45rem;
+    }
+
+    .knocking-starting-text-picker {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .knocking-starting-text-picker > span {
+      color: #182741;
+      font-weight: 800;
+      font-size: 0.94rem;
+    }
+
+    .knocking-message-options {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .knocking-message-card {
+      display: grid;
+      gap: 0.55rem;
+      align-content: start;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.85rem;
+      background: #f8fafc;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    .knocking-message-card:has(input:checked) {
+      border-color: #f59e0b;
+      background: #fff7ed;
+    }
+
+    .knocking-message-card input[type="radio"] {
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+    .knocking-starting-text .knocking-message-card {
+      width: 100%;
+    }
+
+    .knocking-starting-text .knocking-message-card + .knocking-message-card {
+      margin-top: 0.55rem;
+    }
+
+    .knocking-message-card-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #182741;
+      font-weight: 800;
+    }
+
+    .knocking-message-card p {
+      color: #64748b;
+      font-size: 0.86rem;
+      line-height: 1.45;
+      white-space: pre-line;
+    }
+
     .knocking-field--full,
     .knocking-lead-form button {
       grid-column: 1 / -1;
@@ -286,6 +418,10 @@
       .knocking-form-grid {
         grid-template-columns: 1fr 1fr;
       }
+
+      .knocking-message-options {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -328,7 +464,7 @@
         <input type="hidden" name="form_source" value="Internal door knocking lead form">
         <input type="hidden" name="page_url" value="https://ateamutah.com/pages/knocking-rules.html">
         <input type="hidden" name="service_category" value="N/A">
-        <input type="hidden" name="lead_source" value="door_knocking">
+        <input type="hidden" id="send-starting-text-value" name="send_starting_text" value="true">
         <input type="hidden" name="offer_detail" value="">
         <input type="hidden" name="offer_terms" value="">
         <input type="hidden" name="redirect" value="https://ateamutah.com/pages/knocking-submitted.html">
@@ -354,6 +490,19 @@
               <option>Elijah Child</option>
               <option>McKay Whiting</option>
               <option>Sierra Violette</option>
+            </select>
+          </div>
+
+          <div class="knocking-field knocking-field--full">
+            <label for="lead-source">Lead source</label>
+            <select id="lead-source" name="lead_source" required>
+              <option value="door_knocking" selected>Knocking</option>
+              <option value="referral">Referral</option>
+              <option value="inbound_call">Inbound call</option>
+              <option value="inbound_messenger">Inbound messenger</option>
+              <option value="google_ad">Google Ad</option>
+              <option value="meta_ad">Meta Ad</option>
+              <option value="other">Other</option>
             </select>
           </div>
 
@@ -405,8 +554,54 @@
             <textarea id="project-notes" name="project_description" rows="4" placeholder="Example: fence gate repair, drywall patch, painting, rental punch list. Include measurements, materials, access notes, urgency, and whether photos were taken."></textarea>
           </div>
 
-          <p class="knocking-form-note">After submitting: the lead is automatically logged into the company system and a Trello card is created. Your job is to follow up from Google Voice, build the estimate, and send the official estimate through QBO.</p>
+          <div class="knocking-starting-text-picker knocking-field--full">
+            <span>Pick a starting text</span>
+            <div class="knocking-message-options">
+              <label class="knocking-message-card">
+                <span class="knocking-message-card-title">
+                  <input class="starting-text-option" type="radio" data-template="door_conversation_followup" checked>
+                  Door conversation follow-up
+                </span>
+                <p>Hi ___, this is ____ with A Team Property Improvement! Thanks for talking with me today about your home project. This is our main phone # we'll use to contact you, and we'll work on getting your estimate sent over as soon as we can!
+
+You can reply here or call us at (801) 477-7526 with any questions!</p>
+              </label>
+
+              <label class="knocking-message-card">
+                <span class="knocking-message-card-title">
+                  <input class="starting-text-option" type="radio" data-template="walkthrough_request">
+                  Walkthrough request
+                </span>
+                <p>Hi ____, this is A Team Property Improvement! We got your request for help on your home project. What times this week would work for a quick walkthrough to get a few more details?
+
+You can reply here or call us at (801) 477-7526 with any questions!</p>
+              </label>
+            </div>
+            <textarea id="starting-text-message" name="starting_text_message" hidden>Hi ___, this is ____ with A Team Property Improvement! Thanks for talking with me today about your home project. This is our main phone # we'll use to contact you, and we'll work on getting your estimate sent over as soon as we can!
+
+You can reply here or call us at (801) 477-7526 with any questions!</textarea>
+          </div>
+
+          <details class="knocking-field knocking-field--full knocking-starting-text">
+            <summary>Advanced: Custom or Disable Starting Text</summary>
+            <label class="knocking-message-card" for="starting-text-custom">
+              <span class="knocking-message-card-title">
+                <input id="starting-text-custom" class="starting-text-option" type="radio" data-template="custom_starting_text">
+                Custom first text message
+              </span>
+              <input id="custom-starting-text" type="text" autocomplete="off" placeholder="Type the custom message here">
+            </label>
+            <label class="knocking-message-card" for="starting-text-none">
+              <span class="knocking-message-card-title">
+                <input id="starting-text-none" class="starting-text-option" type="radio" data-template="no_automatic_first_message">
+                No first text message: check only if you are already in contact.
+              </span>
+            </label>
+          </details>
+
           <button type="submit" class="btn btn-primary">Submit Lead</button>
+
+          <p class="knocking-form-note">After submitting: the lead is automatically logged into the company system and a Trello card is created. Your job is to follow up from Google Voice, build the estimate, and send the official estimate through QBO.</p>
         </div>
       </form>
     </section>
@@ -501,5 +696,93 @@
     </div>
   </main>
   <script src="/js/discount-codes.js" defer></script>
+  <script>
+    const startingTextValue = document.getElementById('send-starting-text-value');
+    const startingTextMessage = document.getElementById('starting-text-message');
+    const customStartingText = document.getElementById('custom-starting-text');
+    const doorKnockingLeadForm = document.getElementById('door-knocking-lead-form');
+    const startingTextTemplates = {
+      door_conversation_followup: `Hi ___, this is ____ with A Team Property Improvement! Thanks for talking with me today about your home project. This is our main phone # we'll use to contact you, and we'll work on getting your estimate sent over as soon as we can!
+
+You can reply here or call us at (801) 477-7526 with any questions!`,
+      walkthrough_request: `Hi ____, this is A Team Property Improvement! We got your request for help on your home project. What times this week would work for a quick walkthrough to get a few more details?
+
+You can reply here or call us at (801) 477-7526 with any questions!`
+    };
+
+    if (startingTextValue) {
+      const syncStartingTextValue = () => {
+        const selectedTemplate = document.querySelector('.starting-text-option:checked');
+        startingTextValue.value = selectedTemplate && selectedTemplate.dataset.template === 'no_automatic_first_message' ? 'false' : 'true';
+      };
+
+      document.querySelectorAll('.starting-text-option').forEach((templateOption) => {
+        templateOption.addEventListener('change', syncStartingTextValue);
+      });
+      syncStartingTextValue();
+    }
+
+    if (startingTextMessage) {
+      const syncStartingTextMessage = () => {
+        const customMessage = customStartingText && customStartingText.value.trim();
+        const selectedTemplate = document.querySelector('.starting-text-option:checked');
+        if (selectedTemplate && selectedTemplate.dataset.template === 'custom_starting_text') {
+          startingTextMessage.value = customMessage;
+          return;
+        }
+
+        if (selectedTemplate && selectedTemplate.dataset.template === 'no_automatic_first_message') {
+          startingTextMessage.value = '';
+          return;
+        }
+
+        if (selectedTemplate && startingTextTemplates[selectedTemplate.dataset.template]) {
+          startingTextMessage.value = startingTextTemplates[selectedTemplate.dataset.template];
+        }
+      };
+
+      document.querySelectorAll('.starting-text-option').forEach((templateOption) => {
+        templateOption.addEventListener('change', () => {
+          document.querySelectorAll('.starting-text-option').forEach((option) => {
+            if (option !== templateOption) option.checked = false;
+          });
+          syncStartingTextMessage();
+          if (startingTextValue) {
+            startingTextValue.value = templateOption.dataset.template === 'no_automatic_first_message' ? 'false' : 'true';
+          }
+        });
+      });
+
+      if (customStartingText) {
+        customStartingText.addEventListener('input', () => {
+          const customTemplateOption = document.getElementById('starting-text-custom');
+          if (customTemplateOption) {
+            document.querySelectorAll('.starting-text-option').forEach((option) => {
+              option.checked = option === customTemplateOption;
+            });
+          }
+          customStartingText.setCustomValidity('');
+          syncStartingTextMessage();
+          if (startingTextValue) startingTextValue.value = 'true';
+        });
+      }
+
+      syncStartingTextMessage();
+    }
+
+    if (doorKnockingLeadForm && customStartingText) {
+      doorKnockingLeadForm.addEventListener('submit', (event) => {
+        const selectedTemplate = document.querySelector('.starting-text-option:checked');
+        if (selectedTemplate && selectedTemplate.dataset.template === 'custom_starting_text' && !customStartingText.value.trim()) {
+          event.preventDefault();
+          customStartingText.setCustomValidity('Enter a custom first text message or choose a preset.');
+          customStartingText.reportValidity();
+          return;
+        }
+
+        customStartingText.setCustomValidity('');
+      });
+    }
+  </script>
 </body>
 </html>
