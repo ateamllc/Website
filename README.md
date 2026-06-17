@@ -115,7 +115,7 @@ Approved `service_category` values:
 
 Use `N/A` when the form is not service-specific, such as careers, door knocking, or a door hanger offer claim. Use `Unspecified` when the form is a general customer estimate request that has not collected or inferred a service category, such as the home or contact page forms. Service landing pages should submit the mapped category for that lander.
 
-Preferred backend field names include `first_name`, `last_name`, `company_name`, `phone`, `email`, `project_address`, `project_city`, `project_state`, `project_zip`, `property_type`, `service_category`, `discount_code`, `offer_detail`, `offer_terms`, `project_description`, `measurements_notes`, `urgency`, `preferred_timeline`, `budget_range`, `preferred_contact_method`, `preferred_contact_time`, `lead_source`, `send_starting_text`, `starting_text_message`, `role_applied_for`, `applicant_city`, `applicant_experience_example`, `consent_to_contact`, `employee_name`, `assigned_to`, `photos_taken`, `form_source`, `form_id`, `form_name`, `page_url`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, and `submitted_at`.
+Preferred backend field names include `first_name`, `last_name`, `company_name`, `phone`, `email`, `project_address`, `project_city`, `project_state`, `project_zip`, `property_type`, `tenant_status`, `service_category`, `request_type`, `discount_code`, `offer_detail`, `offer_terms`, `project_description`, `entry_instructions`, `measurements_notes`, `urgency`, `preferred_timeline`, `authorization_limit`, `budget_range`, `preferred_contact_method`, `preferred_contact_time`, `lead_source`, `send_starting_text`, `starting_text_message`, `role_applied_for`, `applicant_city`, `applicant_experience_example`, `consent_to_contact`, `employee_name`, `assigned_to`, `photos_taken`, `form_source`, `form_id`, `form_name`, `page_url`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, and `submitted_at`.
 
 Contact validation rules:
 
@@ -338,6 +338,7 @@ Purpose:
 Current structure:
 
 - Uses the reusable landing hero partial with a B2B/account-review CTA, call CTA, and text CTA.
+- Shows a slim current-account request ribbon above the hero linking to `pages/property-manager-maintenance-request.html`.
 - Uses JSON-LD for local business, service, and FAQ schema.
 - Shows a trust strip immediately after the hero.
 - Uses an operator-focused overview section before the carousel to explain multi-property fit, account options, and owner clarity.
@@ -353,6 +354,20 @@ Strategic notes:
 - Avoid making the page sound like general handyman work only. The property manager/account relationship is the differentiator.
 - Keep preferred pricing and on-call language conditional on account approval, property count, work type, access, and payment process.
 - If reviews are added later, order them around recurring reliability, communication, tenant-friendly work, punch lists, and multi-job trust before showing unrelated service reviews.
+
+File: `pages/property-manager-maintenance-request.html`
+
+Purpose:
+
+- Intake maintenance requests from current property manager accounts.
+- Submit through Web3Forms with `form_id="property_manager_maintenance_request"` and subject `A Team Lead | Property Manager Maintenance Request`.
+- Feed the maintenance/Trello workflow with requester, property, urgency, approval, access, and scope details.
+
+Page notes:
+
+- Keep this page `noindex, nofollow` and out of `sitemap.xml` until it is intentionally made public or password protected.
+- Keep commentary minimal and operational; the form is a current-account work order intake, not a marketing page.
+- The property manager lander should link to this page only through the slim account ribbon above the hero.
 
 ## Door Hanger and Knocking Pages
 
