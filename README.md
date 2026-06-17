@@ -115,7 +115,7 @@ Approved `service_category` values:
 
 Use `N/A` when the form is not service-specific, such as careers, door knocking, or a door hanger offer claim. Use `Unspecified` when the form is a general customer estimate request that has not collected or inferred a service category, such as the home or contact page forms. Service landing pages should submit the mapped category for that lander.
 
-Preferred backend field names include `first_name`, `last_name`, `company_name`, `phone`, `email`, `project_address`, `project_city`, `project_state`, `project_zip`, `property_type`, `service_category`, `discount_code`, `offer_detail`, `offer_terms`, `project_description`, `measurements_notes`, `urgency`, `preferred_timeline`, `budget_range`, `preferred_contact_method`, `preferred_contact_time`, `lead_source`, `role_applied_for`, `applicant_city`, `applicant_experience_example`, `consent_to_contact`, `employee_name`, `assigned_to`, `photos_taken`, `form_source`, `form_id`, `form_name`, `page_url`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, and `submitted_at`.
+Preferred backend field names include `first_name`, `last_name`, `company_name`, `phone`, `email`, `project_address`, `project_city`, `project_state`, `project_zip`, `property_type`, `service_category`, `discount_code`, `offer_detail`, `offer_terms`, `project_description`, `measurements_notes`, `urgency`, `preferred_timeline`, `budget_range`, `preferred_contact_method`, `preferred_contact_time`, `lead_source`, `send_starting_text`, `starting_text_message`, `role_applied_for`, `applicant_city`, `applicant_experience_example`, `consent_to_contact`, `employee_name`, `assigned_to`, `photos_taken`, `form_source`, `form_id`, `form_name`, `page_url`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, and `submitted_at`.
 
 Contact validation rules:
 
@@ -139,13 +139,29 @@ Current `lead_source` values:
 - `website_careers_page`
 - `door_hanger`
 - `door_knocking`
+- `referral`
+- `inbound_call`
+- `inbound_messenger`
+- `google_ad`
+- `meta_ad`
+- `other`
+
+The internal door knocking form uses a visible `lead_source` dropdown so employees can classify non-knocking intake that gets entered through that same internal workflow. Public forms should keep their hidden page-specific `lead_source` values.
+
+Starting text automation:
+
+- Public lead forms submit a hidden `starting_text_message` using the walkthrough-request message.
+- The internal door knocking form submits `send_starting_text` and `starting_text_message`; its UI can choose a preset, provide a custom message, or submit `send_starting_text=false` with a blank message when no automatic first text should be sent.
+- If the internal form's custom starting text option is selected, the custom message input is required before submission.
+- Careers and admin login do not participate in starting text automation.
 
 Form reference spreadsheets live in `docs/reference/`:
 
 - `docs/reference/form-field-matrix.csv` lists every website form as a column and the submitted backend field names under each form.
 - `docs/reference/form-subjects.csv` lists each form, page path, `form_id`, and standardized subject line.
+- `docs/reference/lead-sources.csv` lists approved `lead_source` values for routing and automation.
 
-These CSV files are manual repo references, not generated dynamically. Update them in the same commit whenever a form field, `form_id`, page path, or subject line changes.
+These CSV files are manual repo references, not generated dynamically. Update them in the same commit whenever a form field, `form_id`, page path, subject line, or approved `lead_source` changes.
 
 Avoid duplicate field names for different meanings. Keep visible labels customer-friendly, but keep submitted names stable for Google Contacts, QuickBooks Online, Trello, Gmail filters, Zapier, and other automation.
 
