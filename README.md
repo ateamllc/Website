@@ -381,6 +381,11 @@ For both pages, keep the customer/process purpose intact and only change form fi
 
 Badge/tutorial pages are public blog articles that also work as internal training references. Use `pages/blog/how-to-paint-a-team-way.html` as the current template. These pages should feel useful to homeowners first, while still being structured enough for crew training, sign-off, and repeatable standards.
 
+Current badge/tutorial pages:
+
+- `pages/blog/how-to-paint-a-team-way.html` for painting prep, product choice, application, safety, quality control, and professionalism.
+- `pages/blog/fence-installation-badge.html` for cedar, vinyl, composite, and chain link fence layout, installation, gates, safety, quality control, and professionalism.
+
 Purpose:
 
 - Teach a practical skill path, not just publish a marketing article.

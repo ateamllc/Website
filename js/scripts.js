@@ -44,12 +44,14 @@
       cards.length - 1,
       Number.parseInt(carousel.dataset.resourceIndex || '0', 10)
     ));
-    const activeVideo = cards[currentIndex] ? cards[currentIndex].querySelector('.video-frame') : null;
-    if (!activeVideo) return;
+    const activeCard = cards[currentIndex] || null;
+    const activeVideo = activeCard ? activeCard.querySelector('.video-frame') : null;
+    const arrowTarget = activeVideo || activeCard;
+    if (!arrowTarget) return;
 
     const carouselRect = carousel.getBoundingClientRect();
-    const videoRect = activeVideo.getBoundingClientRect();
-    const arrowTop = videoRect.top - carouselRect.top + (videoRect.height / 2);
+    const targetRect = arrowTarget.getBoundingClientRect();
+    const arrowTop = targetRect.top - carouselRect.top + (targetRect.height / 2);
 
     carousel.style.setProperty('--resource-arrow-top', `${Math.round(arrowTop)}px`);
   };

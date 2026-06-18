@@ -591,6 +591,13 @@
   padding: 0.25rem 0 0.8rem 0;
 }
 
+.resource-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
 .resource-carousel {
   position: relative;
   margin-top: 1.25rem;
@@ -776,6 +783,11 @@
   }
 
   .resource-grid {
+    gap: 0.85rem;
+  }
+
+  .resource-link-grid {
+    grid-template-columns: 1fr;
     gap: 0.85rem;
   }
 
