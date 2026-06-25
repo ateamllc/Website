@@ -674,7 +674,7 @@
     setHiddenValue('form_source', section.dataset.formSource || 'Website landing page');
     setHiddenValue('page_url', window.location.href);
     setHiddenValue('service_category', section.dataset.serviceCategory || serviceCategories[formKey] || 'Unspecified');
-    setHiddenValue('lead_source', section.dataset.leadSource || 'website_landing_page');
+    setHiddenValue('lead_source', section.dataset.leadSource || 'website_form');
 
     section.querySelectorAll('[data-field]').forEach((field) => {
       field.id = `${formId}-${field.dataset.field}`;
