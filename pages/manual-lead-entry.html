@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex,nofollow,noarchive,noimageindex">
-  <title>Knocking Process | A Team Property Improvement</title>
+  <title>Manual Lead Entry | A Team Property Improvement</title>
   <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
@@ -429,40 +429,19 @@
 <body class="knocking-process-page">
   <main class="knocking-main">
     <section class="knocking-hero" aria-labelledby="knocking-title">
-      <h1 id="knocking-title">Door Knocking Process</h1>
-    </section>
-
-    <section id="quick-steps" class="knocking-section" aria-label="Quick knocking steps">
-      <div class="knocking-quick-grid">
-        <article class="knocking-quick-card">
-          <h2>At the Door: 1-2-3</h2>
-          <ol class="knocking-quick-list">
-            <li><a href="#door-flyer"><span class="knocking-number">1</span><span>Always give them the flyer</span></a></li>
-            <li><a href="#door-info"><span class="knocking-number">2</span><span>Yes, we need email, phone, &amp; addy</span></a></li>
-            <li><a href="#door-phone"><span class="knocking-number">3</span><span>No info on your personal phone</span></a></li>
-          </ol>
-        </article>
-
-        <article class="knocking-quick-card">
-          <h2>When Home: 1-2-3</h2>
-          <ol class="knocking-quick-list">
-            <li><a href="#home-text"><span class="knocking-number">1</span><span>Text within an hour</span></a></li>
-            <li><a href="#home-estimate"><span class="knocking-number">2</span><span>Build the estimate</span></a></li>
-            <li><a href="#home-qbo"><span class="knocking-number">3</span><span>Send the estimate within 24 hours via QBO</span></a></li>
-          </ol>
-        </article>
-      </div>
+      <h1 id="knocking-title">Manual Lead Entry</h1>
+      <p>Enter a lead from any approved source so it can move into the company follow-up workflow.</p>
     </section>
 
     <section id="lead-form" class="knocking-section" aria-labelledby="lead-form-title">
       <form id="door-knocking-lead-form" action="https://api.web3forms.com/submit" method="post" class="knocking-lead-form" data-require-contact data-discount-codes autocomplete="on">
         <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
-        <input type="hidden" name="subject" value="A Team Lead | Door Knocking Lead">
+        <input type="hidden" name="subject" value="A Team Lead | Manual Lead Entry">
         <input type="hidden" name="from_name" value="A Team Property Improvement">
-        <input type="hidden" name="form_id" value="door_knocking_lead">
-        <input type="hidden" name="form_name" value="Door Knocking Lead">
-        <input type="hidden" name="form_source" value="Internal door knocking lead form">
-        <input type="hidden" name="page_url" value="https://ateamutah.com/pages/knocking-rules.html">
+        <input type="hidden" name="form_id" value="manual_lead_entry">
+        <input type="hidden" name="form_name" value="Manual Lead Entry">
+        <input type="hidden" name="form_source" value="Internal manual lead entry form">
+        <input type="hidden" name="page_url" value="https://ateamutah.com/pages/manual-lead-entry.html">
         <input type="hidden" name="service_category" value="N/A">
         <input type="hidden" id="send-starting-text-value" name="send_starting_text" value="true">
         <input type="hidden" name="offer_detail" value="">
@@ -472,7 +451,7 @@
         <div class="knocking-form-grid">
           <div class="knocking-field knocking-field--full">
             <p class="eyebrow">Submit the lead</p>
-            <h2 id="lead-form-title">Door Knocking Lead Form</h2>
+            <h2 id="lead-form-title">Manual Lead Entry Form</h2>
             <p class="knocking-form-note">Enter whatever info they are willing to give. Take what you can get and submit it.</p>
           </div>
 
@@ -496,13 +475,17 @@
           <div class="knocking-field knocking-field--full">
             <label for="lead-source">Lead source</label>
             <select id="lead-source" name="lead_source" required>
-              <option value="door_knocking" selected>Knocking</option>
+              <option value="knocking" selected>Knocking</option>
               <option value="referral">Referral</option>
+              <option value="meta_ads">Meta Ads</option>
+              <option value="facebook_organic_inbound">Facebook organic/inbound</option>
+              <option value="google_ads">Google Ads</option>
+              <option value="website_form">Website form</option>
+              <option value="gbp">GBP</option>
               <option value="inbound_call">Inbound call</option>
-              <option value="inbound_messenger">Inbound messenger</option>
-              <option value="google_ad">Google Ad</option>
-              <option value="meta_ad">Meta Ad</option>
-              <option value="other">Other</option>
+              <option value="inbound_text">Inbound text</option>
+              <option value="return_customer">Return customer</option>
+              <option value="door_hangers">Door hangers</option>
             </select>
           </div>
 
@@ -560,7 +543,7 @@
               <label class="knocking-message-card">
                 <span class="knocking-message-card-title">
                   <input class="starting-text-option" type="radio" data-template="door_conversation_followup" checked>
-                  Door conversation follow-up
+                  Conversation follow-up
                 </span>
                 <p>Hi ___, this is ____ with A Team Property Improvement! Thanks for talking with me today about your home project. This is our main phone # we'll use to contact you, and we'll work on getting your estimate sent over as soon as we can!
 
@@ -604,6 +587,28 @@ You can reply here or call us at (801) 477-7526 with any questions!</textarea>
           <p class="knocking-form-note">After submitting: the lead is automatically logged into the company system and a Trello card is created. Your job is to follow up from Google Voice, build the estimate, and send the official estimate through QBO.</p>
         </div>
       </form>
+    </section>
+
+    <section id="quick-steps" class="knocking-section" aria-label="Quick knocking steps">
+      <div class="knocking-quick-grid">
+        <article class="knocking-quick-card">
+          <h2>At the Door: 1-2-3</h2>
+          <ol class="knocking-quick-list">
+            <li><a href="#door-flyer"><span class="knocking-number">1</span><span>Always give them the flyer</span></a></li>
+            <li><a href="#door-info"><span class="knocking-number">2</span><span>Yes, we need email, phone, &amp; addy</span></a></li>
+            <li><a href="#door-phone"><span class="knocking-number">3</span><span>No info on your personal phone</span></a></li>
+          </ol>
+        </article>
+
+        <article class="knocking-quick-card">
+          <h2>When Home: 1-2-3</h2>
+          <ol class="knocking-quick-list">
+            <li><a href="#home-text"><span class="knocking-number">1</span><span>Text within an hour</span></a></li>
+            <li><a href="#home-estimate"><span class="knocking-number">2</span><span>Build the estimate</span></a></li>
+            <li><a href="#home-qbo"><span class="knocking-number">3</span><span>Send the estimate within 24 hours via QBO</span></a></li>
+          </ol>
+        </article>
+      </div>
     </section>
 
     <section id="door-process" class="knocking-section" aria-labelledby="door-title">

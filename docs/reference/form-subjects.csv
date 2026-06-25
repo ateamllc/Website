@@ -2,7 +2,7 @@ Form,Page,form_id,Subject
 Home Page Estimate,index.html,home_page_estimate,A Team Lead | Home Page Estimate
 Contact Page Estimate,pages/contact.html,contact_page,A Team Lead | Contact Page Estimate
 Door Hanger Offer,door.html,door_hanger_offer,A Team Lead | Door Hanger Offer
-Door Knocking Lead,pages/knocking-rules.html,door_knocking_lead,A Team Lead | Door Knocking Lead
+Manual Lead Entry,pages/manual-lead-entry.html,manual_lead_entry,A Team Lead | Manual Lead Entry
 Careers Application,pages/careers.html,careers_application,A Team Careers | New Job Applicant
 Handyman Estimate,pages/landing/handyman.html,handyman_estimate,A Team Lead | Handyman Estimate
 Fence Estimate,pages/landing/fences.html,fence_estimate,A Team Lead | Fence Estimate

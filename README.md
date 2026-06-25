@@ -129,29 +129,28 @@ Current approved `discount_code` values:
 
 - `HANGER100`: $100 off first >$500 job
 
-Discount code metadata is managed in `data/offers/discount-codes.json`. For any form that submits a `discount_code`, submit matching `offer_detail` and `offer_terms`. Door hanger submissions auto-tag `HANGER100`. Door knocking submissions populate discount options and matching offer fields from the shared discount code data; blank discount keeps `offer_detail` and `offer_terms` blank.
+Discount code metadata is managed in `data/offers/discount-codes.json`. For any form that submits a `discount_code`, submit matching `offer_detail` and `offer_terms`. Door hanger submissions auto-tag `HANGER100`. Manual lead entry submissions populate discount options and matching offer fields from the shared discount code data; blank discount keeps `offer_detail` and `offer_terms` blank.
 
 Current `lead_source` values:
 
-- `website_home_page`
-- `website_contact_page`
-- `website_landing_page`
-- `website_careers_page`
-- `door_hanger`
-- `door_knocking`
+- `knocking`
 - `referral`
+- `meta_ads`
+- `facebook_organic_inbound`
+- `google_ads`
+- `website_form`
+- `gbp`
 - `inbound_call`
-- `inbound_messenger`
-- `google_ad`
-- `meta_ad`
-- `other`
+- `inbound_text`
+- `return_customer`
+- `door_hangers`
 
-The internal door knocking form uses a visible `lead_source` dropdown so employees can classify non-knocking intake that gets entered through that same internal workflow. Public forms should keep their hidden page-specific `lead_source` values.
+Use `lead_source` only for standardized lead-channel classification. Page/workflow identity belongs in `form_id`, `form_name`, and `form_source`. Public website forms should submit `website_form`, the door hanger QR page should submit `door_hangers`, and the internal manual lead entry form should use the same approved dropdown values listed above.
 
 Starting text automation:
 
 - Public lead forms submit a hidden `starting_text_message` using the walkthrough-request message.
-- The internal door knocking form submits `send_starting_text` and `starting_text_message`; its UI can choose a preset, provide a custom message, or submit `send_starting_text=false` with a blank message when no automatic first text should be sent.
+- The internal manual lead entry form submits `send_starting_text` and `starting_text_message`; its UI can choose a preset, provide a custom message, or submit `send_starting_text=false` with a blank message when no automatic first text should be sent.
 - If the internal form's custom starting text option is selected, the custom message input is required before submission.
 - Careers and admin login do not participate in starting text automation.
 
@@ -171,7 +170,7 @@ Automation setup notes:
 - Treat `A Team Careers | New Job Applicant` as a separate careers workflow, not a customer lead workflow.
 - Treat `service_category=Unspecified` as a customer estimate where the service is not yet known.
 - Treat `service_category=N/A` as a non-service-specific workflow such as careers, door knocking intake, or door hanger offer claim.
-- Door knocking intentionally redirects to `/pages/knocking-submitted.html`; other public Web3Forms forms should use `/pages/thank-you.html`.
+- Manual lead entry intentionally redirects to `/pages/knocking-submitted.html`; other public Web3Forms forms should use `/pages/thank-you.html`.
 - If `discount_code` is present, read the paired `offer_detail` and `offer_terms` fields before creating the estimate, Trello card, or QBO note.
 - The admin login form is not a Web3Forms lead form and should be ignored by external lead automations.
 
@@ -373,7 +372,7 @@ Page notes:
 
 `door.html` is the door hanger QR landing page. It should stay noindex, preserve the $100-off offer language, and submit through Web3Forms with `form_id="door_hanger_offer"` and subject `A Team Lead | Door Hanger Offer`.
 
-`pages/knocking-rules.html` is the internal door knocking process and lead-entry page. It should stay noindex, preserve the internal follow-up instructions, and submit through Web3Forms with `form_id="door_knocking_lead"` and subject `A Team Lead | Door Knocking Lead`. Its success path is intentionally `pages/knocking-submitted.html` instead of the public thank-you page.
+`pages/manual-lead-entry.html` is the internal manual lead entry page with the door knocking process notes below the form. It should stay noindex, preserve the internal follow-up instructions, and submit through Web3Forms with `form_id="manual_lead_entry"` and subject `A Team Lead | Manual Lead Entry`. Its success path is intentionally `pages/knocking-submitted.html` instead of the public thank-you page.
 
 For both pages, keep the customer/process purpose intact and only change form fields when needed for backend parsing.
 
