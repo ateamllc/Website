@@ -200,6 +200,232 @@ main.content-sections {
     text-align: left;
 }
 
+.referral-page {
+    gap: 0;
+    background: #f8fafc;
+}
+
+html:has(.referral-page),
+body:has(.referral-page) {
+    overflow-x: hidden;
+}
+
+.referral-hero .background-image-container {
+    background-position: center 45%;
+}
+
+.referral-intro-section {
+    padding-bottom: 2rem;
+}
+
+.referral-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);
+    gap: 2rem;
+    align-items: center;
+}
+
+.referral-intro h2,
+.referral-layout h2 {
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 0.75rem;
+}
+
+.referral-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.referral-step {
+    min-height: 120px;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+}
+
+.referral-step strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.75rem;
+    border-radius: 50%;
+    background: #f59e0b;
+    color: #111827;
+    font-family: 'Oswald', sans-serif;
+}
+
+.referral-step span {
+    display: block;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.referral-form-section {
+    position: relative;
+    isolation: isolate;
+    padding-top: 2rem;
+    background-image:
+        linear-gradient(90deg, rgba(15, 23, 42, 0.9), rgba(24, 39, 65, 0.78)),
+        url("/image/Carousel-dawn-garage.webp");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.referral-layout {
+    align-items: start;
+}
+
+.referral-form-section .contact-details,
+.referral-form-section .contact-details a {
+    color: #fff;
+}
+
+.referral-form-section .eyebrow {
+    color: #fbbf24;
+}
+
+.referral-form-section .contact-details p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.referral-credit-note {
+    padding: 0.9rem 1rem;
+    border-left: 4px solid #f59e0b;
+    background: rgba(245, 158, 11, 0.14);
+    color: #fff;
+    font-weight: 700;
+}
+
+.referral-form {
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 20px 55px rgba(15, 23, 42, 0.28);
+    color: #0f172a;
+}
+
+.referral-fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.referral-fieldset + .referral-fieldset {
+    margin-top: 0.25rem;
+}
+
+.referral-fieldset legend {
+    width: 100%;
+    margin-bottom: 0.1rem;
+    padding: 0;
+    color: #182741;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.checkbox-label {
+    display: grid;
+    grid-template-columns: 1.1rem minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: start;
+    font-weight: 600;
+}
+
+.checkbox-label input {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.2rem;
+}
+
+@media (max-width: 820px) {
+    .referral-intro,
+    .referral-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .referral-step {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .referral-page {
+        width: 100vw;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .referral-page .content-section {
+        width: 100vw;
+        max-width: 100vw;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .referral-page .section-inner {
+        width: calc(100vw - 4rem);
+        max-width: calc(100vw - 4rem);
+    }
+
+    .referral-hero .content-overlay {
+        width: calc(100vw - 4rem);
+        max-width: calc(100vw - 4rem);
+    }
+
+    .referral-hero .hero-title {
+        font-size: 1.9rem;
+        line-height: 1.12;
+        overflow-wrap: anywhere;
+    }
+
+    .referral-hero .hero-sub {
+        font-size: 1rem;
+        max-width: 24ch;
+        overflow-wrap: anywhere;
+    }
+
+    .referral-intro h2,
+    .referral-layout h2 {
+        font-size: 1.45rem;
+        line-height: 1.2;
+        max-width: 20ch;
+        overflow-wrap: anywhere;
+    }
+
+    .referral-intro p,
+    .referral-layout p {
+        max-width: 28ch;
+        overflow-wrap: anywhere;
+    }
+
+    .referral-hero .hero-ctas {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .referral-hero .hero-ctas .btn {
+        width: min(100%, 18rem);
+        min-width: 0;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        text-align: center;
+        justify-self: start;
+    }
+}
+
 .estimate-photo-section {
     position: relative;
     isolation: isolate;
