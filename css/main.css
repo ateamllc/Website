@@ -1052,6 +1052,10 @@ body:has(.referral-page) {
     scroll-snap-type: x mandatory;
 }
 
+.review-carousel-cta {
+    margin-block: 1.5rem;
+}
+
 .review-carousel-button {
     position: absolute;
     top: 50%;
