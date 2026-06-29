@@ -156,7 +156,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <section class="trust-strip" aria-label="Handyman service trust points" data-trust-src="/data/landing/handyman-trust.json" data-include="/pages/partials/landing/trust-strip.html"></section>
 
-    <section class="content-section content-with-image">
+    <section
+      class="content-section review-carousel-section"
+      data-review-section
+      data-review-eyebrow="Google reviews"
+      data-review-title="Homeowners choose us for clean, reliable, high quality work"
+      data-review-intro="Rated 5.0 on Google from 30+ recent customers. Swipe or scroll through the review highlights."
+      data-reviews-src="/data/landing/handyman-reviews.json"
+      data-include="/pages/partials/landing/review-carousel.html">
+    </section>
+
+    <section class="content-section content-with-image landing-photo-carousel-section">
       <div class="text-block text-left">
         <div
           class="carousel-shell"
@@ -170,30 +180,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           data-carousel-featured-every="6"
           data-include="/pages/partials/carousel.html">
         </div>
-        <div
-          data-problem-solution
-          data-problem-src="/data/landing/handyman-problems.json"
-          data-problem-eyebrow="Your list, handled"
-          data-problem-title-start="Problems"
-          data-problem-title-end="solutions"
-          data-problem-note="Need something else? If it’s not a fit we’ll point you to a trusted trade partner."
-          data-primary-label="Send us your list"
-          data-primary-href="#handyman-estimate-form"
-          data-secondary-label="See all services"
-          data-secondary-href="/pages/services.html"
-          data-include="/pages/partials/landing/problem-solution.html">
-        </div>
       </div>
-    </section>
-
-    <section
-      class="content-section review-carousel-section"
-      data-review-section
-      data-review-eyebrow="Google reviews"
-      data-review-title="Homeowners choose us for clean, reliable, high quality work"
-      data-review-intro="Rated 5.0 on Google from 30+ recent customers. Swipe or scroll through the review highlights."
-      data-reviews-src="/data/landing/handyman-reviews.json"
-      data-include="/pages/partials/landing/review-carousel.html">
     </section>
 
     <section
@@ -210,6 +197,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       data-text-label="Text Photos"
       data-lazy-bg="/image/Carousel-dawn-garage.webp"
       data-include="/pages/partials/landing/estimate-form.html">
+    </section>
+
+    <section class="content-section content-with-image">
+      <div class="text-block text-left">
+        <div
+          data-problem-solution
+          data-problem-src="/data/landing/handyman-problems.json"
+          data-problem-eyebrow="Your list, handled"
+          data-problem-title-start="Problems"
+          data-problem-title-end="solutions"
+          data-problem-note="Need something else? If it’s not a fit we’ll point you to a trusted trade partner."
+          data-primary-label="Send us your list"
+          data-primary-href="#handyman-estimate-form"
+          data-secondary-label="See all services"
+          data-secondary-href="/pages/services.html"
+          data-include="/pages/partials/landing/problem-solution.html">
+        </div>
+      </div>
     </section>
 
     <section
