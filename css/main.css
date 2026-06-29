@@ -511,7 +511,7 @@ body:has(.referral-page) {
     min-height: 1.85rem;
     padding: 0.28rem 0.7rem;
     border: 1px solid rgba(245, 158, 11, 0.34);
-    border-radius: 4px;
+    border-radius: 10px;
     background: rgba(245, 158, 11, 0.1);
     color: #fff;
     font-weight: 800;

@@ -194,6 +194,7 @@ Preserve tracking attributes when changing CTAs, especially on landing-page hero
 - Body copy uses Open Sans. Headings commonly use Oswald.
 - Landers use strong hero image backgrounds, dark overlays, concise headline copy, and direct CTAs.
 - Buttons use `.btn`, `.btn-primary`, and `.btn-outline`.
+- Site CTA buttons should use a 10px border radius. Avoid pill buttons for normal CTAs unless the component is intentionally not a button, such as a trust badge or carousel control.
 - Generic sections use `.content-section`, `.text-block`, `.section-inner`, `.light-grey`, `.cta-section`, and related helpers.
 - Keep landing pages practical and service-focused. Avoid marketing fluff, oversized decorative layouts, or generic stock-style imagery.
 - Cards should support scannable information. Do not add cards just to decorate a page.
