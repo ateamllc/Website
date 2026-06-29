@@ -589,6 +589,21 @@
     const target = section.querySelector('[data-review-carousel-items]');
     if (!target || section.dataset.snippetInit === 'true' || section.dataset.snippetInit === 'loading') return;
 
+    const cta = section.querySelector('[data-review-cta]');
+    if (cta) {
+      let ctaHref = section.dataset.reviewCtaHref || '';
+      let sibling = section.nextElementSibling;
+      while (!ctaHref && sibling) {
+        if (sibling.matches('.estimate-photo-section, [data-estimate-form]')) {
+          const formId = sibling.dataset.formId || sibling.querySelector('form')?.id;
+          if (formId) ctaHref = `#${formId}`;
+          break;
+        }
+        sibling = sibling.nextElementSibling;
+      }
+      cta.href = ctaHref || '/pages/contact.html';
+    }
+
     section.dataset.snippetInit = 'loading';
     setText(section, '[data-review-eyebrow]', section.dataset.reviewEyebrow);
     setText(section, '[data-review-title]', section.dataset.reviewTitle);
