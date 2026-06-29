@@ -140,13 +140,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </header>
 
   <main class="content-sections handyman-lander pro-connect-lander">
-    <div class="property-manager-request-strip" aria-label="Current property manager maintenance request">
-      <div class="section-inner property-manager-request-strip__inner">
-        <span class="property-manager-request-strip__label">Current property manager account</span>
-        <a class="property-manager-request-strip__link" href="/pages/property-manager-maintenance-request.html">Submit maintenance request</a>
-      </div>
-    </div>
-
     <section
       class="hero-banner page-hero"
       data-landing-hero
@@ -167,22 +160,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <section class="trust-strip" aria-label="Property manager trust points" data-trust-src="/data/landing/property-manager-trust.json" data-include="/pages/partials/landing/trust-strip.html"></section>
 
-    <section class="content-section pro-connect-overview">
-      <div class="section-inner">
-        <div class="pro-connect-heading">
-          <p class="eyebrow">Built for operators</p>
-          <h2>A maintenance relationship, not another one-off vendor</h2>
-          <p>This is for Utah County property owners and managers who need consistent response, clean communication, and a practical way to keep multiple properties moving without rebuilding the vendor list every week.</p>
-        </div>
-        <ul class="pro-connect-proof" aria-label="Property maintenance account priorities">
-          <li><strong>Multi-property fit:</strong> recurring work, turns, and repair requests across multiple units.</li>
-          <li><strong>Account options:</strong> potential visit blocks, on-call support, or recurring terms after review.</li>
-          <li><strong>Owner clarity:</strong> photos, notes, and next-step recommendations after visits.</li>
-        </ul>
-      </div>
+    <section
+      class="content-section review-carousel-section"
+      data-review-section
+      data-review-eyebrow="Google reviews"
+      data-review-title="Property owners choose us for clean, reliable work"
+      data-review-intro="Rated 5.0 on Google from 30+ recent customers. Swipe or scroll through review highlights."
+      data-reviews-src="/data/landing/handyman-reviews.json"
+      data-include="/pages/partials/landing/review-carousel.html">
     </section>
 
-    <section class="content-section content-with-image">
+    <section class="content-section content-with-image landing-photo-carousel-section">
       <div class="text-block text-left">
         <div
           class="carousel-shell"
@@ -195,19 +183,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           data-carousel-featured-tag="person"
           data-carousel-featured-every="6"
           data-include="/pages/partials/carousel.html">
-        </div>
-        <div
-          data-problem-solution
-          data-problem-src="/data/landing/property-manager-problems.json"
-          data-problem-eyebrow="Portfolio problems"
-          data-problem-title-start="Friction"
-          data-problem-title-end="system"
-          data-problem-note="We start with fit. Approved maintenance accounts may qualify for recurring terms, preferred pricing, or on-call scheduling depending on property count, work type, access, and payment process."
-          data-primary-label="Apply for account review"
-          data-primary-href="#property-manager-application"
-          data-secondary-label="View rental-ready work"
-          data-secondary-href="/pages/landing/rental-ready-maintenance.html"
-          data-include="/pages/partials/landing/problem-solution.html">
         </div>
       </div>
     </section>
@@ -231,6 +206,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       data-text-label="Text us"
       data-lazy-bg="/image/Carousel-dawn-garage.webp"
       data-include="/pages/partials/landing/estimate-form.html">
+    </section>
+
+    <section class="content-section pro-connect-overview">
+      <div class="section-inner">
+        <div class="pro-connect-heading">
+          <p class="eyebrow">Built for operators</p>
+          <h2>A maintenance relationship, not another one-off vendor</h2>
+          <p>This is for Utah County property owners and managers who need consistent response, clean communication, and a practical way to keep multiple properties moving without rebuilding the vendor list every week.</p>
+        </div>
+        <ul class="pro-connect-proof" aria-label="Property maintenance account priorities">
+          <li><strong>Multi-property fit:</strong> recurring work, turns, and repair requests across multiple units.</li>
+          <li><strong>Account options:</strong> potential visit blocks, on-call support, or recurring terms after review.</li>
+          <li><strong>Owner clarity:</strong> photos, notes, and next-step recommendations after visits.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section content-with-image">
+      <div class="text-block text-left">
+        <div
+          data-problem-solution
+          data-problem-src="/data/landing/property-manager-problems.json"
+          data-problem-eyebrow="Portfolio problems"
+          data-problem-title-start="Friction"
+          data-problem-title-end="system"
+          data-problem-note="We start with fit. Approved maintenance accounts may qualify for recurring terms, preferred pricing, or on-call scheduling depending on property count, work type, access, and payment process."
+          data-primary-label="Apply for account review"
+          data-primary-href="#property-manager-application"
+          data-secondary-label="View rental-ready work"
+          data-secondary-href="/pages/landing/rental-ready-maintenance.html"
+          data-include="/pages/partials/landing/problem-solution.html">
+        </div>
+      </div>
     </section>
 
     <section

@@ -8,7 +8,7 @@
     font-weight: 800;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    border-radius: 10px;
+    border-radius: 4px;
     transition: background-color 0.25s, transform 0.25s, box-shadow 0.25s;
     box-shadow: 0 10px 28px rgba(245, 158, 11, 0.35);
 }
@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.75rem 1.5rem;
-    border-radius: 10px;
+    border-radius: 4px;
     font-weight: 600;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;

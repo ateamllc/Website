@@ -317,7 +317,7 @@
 .handyman-lander .page-hero .hero-ctas .btn {
     min-height: 3rem;
     padding: 0.82rem 1.15rem;
-    border-radius: 999px;
+    border-radius: 4px;
     font-weight: 700;
     line-height: 1;
 }
@@ -404,7 +404,7 @@
         min-width: 0;
         min-height: 2.95rem;
         padding: 0.72rem 0.5rem;
-        border-radius: 999px;
+        border-radius: 4px;
         font-size: 0.86rem;
         line-height: 1;
         white-space: nowrap;

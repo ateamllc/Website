@@ -156,7 +156,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <section class="trust-strip" aria-label="Fence service trust points" data-trust-src="/data/landing/fence-trust.json" data-include="/pages/partials/landing/trust-strip.html"></section>
 
-    <section class="content-section content-with-image">
+    <section
+      class="content-section review-carousel-section"
+      data-review-section
+      data-review-eyebrow="Google reviews"
+      data-review-title="Homeowners choose us for clean, reliable, high quality work"
+      data-review-intro="Rated 5.0 on Google from 30+ recent customers. Swipe or scroll through the review highlights."
+      data-reviews-src="/data/landing/fence-reviews.json"
+      data-include="/pages/partials/landing/review-carousel.html">
+    </section>
+
+    <section class="content-section content-with-image landing-photo-carousel-section">
       <div class="text-block text-left">
         <div
           class="carousel-shell"
@@ -168,30 +178,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           data-carousel-folder="/image/fence-photos"
           data-include="/pages/partials/carousel.html">
         </div>
-        <div
-          data-problem-solution
-          data-problem-src="/data/landing/fence-problems.json"
-          data-problem-eyebrow="Built around the property"
-          data-problem-title-start="Fence needs"
-          data-problem-title-end="clear next steps"
-          data-problem-note="Need a different outdoor structure? We can help you decide whether fencing, repair, staining, or another service is the right fit."
-          data-primary-label="Send fence details"
-          data-primary-href="#fence-estimate-form"
-          data-secondary-label="See all services"
-          data-secondary-href="/pages/services.html"
-          data-include="/pages/partials/landing/problem-solution.html">
-        </div>
       </div>
-    </section>
-
-    <section
-      class="content-section review-carousel-section"
-      data-review-section
-      data-review-eyebrow="Google reviews"
-      data-review-title="Homeowners choose us for clean, reliable, high quality work"
-      data-review-intro="Rated 5.0 on Google from 30+ recent customers. Swipe or scroll through the review highlights."
-      data-reviews-src="/data/landing/fence-reviews.json"
-      data-include="/pages/partials/landing/review-carousel.html">
     </section>
 
     <section
@@ -208,6 +195,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       data-text-label="Text Photos"
       data-lazy-bg="/image/fence-photos/IMG_5190_result.webp"
       data-include="/pages/partials/landing/estimate-form.html">
+    </section>
+
+    <section class="content-section content-with-image">
+      <div class="text-block text-left">
+        <div
+          data-problem-solution
+          data-problem-src="/data/landing/fence-problems.json"
+          data-problem-eyebrow="Built around the property"
+          data-problem-title-start="Fence needs"
+          data-problem-title-end="clear next steps"
+          data-problem-note="Need a different outdoor structure? We can help you decide whether fencing, repair, staining, or another service is the right fit."
+          data-primary-label="Send fence details"
+          data-primary-href="#fence-estimate-form"
+          data-secondary-label="See all services"
+          data-secondary-href="/pages/services.html"
+          data-include="/pages/partials/landing/problem-solution.html">
+        </div>
+      </div>
     </section>
 
     <section

@@ -125,7 +125,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <section class="trust-strip" aria-label="Drywall Repair trust points" data-trust-src="/data/landing/secondary-trust.json" data-include="/pages/partials/landing/trust-strip.html"></section>
 
-    <section class="content-section content-with-image">
+    <section
+      class="content-section review-carousel-section"
+      data-review-section
+      data-review-eyebrow="Google reviews"
+      data-review-title="Homeowners choose us for clean, reliable work"
+      data-review-intro="Rated 5.0 on Google from 30+ recent customers. Swipe or scroll through review highlights."
+      data-reviews-src="/data/landing/handyman-reviews.json"
+      data-include="/pages/partials/landing/review-carousel.html">
+    </section>
+
+    <section class="content-section content-with-image landing-photo-carousel-section">
       <div class="text-block text-left">
         <div
           class="carousel-shell"
@@ -137,30 +147,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           data-carousel-folder="/image/drywall"
           data-include="/pages/partials/carousel.html">
         </div>
-        <div
-          data-problem-solution
-          data-problem-src="/data/landing/drywall-repair-problems.json"
-          data-problem-eyebrow="Service fit"
-          data-problem-title-start="Common problems"
-          data-problem-title-end="practical fixes"
-          data-problem-note="Need something adjacent? We will tell you if it fits our scope or should go to a specialty trade."
-          data-primary-label="Send photos for review"
-          data-primary-href="#drywall-repair-estimate-form"
-          data-secondary-label="Painting after repair"
-          data-secondary-href="/pages/landing/painting.html"
-          data-include="/pages/partials/landing/problem-solution.html">
-        </div>
       </div>
-    </section>
-
-    <section
-      class="content-section review-carousel-section"
-      data-review-section
-      data-review-eyebrow="Google reviews"
-      data-review-title="Homeowners choose us for clean, reliable work"
-      data-review-intro="Rated 5.0 on Google from 30+ recent customers. Swipe or scroll through review highlights."
-      data-reviews-src="/data/landing/handyman-reviews.json"
-      data-include="/pages/partials/landing/review-carousel.html">
     </section>
 
     <section
@@ -177,6 +164,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       data-text-label="Text Photos"
       data-lazy-bg="/image/drywall/img_2669.webp"
       data-include="/pages/partials/landing/estimate-form.html">
+    </section>
+
+    <section class="content-section content-with-image">
+      <div class="text-block text-left">
+        <div
+          data-problem-solution
+          data-problem-src="/data/landing/drywall-repair-problems.json"
+          data-problem-eyebrow="Service fit"
+          data-problem-title-start="Common problems"
+          data-problem-title-end="practical fixes"
+          data-problem-note="Need something adjacent? We will tell you if it fits our scope or should go to a specialty trade."
+          data-primary-label="Send photos for review"
+          data-primary-href="#drywall-repair-estimate-form"
+          data-secondary-label="Painting after repair"
+          data-secondary-href="/pages/landing/painting.html"
+          data-include="/pages/partials/landing/problem-solution.html">
+        </div>
+      </div>
     </section>
 
     <section

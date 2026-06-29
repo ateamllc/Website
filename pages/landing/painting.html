@@ -156,7 +156,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <section class="trust-strip" aria-label="Painting service trust points" data-trust-src="/data/landing/painting-trust.json" data-include="/pages/partials/landing/trust-strip.html"></section>
 
-    <section class="content-section content-with-image">
+    <section
+      class="content-section review-carousel-section"
+      data-review-section
+      data-review-eyebrow="Google reviews"
+      data-review-title="Homeowners choose us for clean, reliable, high quality work"
+      data-review-intro="Rated 5.0 on Google from 30+ recent customers. Swipe or scroll through the review highlights."
+      data-reviews-src="/data/landing/painting-reviews.json"
+      data-include="/pages/partials/landing/review-carousel.html">
+    </section>
+
+    <section class="content-section content-with-image landing-photo-carousel-section">
       <div class="text-block text-left">
         <div
           class="carousel-shell"
@@ -168,30 +178,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           data-carousel-folder="/image/painting-photos"
           data-include="/pages/partials/carousel.html">
         </div>
-        <div
-          data-problem-solution
-          data-problem-src="/data/landing/painting-problems.json"
-          data-problem-eyebrow="Fresh coat, fewer headaches"
-          data-problem-title-start="Painting needs"
-          data-problem-title-end="clear prep"
-          data-problem-note="Need repairs before paint? We can help confirm whether patching, trim repair, caulking, or another service should happen first."
-          data-primary-label="Send painting details"
-          data-primary-href="#painting-estimate-form"
-          data-secondary-label="See all services"
-          data-secondary-href="/pages/services.html"
-          data-include="/pages/partials/landing/problem-solution.html">
-        </div>
       </div>
-    </section>
-
-    <section
-      class="content-section review-carousel-section"
-      data-review-section
-      data-review-eyebrow="Google reviews"
-      data-review-title="Homeowners choose us for clean, reliable, high quality work"
-      data-review-intro="Rated 5.0 on Google from 30+ recent customers. Swipe or scroll through the review highlights."
-      data-reviews-src="/data/landing/painting-reviews.json"
-      data-include="/pages/partials/landing/review-carousel.html">
     </section>
 
     <section
@@ -211,6 +198,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       data-text-label="Text Photos"
       data-lazy-bg="/image/painting-photos/CB26CFFF-F28D-4819-A3EE-A40617070C4C.webp"
       data-include="/pages/partials/landing/estimate-form.html">
+    </section>
+
+    <section class="content-section content-with-image">
+      <div class="text-block text-left">
+        <div
+          data-problem-solution
+          data-problem-src="/data/landing/painting-problems.json"
+          data-problem-eyebrow="Fresh coat, fewer headaches"
+          data-problem-title-start="Painting needs"
+          data-problem-title-end="clear prep"
+          data-problem-note="Need repairs before paint? We can help confirm whether patching, trim repair, caulking, or another service should happen first."
+          data-primary-label="Send painting details"
+          data-primary-href="#painting-estimate-form"
+          data-secondary-label="See all services"
+          data-secondary-href="/pages/services.html"
+          data-include="/pages/partials/landing/problem-solution.html">
+        </div>
+      </div>
     </section>
 
     <section
