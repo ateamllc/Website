@@ -1053,7 +1053,7 @@ body:has(.referral-page) {
 }
 
 .review-carousel-cta {
-    margin-block: 1.5rem;
+    margin: 4rem 0 0;
 }
 
 .review-carousel-button {
