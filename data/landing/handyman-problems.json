@@ -1,25 +1,25 @@
 [
   {
     "problem": "Your rental needs corrections before inspection or move-in",
-    "solutionHtml": "<a href=\"/pages/landing/rental-ready-maintenance.html\">rental-ready maintenance</a>"
+    "solutionHtml": "<a href=\"/pages/landing/rental-ready-maintenance\">rental-ready maintenance</a>"
   },
   {
     "problem": "Your door, trim, or baseboards are damaged",
-    "solutionHtml": "<a href=\"/pages/landing/door-repair-installation.html\">door repair</a> and <a href=\"/pages/landing/trim-baseboard-installation.html\">trim/baseboard work</a>"
+    "solutionHtml": "<a href=\"/pages/landing/door-repair-installation\">door repair</a> and <a href=\"/pages/landing/trim-baseboard-installation\">trim/baseboard work</a>"
   },
   {
     "problem": "Drywall holes need patching, texture, and paint blend",
-    "solutionHtml": "<a href=\"/pages/landing/drywall-repair.html\">drywall repair</a>"
+    "solutionHtml": "<a href=\"/pages/landing/drywall-repair\">drywall repair</a>"
   },
   {
     "problem": "A punch list has been sitting for months",
-    "solutionHtml": "<a href=\"/pages/landing/honey-do.html\">honey-do list visits</a>"
+    "solutionHtml": "<a href=\"/pages/landing/honey-do\">honey-do list visits</a>"
   },
   {
     "problem": "Caulk, weatherstripping, siding, or exterior trim is failing",
-    "solutionHtml": "<a href=\"/pages/landing/siding.html\">siding and exterior fixes</a>"
+    "solutionHtml": "<a href=\"/pages/landing/siding\">siding and exterior fixes</a>"
   },
   {
-    "html": "You need focused installs like <a href=\"/pages/landing/tv-mounting.html\">TV mounting</a> or <a href=\"/pages/landing/furniture-assembly.html\">furniture assembly</a>"
+    "html": "You need focused installs like <a href=\"/pages/landing/tv-mounting\">TV mounting</a> or <a href=\"/pages/landing/furniture-assembly\">furniture assembly</a>"
   }
 ]

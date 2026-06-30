@@ -8,6 +8,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Refer a Friend | A Team Property Improvement</title>
   <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+  <link rel="canonical" href="https://ateamutah.com/pages/referral">
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -96,7 +97,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <form id="referral-form" action="https://api.web3forms.com/submit" method="post" class="contact-form referral-form"
-          data-success-url="https://ateamutah.com/pages/thank-you.html"
+          data-success-url="https://ateamutah.com/pages/thank-you"
           data-track-form="referral_page"
           autocomplete="on">
           <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
@@ -105,13 +106,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <input type="hidden" name="form_id" value="friend_referral">
           <input type="hidden" name="form_name" value="Friend Referral">
           <input type="hidden" name="form_source" value="Website referral page">
-          <input type="hidden" name="page_url" value="https://ateamutah.com/pages/referral.html">
+          <input type="hidden" name="page_url" value="https://ateamutah.com/pages/referral">
           <input type="hidden" name="service_category" value="Referral">
           <input type="hidden" name="lead_source" value="referral">
           <input type="hidden" name="referral_credit_required" value="Yes">
           <input type="hidden" name="referral_offer" value="$50 off your next service for every referral">
           <input type="hidden" name="referral_credit_note" value="Provide $50 off the submitter/referrer's next service for every referral.">
-          <input type="hidden" name="redirect" value="https://ateamutah.com/pages/thank-you.html">
+          <input type="hidden" name="redirect" value="https://ateamutah.com/pages/thank-you">
           <textarea name="starting_text_message" hidden>Hi ____, this is A Team Property Improvement! We got your information from a referral and wanted to follow up about the home project. What times this week would work for a quick call or walkthrough?
 
 You can reply here or call us at (801) 477-7526 with any questions!</textarea>
@@ -187,7 +188,7 @@ You can reply here or call us at (801) 477-7526 with any questions!</textarea>
       }
 
       const redirectField = form.querySelector('input[name="redirect"]');
-      const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://ateamutah.com/pages/thank-you.html';
+      const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://ateamutah.com/pages/thank-you';
       const referrerContactFields = [
         form.querySelector('input[name="phone"]'),
         form.querySelector('input[name="email"]')

@@ -1,25 +1,25 @@
 [
   {
     "problem": "Rooms look worn, patched, or uneven in the light",
-    "solutionHtml": "<a href=\"/pages/blog/proper-room-painting.html\">room painting with careful prep</a>"
+    "solutionHtml": "<a href=\"/pages/blog/proper-room-painting\">room painting with careful prep</a>"
   },
   {
     "problem": "Trim, doors, or cabinets need a harder wearing finish",
-    "solutionHtml": "<a href=\"/pages/landing/trim-baseboard-installation.html\">trim detail and durable enamel work</a>"
+    "solutionHtml": "<a href=\"/pages/landing/trim-baseboard-installation\">trim detail and durable enamel work</a>"
   },
   {
     "problem": "Drywall patches need texture and paint blended back in",
-    "solutionHtml": "<a href=\"/pages/landing/drywall-repair.html\">drywall patching and finish blending</a>"
+    "solutionHtml": "<a href=\"/pages/landing/drywall-repair\">drywall patching and finish blending</a>"
   },
   {
     "problem": "A rental or listing needs a clean refresh before turnover",
-    "solutionHtml": "<a href=\"/pages/landing/rental-ready-maintenance.html\">rental-ready painting and touch-ups</a>"
+    "solutionHtml": "<a href=\"/pages/landing/rental-ready-maintenance\">rental-ready painting and touch-ups</a>"
   },
   {
     "problem": "You need help choosing product, sheen, and paint quality",
-    "solutionHtml": "<a href=\"/pages/blog/choosing-right-paint-quality.html\">paint quality and finish guidance</a>"
+    "solutionHtml": "<a href=\"/pages/blog/choosing-right-paint-quality\">paint quality and finish guidance</a>"
   },
   {
-    "html": "You also need exterior stain or seal work like <a href=\"/pages/landing/deck-fence-staining.html\">deck and fence staining</a>"
+    "html": "You also need exterior stain or seal work like <a href=\"/pages/landing/deck-fence-staining\">deck and fence staining</a>"
   }
 ]

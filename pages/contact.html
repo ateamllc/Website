@@ -8,6 +8,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Contact Us | A Team Property Improvement</title>
     <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+  <link rel="canonical" href="https://ateamutah.com/pages/contact">
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -98,7 +99,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <p><strong>Call:</strong> <a href="tel:+18014777526">(801) 477-7526</a></p>
           <p><strong>Text:</strong> <a href="sms:+18014777526">(801) 477-7526</a></p>
           <p><strong>Online:</strong> Use the estimate form and we will follow up.</p>
-          <p><strong>Careers:</strong> <a href="/pages/careers.html">Apply here</a></p>
+          <p><strong>Careers:</strong> <a href="/pages/careers">Apply here</a></p>
           <p><strong>Service Areas:</strong> Provo, Orem, Springville, Spanish Fork, Payson, and surrounding
             neighborhoods.</p>
           <p>Share a few details about your vision and we'll put together a tailored plan and estimate.</p>
@@ -106,7 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <form id="contact-form" action="https://api.web3forms.com/submit" method="post" class="contact-form"
           data-require-contact
-          data-success-url="https://ateamutah.com/pages/thank-you.html" autocomplete="on">
+          data-success-url="https://ateamutah.com/pages/thank-you" autocomplete="on">
           <input type="hidden" name="access_key" value="39bc33a4-e716-468a-aa49-31c3743adbe2">
 
           <input type="hidden" name="subject" value="A Team Lead | Contact Page Estimate">
@@ -114,13 +115,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <input type="hidden" name="form_id" value="contact_page">
           <input type="hidden" name="form_name" value="Contact Page Estimate">
           <input type="hidden" name="form_source" value="Website contact page">
-          <input type="hidden" name="page_url" value="https://ateamutah.com/pages/contact.html">
+          <input type="hidden" name="page_url" value="https://ateamutah.com/pages/contact">
           <input type="hidden" name="service_category" value="Unspecified">
           <input type="hidden" name="lead_source" value="website_form">
           <textarea name="starting_text_message" hidden>Hi ____, this is A Team Property Improvement! We got your request for help on your home project. What times this week would work for a quick walkthrough to get a few more details?
 
 You can reply here or call us at (801) 477-7526 with any questions!</textarea>
-          <input type="hidden" name="redirect" value="https://ateamutah.com/pages/thank-you.html">
+          <input type="hidden" name="redirect" value="https://ateamutah.com/pages/thank-you">
           <div class="contact-honey" aria-hidden="true" hidden>
             <label for="contact-guard">Leave this field empty</label>
             <input id="contact-guard" type="text" name="botcheck" tabindex="-1" autocomplete="off" inputmode="none"
@@ -193,7 +194,7 @@ You can reply here or call us at (801) 477-7526 with any questions!</textarea>
         honeypot.setAttribute('data-lpignore', 'true');
       }
       const redirectField = form.querySelector('input[name="redirect"]');
-      const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://ateamutah.com/pages/thank-you.html';
+      const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://ateamutah.com/pages/thank-you';
 
       form.addEventListener('submit', async function (event) {
         if (window.ATeamForms && !window.ATeamForms.validateContactRequirement(form)) {

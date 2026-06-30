@@ -53,7 +53,7 @@
 
     const existing = readSession();
     if (existing) {
-      redirectTo('/pages/admin-dashboard.html');
+      redirectTo('/pages/admin-dashboard');
       return;
     }
 
@@ -75,7 +75,7 @@
       }
 
       writeSession({ username, role: defaultAccount.role, loggedInAt: Date.now() });
-      redirectTo('/pages/admin-dashboard.html');
+      redirectTo('/pages/admin-dashboard');
     });
   };
 
@@ -85,13 +85,13 @@
 
     const session = readSession();
     if (!session) {
-      redirectTo('/pages/admin-login.html');
+      redirectTo('/pages/admin-login');
       return;
     }
 
     if (requirement === 'admin' && session.role !== 'admin') {
       clearSession();
-      redirectTo('/pages/admin-login.html');
+      redirectTo('/pages/admin-login');
       return;
     }
 
@@ -106,7 +106,7 @@
       btn.addEventListener('click', (event) => {
         event.preventDefault();
         clearSession();
-        redirectTo('/pages/admin-login.html');
+        redirectTo('/pages/admin-login');
       });
     });
   };

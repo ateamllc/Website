@@ -41,7 +41,7 @@ function collectHtmlFiles(dir, ignoreDirs = new Set()) {
 function toUrlPath(filePath) {
   const relative = path.relative(rootDir, filePath).split(path.sep).join('/');
   if (relative === 'index.html') return '';
-  return `/${relative}`;
+  return `/${relative.replace(/\.html$/, '')}`;
 }
 
 function buildSitemapXml(urls) {

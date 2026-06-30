@@ -1,0 +1,4 @@
+/pages/landing/:page /pages/landing/:page.html 200
+/pages/blog/:page /pages/blog/:page.html 200
+/pages/:page /pages/:page.html 200
+/:page /:page.html 200

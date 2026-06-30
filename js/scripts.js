@@ -601,7 +601,7 @@
         }
         sibling = sibling.nextElementSibling;
       }
-      cta.href = ctaHref || '/pages/contact.html';
+      cta.href = ctaHref || '/pages/contact';
     }
 
     section.dataset.snippetInit = 'loading';
