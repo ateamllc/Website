@@ -8,6 +8,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Careers | A Team Property Improvement</title>
   <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+  <link rel="canonical" href="https://ateamutah.com/pages/careers">
 
   <meta name="description"
     content="Join A Team Property Improvement in Utah County. Explore open roles for skilled tradespeople and apply using our quick application form.">
@@ -285,17 +286,17 @@
           </ul>
         </div>
 
-        <form id="career-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" data-success-url="https://ateamutah.com/pages/thank-you.html" autocomplete="on">
+        <form id="career-form" action="https://api.web3forms.com/submit" method="post" class="contact-form" data-success-url="https://ateamutah.com/pages/thank-you" autocomplete="on">
           <input type="hidden" name="access_key" value="7080aedc-3921-4214-8163-f7a6b8c00ad4">
           <input type="hidden" name="subject" value="A Team Careers | New Job Applicant">
           <input type="hidden" name="from_name" value="A Team Property Improvement">
           <input type="hidden" name="form_id" value="careers_application">
           <input type="hidden" name="form_name" value="Careers Application">
           <input type="hidden" name="form_source" value="Website careers page">
-          <input type="hidden" name="page_url" value="https://ateamutah.com/pages/careers.html">
+          <input type="hidden" name="page_url" value="https://ateamutah.com/pages/careers">
           <input type="hidden" name="service_category" value="N/A">
           <input type="hidden" name="lead_source" value="website_form">
-          <input type="hidden" name="redirect" value="https://ateamutah.com/pages/thank-you.html">
+          <input type="hidden" name="redirect" value="https://ateamutah.com/pages/thank-you">
           <div class="contact-honey" aria-hidden="true" hidden>
             <label for="career-guard">Leave this field empty</label>
             <input id="career-guard" type="text" name="botcheck" tabindex="-1" autocomplete="off" inputmode="none" data-lpignore="true" data-form-type="other">
@@ -733,7 +734,7 @@
       if (form) {
         const honeypot = form.querySelector('input[name=\"botcheck\"], input[name=\"_honey\"]');
         const redirectField = form.querySelector('input[name=\"redirect\"]');
-        const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://ateamutah.com/pages/thank-you.html';
+        const successUrl = form.getAttribute('data-success-url') || (redirectField && redirectField.value) || 'https://ateamutah.com/pages/thank-you';
 
         if (honeypot) {
           honeypot.value = '';

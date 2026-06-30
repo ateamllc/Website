@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Serve extensionless page URLs when the matching .html file exists.
+# Example: /pages/services -> /pages/services.html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]

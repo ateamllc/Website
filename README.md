@@ -23,6 +23,8 @@ Use this document to preserve why pages are built the way they are, not just wha
 
 The site is static. Avoid adding build tooling unless there is a clear reason. Existing pages rely on browser-side `fetch`, so local testing should use a server rather than directly opening HTML files when checking partials or JSON-backed sections.
 
+Canonical URLs, internal links, and `sitemap.xml` should use extensionless page URLs such as `/pages/services`. The current GitHub Pages/Cloudflare deployment returns `200` for those paths. The repo also includes `.htaccess` and `_redirects` rules so Apache-compatible and Netlify-style hosts can internally serve extensionless paths from the matching `.html` files if the site moves later.
+
 ## Shared Patterns
 
 ### Includes
@@ -170,17 +172,17 @@ Automation setup notes:
 - Treat `A Team Careers | New Job Applicant` as a separate careers workflow, not a customer lead workflow.
 - Treat `service_category=Unspecified` as a customer estimate where the service is not yet known.
 - Treat `service_category=N/A` as a non-service-specific workflow such as careers, door knocking intake, or door hanger offer claim.
-- Manual lead entry intentionally redirects to `/pages/knocking-submitted.html`; other public Web3Forms forms should use `/pages/thank-you.html`.
+- Manual lead entry intentionally redirects to `/pages/knocking-submitted`; other public Web3Forms forms should use `/pages/thank-you`.
 - If `discount_code` is present, read the paired `offer_detail` and `offer_terms` fields before creating the estimate, Trello card, or QBO note.
 - The admin login form is not a Web3Forms lead form and should be ignored by external lead automations.
 
 All forms should redirect to the actual A Team thank-you page after submission:
 
 ```text
-https://ateamutah.com/pages/thank-you.html
+https://ateamutah.com/pages/thank-you
 ```
 
-Preserve that redirect when creating or editing forms, except for internal workflows that intentionally use a different success page such as the door knocking lead form redirecting to `/pages/knocking-submitted.html`.
+Preserve that redirect when creating or editing forms, except for internal workflows that intentionally use a different success page such as the door knocking lead form redirecting to `/pages/knocking-submitted`.
 
 ### Tracking
 
