@@ -1,5 +1,60 @@
 // Basic scripts for small enhancements
 (function() {
+  const attributionFieldNames = [
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_content',
+    'utm_term',
+    'gclid',
+    'gbraid',
+    'wbraid'
+  ];
+
+  const getAttributionValues = () => {
+    const params = new URLSearchParams(window.location.search);
+    const values = {};
+
+    attributionFieldNames.forEach((name) => {
+      const paramValue = params.get(name);
+      if (paramValue) {
+        values[name] = paramValue;
+        try {
+          window.sessionStorage.setItem(`ateam_${name}`, paramValue);
+        } catch (error) {
+          // Ignore storage errors so form submission is never blocked.
+        }
+        return;
+      }
+
+      try {
+        const storedValue = window.sessionStorage.getItem(`ateam_${name}`);
+        if (storedValue) values[name] = storedValue;
+      } catch (error) {
+        // Ignore storage errors so form submission is never blocked.
+      }
+    });
+
+    return values;
+  };
+
+  const setFormAttributionFields = (form) => {
+    if (!form) return;
+
+    const values = getAttributionValues();
+    attributionFieldNames.forEach((name) => {
+      let field = form.querySelector(`input[name="${name}"]`);
+      if (!field) {
+        field = document.createElement('input');
+        field.type = 'hidden';
+        field.name = name;
+        form.appendChild(field);
+      }
+
+      field.value = values[name] || '';
+    });
+  };
+
   const toggleNavigation = (toggleEl) => {
     if (!toggleEl) return;
 
@@ -411,6 +466,7 @@
       const form = event.target.closest('form[data-track-form]');
       if (!form || form.dataset.trackStarted === 'true') return;
 
+      setFormAttributionFields(form);
       const startEvent = form.dataset.trackStartEvent || 'estimate_form_start';
       form.dataset.trackStarted = 'true';
       trackEvent(startEvent, {
@@ -423,6 +479,7 @@
       const form = event.target.closest('form[data-track-form]');
       if (!form) return;
 
+      setFormAttributionFields(form);
       const submitEvent = form.dataset.trackSubmitEvent || 'estimate_form_submit';
       trackEvent(submitEvent, {
         event_category: 'lead_form',
@@ -458,6 +515,8 @@
   });
 
   document.addEventListener('submit', (event) => {
+    setFormAttributionFields(event.target);
+
     if (!validateContactRequirement(event.target)) {
       event.preventDefault();
       event.stopImmediatePropagation();
