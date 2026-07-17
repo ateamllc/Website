@@ -49,6 +49,7 @@ function toUrlPath(filePath) {
   const alias = publicPathAliases.get(path.relative(rootDir, filePath));
   if (alias) return alias;
   if (relative === 'index.html') return '';
+  if (relative.endsWith('/index.html')) return `/${relative.replace(/\/index\.html$/, '')}`;
   return `/${relative.replace(/\.html$/, '')}`;
 }
 
