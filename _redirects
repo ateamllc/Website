@@ -1,3 +1,6 @@
+/privacy-policy /pages/privacy-policy.html 200
+/sms-terms /pages/sms-terms.html 200
+/twilio-campaign-privacy-policy /pages/twilio-campaign-privacy-policy.html 200
 /pages/landing/:page /pages/landing/:page.html 200
 /pages/blog/:page /pages/blog/:page.html 200
 /pages/:page /pages/:page.html 200
