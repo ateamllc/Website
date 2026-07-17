@@ -13,6 +13,12 @@ const excludedFiles = new Set([
   path.join('pages', 'knocking-submitted.html'),
 ]);
 
+const publicPathAliases = new Map([
+  [path.join('pages', 'privacy-policy.html'), '/privacy-policy'],
+  [path.join('pages', 'sms-terms.html'), '/sms-terms'],
+  [path.join('pages', 'twilio-campaign-privacy-policy.html'), '/twilio-campaign-privacy-policy'],
+]);
+
 function readDomain() {
   const cnamePath = path.join(rootDir, 'CNAME');
   if (fs.existsSync(cnamePath)) {
@@ -40,6 +46,8 @@ function collectHtmlFiles(dir, ignoreDirs = new Set()) {
 
 function toUrlPath(filePath) {
   const relative = path.relative(rootDir, filePath).split(path.sep).join('/');
+  const alias = publicPathAliases.get(path.relative(rootDir, filePath));
+  if (alias) return alias;
   if (relative === 'index.html') return '';
   return `/${relative.replace(/\.html$/, '')}`;
 }
