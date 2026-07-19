@@ -1,5 +1,7 @@
 // Basic scripts for small enhancements
 (function() {
+  const attributionStorageKey = 'ateam_first_touch_attribution_v1';
+  const attributionCookieKey = 'ateam_first_touch';
   const attributionFieldNames = [
     'utm_source',
     'utm_medium',
@@ -10,39 +12,89 @@
     'gbraid',
     'wbraid'
   ];
+  const formAttributionFieldNames = [...attributionFieldNames, 'landing_page', 'first_touch_at'];
+  const cleanAttributionValue = (value, maxLength = 500) => String(value || '').trim().slice(0, maxLength);
 
-  const getAttributionValues = () => {
-    const params = new URLSearchParams(window.location.search);
-    const values = {};
-
-    attributionFieldNames.forEach((name) => {
-      const paramValue = params.get(name);
-      if (paramValue) {
-        values[name] = paramValue;
-        try {
-          window.sessionStorage.setItem(`ateam_${name}`, paramValue);
-        } catch (error) {
-          // Ignore storage errors so form submission is never blocked.
-        }
-        return;
+  const readStoredAttribution = () => {
+    try {
+      const value = window.localStorage.getItem(attributionStorageKey);
+      if (value) {
+        const parsed = JSON.parse(value);
+        if (parsed && typeof parsed === 'object') return parsed;
       }
+    } catch (error) {
+      // Fall through to the first-party cookie when storage is unavailable.
+    }
 
+    const cookie = document.cookie
+      .split(';')
+      .map((part) => part.trim())
+      .find((part) => part.startsWith(`${attributionCookieKey}=`));
+    if (!cookie) return null;
+    try {
+      const parsed = JSON.parse(decodeURIComponent(cookie.slice(attributionCookieKey.length + 1)));
+      return parsed && typeof parsed === 'object' ? parsed : null;
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const legacySessionAttribution = () => {
+    const values = {};
+    attributionFieldNames.forEach((name) => {
       try {
-        const storedValue = window.sessionStorage.getItem(`ateam_${name}`);
-        if (storedValue) values[name] = storedValue;
+        const value = window.sessionStorage.getItem(`ateam_${name}`);
+        if (value) values[name] = cleanAttributionValue(value);
       } catch (error) {
-        // Ignore storage errors so form submission is never blocked.
+        // Ignore legacy storage errors so form submission is never blocked.
       }
     });
-
     return values;
   };
 
+  const persistAttribution = (values) => {
+    const serialized = JSON.stringify(values);
+    try {
+      window.localStorage.setItem(attributionStorageKey, serialized);
+    } catch (error) {
+      // The cookie below remains as the storage fallback.
+    }
+    const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = `${attributionCookieKey}=${encodeURIComponent(serialized)}; Path=/; Max-Age=${90 * 24 * 60 * 60}; SameSite=Lax${secure}`;
+  };
+
+  const captureFirstTouchAttribution = () => {
+    const existing = readStoredAttribution();
+    if (existing?.first_touch_at) return existing;
+
+    const params = new URLSearchParams(window.location.search);
+    const queryValues = Object.fromEntries(attributionFieldNames.map((name) => [
+      name,
+      cleanAttributionValue(params.get(name), name.startsWith('utm_') ? 300 : 500)
+    ]));
+    const legacyValues = legacySessionAttribution();
+    const values = Object.fromEntries(attributionFieldNames.map((name) => [
+      name,
+      queryValues[name] || legacyValues[name] || ''
+    ]));
+    if (!Object.values(values).some(Boolean)) return existing || {};
+
+    const firstTouch = {
+      ...values,
+      landing_page: cleanAttributionValue(window.location.href.split('#')[0], 1000),
+      first_touch_at: new Date().toISOString()
+    };
+    persistAttribution(firstTouch);
+    return firstTouch;
+  };
+
+  const getAttributionValues = () => captureFirstTouchAttribution();
+
   const setFormAttributionFields = (form) => {
-    if (!form) return;
+    if (!form || !(form instanceof HTMLFormElement)) return;
 
     const values = getAttributionValues();
-    attributionFieldNames.forEach((name) => {
+    formAttributionFieldNames.forEach((name) => {
       let field = form.querySelector(`input[name="${name}"]`);
       if (!field) {
         field = document.createElement('input');
@@ -51,9 +103,32 @@
         form.appendChild(field);
       }
 
-      field.value = values[name] || '';
+      if (!field.value) field.value = values[name] || '';
     });
   };
+
+  const populateAttributionForms = (root = document) => {
+    if (root instanceof HTMLFormElement) setFormAttributionFields(root);
+    root.querySelectorAll?.('form').forEach((form) => setFormAttributionFields(form));
+  };
+
+  window.ATeamAttribution = Object.freeze({
+    getFirstTouch: () => ({ ...(readStoredAttribution() || {}) }),
+    populateForm: (form) => setFormAttributionFields(form)
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => populateAttributionForms(), { once: true });
+  } else {
+    populateAttributionForms();
+  }
+  new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node instanceof Element) populateAttributionForms(node);
+      });
+    });
+  }).observe(document.documentElement, { childList: true, subtree: true });
 
   const toggleNavigation = (toggleEl) => {
     if (!toggleEl) return;
