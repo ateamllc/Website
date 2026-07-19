@@ -117,7 +117,7 @@ Approved `service_category` values:
 
 Use `N/A` when the form is not service-specific, such as careers, door knocking, or a door hanger offer claim. Use `Unspecified` when the form is a general customer estimate request that has not collected or inferred a service category, such as the home or contact page forms. Service landing pages should submit the mapped category for that lander.
 
-Preferred backend field names include `first_name`, `last_name`, `company_name`, `phone`, `email`, `project_address`, `project_city`, `project_state`, `project_zip`, `property_type`, `tenant_status`, `service_category`, `request_type`, `discount_code`, `offer_detail`, `offer_terms`, `project_description`, `entry_instructions`, `measurements_notes`, `urgency`, `preferred_timeline`, `authorization_limit`, `budget_range`, `preferred_contact_method`, `preferred_contact_time`, `lead_source`, `send_starting_text`, `starting_text_message`, `role_applied_for`, `applicant_city`, `applicant_experience_example`, `consent_to_contact`, `employee_name`, `assigned_to`, `photos_taken`, `form_source`, `form_id`, `form_name`, `page_url`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, and `submitted_at`.
+Preferred backend field names include `first_name`, `last_name`, `company_name`, `phone`, `email`, `project_address`, `project_city`, `project_state`, `project_zip`, `property_type`, `tenant_status`, `service_category`, `request_type`, `discount_code`, `offer_detail`, `offer_terms`, `project_description`, `entry_instructions`, `measurements_notes`, `urgency`, `preferred_timeline`, `authorization_limit`, `budget_range`, `preferred_contact_method`, `preferred_contact_time`, `lead_source`, `send_starting_text`, `starting_text_message`, `role_applied_for`, `applicant_city`, `applicant_experience_example`, `consent_to_contact`, `employee_name`, `assigned_to`, `photos_taken`, `form_source`, `form_id`, `form_name`, `page_url`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `gbraid`, `wbraid`, `landing_page`, `first_touch_at`, and `submitted_at`.
 
 Contact validation rules:
 
@@ -189,6 +189,8 @@ Preserve that redirect when creating or editing forms, except for internal workf
 Clickable elements can send analytics through `data-track-event`, `data-track-category`, and `data-track-label`. Estimate forms use `data-track-form` and trigger start/submit events in `js/scripts.js`.
 
 Preserve tracking attributes when changing CTAs, especially on landing-page hero buttons and estimate forms.
+
+Paid-click attribution is first-touch and immutable for 90 days. `js/scripts.js` captures GCLID, GBRAID, WBRAID, UTMs, the original landing URL, and the first-touch timestamp in local storage with a first-party cookie fallback. It dynamically populates those fields on every form, including forms inserted later through partials. A later visit with different campaign parameters must not overwrite the stored first touch.
 
 ## Design System Notes
 
@@ -545,3 +547,9 @@ http://localhost:8000/pages/landing/handyman.html
 ```
 
 The git hook in `githooks/pre-commit` updates carousel manifests before commit when manifest files exist.
+
+Run the attribution regression tests after changing shared form or campaign tracking behavior:
+
+```sh
+node --test tests/attribution.test.mjs
+```
