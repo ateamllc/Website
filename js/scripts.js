@@ -598,6 +598,63 @@
     }
   }, true);
 
+  // Web3Forms remains the live delivery path during migration. This captures
+  // the same submission in D1 with a shared ID for reconciliation only.
+  const parallelIntakeUrl = 'https://admin.ateamutah.com/api/public-form-intake';
+  const isWeb3Form = (form) => form instanceof HTMLFormElement
+    && /^https:\/\/api\.web3forms\.com\/submit\/?$/i.test(form.action || '');
+  const parallelSubmissionId = (form) => {
+    let field = form.querySelector('input[name="parallel_submission_id"]');
+    if (!field) {
+      field = document.createElement('input');
+      field.type = 'hidden';
+      field.name = 'parallel_submission_id';
+      form.appendChild(field);
+    }
+    if (!field.value) {
+      const uuid = window.crypto && typeof window.crypto.randomUUID === 'function'
+        ? window.crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      field.value = `wfi_${uuid}`;
+    }
+    return field.value;
+  };
+  const parallelFields = (form) => {
+    const values = {};
+    new FormData(form).forEach((value, key) => {
+      if (/^(access_key|botcheck|_honey)$/i.test(key)) return;
+      if (value instanceof File) {
+        values[key] = value.name ? `[file: ${value.name}, ${value.size} bytes]` : '';
+      } else if (Object.prototype.hasOwnProperty.call(values, key)) {
+        values[key] = `${values[key]}\n${String(value || '')}`;
+      } else {
+        values[key] = String(value || '');
+      }
+    });
+    return values;
+  };
+  const captureParallelIntake = (form) => {
+    if (!isWeb3Form(form)) return;
+    const submissionId = parallelSubmissionId(form);
+    const fields = parallelFields(form);
+    const payload = {
+      submissionId,
+      formId: fields.form_id || form.id || 'website_form',
+      formName: fields.form_name || '',
+      pageUrl: window.location.href.split('#')[0],
+      fields
+    };
+    fetch(parallelIntakeUrl, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  };
+  document.addEventListener('submit', (event) => captureParallelIntake(event.target), true);
+
   const loadJson = async (src) => {
     if (!src) return null;
 
