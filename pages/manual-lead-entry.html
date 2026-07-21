@@ -709,6 +709,7 @@ You can reply here or call us at (801) 477-7526 with any questions!</textarea>
       <span>Lead form -&gt; Company system -&gt; Trello -&gt; Google Voice follow-up -&gt; QBO estimate</span>
     </div>
   </main>
+  <script src="/js/scripts.js" defer></script>
   <script src="/js/discount-codes.js" defer></script>
   <script>
     const startingTextValue = document.getElementById('send-starting-text-value');
@@ -785,16 +786,27 @@ You can reply here or call us at (801) 477-7526 with any questions!`
     }
 
     if (doorKnockingLeadForm && customStartingText) {
-      doorKnockingLeadForm.addEventListener('submit', (event) => {
+      const validateCustomStartingText = () => {
         const selectedTemplate = document.querySelector('.starting-text-option:checked');
         if (selectedTemplate && selectedTemplate.dataset.template === 'custom_starting_text' && !customStartingText.value.trim()) {
-          event.preventDefault();
           customStartingText.setCustomValidity('Enter a custom first text message or choose a preset.');
-          customStartingText.reportValidity();
-          return;
+          return false;
         }
 
         customStartingText.setCustomValidity('');
+        return true;
+      };
+
+      document.querySelectorAll('.starting-text-option').forEach((option) => {
+        option.addEventListener('change', validateCustomStartingText);
+      });
+      customStartingText.addEventListener('input', validateCustomStartingText);
+
+      doorKnockingLeadForm.addEventListener('submit', (event) => {
+        if (!validateCustomStartingText()) {
+          event.preventDefault();
+          customStartingText.reportValidity();
+        }
       });
     }
   </script>
