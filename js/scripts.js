@@ -684,6 +684,12 @@
   document.addEventListener('submit', async (event) => {
     const form = event.target;
     if (!isWeb3Form(form)) return;
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      form.reportValidity();
+      return;
+    }
     event.preventDefault();
     event.stopImmediatePropagation();
 
