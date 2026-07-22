@@ -117,15 +117,96 @@
     populateForm: (form) => setFormAttributionFields(form)
   });
 
+  // Paid-search visitors see the Twilio number; everybody else keeps the
+  // published business number. A call intent is recorded before `tel:` hands
+  // control to the device so Twilio can later attribute the actual inbound
+  // call without treating direct/organic callers as paid traffic.
+  const businessCallNumber = '+18014777526';
+  const paidCallTrackingNumber = '+13852826445';
+  const callIntentEndpoint = 'https://ateam-lead-automation.pages.dev/api/call-intent';
+  const callVisitorStorageKey = 'ateam_paid_call_visitor_v1';
+
+  const normalizedPhone = (value) => {
+    const digits = String(value || '').replace(/\D+/g, '');
+    if (digits.length === 10) return `+1${digits}`;
+    return digits.length >= 8 && digits.length <= 15 ? `+${digits}` : '';
+  };
+
+  const isPaidGoogleAttribution = (values) => {
+    if (values?.gclid || values?.gbraid || values?.wbraid) return true;
+    return /^(google|google_ads)$/i.test(values?.utm_source || '') && /^(cpc|ppc|paid|paid_search)$/i.test(values?.utm_medium || '');
+  };
+
+  const paidCallVisitorId = () => {
+    try {
+      const existing = window.localStorage.getItem(callVisitorStorageKey);
+      if (existing) return existing;
+      const next = `pcv_${crypto.randomUUID()}`;
+      window.localStorage.setItem(callVisitorStorageKey, next);
+      return next;
+    } catch (error) {
+      return `pcv_${crypto.randomUUID()}`;
+    }
+  };
+
+  const swapPaidCallLinks = (root = document) => {
+    if (!isPaidGoogleAttribution(getAttributionValues())) return;
+    const links = root.matches?.('a[href^="tel:"]') ? [root] : Array.from(root.querySelectorAll?.('a[href^="tel:"]') || []);
+    links.forEach((link) => {
+      const original = normalizedPhone(link.dataset.ateamOriginalCall || link.getAttribute('href'));
+      if (original !== businessCallNumber) return;
+      link.dataset.ateamOriginalCall = businessCallNumber;
+      link.dataset.ateamPaidCall = 'true';
+      link.href = `tel:${paidCallTrackingNumber}`;
+      if (/\(?801\)?[\s.-]*477[\s.-]*7526/.test(link.textContent || '')) {
+        link.textContent = link.textContent.replace(/\(?801\)?[\s.-]*477[\s.-]*7526/g, '(385) 282-6445');
+      }
+    });
+  };
+
+  const recordPaidCallIntent = (link) => {
+    if (link?.dataset.ateamPaidCall !== 'true') return;
+    const attribution = getAttributionValues();
+    const payload = {
+      id: `pci_${crypto.randomUUID()}`,
+      visitorId: paidCallVisitorId(),
+      trackingNumber: paidCallTrackingNumber,
+      originalNumber: link.dataset.ateamOriginalCall || businessCallNumber,
+      gclid: attribution.gclid || '', gbraid: attribution.gbraid || '', wbraid: attribution.wbraid || '',
+      utmSource: attribution.utm_source || '', utmMedium: attribution.utm_medium || '', utmCampaign: attribution.utm_campaign || '',
+      landingPage: attribution.landing_page || window.location.href.split('#')[0],
+      pageUrl: window.location.href.split('#')[0],
+      callLabel: (link.getAttribute('aria-label') || link.textContent || 'Call').trim().slice(0, 300),
+      clickedAt: new Date().toISOString()
+    };
+    // `keepalive` lets the request complete even when a mobile browser opens
+    // the dialer immediately. Failure never prevents a customer from calling.
+    fetch(callIntentEndpoint, {
+      method: 'POST', mode: 'cors', keepalive: true,
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  };
+
+  const initializePaidCallTracking = (root = document) => swapPaidCallLinks(root);
+  document.addEventListener('click', (event) => recordPaidCallIntent(event.target.closest('a[href^="tel:"]')), true);
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => populateAttributionForms(), { once: true });
+    document.addEventListener('DOMContentLoaded', () => {
+      populateAttributionForms();
+      initializePaidCallTracking();
+    }, { once: true });
   } else {
     populateAttributionForms();
+    initializePaidCallTracking();
   }
   new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node instanceof Element) populateAttributionForms(node);
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof Element) {
+            populateAttributionForms(node);
+            initializePaidCallTracking(node);
+          }
       });
     });
   }).observe(document.documentElement, { childList: true, subtree: true });
