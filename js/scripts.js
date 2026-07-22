@@ -117,15 +117,96 @@
     populateForm: (form) => setFormAttributionFields(form)
   });
 
+  // Paid-search visitors see the Twilio number; everybody else keeps the
+  // published business number. A call intent is recorded before `tel:` hands
+  // control to the device so Twilio can later attribute the actual inbound
+  // call without treating direct/organic callers as paid traffic.
+  const businessCallNumber = '+18014777526';
+  const paidCallTrackingNumber = '+13852826445';
+  const callIntentEndpoint = 'https://ateam-lead-automation.pages.dev/api/call-intent';
+  const callVisitorStorageKey = 'ateam_paid_call_visitor_v1';
+
+  const normalizedPhone = (value) => {
+    const digits = String(value || '').replace(/\D+/g, '');
+    if (digits.length === 10) return `+1${digits}`;
+    return digits.length >= 8 && digits.length <= 15 ? `+${digits}` : '';
+  };
+
+  const isPaidGoogleAttribution = (values) => {
+    if (values?.gclid || values?.gbraid || values?.wbraid) return true;
+    return /^(google|google_ads)$/i.test(values?.utm_source || '') && /^(cpc|ppc|paid|paid_search)$/i.test(values?.utm_medium || '');
+  };
+
+  const paidCallVisitorId = () => {
+    try {
+      const existing = window.localStorage.getItem(callVisitorStorageKey);
+      if (existing) return existing;
+      const next = `pcv_${crypto.randomUUID()}`;
+      window.localStorage.setItem(callVisitorStorageKey, next);
+      return next;
+    } catch (error) {
+      return `pcv_${crypto.randomUUID()}`;
+    }
+  };
+
+  const swapPaidCallLinks = (root = document) => {
+    if (!isPaidGoogleAttribution(getAttributionValues())) return;
+    const links = root.matches?.('a[href^="tel:"]') ? [root] : Array.from(root.querySelectorAll?.('a[href^="tel:"]') || []);
+    links.forEach((link) => {
+      const original = normalizedPhone(link.dataset.ateamOriginalCall || link.getAttribute('href'));
+      if (original !== businessCallNumber) return;
+      link.dataset.ateamOriginalCall = businessCallNumber;
+      link.dataset.ateamPaidCall = 'true';
+      link.href = `tel:${paidCallTrackingNumber}`;
+      if (/\(?801\)?[\s.-]*477[\s.-]*7526/.test(link.textContent || '')) {
+        link.textContent = link.textContent.replace(/\(?801\)?[\s.-]*477[\s.-]*7526/g, '(385) 282-6445');
+      }
+    });
+  };
+
+  const recordPaidCallIntent = (link) => {
+    if (link?.dataset.ateamPaidCall !== 'true') return;
+    const attribution = getAttributionValues();
+    const payload = {
+      id: `pci_${crypto.randomUUID()}`,
+      visitorId: paidCallVisitorId(),
+      trackingNumber: paidCallTrackingNumber,
+      originalNumber: link.dataset.ateamOriginalCall || businessCallNumber,
+      gclid: attribution.gclid || '', gbraid: attribution.gbraid || '', wbraid: attribution.wbraid || '',
+      utmSource: attribution.utm_source || '', utmMedium: attribution.utm_medium || '', utmCampaign: attribution.utm_campaign || '',
+      landingPage: attribution.landing_page || window.location.href.split('#')[0],
+      pageUrl: window.location.href.split('#')[0],
+      callLabel: (link.getAttribute('aria-label') || link.textContent || 'Call').trim().slice(0, 300),
+      clickedAt: new Date().toISOString()
+    };
+    // `keepalive` lets the request complete even when a mobile browser opens
+    // the dialer immediately. Failure never prevents a customer from calling.
+    fetch(callIntentEndpoint, {
+      method: 'POST', mode: 'cors', keepalive: true,
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  };
+
+  const initializePaidCallTracking = (root = document) => swapPaidCallLinks(root);
+  document.addEventListener('click', (event) => recordPaidCallIntent(event.target.closest('a[href^="tel:"]')), true);
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => populateAttributionForms(), { once: true });
+    document.addEventListener('DOMContentLoaded', () => {
+      populateAttributionForms();
+      initializePaidCallTracking();
+    }, { once: true });
   } else {
     populateAttributionForms();
+    initializePaidCallTracking();
   }
   new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node instanceof Element) populateAttributionForms(node);
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof Element) {
+            populateAttributionForms(node);
+            initializePaidCallTracking(node);
+          }
       });
     });
   }).observe(document.documentElement, { childList: true, subtree: true });
@@ -595,128 +676,6 @@
     if (!validateContactRequirement(event.target)) {
       event.preventDefault();
       event.stopImmediatePropagation();
-    }
-  }, true);
-
-  // Cloudflare owns durable lead processing. Web3Forms receives the same
-  // submission as an independent email backup with a shared reconciliation ID.
-  const cloudflareIntakeUrl = 'https://admin.ateamutah.com/api/public-form-intake';
-  const isWeb3Form = (form) => form instanceof HTMLFormElement
-    && /^https:\/\/api\.web3forms\.com\/submit\/?$/i.test(form.action || '');
-  const cloudflareSubmissionId = (form) => {
-    let field = form.querySelector('input[name="parallel_submission_id"]');
-    if (!field) {
-      field = document.createElement('input');
-      field.type = 'hidden';
-      field.name = 'parallel_submission_id';
-      form.appendChild(field);
-    }
-    if (!field.value) {
-      const uuid = window.crypto && typeof window.crypto.randomUUID === 'function'
-        ? window.crypto.randomUUID()
-        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-      field.value = `wfi_${uuid}`;
-    }
-    return field.value;
-  };
-  const cloudflareFields = (form) => {
-    const values = {};
-    new FormData(form).forEach((value, key) => {
-      if (/^access_key$/i.test(key)) return;
-      if (value instanceof File) {
-        values[key] = value.name ? `[file: ${value.name}, ${value.size} bytes]` : '';
-      } else if (Object.prototype.hasOwnProperty.call(values, key)) {
-        values[key] = `${values[key]}\n${String(value || '')}`;
-      } else {
-        values[key] = String(value || '');
-      }
-    });
-    return values;
-  };
-  const submitCloudflarePrimary = async (form) => {
-    const submissionId = cloudflareSubmissionId(form);
-    const fields = cloudflareFields(form);
-    const payload = {
-      submissionId,
-      formId: fields.form_id || form.id || 'website_form',
-      formName: fields.form_name || '',
-      pageUrl: window.location.href.split('#')[0],
-      fields
-    };
-    const response = await fetch(cloudflareIntakeUrl, {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'omit',
-      keepalive: true,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok || !result.ok) throw new Error(result.error || `Cloudflare intake failed (${response.status}).`);
-    return result;
-  };
-  const submitWeb3Backup = async (form) => {
-    const response = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { Accept: 'application/json' },
-      keepalive: true
-    });
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok || result.success === false) throw new Error(result.message || `Web3Forms backup failed (${response.status}).`);
-    return result;
-  };
-  const formFeedback = (form) => {
-    let feedback = form.querySelector('[data-form-delivery-status]');
-    if (!feedback) {
-      feedback = document.createElement('p');
-      feedback.dataset.formDeliveryStatus = '';
-      feedback.setAttribute('role', 'status');
-      feedback.className = 'form-delivery-status';
-      form.appendChild(feedback);
-    }
-    return feedback;
-  };
-  const successUrlFor = (form) => {
-    const configured = form.dataset.successUrl || (form.querySelector('input[name="redirect"]') || {}).value || '/pages/thank-you';
-    return new URL(configured, window.location.origin).toString();
-  };
-  document.addEventListener('submit', async (event) => {
-    const form = event.target;
-    if (!isWeb3Form(form)) return;
-    if (!form.checkValidity()) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      form.reportValidity();
-      return;
-    }
-    event.preventDefault();
-    event.stopImmediatePropagation();
-
-    const honeypot = form.querySelector('input[name="botcheck"], input[name="_honey"]');
-    if (honeypot && honeypot.value.trim()) return;
-    const feedback = formFeedback(form);
-    const submitButton = form.querySelector('[type="submit"]');
-    if (submitButton) submitButton.disabled = true;
-    feedback.textContent = 'Submitting...';
-
-    const backupPromise = submitWeb3Backup(form);
-    try {
-      await submitCloudflarePrimary(form);
-      backupPromise.catch((error) => console.warn('Web3Forms backup submission failed', error));
-      window.location.assign(successUrlFor(form));
-      return;
-    } catch (primaryError) {
-      console.error('Cloudflare form submission failed', primaryError);
-    }
-
-    try {
-      await backupPromise;
-      window.location.assign(successUrlFor(form));
-    } catch (backupError) {
-      console.error('Web3Forms backup submission failed', backupError);
-      feedback.textContent = 'We could not submit the form. Please call or text (801) 477-7526.';
-      if (submitButton) submitButton.disabled = false;
     }
   }, true);
 
