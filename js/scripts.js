@@ -766,13 +766,30 @@
     const submission = result && result.submission || {};
     // Emit this only after canonical Cloudflare intake succeeds. It separates
     // accepted leads from the earlier form-attempt event without sending PII.
-    trackEvent('generate_lead', {
+    // Wait briefly for gtag's completion callback before redirecting; otherwise
+    // navigation can cancel the accepted-lead event in the browser.
+    return new Promise((resolve) => {
+      let complete = false;
+      const finish = () => {
+        if (complete) return;
+        complete = true;
+        resolve();
+      };
+      const params = {
       event_category: 'lead_form',
       event_label: form.dataset.trackForm || form.id || 'website_form',
       form_id: form.querySelector('input[name="form_id"]')?.value || form.id || 'website_form',
       cloudflare_submission_id: submission.id || '',
       reconciliation_id: submission.reconciliationId || '',
-      transport_type: 'beacon'
+        transport_type: 'beacon',
+        event_callback: finish,
+        event_timeout: 1200
+      };
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'generate_lead', ...params });
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', params);
+      else finish();
+      window.setTimeout(finish, 1250);
     });
   };
   document.addEventListener('submit', async (event) => {
@@ -797,7 +814,7 @@
     const backupPromise = submitWeb3Backup(form);
     try {
       const result = await submitCloudflarePrimary(form);
-      trackCanonicalLead(form, result);
+      await trackCanonicalLead(form, result);
       backupPromise.catch((error) => console.warn('Web3Forms backup submission failed', error));
       window.location.assign(successUrlFor(form));
       return;
