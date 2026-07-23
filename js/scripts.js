@@ -10,10 +10,21 @@
     'utm_term',
     'gclid',
     'gbraid',
-    'wbraid'
+    'wbraid',
+    // Meta preserves both its click identifier and first-party browser
+    // cookies.  These fields are handled separately in D1, so an interaction
+    // with Meta never overwrites evidence of a previous Google touch.
+    'fbclid',
+    'fbc',
+    'fbp'
   ];
   const formAttributionFieldNames = [...attributionFieldNames, 'landing_page', 'first_touch_at'];
   const cleanAttributionValue = (value, maxLength = 500) => String(value || '').trim().slice(0, maxLength);
+  const readCookieValue = (name) => {
+    const prefix = `${name}=`;
+    const part = document.cookie.split(';').map((value) => value.trim()).find((value) => value.startsWith(prefix));
+    return part ? decodeURIComponent(part.slice(prefix.length)) : '';
+  };
 
   const readStoredAttribution = () => {
     try {
@@ -26,10 +37,7 @@
       // Fall through to the first-party cookie when storage is unavailable.
     }
 
-    const cookie = document.cookie
-      .split(';')
-      .map((part) => part.trim())
-      .find((part) => part.startsWith(`${attributionCookieKey}=`));
+    const cookie = document.cookie.split(';').map((part) => part.trim()).find((part) => part.startsWith(`${attributionCookieKey}=`));
     if (!cookie) return null;
     try {
       const parsed = JSON.parse(decodeURIComponent(cookie.slice(attributionCookieKey.length + 1)));
@@ -64,20 +72,34 @@
   };
 
   const captureFirstTouchAttribution = () => {
-    const existing = readStoredAttribution();
-    if (existing?.first_touch_at) return existing;
+    const existing = readStoredAttribution() || {};
 
     const params = new URLSearchParams(window.location.search);
     const queryValues = Object.fromEntries(attributionFieldNames.map((name) => [
       name,
       cleanAttributionValue(params.get(name), name.startsWith('utm_') ? 300 : 500)
     ]));
+    // `_fbc` and `_fbp` are Meta's browser identifiers.  Build a valid fbc
+    // when the landing URL contains fbclid, even if the Pixel has not yet had
+    // a chance to create its cookie.
+    const fbclid = queryValues.fbclid;
+    queryValues.fbc = queryValues.fbc || cleanAttributionValue(readCookieValue('_fbc')) || (fbclid ? `fb.1.${Date.now()}.${fbclid}` : '');
+    queryValues.fbp = queryValues.fbp || cleanAttributionValue(readCookieValue('_fbp'));
     const legacyValues = legacySessionAttribution();
     const values = Object.fromEntries(attributionFieldNames.map((name) => [
       name,
       queryValues[name] || legacyValues[name] || ''
     ]));
-    if (!Object.values(values).some(Boolean)) return existing || {};
+    if (existing.first_touch_at) {
+      const merged = { ...existing };
+      let changed = false;
+      attributionFieldNames.forEach((name) => {
+        if (!merged[name] && values[name]) { merged[name] = values[name]; changed = true; }
+      });
+      if (changed) persistAttribution(merged);
+      return merged;
+    }
+    if (!Object.values(values).some(Boolean)) return existing;
 
     const firstTouch = {
       ...values,
