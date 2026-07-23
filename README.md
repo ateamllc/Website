@@ -192,6 +192,8 @@ Preserve tracking attributes when changing CTAs, especially on landing-page hero
 
 Paid-click attribution is first-touch and immutable for 90 days. `js/scripts.js` captures GCLID, GBRAID, WBRAID, UTMs, the original landing URL, and the first-touch timestamp in local storage with a first-party cookie fallback. It dynamically populates those fields on every form, including forms inserted later through partials. A later visit with different campaign parameters must not overwrite the stored first touch.
 
+GA4 receives `estimate_form_submit` for a form attempt and `generate_lead` only after Cloudflare confirms canonical intake. Treat `generate_lead` as the website lead event, but use the Cloudflare D1 record's UTM/click-ID fields as the authoritative campaign attribution. These analytics events must never include names, phone numbers, email addresses, or project details.
+
 For a session with a Google click ID (or paid Google UTM), the shared script replaces the published business-number `tel:` links with the paid Twilio tracking number and posts a durable call-intent event before opening the device dialer. Organic and direct visitors keep the published business number. The backend attributes an inbound Twilio call only when exactly one recent paid call intent matches; it leaves ambiguous/direct calls unattributed rather than guessing.
 
 ## Design System Notes
