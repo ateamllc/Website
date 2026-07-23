@@ -679,6 +679,128 @@
     }
   }, true);
 
+  // Cloudflare owns durable lead processing. Web3Forms receives the same
+  // submission as an independent email backup with a shared reconciliation ID.
+  const cloudflareIntakeUrl = 'https://admin.ateamutah.com/api/public-form-intake';
+  const isWeb3Form = (form) => form instanceof HTMLFormElement
+    && /^https:\/\/api\.web3forms\.com\/submit\/?$/i.test(form.action || '');
+  const cloudflareSubmissionId = (form) => {
+    let field = form.querySelector('input[name="parallel_submission_id"]');
+    if (!field) {
+      field = document.createElement('input');
+      field.type = 'hidden';
+      field.name = 'parallel_submission_id';
+      form.appendChild(field);
+    }
+    if (!field.value) {
+      const uuid = window.crypto && typeof window.crypto.randomUUID === 'function'
+        ? window.crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      field.value = `wfi_${uuid}`;
+    }
+    return field.value;
+  };
+  const cloudflareFields = (form) => {
+    const values = {};
+    new FormData(form).forEach((value, key) => {
+      if (/^access_key$/i.test(key)) return;
+      if (value instanceof File) {
+        values[key] = value.name ? `[file: ${value.name}, ${value.size} bytes]` : '';
+      } else if (Object.prototype.hasOwnProperty.call(values, key)) {
+        values[key] = `${values[key]}\n${String(value || '')}`;
+      } else {
+        values[key] = String(value || '');
+      }
+    });
+    return values;
+  };
+  const submitCloudflarePrimary = async (form) => {
+    const submissionId = cloudflareSubmissionId(form);
+    const fields = cloudflareFields(form);
+    const payload = {
+      submissionId,
+      formId: fields.form_id || form.id || 'website_form',
+      formName: fields.form_name || '',
+      pageUrl: window.location.href.split('#')[0],
+      fields
+    };
+    const response = await fetch(cloudflareIntakeUrl, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) throw new Error(result.error || `Cloudflare intake failed (${response.status}).`);
+    return result;
+  };
+  const submitWeb3Backup = async (form) => {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+      keepalive: true
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.success === false) throw new Error(result.message || `Web3Forms backup failed (${response.status}).`);
+    return result;
+  };
+  const formFeedback = (form) => {
+    let feedback = form.querySelector('[data-form-delivery-status]');
+    if (!feedback) {
+      feedback = document.createElement('p');
+      feedback.dataset.formDeliveryStatus = '';
+      feedback.setAttribute('role', 'status');
+      feedback.className = 'form-delivery-status';
+      form.appendChild(feedback);
+    }
+    return feedback;
+  };
+  const successUrlFor = (form) => {
+    const configured = form.dataset.successUrl || (form.querySelector('input[name="redirect"]') || {}).value || '/pages/thank-you';
+    return new URL(configured, window.location.origin).toString();
+  };
+  document.addEventListener('submit', async (event) => {
+    const form = event.target;
+    if (!isWeb3Form(form)) return;
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      form.reportValidity();
+      return;
+    }
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    const honeypot = form.querySelector('input[name="botcheck"], input[name="_honey"]');
+    if (honeypot && honeypot.value.trim()) return;
+    const feedback = formFeedback(form);
+    const submitButton = form.querySelector('[type="submit"]');
+    if (submitButton) submitButton.disabled = true;
+    feedback.textContent = 'Submitting...';
+
+    const backupPromise = submitWeb3Backup(form);
+    try {
+      await submitCloudflarePrimary(form);
+      backupPromise.catch((error) => console.warn('Web3Forms backup submission failed', error));
+      window.location.assign(successUrlFor(form));
+      return;
+    } catch (primaryError) {
+      console.error('Cloudflare form submission failed', primaryError);
+    }
+
+    try {
+      await backupPromise;
+      window.location.assign(successUrlFor(form));
+    } catch (backupError) {
+      console.error('Web3Forms backup submission failed', backupError);
+      feedback.textContent = 'We could not submit the form. Please call or text (801) 477-7526.';
+      if (submitButton) submitButton.disabled = false;
+    }
+  }, true);
+
   const loadJson = async (src) => {
     if (!src) return null;
 
