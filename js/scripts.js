@@ -1,5 +1,26 @@
 // Basic scripts for small enhancements
 (function() {
+  // Meta Pixel is intentionally initialized from the common site script so it
+  // covers every public page that already loads this file. The public ID is
+  // safe to expose; access tokens remain server-only Cloudflare secrets.
+  const metaPixelId = '3294200820778684';
+  const initializeMetaPixel = () => {
+    if (typeof window.fbq === 'function') return;
+    const fbq = function() { fbq.callMethod ? fbq.callMethod.apply(fbq, arguments) : fbq.queue.push(arguments); };
+    fbq.queue = [];
+    fbq.loaded = true;
+    fbq.version = '2.0';
+    window.fbq = fbq;
+    window._fbq = fbq;
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(script);
+    fbq('init', metaPixelId);
+    fbq('track', 'PageView');
+  };
+  initializeMetaPixel();
+
   const attributionStorageKey = 'ateam_first_touch_attribution_v1';
   const attributionCookieKey = 'ateam_first_touch';
   const attributionFieldNames = [
@@ -810,6 +831,14 @@
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'generate_lead', ...params });
       if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', params);
+      // The server-side raw-lead event uses this exact ID, so Meta deduplicates
+      // the browser Pixel and CAPI copies once CAPI uploads are enabled.
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', {
+          content_name: params.form_id,
+          content_category: 'website_form'
+        }, { eventID: `ateam:${submission.id || submission.reconciliationId || crypto.randomUUID()}:raw_lead` });
+      }
       else finish();
       window.setTimeout(finish, 1250);
     });
