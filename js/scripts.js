@@ -1,5 +1,26 @@
 // Basic scripts for small enhancements
 (function() {
+  // Meta Pixel is intentionally initialized from the common site script so it
+  // covers every public page that already loads this file. The public ID is
+  // safe to expose; access tokens remain server-only Cloudflare secrets.
+  const metaPixelId = '3294200820778684';
+  const initializeMetaPixel = () => {
+    if (typeof window.fbq === 'function') return;
+    const fbq = function() { fbq.callMethod ? fbq.callMethod.apply(fbq, arguments) : fbq.queue.push(arguments); };
+    fbq.queue = [];
+    fbq.loaded = true;
+    fbq.version = '2.0';
+    window.fbq = fbq;
+    window._fbq = fbq;
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(script);
+    fbq('init', metaPixelId);
+    fbq('track', 'PageView');
+  };
+  initializeMetaPixel();
+
   const attributionStorageKey = 'ateam_first_touch_attribution_v1';
   const attributionCookieKey = 'ateam_first_touch';
   const attributionFieldNames = [
@@ -10,10 +31,21 @@
     'utm_term',
     'gclid',
     'gbraid',
-    'wbraid'
+    'wbraid',
+    // Meta preserves both its click identifier and first-party browser
+    // cookies.  These fields are handled separately in D1, so an interaction
+    // with Meta never overwrites evidence of a previous Google touch.
+    'fbclid',
+    'fbc',
+    'fbp'
   ];
   const formAttributionFieldNames = [...attributionFieldNames, 'landing_page', 'first_touch_at'];
   const cleanAttributionValue = (value, maxLength = 500) => String(value || '').trim().slice(0, maxLength);
+  const readCookieValue = (name) => {
+    const prefix = `${name}=`;
+    const part = document.cookie.split(';').map((value) => value.trim()).find((value) => value.startsWith(prefix));
+    return part ? decodeURIComponent(part.slice(prefix.length)) : '';
+  };
 
   const readStoredAttribution = () => {
     try {
@@ -26,10 +58,7 @@
       // Fall through to the first-party cookie when storage is unavailable.
     }
 
-    const cookie = document.cookie
-      .split(';')
-      .map((part) => part.trim())
-      .find((part) => part.startsWith(`${attributionCookieKey}=`));
+    const cookie = document.cookie.split(';').map((part) => part.trim()).find((part) => part.startsWith(`${attributionCookieKey}=`));
     if (!cookie) return null;
     try {
       const parsed = JSON.parse(decodeURIComponent(cookie.slice(attributionCookieKey.length + 1)));
@@ -64,20 +93,34 @@
   };
 
   const captureFirstTouchAttribution = () => {
-    const existing = readStoredAttribution();
-    if (existing?.first_touch_at) return existing;
+    const existing = readStoredAttribution() || {};
 
     const params = new URLSearchParams(window.location.search);
     const queryValues = Object.fromEntries(attributionFieldNames.map((name) => [
       name,
       cleanAttributionValue(params.get(name), name.startsWith('utm_') ? 300 : 500)
     ]));
+    // `_fbc` and `_fbp` are Meta's browser identifiers.  Build a valid fbc
+    // when the landing URL contains fbclid, even if the Pixel has not yet had
+    // a chance to create its cookie.
+    const fbclid = queryValues.fbclid;
+    queryValues.fbc = queryValues.fbc || cleanAttributionValue(readCookieValue('_fbc')) || (fbclid ? `fb.1.${Date.now()}.${fbclid}` : '');
+    queryValues.fbp = queryValues.fbp || cleanAttributionValue(readCookieValue('_fbp'));
     const legacyValues = legacySessionAttribution();
     const values = Object.fromEntries(attributionFieldNames.map((name) => [
       name,
       queryValues[name] || legacyValues[name] || ''
     ]));
-    if (!Object.values(values).some(Boolean)) return existing || {};
+    if (existing.first_touch_at) {
+      const merged = { ...existing };
+      let changed = false;
+      attributionFieldNames.forEach((name) => {
+        if (!merged[name] && values[name]) { merged[name] = values[name]; changed = true; }
+      });
+      if (changed) persistAttribution(merged);
+      return merged;
+    }
+    if (!Object.values(values).some(Boolean)) return existing;
 
     const firstTouch = {
       ...values,
@@ -676,6 +719,167 @@
     if (!validateContactRequirement(event.target)) {
       event.preventDefault();
       event.stopImmediatePropagation();
+    }
+  }, true);
+
+  // Cloudflare owns durable lead processing. Web3Forms receives the same
+  // submission as an independent email backup with a shared reconciliation ID.
+  const cloudflareIntakeUrl = 'https://admin.ateamutah.com/api/public-form-intake';
+  const isWeb3Form = (form) => form instanceof HTMLFormElement
+    && /^https:\/\/api\.web3forms\.com\/submit\/?$/i.test(form.action || '');
+  const cloudflareSubmissionId = (form) => {
+    let field = form.querySelector('input[name="parallel_submission_id"]');
+    if (!field) {
+      field = document.createElement('input');
+      field.type = 'hidden';
+      field.name = 'parallel_submission_id';
+      form.appendChild(field);
+    }
+    if (!field.value) {
+      const uuid = window.crypto && typeof window.crypto.randomUUID === 'function'
+        ? window.crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      field.value = `wfi_${uuid}`;
+    }
+    return field.value;
+  };
+  const cloudflareFields = (form) => {
+    const values = {};
+    new FormData(form).forEach((value, key) => {
+      if (/^access_key$/i.test(key)) return;
+      if (value instanceof File) {
+        values[key] = value.name ? `[file: ${value.name}, ${value.size} bytes]` : '';
+      } else if (Object.prototype.hasOwnProperty.call(values, key)) {
+        values[key] = `${values[key]}\n${String(value || '')}`;
+      } else {
+        values[key] = String(value || '');
+      }
+    });
+    return values;
+  };
+  const submitCloudflarePrimary = async (form) => {
+    const submissionId = cloudflareSubmissionId(form);
+    const fields = cloudflareFields(form);
+    const payload = {
+      submissionId,
+      formId: fields.form_id || form.id || 'website_form',
+      formName: fields.form_name || '',
+      pageUrl: window.location.href.split('#')[0],
+      fields
+    };
+    const response = await fetch(cloudflareIntakeUrl, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) throw new Error(result.error || `Cloudflare intake failed (${response.status}).`);
+    return result;
+  };
+  const submitWeb3Backup = async (form) => {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+      keepalive: true
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.success === false) throw new Error(result.message || `Web3Forms backup failed (${response.status}).`);
+    return result;
+  };
+  const formFeedback = (form) => {
+    let feedback = form.querySelector('[data-form-delivery-status]');
+    if (!feedback) {
+      feedback = document.createElement('p');
+      feedback.dataset.formDeliveryStatus = '';
+      feedback.setAttribute('role', 'status');
+      feedback.className = 'form-delivery-status';
+      form.appendChild(feedback);
+    }
+    return feedback;
+  };
+  const successUrlFor = (form) => {
+    const configured = form.dataset.successUrl || (form.querySelector('input[name="redirect"]') || {}).value || '/pages/thank-you';
+    return new URL(configured, window.location.origin).toString();
+  };
+  const trackCanonicalLead = (form, result) => {
+    const submission = result && result.submission || {};
+    // Emit this only after canonical Cloudflare intake succeeds. It separates
+    // accepted leads from the earlier form-attempt event without sending PII.
+    // Wait briefly for gtag's completion callback before redirecting; otherwise
+    // navigation can cancel the accepted-lead event in the browser.
+    return new Promise((resolve) => {
+      let complete = false;
+      const finish = () => {
+        if (complete) return;
+        complete = true;
+        resolve();
+      };
+      const params = {
+      event_category: 'lead_form',
+      event_label: form.dataset.trackForm || form.id || 'website_form',
+      form_id: form.querySelector('input[name="form_id"]')?.value || form.id || 'website_form',
+      cloudflare_submission_id: submission.id || '',
+      reconciliation_id: submission.reconciliationId || '',
+        transport_type: 'beacon',
+        event_callback: finish,
+        event_timeout: 1200
+      };
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'generate_lead', ...params });
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', params);
+      // The server-side raw-lead event uses this exact ID, so Meta deduplicates
+      // the browser Pixel and CAPI copies once CAPI uploads are enabled.
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', {
+          content_name: params.form_id,
+          content_category: 'website_form'
+        }, { eventID: `ateam:${submission.id || submission.reconciliationId || crypto.randomUUID()}:raw_lead` });
+      }
+      else finish();
+      window.setTimeout(finish, 1250);
+    });
+  };
+  document.addEventListener('submit', async (event) => {
+    const form = event.target;
+    if (!isWeb3Form(form)) return;
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      form.reportValidity();
+      return;
+    }
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    const honeypot = form.querySelector('input[name="botcheck"], input[name="_honey"]');
+    if (honeypot && honeypot.value.trim()) return;
+    const feedback = formFeedback(form);
+    const submitButton = form.querySelector('[type="submit"]');
+    if (submitButton) submitButton.disabled = true;
+    feedback.textContent = 'Submitting...';
+
+    const backupPromise = submitWeb3Backup(form);
+    try {
+      const result = await submitCloudflarePrimary(form);
+      await trackCanonicalLead(form, result);
+      backupPromise.catch((error) => console.warn('Web3Forms backup submission failed', error));
+      window.location.assign(successUrlFor(form));
+      return;
+    } catch (primaryError) {
+      console.error('Cloudflare form submission failed', primaryError);
+    }
+
+    try {
+      await backupPromise;
+      window.location.assign(successUrlFor(form));
+    } catch (backupError) {
+      console.error('Web3Forms backup submission failed', backupError);
+      feedback.textContent = 'We could not submit the form. Please call or text (801) 477-7526.';
+      if (submitButton) submitButton.disabled = false;
     }
   }, true);
 
