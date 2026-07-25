@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", function() {
     estimateScript.defer = true;
     document.head.appendChild(estimateScript);
   }
+  if (/\/pages\/instant-quote(?:\.html)?$/.test(window.location.pathname)) {
+    const genericEstimateScript = document.createElement('script');
+    genericEstimateScript.src = '/js/instant-estimate-fields.js';
+    genericEstimateScript.defer = true;
+    document.head.appendChild(genericEstimateScript);
+  }
   const includes = document.querySelectorAll('[data-include]');
 
   const isAbsoluteUrl = url => /^(?:[a-z]+:)?\/\//i.test(url) || url.startsWith('/');
