@@ -1,6 +1,30 @@
 // Simple client-side partial include loader.
 // Looks for elements with attribute data-include="partials/xxx.html"
 document.addEventListener("DOMContentLoaded", function() {
+  // Apache honors the extensionless URLs used throughout the public site. Most
+  // lightweight local servers do not, so make those same links usable during
+  // local development without changing the production-facing URLs.
+  const normalizeLocalPageLinks = (scope = document) => {
+    const isLocalHost = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+    if (!isLocalHost) return;
+
+    scope.querySelectorAll('a[href^="/pages/"]').forEach(link => {
+      const url = new URL(link.href, window.location.origin);
+      const lastSegment = url.pathname.split('/').filter(Boolean).pop();
+      if (lastSegment && !lastSegment.includes('.')) {
+        url.pathname += '.html';
+        link.href = url.pathname + url.search + url.hash;
+      }
+    });
+  };
+
+  normalizeLocalPageLinks();
+  if (/\/pages\/free-(wood-fence|chain-link-fence|interior-paint|exterior-paint)-estimate(?:\.html)?$/.test(window.location.pathname)) {
+    const estimateScript = document.createElement('script');
+    estimateScript.src = '/js/public-estimates.js';
+    estimateScript.defer = true;
+    document.head.appendChild(estimateScript);
+  }
   const includes = document.querySelectorAll('[data-include]');
 
   const isAbsoluteUrl = url => /^(?:[a-z]+:)?\/\//i.test(url) || url.startsWith('/');
@@ -54,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return res.text();
       }).then(html => {
         el.innerHTML = html;
+        normalizeLocalPageLinks(el);
       }).catch(() => {
         tryNext(index + 1);
       });
