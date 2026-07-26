@@ -200,6 +200,11 @@ main.content-sections {
     text-align: left;
 }
 
+.turnstile-lead-verification {
+    min-height: 65px;
+    margin: 0.25rem 0;
+}
+
 .referral-page {
     gap: 0;
     background: #f8fafc;

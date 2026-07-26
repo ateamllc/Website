@@ -722,6 +722,95 @@
   const cloudflareIntakeUrl = 'https://admin.ateamutah.com/api/public-form-intake';
   const isWeb3Form = (form) => form instanceof HTMLFormElement
     && /^https:\/\/api\.web3forms\.com\/submit\/?$/i.test(form.action || '');
+  const turnstileSitekey = '0x4AAAAAAD-IXgVNi5uINvPg';
+  const turnstileAction = 'turnstile-spin-v2';
+  const turnstileExemptFormIds = new Set(['careers_application', 'manual_lead_entry']);
+  let turnstileScriptPromise = null;
+  const formIdFor = (form) => String(
+    form.querySelector('input[name="form_id"]')?.value || form.id || ''
+  ).trim().toLowerCase();
+  const isTurnstileProtectedForm = (form) => form instanceof HTMLFormElement
+    && (isWeb3Form(form) || form.hasAttribute('data-turnstile-lead'))
+    && !turnstileExemptFormIds.has(formIdFor(form));
+  const loadTurnstile = () => {
+    if (window.turnstile && typeof window.turnstile.render === 'function') {
+      return Promise.resolve(window.turnstile);
+    }
+    if (turnstileScriptPromise) return turnstileScriptPromise;
+
+    turnstileScriptPromise = new Promise((resolve, reject) => {
+      const ready = () => {
+        if (!window.turnstile || typeof window.turnstile.ready !== 'function') {
+          reject(new Error('Turnstile did not initialize.'));
+          return;
+        }
+        window.turnstile.ready(() => resolve(window.turnstile));
+      };
+      let script = document.querySelector('script[data-ateam-turnstile]');
+      if (script) {
+        script.addEventListener('load', ready, { once: true });
+        script.addEventListener('error', () => reject(new Error('Turnstile could not load.')), { once: true });
+        return;
+      }
+      script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.defer = true;
+      script.dataset.ateamTurnstile = '';
+      script.addEventListener('load', ready, { once: true });
+      script.addEventListener('error', () => reject(new Error('Turnstile could not load.')), { once: true });
+      document.head.appendChild(script);
+    });
+    return turnstileScriptPromise;
+  };
+  const ensureTurnstileForm = async (form) => {
+    if (!isTurnstileProtectedForm(form)) return null;
+    let container = form.querySelector('[data-ateam-turnstile-widget]');
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'cf-turnstile turnstile-lead-verification';
+      container.dataset.ateamTurnstileWidget = '';
+      container.dataset.sitekey = turnstileSitekey;
+      container.dataset.action = turnstileAction;
+      const submitButton = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
+      if (submitButton) submitButton.before(container);
+      else form.appendChild(container);
+    }
+    if (container.dataset.widgetId) return container.dataset.widgetId;
+    try {
+      const api = await loadTurnstile();
+      if (!container.isConnected || container.dataset.widgetId) return container.dataset.widgetId || null;
+      const widgetId = api.render(container, {
+        sitekey: turnstileSitekey,
+        action: turnstileAction
+      });
+      container.dataset.widgetId = String(widgetId);
+      return widgetId;
+    } catch (error) {
+      console.error('Turnstile initialization failed', error);
+      return null;
+    }
+  };
+  const resetTurnstileForm = (form) => {
+    const container = form?.querySelector?.('[data-ateam-turnstile-widget]');
+    const widgetId = container?.dataset.widgetId;
+    if (widgetId && window.turnstile && typeof window.turnstile.reset === 'function') {
+      window.turnstile.reset(widgetId);
+    }
+  };
+  const scanTurnstileForms = (root = document) => {
+    const forms = [];
+    if (root instanceof HTMLFormElement) forms.push(root);
+    root.querySelectorAll?.('form').forEach((form) => forms.push(form));
+    forms.filter(isTurnstileProtectedForm).forEach((form) => {
+      ensureTurnstileForm(form);
+    });
+  };
+  window.ATeamTurnstile = Object.assign(window.ATeamTurnstile || {}, {
+    ensureForm: ensureTurnstileForm,
+    isProtectedForm: isTurnstileProtectedForm,
+    resetForm: resetTurnstileForm
+  });
   const cloudflareSubmissionId = (form) => {
     let field = form.querySelector('input[name="parallel_submission_id"]');
     if (!field) {
@@ -771,7 +860,12 @@
       body: JSON.stringify(payload)
     });
     const result = await response.json().catch(() => ({}));
-    if (!response.ok || !result.ok) throw new Error(result.error || `Cloudflare intake failed (${response.status}).`);
+    if (!response.ok || !result.ok) {
+      const error = new Error(result.error || `Cloudflare intake failed (${response.status}).`);
+      error.code = String(result.code || '');
+      error.status = response.status;
+      throw error;
+    }
     return result;
   };
   const submitWeb3Backup = async (form) => {
@@ -796,6 +890,27 @@
     }
     return feedback;
   };
+  scanTurnstileForms();
+  new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node instanceof Element) scanTurnstileForms(node);
+      });
+    });
+  }).observe(document.documentElement, { childList: true, subtree: true });
+  document.addEventListener('submit', (event) => {
+    const form = event.target;
+    if (!isTurnstileProtectedForm(form)) return;
+    ensureTurnstileForm(form);
+    const token = String(new FormData(form).get('cf-turnstile-response') || '').trim();
+    if (token) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    formFeedback(form).textContent = 'Please complete the verification challenge and try again.';
+    const submitButton = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
+    if (submitButton) submitButton.disabled = false;
+  }, true);
   const successUrlFor = (form) => {
     const configured = form.dataset.successUrl || (form.querySelector('input[name="redirect"]') || {}).value || '/pages/thank-you';
     return new URL(configured, window.location.origin).toString();
@@ -853,23 +968,28 @@
     const honeypot = form.querySelector('input[name="botcheck"], input[name="_honey"]');
     if (honeypot && honeypot.value.trim()) return;
     const feedback = formFeedback(form);
-    const submitButton = form.querySelector('[type="submit"]');
+    const submitButton = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
     if (submitButton) submitButton.disabled = true;
     feedback.textContent = 'Submitting...';
 
-    const backupPromise = submitWeb3Backup(form);
     try {
       const result = await submitCloudflarePrimary(form);
       await trackCanonicalLead(form, result);
-      backupPromise.catch((error) => console.warn('Web3Forms backup submission failed', error));
+      submitWeb3Backup(form).catch((error) => console.warn('Web3Forms backup submission failed', error));
       window.location.assign(successUrlFor(form));
       return;
     } catch (primaryError) {
       console.error('Cloudflare form submission failed', primaryError);
+      if (primaryError.code.startsWith('turnstile_') || primaryError.status === 403) {
+        resetTurnstileForm(form);
+        feedback.textContent = primaryError.message || 'Please complete the verification challenge and try again.';
+        if (submitButton) submitButton.disabled = false;
+        return;
+      }
     }
 
     try {
-      await backupPromise;
+      await submitWeb3Backup(form);
       window.location.assign(successUrlFor(form));
     } catch (backupError) {
       console.error('Web3Forms backup submission failed', backupError);
