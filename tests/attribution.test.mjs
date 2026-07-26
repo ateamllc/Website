@@ -47,6 +47,7 @@ function runAttributionPage(url, options = {}) {
   const document = {
     readyState: 'complete',
     documentElement: new FakeElement(),
+    head: { appendChild() {} },
     querySelectorAll(selector) { return selector === 'form' ? forms : []; },
     createElement() { return { type: '', name: '', value: '' }; },
     addEventListener() {},
@@ -106,6 +107,23 @@ test('keeps the original first touch when a later campaign visit arrives', () =>
   assert.equal(second.value('utm_campaign'), 'fences');
   assert.equal(second.value('first_touch_at'), originalTimestamp);
   assert.match(second.value('landing_page'), /gclid=original/);
+});
+
+test('does not fill blank first-touch fields from a later campaign', () => {
+  const localStorage = new MemoryStorage();
+  const first = new FakeForm();
+  const firstPage = runAttributionPage('https://ateamutah.com/?gclid=original', { forms: [first], localStorage });
+  const later = new FakeForm();
+  runAttributionPage('https://ateamutah.com/pages/contact?utm_source=google&utm_campaign=later', {
+    forms: [later],
+    localStorage,
+    cookieJar: firstPage.cookieJar
+  });
+
+  assert.equal(later.value('gclid'), 'original');
+  assert.equal(later.value('utm_source'), '');
+  assert.equal(later.value('utm_campaign'), '');
+  assert.equal(later.value('landing_page'), first.value('landing_page'));
 });
 
 test('uses the first-party cookie when local storage is unavailable', () => {
