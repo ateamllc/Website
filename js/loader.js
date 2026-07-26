@@ -21,13 +21,13 @@ document.addEventListener("DOMContentLoaded", function() {
   normalizeLocalPageLinks();
   if (/\/pages\/free-(wood-fence|chain-link-fence|interior-paint|exterior-paint)-estimate(?:\.html)?$/.test(window.location.pathname)) {
     const estimateScript = document.createElement('script');
-    estimateScript.src = '/js/public-estimates.js';
+    estimateScript.src = '/js/public-estimates.js?v=20260726-turnstile';
     estimateScript.defer = true;
     document.head.appendChild(estimateScript);
   }
   if (/\/pages\/instant-quote(?:\.html)?$/.test(window.location.pathname)) {
     const genericEstimateScript = document.createElement('script');
-    genericEstimateScript.src = '/js/instant-estimate-fields.js';
+    genericEstimateScript.src = '/js/instant-estimate-fields.js?v=20260726-turnstile';
     genericEstimateScript.defer = true;
     document.head.appendChild(genericEstimateScript);
   }
