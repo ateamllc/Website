@@ -111,15 +111,10 @@
       name,
       queryValues[name] || legacyValues[name] || ''
     ]));
-    if (existing.first_touch_at) {
-      const merged = { ...existing };
-      let changed = false;
-      attributionFieldNames.forEach((name) => {
-        if (!merged[name] && values[name]) { merged[name] = values[name]; changed = true; }
-      });
-      if (changed) persistAttribution(merged);
-      return merged;
-    }
+    // Once the first touch is timestamped, freeze the complete snapshot.
+    // Filling blank fields from later visits would create a campaign hybrid
+    // that never actually occurred.
+    if (existing.first_touch_at) return existing;
     if (!Object.values(values).some(Boolean)) return existing;
 
     const firstTouch = {
