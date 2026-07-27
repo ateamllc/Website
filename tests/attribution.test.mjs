@@ -145,3 +145,18 @@ test('populates forms inserted later without overwriting an explicit field value
   assert.equal(dynamic.value('utm_source'), 'explicit-source');
   assert.match(dynamic.value('first_touch_at'), /^\d{4}-/);
 });
+
+test('Turnstile is preloaded and keeps protected submits gated until verification succeeds', () => {
+  assert.match(productionSource, /loadTurnstile\(\)\.catch/);
+  assert.match(productionSource, /setTurnstileFormReady\(form, false, 'loading'\)/);
+  assert.match(productionSource, /appearance: 'always'/);
+  assert.match(productionSource, /execution: 'render'/);
+  assert.match(productionSource, /callback: \(\) => \{\s*setTurnstileFormReady\(form, true, 'verified'\)/);
+  assert.match(productionSource, /'expired-callback': \(\) => \{\s*setTurnstileFormReady\(form, false, 'expired'\)/);
+});
+
+test('Web3 backup never replays the canonical single-use Turnstile token', () => {
+  assert.match(productionSource, /backupData\.delete\('cf-turnstile-response'\)/);
+  assert.match(productionSource, /backupData\.delete\('turnstile_token'\)/);
+  assert.match(productionSource, /body: backupData/);
+});

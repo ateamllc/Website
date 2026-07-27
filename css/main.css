@@ -203,6 +203,20 @@ main.content-sections {
 .turnstile-lead-verification {
     min-height: 65px;
     margin: 0.25rem 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.turnstile-loading-message {
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+.contact-form[data-turnstile-status="loading"] button:disabled,
+.contact-form[data-turnstile-status="refreshing"] button:disabled {
+    cursor: wait;
+    opacity: 0.68;
 }
 
 .referral-page {

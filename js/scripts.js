@@ -725,6 +725,7 @@
   const turnstileSitekey = '0x4AAAAAAD-IXgVNi5uINvPg';
   const turnstileAction = 'turnstile-spin-v2';
   const turnstileExemptFormIds = new Set(['careers_application', 'manual_lead_entry']);
+  const turnstileSubmitSelector = 'button[type="submit"], input[type="submit"], button:not([type])';
   let turnstileScriptPromise = null;
   const formIdFor = (form) => String(
     form.querySelector('input[name="form_id"]')?.value || form.id || ''
@@ -732,6 +733,24 @@
   const isTurnstileProtectedForm = (form) => form instanceof HTMLFormElement
     && (isWeb3Form(form) || form.hasAttribute('data-turnstile-lead'))
     && !turnstileExemptFormIds.has(formIdFor(form));
+  const setTurnstileFormReady = (form, ready, status) => {
+    form.dataset.turnstileStatus = status;
+    const submitButton = form.querySelector(turnstileSubmitSelector);
+    if (!submitButton) return;
+    submitButton.disabled = !ready;
+    submitButton.setAttribute('aria-disabled', String(!ready));
+  };
+  const showTurnstileFeedback = (form, message) => {
+    const feedback = formFeedback(form);
+    feedback.dataset.turnstileMessage = 'true';
+    feedback.textContent = message;
+  };
+  const clearTurnstileFeedback = (form) => {
+    const feedback = form.querySelector('[data-form-delivery-status][data-turnstile-message="true"]');
+    if (!feedback) return;
+    feedback.textContent = '';
+    delete feedback.dataset.turnstileMessage;
+  };
   const loadTurnstile = () => {
     if (window.turnstile && typeof window.turnstile.render === 'function') {
       return Promise.resolve(window.turnstile);
@@ -739,17 +758,22 @@
     if (turnstileScriptPromise) return turnstileScriptPromise;
 
     turnstileScriptPromise = new Promise((resolve, reject) => {
+      let script = document.querySelector('script[data-ateam-turnstile]');
+      const failed = () => {
+        script?.remove();
+        turnstileScriptPromise = null;
+        reject(new Error('Turnstile could not load.'));
+      };
       const ready = () => {
         if (!window.turnstile || typeof window.turnstile.ready !== 'function') {
-          reject(new Error('Turnstile did not initialize.'));
+          failed();
           return;
         }
         window.turnstile.ready(() => resolve(window.turnstile));
       };
-      let script = document.querySelector('script[data-ateam-turnstile]');
       if (script) {
         script.addEventListener('load', ready, { once: true });
-        script.addEventListener('error', () => reject(new Error('Turnstile could not load.')), { once: true });
+        script.addEventListener('error', failed, { once: true });
         return;
       }
       script = document.createElement('script');
@@ -758,7 +782,7 @@
       script.defer = true;
       script.dataset.ateamTurnstile = '';
       script.addEventListener('load', ready, { once: true });
-      script.addEventListener('error', () => reject(new Error('Turnstile could not load.')), { once: true });
+      script.addEventListener('error', failed, { once: true });
       document.head.appendChild(script);
     });
     return turnstileScriptPromise;
@@ -768,26 +792,57 @@
     let container = form.querySelector('[data-ateam-turnstile-widget]');
     if (!container) {
       container = document.createElement('div');
-      container.className = 'cf-turnstile turnstile-lead-verification';
+      container.className = 'turnstile-lead-verification';
       container.dataset.ateamTurnstileWidget = '';
       container.dataset.sitekey = turnstileSitekey;
       container.dataset.action = turnstileAction;
-      const submitButton = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
+      container.innerHTML = '<span class="turnstile-loading-message">Loading secure verification…</span>';
+      const submitButton = form.querySelector(turnstileSubmitSelector);
       if (submitButton) submitButton.before(container);
       else form.appendChild(container);
     }
     if (container.dataset.widgetId) return container.dataset.widgetId;
+    setTurnstileFormReady(form, false, 'loading');
     try {
       const api = await loadTurnstile();
       if (!container.isConnected || container.dataset.widgetId) return container.dataset.widgetId || null;
+      container.textContent = '';
       const widgetId = api.render(container, {
         sitekey: turnstileSitekey,
-        action: turnstileAction
+        action: turnstileAction,
+        appearance: 'always',
+        execution: 'render',
+        retry: 'auto',
+        'retry-interval': 3000,
+        'refresh-expired': 'auto',
+        'refresh-timeout': 'auto',
+        callback: () => {
+          setTurnstileFormReady(form, true, 'verified');
+          clearTurnstileFeedback(form);
+        },
+        'error-callback': () => {
+          setTurnstileFormReady(form, false, 'error');
+          showTurnstileFeedback(form, 'Secure verification could not finish. It will retry automatically.');
+        },
+        'expired-callback': () => {
+          setTurnstileFormReady(form, false, 'expired');
+          showTurnstileFeedback(form, 'Verification expired and is refreshing. Please wait a moment.');
+        },
+        'timeout-callback': () => {
+          setTurnstileFormReady(form, false, 'timeout');
+          showTurnstileFeedback(form, 'Verification timed out and is refreshing. Please try again.');
+        },
+        'unsupported-callback': () => {
+          setTurnstileFormReady(form, false, 'unsupported');
+          showTurnstileFeedback(form, 'This browser cannot run secure verification. Please update it or call us.');
+        }
       });
       container.dataset.widgetId = String(widgetId);
       return widgetId;
     } catch (error) {
       console.error('Turnstile initialization failed', error);
+      setTurnstileFormReady(form, false, 'load-error');
+      showTurnstileFeedback(form, 'Secure verification could not load. Check your connection and refresh the page.');
       return null;
     }
   };
@@ -795,6 +850,7 @@
     const container = form?.querySelector?.('[data-ateam-turnstile-widget]');
     const widgetId = container?.dataset.widgetId;
     if (widgetId && window.turnstile && typeof window.turnstile.reset === 'function') {
+      setTurnstileFormReady(form, false, 'refreshing');
       window.turnstile.reset(widgetId);
     }
   };
@@ -811,6 +867,11 @@
     isProtectedForm: isTurnstileProtectedForm,
     resetForm: resetTurnstileForm
   });
+  // Start downloading Turnstile before asynchronously injected estimate forms
+  // arrive, so verification is ready long before a visitor reaches Submit.
+  if (/^\/pages\/(?:landing\/|instant-quote(?:\.html)?$|free-[^/]+-estimate(?:\.html)?$)/i.test(window.location.pathname)) {
+    loadTurnstile().catch((error) => console.warn('Turnstile preload failed; form-level retry remains available.', error));
+  }
   const cloudflareSubmissionId = (form) => {
     let field = form.querySelector('input[name="parallel_submission_id"]');
     if (!field) {
@@ -869,9 +930,15 @@
     return result;
   };
   const submitWeb3Backup = async (form) => {
+    const backupData = new FormData(form);
+    // The canonical intake has already consumed this single-use token. Sending
+    // it to Web3Forms again can make the independent email backup reject an
+    // otherwise valid lead as a replay.
+    backupData.delete('cf-turnstile-response');
+    backupData.delete('turnstile_token');
     const response = await fetch(form.action, {
       method: 'POST',
-      body: new FormData(form),
+      body: backupData,
       headers: { Accept: 'application/json' },
       keepalive: true
     });
@@ -907,9 +974,10 @@
 
     event.preventDefault();
     event.stopImmediatePropagation();
-    formFeedback(form).textContent = 'Please complete the verification challenge and try again.';
-    const submitButton = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
-    if (submitButton) submitButton.disabled = false;
+    setTurnstileFormReady(form, false, form.dataset.turnstileStatus || 'loading');
+    showTurnstileFeedback(form, form.dataset.turnstileStatus === 'loading'
+      ? 'Secure verification is still loading. Please wait a moment.'
+      : 'Please complete the verification challenge and try again.');
   }, true);
   const successUrlFor = (form) => {
     const configured = form.dataset.successUrl || (form.querySelector('input[name="redirect"]') || {}).value || '/pages/thank-you';
@@ -968,8 +1036,9 @@
     const honeypot = form.querySelector('input[name="botcheck"], input[name="_honey"]');
     if (honeypot && honeypot.value.trim()) return;
     const feedback = formFeedback(form);
-    const submitButton = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
+    const submitButton = form.querySelector(turnstileSubmitSelector);
     if (submitButton) submitButton.disabled = true;
+    delete feedback.dataset.turnstileMessage;
     feedback.textContent = 'Submitting...';
 
     try {
@@ -980,10 +1049,15 @@
       return;
     } catch (primaryError) {
       console.error('Cloudflare form submission failed', primaryError);
-      if (primaryError.code.startsWith('turnstile_') || primaryError.status === 403) {
-        resetTurnstileForm(form);
-        feedback.textContent = primaryError.message || 'Please complete the verification challenge and try again.';
-        if (submitButton) submitButton.disabled = false;
+      const errorCode = String(primaryError?.code || '');
+      const errorStatus = Number(primaryError?.status || 0);
+      resetTurnstileForm(form);
+      if (errorCode.startsWith('turnstile_') || errorStatus === 403) {
+        showTurnstileFeedback(form, primaryError.message || 'Please complete the verification challenge and try again.');
+        return;
+      }
+      if (errorStatus >= 400 && errorStatus < 500) {
+        feedback.textContent = primaryError.message || 'Please check the form and try again.';
         return;
       }
     }
@@ -994,7 +1068,6 @@
     } catch (backupError) {
       console.error('Web3Forms backup submission failed', backupError);
       feedback.textContent = 'We could not submit the form. Please call or text (801) 477-7526.';
-      if (submitButton) submitButton.disabled = false;
     }
   }, true);
 
