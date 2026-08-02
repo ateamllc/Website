@@ -162,7 +162,9 @@
   const businessCallNumber = '+18014777526';
   const paidCallTrackingNumber = '+13852826445';
   const callIntentEndpoint = 'https://ateam-lead-automation.pages.dev/api/call-intent';
+  const smsIntentEndpoint = 'https://ateam-lead-automation.pages.dev/api/sms-intent';
   const callVisitorStorageKey = 'ateam_paid_call_visitor_v1';
+  const smsReferenceAlphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
   const normalizedPhone = (value) => {
     const digits = String(value || '').replace(/\D+/g, '');
@@ -202,6 +204,30 @@
     });
   };
 
+  const smsReferenceToken = () => {
+    const bytes = new Uint8Array(8);
+    crypto.getRandomValues(bytes);
+    return Array.from(bytes, (byte) => smsReferenceAlphabet[byte % smsReferenceAlphabet.length]).join('');
+  };
+
+  const swapPaidSmsLinks = (root = document) => {
+    if (!isPaidGoogleAttribution(getAttributionValues())) return;
+    const links = root.matches?.('a[href^="sms:"]') ? [root] : Array.from(root.querySelectorAll?.('a[href^="sms:"]') || []);
+    links.forEach((link) => {
+      const original = normalizedPhone(link.dataset.ateamOriginalSms || link.getAttribute('href'));
+      if (original !== businessCallNumber) return;
+      link.dataset.ateamOriginalSms = businessCallNumber;
+      link.dataset.ateamPaidSms = 'true';
+      link.dataset.ateamSmsIntentId ||= `psi_${crypto.randomUUID()}`;
+      link.dataset.ateamSmsReference ||= smsReferenceToken();
+      const message = `Hi, I'd like an estimate. Ref: ${link.dataset.ateamSmsReference}`;
+      link.href = `sms:${paidCallTrackingNumber}?body=${encodeURIComponent(message)}`;
+      if (/\(?801\)?[\s.-]*477[\s.-]*7526/.test(link.textContent || '')) {
+        link.textContent = link.textContent.replace(/\(?801\)?[\s.-]*477[\s.-]*7526/g, '(385) 282-6445');
+      }
+    });
+  };
+
   const recordPaidCallIntent = (link) => {
     if (link?.dataset.ateamPaidCall !== 'true') return;
     const attribution = getAttributionValues();
@@ -226,24 +252,51 @@
     }).catch(() => {});
   };
 
-  const initializePaidCallTracking = (root = document) => swapPaidCallLinks(root);
+  const recordPaidSmsIntent = (link) => {
+    if (link?.dataset.ateamPaidSms !== 'true') return;
+    const attribution = getAttributionValues();
+    const payload = {
+      id: link.dataset.ateamSmsIntentId,
+      referenceToken: link.dataset.ateamSmsReference,
+      visitorId: paidCallVisitorId(),
+      trackingNumber: paidCallTrackingNumber,
+      originalNumber: link.dataset.ateamOriginalSms || businessCallNumber,
+      gclid: attribution.gclid || '', gbraid: attribution.gbraid || '', wbraid: attribution.wbraid || '',
+      utmSource: attribution.utm_source || '', utmMedium: attribution.utm_medium || '', utmCampaign: attribution.utm_campaign || '',
+      landingPage: attribution.landing_page || window.location.href.split('#')[0],
+      pageUrl: window.location.href.split('#')[0],
+      smsLabel: (link.getAttribute('aria-label') || link.textContent || 'Text').trim().slice(0, 300),
+      clickedAt: new Date().toISOString()
+    };
+    fetch(smsIntentEndpoint, {
+      method: 'POST', mode: 'cors', keepalive: true,
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  };
+
+  const initializePaidContactTracking = (root = document) => {
+    swapPaidCallLinks(root);
+    swapPaidSmsLinks(root);
+  };
   document.addEventListener('click', (event) => recordPaidCallIntent(event.target.closest('a[href^="tel:"]')), true);
+  document.addEventListener('click', (event) => recordPaidSmsIntent(event.target.closest('a[href^="sms:"]')), true);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       populateAttributionForms();
-      initializePaidCallTracking();
+      initializePaidContactTracking();
     }, { once: true });
   } else {
     populateAttributionForms();
-    initializePaidCallTracking();
+    initializePaidContactTracking();
   }
   new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
           if (node instanceof Element) {
             populateAttributionForms(node);
-            initializePaidCallTracking(node);
+            initializePaidContactTracking(node);
           }
       });
     });

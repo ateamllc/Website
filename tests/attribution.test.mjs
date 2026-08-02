@@ -160,3 +160,11 @@ test('Web3 backup never replays the canonical single-use Turnstile token', () =>
   assert.match(productionSource, /backupData\.delete\('turnstile_token'\)/);
   assert.match(productionSource, /body: backupData/);
 });
+
+test('paid SMS links use the tracking number and carry an exact reference token', () => {
+  assert.match(productionSource, /const smsIntentEndpoint = 'https:\/\/ateam-lead-automation\.pages\.dev\/api\/sms-intent'/);
+  assert.match(productionSource, /crypto\.getRandomValues\(bytes\)/);
+  assert.match(productionSource, /Ref: \$\{link\.dataset\.ateamSmsReference\}/);
+  assert.match(productionSource, /link\.href = `sms:\$\{paidCallTrackingNumber\}\?body=\$\{encodeURIComponent\(message\)\}`/);
+  assert.match(productionSource, /recordPaidSmsIntent\(event\.target\.closest\('a\[href\^="sms:"\]'\)\)/);
+});
