@@ -20,6 +20,7 @@ Use this document to preserve why pages are built the way they are, not just wha
 - Project images live in `image/`; brand marks live in `image/brand/`; large service galleries use `manifest.json` files inside their photo folders.
 - Repo-only reference material lives in `docs/reference/`; design/source artifacts that are not served directly belong in `docs/design/`.
 - Maintenance scripts live in `scripts/`, including `scripts/generate-sitemap.js`.
+- After changing shared or homepage CSS, regenerate the homepage's single-request stylesheet with `node scripts/generate-home-css.js`.
 
 The site is static. Avoid adding build tooling unless there is a clear reason. Existing pages rely on browser-side `fetch`, so local testing should use a server rather than directly opening HTML files when checking partials or JSON-backed sections.
 
