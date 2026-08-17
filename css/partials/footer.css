@@ -69,7 +69,7 @@
     filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
 }
 
-.footer-column h4 {
+.footer-column h2 {
     margin-bottom: 0.75rem;
     font-size: 1rem;
     color: #fff;
@@ -118,7 +118,7 @@
     .footer-brand h3 {
         font-size: 1.2rem;
     }
-    .footer-column h4 {
+    .footer-column h2 {
         margin-top: 0.35rem;
     }
     .footer-meta {
