@@ -818,11 +818,11 @@
         reject(new Error('Turnstile could not load.'));
       };
       const ready = () => {
-        if (!window.turnstile || typeof window.turnstile.ready !== 'function') {
+        if (!window.turnstile || typeof window.turnstile.render !== 'function') {
           failed();
           return;
         }
-        window.turnstile.ready(() => resolve(window.turnstile));
+        resolve(window.turnstile);
       };
       if (script) {
         script.addEventListener('load', ready, { once: true });

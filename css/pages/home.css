@@ -787,8 +787,7 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     background-color: #182741;
-    background-position: center;
-    background-size: cover;
+    object-fit: cover;
 }
 
 .home-guide-card h3 {

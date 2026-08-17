@@ -9,6 +9,10 @@
     <title>Home | A Team Property Improvement</title>
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
     <link rel="canonical" href="https://ateamutah.com/">
+    <link rel="preload" as="image"
+        href="/image/Carousel-dawn-garage-768.webp"
+        imagesrcset="/image/Carousel-dawn-garage-768.webp 768w, /image/Carousel-dawn-garage-1440.webp 1440w"
+        imagesizes="100vw" fetchpriority="high">
 
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -27,29 +31,12 @@
     <!-- Fonts & CSS -->
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Open+Sans:400,600,700&display=swap"
         rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,400i,700i&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/main.css?v=20260727-turnstile-ready">
+    <link rel="stylesheet" href="/css/main.css?v=20260817-pagespeed">
     <link rel="stylesheet" href="/css/pages/home.css">
 
     <!-- JS loader -->
     <script src="/js/loader.js?v=20260726-turnstile" defer></script>
-    <script src="/js/scripts.js?v=20260727-turnstile-ready" defer></script>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VF8P30SBZG"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-VF8P30SBZG');
-    </script>
+    <script src="/js/scripts.js?v=20260817-pagespeed" defer></script>
 </head>
 
 
@@ -68,10 +55,14 @@
         <div data-include="/pages/partials/nav.html"></div>
     </header>
 
+    <main>
     <!-- Hero image -->
     <section id="hero-banner" class="content-section">
-        <div class="background-image-container" style="background-image: url('/image/Carousel-dawn-garage.webp');">
-        </div>
+        <picture class="background-image-container" aria-hidden="true">
+            <source media="(max-width: 767px)" srcset="/image/Carousel-dawn-garage-768.webp">
+            <img src="/image/Carousel-dawn-garage-1440.webp" alt="" width="1440" height="1080"
+                fetchpriority="high" decoding="async">
+        </picture>
         <div class="content-overlay">
             <div class="hero-grid">
                 <div class="hero-copy">
@@ -111,7 +102,7 @@
                     <div class="hero-form-card" aria-label="Request a free estimate">
                         <div class="hero-form-card__heading">
                             <p class="hero-eyebrow hero-form-eyebrow">Free estimate</p>
-                            <h3 class="hero-form-title">Tell us about your project</h3>
+                            <h2 class="hero-form-title">Tell us about your project</h2>
                             <p class="hero-form-note">Share the basics now—attach photos by text after submitting for the fastest quote.</p>
                         </div>
                         <form id="hero-estimate-form" action="https://api.web3forms.com/submit" method="post" class="contact-form hero-form"
@@ -249,7 +240,10 @@ You can reply here or call us at (801) 477-7526 with any questions!</textarea>
         <div class="service-spotlights__grid">
             <article id="service-spotlight-handyman" class="service-spotlight">
                 <div class="service-spotlight__image">
-                    <img src="/image/dawn-side-garage.webp" role="img" alt="Handyman repairs">
+                    <img src="/image/dawn-side-garage-640.webp"
+                        srcset="/image/dawn-side-garage-640.webp 640w, /image/dawn-side-garage.webp 2048w"
+                        sizes="(min-width: 1100px) 260px, (min-width: 700px) 45vw, calc(100vw - 64px)"
+                        loading="lazy" decoding="async" alt="Handyman repairs">
                 </div>
                 <div class="service-spotlight__body">
                     <p class="service-spotlight__tag">Handyman</p>
@@ -263,7 +257,7 @@ You can reply here or call us at (801) 477-7526 with any questions!</textarea>
 
             <article id="service-spotlight-painting" class="service-spotlight">
                 <div class="service-spotlight__image">
-                    <img src="/image/leslie-painting.webp" role="img" alt="Interior and exterior painting">
+                    <img src="/image/leslie-painting.webp" loading="lazy" decoding="async" alt="Interior and exterior painting">
                 </div>
                 <div class="service-spotlight__body">
                     <p class="service-spotlight__tag">Painting</p>
@@ -277,35 +271,38 @@ You can reply here or call us at (801) 477-7526 with any questions!</textarea>
 
             <article id="service-spotlight-fences" class="service-spotlight">
                 <div class="service-spotlight__image">
-                    <img src="/image/katie-fence-gate.webp" role="img" alt="Wood and vinyl fences">
+                    <img src="/image/katie-fence-gate-640.webp"
+                        srcset="/image/katie-fence-gate-640.webp 640w, /image/katie-fence-gate.webp 2048w"
+                        sizes="(min-width: 1100px) 260px, (min-width: 700px) 45vw, calc(100vw - 64px)"
+                        loading="lazy" decoding="async" alt="Wood and vinyl fences">
                 </div>
                 <div class="service-spotlight__body">
                     <p class="service-spotlight__tag">Fences</p>
                     <h3>Wood & vinyl fences</h3>
                     <p>Privacy, gates, and repairs built to match your yard and HOA—clean lines, sturdy posts, and solid hardware.</p>
                     <div class="service-spotlight__cta">
-                        <a href="/pages/landing/fences" aria-label="Learn more about fence services">Learn more about fences</a>
+                        <a href="/pages/landing/fences">Learn more about fences</a>
                     </div>
                 </div>
             </article>
 
             <article id="service-spotlight-custom" class="service-spotlight">
                 <div class="service-spotlight__image">
-                    <img src="/image/katie-pergola.webp" role="img" alt="Custom outdoor structures">
+                    <img src="/image/katie-pergola.webp" loading="lazy" decoding="async" alt="Custom outdoor structures">
                 </div>
                 <div class="service-spotlight__body">
                     <p class="service-spotlight__tag">Custom projects</p>
                     <h3>Frames, pergolas, built-ins & more</h3>
                     <p>Framing, pergolas, decks, sheds, and custom trim or built-ins—owner-led crews that sweat the details.</p>
                     <div class="service-spotlight__cta">
-                        <a href="/pages/contact" aria-label="Learn more about custom projects">Contact us about your custom build</a>
+                        <a href="/pages/contact">Contact us about your custom build</a>
                     </div>
                 </div>
             </article>
         </div>
 
         <div class="service-spotlights__footer">
-            <a class="service-spotlights__cta-main" href="tel:+18014777526" aria-label="Call for a free consultation and estimate">
+            <a class="service-spotlights__cta-main" href="tel:+18014777526">
                 Not sure about your project? Call us for a free consultation and estimate!
             </a>
         </div>
@@ -337,21 +334,21 @@ You can reply here or call us at (801) 477-7526 with any questions!</textarea>
 
             <div class="home-guides__grid">
                 <a class="home-guide-card" href="/pages/blog/proper-room-painting">
-                    <span class="home-guide-card__image" style="background-image: url('/image/leslie-painting.webp');"></span>
+                    <img class="home-guide-card__image" src="/image/leslie-painting.webp" loading="lazy" decoding="async" alt="Interior painting project">
                     <h3>Proper Room Painting Technique: From Start to Finish</h3>
                     <p>Step-by-step prep, priming, cutting, and rolling techniques for cleaner walls and fewer paint-day surprises.</p>
                     <span class="home-guide-card__link">Read more &rarr;</span>
                 </a>
 
                 <a class="home-guide-card" href="/pages/blog/utah-wood-fences">
-                    <span class="home-guide-card__image" style="background-image: url('/image/katie-fence-gate.webp');"></span>
+                    <img class="home-guide-card__image" src="/image/katie-fence-gate-640.webp" loading="lazy" decoding="async" alt="Wood fence and gate project">
                     <h3>Utah Wood Fences: The Truth About Old Dog-Eared Cedar</h3>
                     <p>See how Utah sun, leaning sections, and older cedar panels affect whether a fence should be repaired or replaced.</p>
                     <span class="home-guide-card__link">Read more &rarr;</span>
                 </a>
 
                 <a class="home-guide-card" href="/pages/blog/how-to-paint-a-team-way">
-                    <span class="home-guide-card__image" style="background-image: url('/image/painting-photos/IMG_6576.webp');"></span>
+                    <img class="home-guide-card__image" src="/image/painting-photos/IMG_6576-640.webp" loading="lazy" decoding="async" alt="Room painting project">
                     <h3>How to Paint a Room Properly</h3>
                     <p>Follow our painting badge tutorial for prep, sheens, roller technique, sprayer basics, safety, and final walkthrough standards.</p>
                     <span class="home-guide-card__link">Read more &rarr;</span>
@@ -361,6 +358,8 @@ You can reply here or call us at (801) 477-7526 with any questions!</textarea>
             <a class="home-guides__more" href="/pages/blog.html">Click here to see more of our updates</a>
         </div>
     </section>
+
+    </main>
 
 <div data-include="/pages/partials/social-follow.html"></div>
 
