@@ -65,14 +65,19 @@ document.addEventListener("DOMContentLoaded", function() {
     return candidates;
   };
 
-  includes.forEach(el => {
+  const loadInclude = (el) => {
+    if (el.dataset.includeState) return;
     const src = el.getAttribute('data-include');
     if (!src) return;
 
+    el.dataset.includeState = 'loading';
+    el.setAttribute('aria-busy', 'true');
     const candidates = buildCandidateUrls(src);
 
     const tryNext = (index = 0) => {
       if (index >= candidates.length) {
+        el.dataset.includeState = 'error';
+        el.removeAttribute('aria-busy');
         console.error('Include load error: unable to fetch', src);
         return;
       }
@@ -84,6 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
         return res.text();
       }).then(html => {
         el.innerHTML = html;
+        el.dataset.includeState = 'loaded';
+        el.removeAttribute('aria-busy');
         normalizeLocalPageLinks(el);
       }).catch(() => {
         tryNext(index + 1);
@@ -91,5 +98,25 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     tryNext();
+  };
+
+  const lazyIncludes = Array.from(includes).filter(el => el.hasAttribute('data-include-lazy'));
+  includes.forEach(el => {
+    if (!el.hasAttribute('data-include-lazy')) loadInclude(el);
   });
+
+  if (!lazyIncludes.length) return;
+  if (!('IntersectionObserver' in window)) {
+    lazyIncludes.forEach(loadInclude);
+    return;
+  }
+
+  const includeObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      includeObserver.unobserve(entry.target);
+      loadInclude(entry.target);
+    });
+  }, { rootMargin: '800px 0px' });
+  lazyIncludes.forEach(el => includeObserver.observe(el));
 });

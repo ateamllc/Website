@@ -1,11 +1,9 @@
 // Basic scripts for small enhancements
 (function() {
-  // Meta Pixel is intentionally initialized from the common site script so it
-  // covers every public page that already loads this file. The public ID is
-  // safe to expose; access tokens remain server-only Cloudflare secrets.
-  const metaPixelId = '3294200820778684';
-  const initializeMetaPixel = () => {
-    if (typeof window.fbq === 'function') return;
+  // The homepage queues Meta through marketing.js and starts the vendor after
+  // engagement. Other pages retain the existing immediate initialization.
+  if (!window.ATeamMarketing && typeof window.fbq !== 'function') {
+    const metaPixelId = '3294200820778684';
     const fbq = function() { fbq.callMethod ? fbq.callMethod.apply(fbq, arguments) : fbq.queue.push(arguments); };
     fbq.queue = [];
     fbq.loaded = true;
@@ -18,8 +16,7 @@
     document.head.appendChild(script);
     fbq('init', metaPixelId);
     fbq('track', 'PageView');
-  };
-  initializeMetaPixel();
+  }
 
   const attributionStorageKey = 'ateam_first_touch_attribution_v1';
   const attributionCookieKey = 'ateam_first_touch';
@@ -907,12 +904,20 @@
       window.turnstile.reset(widgetId);
     }
   };
+  const prepareTurnstileForm = (form) => {
+    if (!isTurnstileProtectedForm(form) || form.dataset.turnstilePrepared === 'true') return;
+    form.dataset.turnstilePrepared = 'true';
+    const activate = () => ensureTurnstileForm(form);
+    form.addEventListener('focusin', activate, { once: true });
+    form.addEventListener('pointerdown', activate, { once: true, passive: true });
+  };
   const scanTurnstileForms = (root = document) => {
     const forms = [];
     if (root instanceof HTMLFormElement) forms.push(root);
     root.querySelectorAll?.('form').forEach((form) => forms.push(form));
     forms.filter(isTurnstileProtectedForm).forEach((form) => {
-      ensureTurnstileForm(form);
+      if (document.body?.classList.contains('home-page')) prepareTurnstileForm(form);
+      else ensureTurnstileForm(form);
     });
   };
   window.ATeamTurnstile = Object.assign(window.ATeamTurnstile || {}, {

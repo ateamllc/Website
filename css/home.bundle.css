@@ -2730,6 +2730,54 @@ body:has(.referral-page) {
 }
 
 /* Source: css/pages/home.css */
+.home-page {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.home-page h1,
+.home-page h2,
+.home-page h3,
+.home-page #company-title,
+.home-page .hero-title,
+.home-page .hero-form-title {
+    font-family: "Arial Narrow", "Aptos Narrow", system-ui, sans-serif;
+}
+
+.home-page #hero-banner {
+    isolation: isolate;
+    background: #0f172a;
+}
+
+.home-page #hero-banner .background-image-container {
+    filter: none;
+}
+
+.home-page #hero-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(5, 12, 24, 0.52);
+}
+
+.home-page #hero-banner .content-overlay {
+    z-index: 2;
+}
+
+.home-page main > section:not(#hero-banner) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+}
+
+@media (max-width: 768px) {
+    .home-page #hero-banner .content-overlay,
+    .home-page #hero-banner .hero-review-card--inline {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+}
+
 .descriptive-text {
     margin-bottom: 1rem;
     font-style: italic;
