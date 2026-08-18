@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const productionSource = fs.readFileSync(path.join(repoRoot, 'js', 'scripts.js'), 'utf8');
+const marketingSource = fs.readFileSync(path.join(repoRoot, 'js', 'marketing.js'), 'utf8');
+const loaderSource = fs.readFileSync(path.join(repoRoot, 'js', 'loader.js'), 'utf8');
 const marker = '  const toggleNavigation =';
 const attributionSource = `${productionSource.slice(0, productionSource.indexOf(marker))}\n})();`;
 
@@ -146,13 +148,30 @@ test('populates forms inserted later without overwriting an explicit field value
   assert.match(dynamic.value('first_touch_at'), /^\d{4}-/);
 });
 
-test('Turnstile is preloaded and keeps protected submits gated until verification succeeds', () => {
-  assert.match(productionSource, /loadTurnstile\(\)\.catch/);
+test('homepage Turnstile waits for form engagement and keeps submits gated until verification succeeds', () => {
+  assert.match(productionSource, /const prepareTurnstileForm = \(form\) =>/);
+  assert.match(productionSource, /form\.addEventListener\('focusin', activate/);
+  assert.match(productionSource, /form\.addEventListener\('pointerdown', activate/);
+  assert.match(productionSource, /classList\.contains\('home-page'\)\) prepareTurnstileForm\(form\)/);
   assert.match(productionSource, /setTurnstileFormReady\(form, false, 'loading'\)/);
   assert.match(productionSource, /appearance: 'always'/);
   assert.match(productionSource, /execution: 'render'/);
   assert.match(productionSource, /callback: \(\) => \{\s*setTurnstileFormReady\(form, true, 'verified'\)/);
   assert.match(productionSource, /'expired-callback': \(\) => \{\s*setTurnstileFormReady\(form, false, 'expired'\)/);
+});
+
+test('homepage marketing vendors retain event queues but wait for engagement or idle fallback', () => {
+  assert.match(marketingSource, /const fallbackDelayMs = 8000/);
+  assert.match(marketingSource, /window\.dataLayer = window\.dataLayer \|\| \[\]/);
+  assert.match(marketingSource, /fbq\('track', 'PageView'\)/);
+  assert.match(marketingSource, /\['pointerdown', 'keydown', 'touchstart'\]/);
+  assert.match(marketingSource, /requestIdleCallback\(startVendors, \{ timeout: 2000 \}\)/);
+});
+
+test('explicitly lazy homepage partials load near the viewport', () => {
+  assert.match(loaderSource, /hasAttribute\('data-include-lazy'\)/);
+  assert.match(loaderSource, /new IntersectionObserver/);
+  assert.match(loaderSource, /rootMargin: '800px 0px'/);
 });
 
 test('Web3 backup never replays the canonical single-use Turnstile token', () => {
