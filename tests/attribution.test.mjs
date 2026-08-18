@@ -9,6 +9,8 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'
 const productionSource = fs.readFileSync(path.join(repoRoot, 'js', 'scripts.js'), 'utf8');
 const marketingSource = fs.readFileSync(path.join(repoRoot, 'js', 'marketing.js'), 'utf8');
 const loaderSource = fs.readFileSync(path.join(repoRoot, 'js', 'loader.js'), 'utf8');
+const homepageSource = fs.readFileSync(path.join(repoRoot, 'index.html'), 'utf8');
+const homepageCss = fs.readFileSync(path.join(repoRoot, 'css', 'pages', 'home.css'), 'utf8');
 const marker = '  const toggleNavigation =';
 const attributionSource = `${productionSource.slice(0, productionSource.indexOf(marker))}\n})();`;
 
@@ -172,6 +174,14 @@ test('explicitly lazy homepage partials load near the viewport', () => {
   assert.match(loaderSource, /hasAttribute\('data-include-lazy'\)/);
   assert.match(loaderSource, /new IntersectionObserver/);
   assert.match(loaderSource, /rootMargin: '800px 0px'/);
+});
+
+test('homepage self-hosts optional Oswald without putting it on the critical preload path', () => {
+  assert.match(homepageCss, /font-family: 'Oswald'/);
+  assert.match(homepageCss, /font-display: optional/);
+  assert.match(homepageCss, /url\('\/fonts\/oswald-latin-variable\.woff2'\)/);
+  assert.doesNotMatch(homepageSource, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
+  assert.doesNotMatch(homepageSource, /rel="preload"[^>]+as="font"/);
 });
 
 test('Web3 backup never replays the canonical single-use Turnstile token', () => {
