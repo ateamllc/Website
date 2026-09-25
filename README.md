@@ -137,16 +137,23 @@ Discount code metadata is managed in `data/offers/discount-codes.json`. For any 
 Current `lead_source` values:
 
 - `knocking`
+- `client_referral`
+- `employee_referral`
+- `neighbor_of_client`
 - `referral`
 - `meta_ads`
-- `facebook_organic_inbound`
+- `facebook_organic`
 - `google_ads`
 - `website_form`
+- `instant_estimate`
 - `gbp`
 - `inbound_call`
 - `inbound_text`
+- `inbound_email`
 - `return_customer`
 - `door_hangers`
+- `other`
+- `yelp_organic_reachout`
 
 Use `lead_source` only for standardized lead-channel classification. Page/workflow identity belongs in `form_id`, `form_name`, and `form_source`. Public website forms should submit `website_form`, the door hanger QR page should submit `door_hangers`, and the internal manual lead entry form should use the same approved dropdown values listed above.
 
