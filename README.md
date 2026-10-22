@@ -13,7 +13,7 @@ Use this document to preserve why pages are built the way they are, not just wha
 - HTML pages live in `pages/`, with service landers in `pages/landing/`.
 - Shared HTML fragments live in `pages/partials/`.
 - Landing-specific shared fragments live in `pages/partials/landing/`.
-- Shared CSS is imported through `css/main.css`, which imports partial and component CSS.
+- Shared CSS sources live in `css/main.css` and its imported partial/component stylesheets. Pages load the generated `css/main.bundle.css` to avoid a render-blocking import chain.
 - Global behavior lives mostly in `js/scripts.js`.
 - Client-side includes are handled by `js/loader.js` through `data-include`.
 - Landing content data lives in `data/landing/` when a page uses JSON-backed snippets.
@@ -21,6 +21,8 @@ Use this document to preserve why pages are built the way they are, not just wha
 - Repo-only reference material lives in `docs/reference/`; design/source artifacts that are not served directly belong in `docs/design/`.
 - Maintenance scripts live in `scripts/`, including `scripts/generate-sitemap.js`.
 - After changing shared or homepage CSS, regenerate the homepage's single-request stylesheet with `node scripts/generate-home-css.js`.
+- After changing shared CSS, also run `node scripts/generate-main-css.js`. This resolves imports in cascade order, preserves asset URL destinations, and updates HTML stylesheet URLs with a content hash. Commit the generated bundle and updated HTML together. Run `node --test tests/css-bundle.test.cjs` to check URL resolution and cascade order.
+- Non-home pages retain the Oswald/Open Sans Google Fonts stylesheet. Unused Google Sans, Roboto, Source Code Pro, and Merriweather stylesheet links were removed after checking CSS and inline font declarations. Do not add these requests to new pages unless their typography uses them.
 
 The site is static. Avoid adding build tooling unless there is a clear reason. Existing pages rely on browser-side `fetch`, so local testing should use a server rather than directly opening HTML files when checking partials or JSON-backed sections.
 
