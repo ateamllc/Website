@@ -544,6 +544,30 @@ Update this README when:
 
 Also keep `sitemap.xml` in sync when adding, removing, or renaming public pages.
 
+### Sitemap and utility indexing
+
+`pages/thank-you.html` is intentionally `noindex`; the maintenance-request page
+retains its existing `noindex, nofollow`. Keep both pages reachable for their
+workflows and crawler access to those directives. Do not block them in robots.txt.
+Neither belongs in the sitemap, regardless of whether a directive is accidentally
+removed later. The generator also skips other HTML pages carrying a robots or
+Googlebot `noindex` directive (`none` is treated as noindex), along with partials,
+hidden directories, dependencies, assets, tests, scripts, and repo-only docs.
+Existing extensionless URLs and policy aliases remain unchanged; directory-policy
+redirects are a separate hosting decision.
+
+After changing a page's indexing intent, regenerate and check the sitemap:
+
+```sh
+node scripts/generate-sitemap.js
+node --test tests/sitemap.test.cjs tests/attribution.test.mjs
+```
+
+After release, check both extensionless and `.html` utility responses for noindex,
+confirm sitemap exclusions, and smoke-test the utility workflow. Google removing
+an existing indexed utility URL requires recrawling; a source change alone does
+not verify removal in Search Console.
+
 ## Local Workflow
 
 Use a local server for testing pages that load partials or JSON:
