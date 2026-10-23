@@ -21,6 +21,31 @@ const publicPathAliases = new Map([
   [path.join('pages', 'twilio-campaign-privacy-policy.html'), '/twilio-campaign-privacy-policy'],
 ]);
 
+// Dates of significant content updates, verified against the SEO refresh commits.
+// Update individual entries when page content changes; never use the build date.
+const lastModified = new Map([
+  ['/', '2026-10-22'],
+  ['/pages/landing/deck-fence-staining', '2026-10-22'],
+  ['/pages/landing/door-repair-installation', '2026-10-22'],
+  ['/pages/landing/drywall-repair', '2026-10-22'],
+  ['/pages/landing/fence-repair', '2026-10-22'],
+  ['/pages/landing/fences', '2026-10-22'],
+  ['/pages/landing/flooring', '2026-10-22'],
+  ['/pages/landing/framing', '2026-10-22'],
+  ['/pages/landing/furniture-assembly', '2026-10-22'],
+  ['/pages/landing/handyman', '2026-10-22'],
+  ['/pages/landing/honey-do', '2026-10-22'],
+  ['/pages/landing/painting', '2026-10-22'],
+  ['/pages/landing/pergolas', '2026-10-22'],
+  ['/pages/landing/property-manager-portal', '2026-10-22'],
+  ['/pages/landing/rental-ready-maintenance', '2026-10-22'],
+  ['/pages/landing/roofing', '2026-10-22'],
+  ['/pages/landing/shed-building', '2026-10-22'],
+  ['/pages/landing/siding', '2026-10-22'],
+  ['/pages/landing/trim-baseboard-installation', '2026-10-22'],
+  ['/pages/landing/tv-mounting', '2026-10-22'],
+]);
+
 function readDomain(siteRoot = rootDir) {
   const cnamePath = path.join(siteRoot, 'CNAME');
   if (fs.existsSync(cnamePath)) {
@@ -82,6 +107,8 @@ function buildSitemapXml(urls) {
   urls.forEach((loc) => {
     lines.push('  <url>');
     lines.push(`    <loc>${loc}</loc>`);
+    const lastmod = lastModified.get(new URL(loc).pathname);
+    if (lastmod) lines.push(`    <lastmod>${lastmod}</lastmod>`);
     lines.push('  </url>');
   });
   lines.push('</urlset>');
