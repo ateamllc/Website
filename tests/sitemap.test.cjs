@@ -56,6 +56,8 @@ test('generation excludes utilities, future noindex pages and non-public HTML', 
     'https://ateamutah.com/pages/landing/handyman',
     'https://ateamutah.com/privacy-policy',
   ]);
+  assert.match(first, /<loc>https:\/\/ateamutah\.com\/pages\/landing\/handyman<\/loc>\s*<lastmod>2026-10-22<\/lastmod>/);
+  assert.match(first, /<loc>https:\/\/ateamutah\.com\/privacy-policy<\/loc>\s*<\/url>/);
   main(root);
   assert.equal(fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8'), first);
 });
