@@ -1,0 +1,17 @@
+.ai-reference { background: #f8fafc; }
+.ai-reference .ai-intro { max-width: 920px; margin: 0 auto; }
+.ai-reference .ai-intro p { font-size: 1.08rem; line-height: 1.7; }
+.ai-reference .ai-updated { color: #475569; font-size: .9rem !important; }
+.ai-reference .ai-fact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 1100px; margin: 1.5rem auto 0; }
+.ai-reference .ai-fact { background: #fff; border-left: 4px solid #fbbf24; border-radius: 8px; padding: 1.2rem 1.4rem; box-shadow: 0 8px 24px rgba(15, 23, 42, .07); }
+.ai-reference .ai-fact h3 { margin: 0 0 .35rem; font-size: 1.15rem; }
+.ai-reference .ai-fact p { margin: 0; line-height: 1.6; }
+.ai-reference .ai-faq-group { max-width: 1000px; margin: 0 auto 2.5rem; }
+.ai-reference .ai-faq-group h2 { margin: 0 0 1rem; }
+.ai-reference .ai-faq { padding: 1.15rem 0; border-top: 1px solid #cbd5e1; }
+.ai-reference .ai-faq h3 { margin: 0 0 .35rem; font-size: 1.1rem; }
+.ai-reference .ai-faq p { margin: 0; line-height: 1.65; }
+.ai-reference .ai-link-list { max-width: 1000px; margin: 0 auto; }
+.ai-reference .ai-link-list li { margin: .6rem 0; line-height: 1.6; }
+.ai-reference a { text-underline-offset: 3px; }
+@media (max-width: 700px) { .ai-reference .ai-fact-grid { grid-template-columns: 1fr; } }
