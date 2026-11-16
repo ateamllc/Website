@@ -25,6 +25,8 @@ const publicPathAliases = new Map([
 // Update individual entries when page content changes; never use the build date.
 const lastModified = new Map([
   ['/', '2026-10-22'],
+  ['/pages/contact', '2026-11-15'],
+  ['/pages/for-ai-agents', '2026-11-15'],
   ['/pages/landing/deck-fence-staining', '2026-10-22'],
   ['/pages/landing/door-repair-installation', '2026-10-22'],
   ['/pages/landing/drywall-repair', '2026-10-22'],
