@@ -532,6 +532,17 @@ Before adding a new lander, define:
 - Do not overpromise licensed trade work, structural work, roof diagnosis, major plumbing/electrical, or permit-heavy work unless the business has explicitly decided to offer it.
 - Use customer language: punch list, rental turn, drywall patch, trim repair, fresh coat, walkthrough, quote, photos.
 
+## Business Hours
+
+Business hours are **Monday to Friday, 8:00 am to 5:00 pm (Mountain Time), closed weekends**. They are the same for the sister site A Team Fencing & Outdoor Structures (`ateamllc/ateam-fencing`).
+
+Where they appear:
+
+- Visible text: the footer (`pages/partials/footer.html`, so every page), the contact page details, and the "How to reach us" fact on `pages/for-ai-agents.html`.
+- Structured data: `openingHoursSpecification` (Monday-Friday, `08:00`-`17:00`) inside the `HomeAndConstructionBusiness` JSON-LD on every lander in `pages/landing/` and on `pages/for-ai-agents.html`. New landers copied from `pages/landing/handyman.html` inherit it; keep it when editing schema.
+
+If the hours change, update all of those places, the Google Business Profile, and the fencing site together.
+
 ## Maintenance Checklist
 
 Update this README when:
@@ -543,6 +554,7 @@ Update this README when:
 - A page's target audience, service area, or scope boundaries change.
 - Image sourcing or carousel behavior changes.
 - SEO schema strategy changes.
+- Business hours, phone, or other business facts change.
 
 Also keep `sitemap.xml` in sync when adding, removing, or renaming public pages.
 
