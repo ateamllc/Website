@@ -1683,3 +1683,57 @@
   observeStickyCta();
   observeLazyBackgrounds();
 })();
+
+// Microsoft Clarity (session replay and heatmaps) for the shared A Team Clarity project.
+// - One config value: clarityProjectId (a public tag ID, not a secret). An empty string disables Clarity.
+// - Mirrors js/marketing.js: the vendor starts after first engagement, or after load plus an 8s idle fallback.
+// - Never runs on admin, manual lead entry, or internal confirmation pages, and never when the browser
+//   sends Do Not Track or Global Privacy Control.
+// - Every form and form field gets data-clarity-mask="True" before Clarity can start (and again when a
+//   partial inserts a form later). Also set Strict masking in the Clarity project settings.
+(function () {
+  const clarityProjectId = 'zeykbs5kxo';
+  const clarityHosts = ['ateamutah.com', 'www.ateamutah.com'];
+  const excludedPaths = /^\/(?:pages\/)?(?:admin[^/]*|manual-lead-entry|knocking-submitted)(?:\.html)?\/?$/i;
+  const path = window.location.pathname;
+  const maskElement = (el) => { if (el && el.setAttribute) el.setAttribute('data-clarity-mask', 'True'); };
+  const maskForms = (root) => {
+    if (!root || !root.querySelectorAll) return;
+    if (root.matches && root.matches('form, input, textarea, select')) maskElement(root);
+    root.querySelectorAll('form, input, textarea, select').forEach(maskElement);
+  };
+  maskForms(document);
+  if (window.MutationObserver) {
+    new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => { if (node.nodeType === 1) maskForms(node); });
+      });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+
+  // Excluded pages still have their forms masked above, but Clarity itself never starts there.
+  if (excludedPaths.test(path) || /\/admin/i.test(path)) return;
+  const trackingOptedOut = navigator.doNotTrack === '1' || window.doNotTrack === '1'
+    || navigator.msDoNotTrack === '1' || navigator.globalPrivacyControl === true;
+  if (!/^[a-z0-9]{6,}$/i.test(clarityProjectId) || !clarityHosts.includes(window.location.hostname) || trackingOptedOut) return;
+
+  let clarityStarted = false;
+  const startClarity = () => {
+    if (clarityStarted) return;
+    clarityStarted = true;
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, 'clarity', 'script', clarityProjectId);
+  };
+  ['pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
+    window.addEventListener(eventName, startClarity, { once: true, passive: true, capture: true });
+  });
+  window.addEventListener('load', () => {
+    window.setTimeout(() => {
+      if ('requestIdleCallback' in window) window.requestIdleCallback(startClarity, { timeout: 2000 });
+      else startClarity();
+    }, 8000);
+  }, { once: true });
+})();
