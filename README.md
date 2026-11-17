@@ -545,6 +545,10 @@ Where they appear:
 
 If the hours change, update all of those places, the Google Business Profile, and the fencing site together.
 
+## Favicons
+
+The favicon is the toolbox mark from `image/brand/a-team-property-improvement-logo.png` on the brand navy. Files at the site root: `favicon.ico` (16, 32, 48px), `apple-touch-icon.png` (180px), `icon-192.png`, `icon-512.png`, and `site.webmanifest`. `image/favicon.ico` is the same ICO file for any old reference. Every HTML page head carries `<link rel="icon" href="/favicon.ico" sizes="48x48">`, the apple-touch-icon, the manifest link, and `theme-color`. If the logo changes, regenerate all five files from it and keep the sizes (Google wants a multiple of 48px).
+
 ## Maintenance Checklist
 
 Update this README when:
