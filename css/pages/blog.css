@@ -142,6 +142,10 @@
   max-width: 820px;
 }
 
+.article-page .page-hero p.hero-title {
+  font-weight: 700;
+}
+
 .article-page .page-hero .hero-sub {
   max-width: 820px;
   margin-top: 0.35rem;
