@@ -24,6 +24,10 @@ const publicPathAliases = new Map([
 // Dates of significant content updates, verified against the SEO refresh commits.
 // Update individual entries when page content changes; never use the build date.
 const lastModified = new Map([
+  ['/pages/blog/what-a-handyman-can-and-cant-do', '2026-11-19'],
+  ['/pages/blog/tools-every-diyer-needs', '2026-11-19'],
+  ['/pages/blog/painting-prep-lessons', '2026-11-19'],
+  ['/pages/blog/how-a-team-started', '2026-11-19'],
   ['/', '2026-10-22'],
   ['/pages/contact', '2026-11-15'],
   ['/pages/for-ai-agents', '2026-11-15'],
